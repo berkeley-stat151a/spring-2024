@@ -69,13 +69,13 @@
     items:
     - href: ./Labs/Lab4.md
       id: 4
-      name: TBD
+      name: Optimziation
       type: Lab
   - date: Feb 8
     items:
     - href: ./Lectures/Lecture8.md
       id: 8
-      name: Categorical predictors and one-hot encoding
+      name: Analysis of variance
       type: Lecture
   week: 4
 - days:
@@ -89,7 +89,7 @@
     items:
     - href: ./Labs/Lab5.md
       id: 5
-      name: TBD
+      name: Bootstrapping
       type: Lab
   - date: Feb 15
     items:
@@ -109,7 +109,7 @@
     items:
     - href: ./Labs/Lab6.md
       id: 6
-      name: TBD
+      name: Conformal inference
       type: Lab
   - date: Feb 22
     items:
@@ -135,7 +135,7 @@
     items:
     - href: ./Lectures/Lecture14.md
       id: 14
-      name: "How regression fails: Domain changes, Simpson\u2019s paradox, outliers"
+      name: "How regression fails: Domain changes, Simpson\u2019s paradox"
       type: Lecture
   week: 7
 - days:
@@ -143,19 +143,19 @@
     items:
     - href: ./Lectures/Lecture15.md
       id: 15
-      name: 'How regression fails: Non-independence, small sample sizes'
+      name: 'How regression fails: Outliers and leverage'
       type: Lecture
   - date: Mar 6
     items:
     - href: ./Labs/Lab8.md
       id: 8
-      name: Review
+      name: TBD
       type: Lab
   - date: Mar 7
     items:
     - href: ./Lectures/Lecture16.md
       id: 16
-      name: Midterm review
+      name: 'How regression fails: Model reification'
       type: Lecture
   week: 8
 - days:
@@ -169,7 +169,7 @@
     items:
     - href: ./Labs/Lab9.md
       id: 9
-      name: rstanarm
+      name: Fitting regressions with rstanarm
       type: Lab
   - date: Mar 14
     items:
@@ -198,7 +198,11 @@
       name: 'Bayesian inference: regression and shrinkage'
       type: Lecture
   week: 10
-- days: []
+- days:
+  - date: Mar 25
+    items:
+    - name: Spring break
+      type: Holiday
   week: 11
 - days:
   - date: Apr 2
@@ -211,7 +215,7 @@
     items:
     - href: ./Labs/Lab11.md
       id: 11
-      name: Double descent
+      name: Using lme4
       type: Lab
   - date: Apr 4
     items:
@@ -225,19 +229,19 @@
     items:
     - href: ./Lectures/Lecture23.md
       id: 23
-      name: 'Basis expansions: Bias and variance'
+      name: Random effects and hierarchical modeling
       type: Lecture
   - date: Apr 10
     items:
     - href: ./Labs/Lab12.md
       id: 12
-      name: Project practice
+      name: Project office hours
       type: Lab
   - date: Apr 11
     items:
     - href: ./Lectures/Lecture24.md
       id: 24
-      name: 'Basis expansions: Interpolation and double descent'
+      name: Random effects and hierarchical modeling
       type: Lecture
   week: 13
 - days:
@@ -245,7 +249,7 @@
     items:
     - href: ./Lectures/Lecture25.md
       id: 25
-      name: Influence functions (?)
+      name: 'Basis expansions: Bias and variance'
       type: Lecture
   - date: Apr 17
     items:
@@ -257,6 +261,6 @@
     items:
     - href: ./Lectures/Lecture26.md
       id: 26
-      name: Permutation testing (?)
+      name: 'Basis expansions: Interpolation and double descent'
       type: Lecture
   week: 14
