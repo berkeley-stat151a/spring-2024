@@ -1,80 +1,31 @@
 [
   {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Warning\n\n\n\nThese course policies are a work in progress and subject to change.\n\n\n\nObjectives\nLinear models strike a remarkable balance between simplicity and complexity: simple enough to permit detailed theoretical analysis, but complex enough to exhibit many of the strengths and weaknesses of statistics and machine learning more generally. In this course, we will explore classical and cutting-edge topics in statistics and machine learning through the lens of linear models. A strong emphasis will be placed on mathematical rigor, real-world decision-making, and the interplay between the two.\n\nCourse goals\nBy the end of the course, you should be able to\n\nExpress standard regression analyses both mathematically and in R code\nCritically relate the intended use of a regression analysis to its methods and assumptions\nIdentify common practical and conceptual pitfalls of regression analysis, and to improve the analysis when possible\nCommunicate the process and results of a regression analysis simply and clearly for a broad audience, using well-organized prose, reproducible code, and effective data visualizations.\n\n\n\n\nPrerequisites\nThis course will assume familiarity with the material in STAT 135 or STAT 102. STAT 135 implies other prerequisite courses (STAT 134 and its prerequisites). In particular, you must have had linear algebra, so you should be familiar with basic matrix operations, vector subspaces and projections, rank and invertibility of matrices, and quadratic forms.\nThis semester of Stat151A will include labs and projects in the R language. Proficiency with R at the level of the is a prerequisite. Students with a strong background in another programming language (e.g. Python) will be permitted to enroll with the understanding that they will learn R on their own prior to the start of the class.\n\n\nMaterials\n\nTextbook\nThe primary materials for the course are the lecture notes, which will be posted to the course website in advance of class. The following textbooks are useful supplementary texts but there is no need to purchase them:\n\nApplied Regression Analysis and Generalized Linear Models, Fox\nStatistics, Freedman, Pisani, and Purves\nR for Data Science, Wickham and Grolemund (freely available online)\n\n\n\nRStudio\nThe software that we’ll be using for our data analysis is the free and open-source language called R that we’ll be interacting with via software called RStudio. As a Berkeley student, you have your own version of RStudio waiting you for at: http://stat20.datahub.berkeley.edu. Most students taking Stat 20 have no experience programming; we’ll teach you everything you need to know!\n\n\nCourse website\nAll of the assignments will be posted to the course website at https://github.com/berkeley-stat151a/spring-2024. This also holds the course notes, the syllabus, and links to Gradescope, Ed, and RStudio.\n\n\n\nAssignments, Exams, and Grading\n\nGrading.\nGrades will not be curved except where otherwise noted. Letter grades will be assigned according the weighted points earned. A score within [90-92%) will earn an A-, [92-98%) will earn an A, and [99-100%) will earn an A+. Scores in the 80’s will receive B’s, in the 70’s will receive C’s, with the same thresholds for plusses and minuses. Scores below 70% will be considered failing. Grades will be non-negotiable.\nThe weighting for the grades will be: - Homework completion (each weighted equally): 16% - Homework correctness (each weighted equally): 4% - Quizzes (each weighted equally): 20% - Final exam: 20% - Group project: 20% - Lab participation: 10%\n\n\nFinal exam.\nAn in-person pencil-and-paper final exam will be scheduled during the usual final exam week.\n\n\nQuizzes.\nEvery two weeks we will have an in-class quiz. These quizzes will take the place of a sitdown midterm exam (i.e., there will be no midterm).\n\n\nHomework.\nHomework assignments will be published on Fridays and due two weeks later. Homework will typically consist of a combination of mathematical problems and data analysis in R. All homework will be due as a pdf via Gradescope unless otherwise noted.\nThe purpose of homework is for students to attempt to work through problems on their own, both to advance their own understanding, and to allow the instructors to monitor student learning. Neither of these objectives are served if students are copying answers. For that reason, thoughtful and complete homework answers will receive nearly full credit (80% of the available homework points) even if incorrect. We strongly encourage students to submit their own best efforts, even if imperfect, rather than copy a correct answer.\n\n\nFinal project.\nStudents will form groups of up to three people to submit a final project consisting of an analysis of a real dataset applying principles and techniques from the course.\n\n\nTurning-in assignments\nYou will be turning in your assignments on a platform called Gradescope. This is also the platform where your assignments will be graded, so you can return there to get feedback on your work. You are welcome to file a regrade request if you notice that we made an error in applying the rubric to your work, but be sure to do so within a week of the grades being posted. We will not accept regrade requests past that point.\nIn order to provide flexibility around emergencies that might arise for you throughout the semester (for example, missing a quiz due to COVID), we will apply for everyone:\n\none emergency drop for quizzes\n\ntwo emergency drops for homework\n\nThis means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. For reading questions, we will drop your two lowest.\n\n\nLate Work\nLate work will not be accepted. If work is not submitted on time, it will receive a zero.\nIt is entirely the students’ responsibility to turn work in on time.\n\n\n\nPolicies\n\nCourse Culture\nStudents taking STAT151A come from a wide range of backgrounds. We hope to foster an inclusive and supportive learning environment based on curiosity rather than competition. All members of the course community—the instructor, students, tutors, and readers—are expected to treat each other with courtesy and respect.\nYou will be interacting with course staff and fellow students in several different environments: in class, over the discussion forum, and in office hours. Some of these will be in person, some of them will be online, but the same expectations hold: be kind, be respectful, be professional.\nIf you are concerned about classroom environment issues created by other students or course staff, please come talk to the instructors about it.\n\n\nCollaboration policy\nYou are encouraged to collaborate with your fellow students on problem sets and labs, but the work you turn in should reflect your own understanding and all of your collaborators must be cited. The individual component of quizzes, reading questions, and exams must reflect only your work.\nResearchers don’t use one another’s research without permission; scholars and students always use proper citations in papers; professors may not circulate or publish student papers without the writer’s permission; and students may not circulate or post non-public materials (quizzes, exams, rubrics-any private class materials) from their class without the written permission of the instructor.\nThe general rule: you must not submit assignments that reflect the work of others unless they are a cited collaborator.\nThe following examples of collaboration are allowed and in fact encouraged!\n\nDiscussing how to solve a problem with a classmate.\nShowing your code to a classmate along with an error message or confusing output.\nPosting snippets of your code to the discussion forum when seeking help.\nHelping other students solve questions on the discussion with conceptual pointers or snippets of code that doesn’t whole hog give away the answer.\nGoogling the text of an error message.\nCopying small snippets of code from answers on Stack Overflow.\n\nThe following examples are not allowed:\n\nLeaving a representation of your assignment (the text, a screenshot) where students (current and future) can access it. Examples of this include websites like course hero, on a group text chain, over discord/slack, or in a file passed on to future students.\nAccessing and submitting solutions to assignments from other students distributed as above. This includes copying written answers from other students and slightly modifying the language to differentiate it.\nSearching or using generative AI to produce complete problem solutions.\nWorking on the final exam or individual quizzes in collaboration with other people or resources. These assignments must reflect individual work.\nSubmitting work on an exam that reflects consultation with outside resources or other people. Exams must reflect individual work.\n\nIf you have questions about the boundaries of the policy, please ask. We’re always happy to clarify.\n\n\nViolations of the collaboration policy\nThe integrity of our course depends on our ability to ensure that students do not violate the collaboration policy. We take this responsibility seriously and forward cases of academic misconduct to the Center for Student Conduct.\nStudents determined to have violated the academic misconduct policy by the Center for Student Conduct will receive a grade penalty in the course and a sanction from the university which is generally: (i) First violation: Non-Reportable Warning and educational intervention, (ii) Second violation: Suspension/Disciplinary Probation and educational interventions, (iii) Third violation: Dismissal.\nAnd again, if you have questions about the boundaries of the collaboration policy, please ask!\n\n\nLaptop policy\nLaptops will not be permitted in lecture, but will be required for labs. If you do not have access to a laptop, you can borrow one from the University library. See the UC Berkeley hardware lending program for more details. The Student Technology Equity Program is another good resource. Feel free to contact the instructor if you have concerns about your access to needed technology.\n\n\nCOVID policy\nMaintaining your health and that of the Berkeley community is of primary importance to course staff, so if you are feeling ill or have been exposed to illness, please do not come to class. All of the materials used in class will be posted to the course website. You’re encouraged to reach out to fellow students to discuss the class materials or stop by group tutoring or office hours to chat with a tutor or the instructor.\n\n\nAccomodations for students with disabilities\nStat 20 is a course that is designed to allow all students to succeed. If you have letters of accommodations from the Disabled Students’ Program, please share them with your instructor as soon as possible, and we will work out the necessary arrangements.\n\n\n\n\n\n\nNote\n\n\n\nThese course polices are based on a template and text generously shared by Andrew Bray. Thanks, Andrew!"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Statistics 151a: Linear Modelling: Theory and Applications",
+    "title": "Statistics 151A: Linear Models",
     "section": "",
-    "text": "Ed\n  DataHub\n  Gradescope\n\nNo matching items\nWe could provide a templated listing of instructors here (or on its own page), similar to DS100/fa23."
+    "text": "Ed\n  DataHub\n  Gradescope\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html#instructors",
+    "href": "index.html#instructors",
+    "title": "Statistics 151A: Linear Models",
+    "section": "Instructors",
+    "text": "Instructors\n\n\nInstructor: Ryan Giordano  Office: 389 Evans Hall Office hours: TBD rgiordano@berkeley.edu pronouns: He / him\n\n\nGSI: Dohyeong Ki  Office: — Evans Hall Office hours: TBD dohyeong_ki@berkeley.edu pronouns: He / him"
   },
   {
     "objectID": "index.html#schedule",
     "href": "index.html#schedule",
-    "title": "Statistics 151a: Linear Modelling: Theory and Applications",
+    "title": "Statistics 151A: Linear Models",
     "section": "Schedule",
-    "text": "Schedule\nHere we use Quarto’s EJS templating.\n\n\n   Week 1\n   \n   \n   \n   \n           \n           Aug 24:\n           Lecture 1 Introduction\n                Note 1\n           \n           \n           Participation 1 Lecture Participation 1\n                \n           \n           \n           Aug 25:\n           Lab 1 Prerequisite Coding (due Aug 29)\n                \n           \n           \n           Homework 1A Plotting and Permutation Test (due Aug 31)\n                \n           \n           \n           Homework 1B Prerequisite Math (due Aug 31)\n                \n           \n   \n   \n   Week 2\n   \n   \n   \n   \n           \n           Aug 29:\n           Lecture 2 Pandas 1\n                \n           \n           \n           Participation 2 Lecture Participation 2\n                Note 2\n           \n   \n   \n\nNo matching items"
-  },
-  {
-    "objectID": "units/macros.html",
-    "href": "units/macros.html",
-    "title": "",
-    "section": "",
-    "text": "\\[\n\\newcommand{\\trans}{^\\mathsf{T}}\n\\newcommand{\\eps}{\\epsilon}\n\\]"
-  },
-  {
-    "objectID": "units/unit2.html",
-    "href": "units/unit2.html",
-    "title": "Unit 2: Next",
-    "section": "",
-    "text": "This is an example of using an ipynb file as source rather than qmd. It follows instructions from https://github.com/DS-100/course-notes/README.md."
-  },
-  {
-    "objectID": "units/unit2.html#latex",
-    "href": "units/unit2.html#latex",
-    "title": "Unit 2: Next",
-    "section": "\\(\\LaTeX\\)",
-    "text": "\\(\\LaTeX\\)\nHere is some \\(\\LaTeX\\). \\[\n\\theta = 7\n\\]"
-  },
-  {
-    "objectID": "units/unit2.html#evaluated-python-code",
-    "href": "units/unit2.html#evaluated-python-code",
-    "title": "Unit 2: Next",
-    "section": "Evaluated Python code",
-    "text": "Evaluated Python code\nNote that to get code output shown, the underlying notebook must have executed the code.\n\n\nCode\na=7\nprint(a)\n\n\n7"
-  },
-  {
-    "objectID": "units/unit2.html#callout",
-    "href": "units/unit2.html#callout",
-    "title": "Unit 2: Next",
-    "section": "Callout",
-    "text": "Callout\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title."
-  },
-  {
-    "objectID": "units/unit3.html",
-    "href": "units/unit3.html",
-    "title": "Unit 3: More",
-    "section": "",
-    "text": "This is an example of using qmd as the source document with pdf as one target. I’ve taken out the qmd stuff that doesn’t seem to render to pdf."
-  },
-  {
-    "objectID": "units/unit3.html#evaluated-python-code-chunk-with-a-plot",
-    "href": "units/unit3.html#evaluated-python-code-chunk-with-a-plot",
-    "title": "Unit 3: More",
-    "section": "Evaluated Python code chunk, with a plot",
-    "text": "Evaluated Python code chunk, with a plot\n\n\nCode\nimport numpy as np\nx = np.random.normal(size=100)\nimport matplotlib.pyplot as plt\nplt.hist(x)\nplt.show()\nnp.mean(x)\n\n\n\n\n\n0.021491665372888647"
-  },
-  {
-    "objectID": "units/unit3.html#latex",
-    "href": "units/unit3.html#latex",
-    "title": "Unit 3: More",
-    "section": "LaTeX",
-    "text": "LaTeX\n\\[\n\\theta = \\int_0^\\infty f(x,\\theta)d\\theta\n\\]"
-  },
-  {
-    "objectID": "units/unit3.html#latex-macro",
-    "href": "units/unit3.html#latex-macro",
-    "title": "Unit 3: More",
-    "section": "LaTeX macro",
-    "text": "LaTeX macro\n\nWarning: need to look back at this as having include-before-body in the yaml causes extra space at top of page.\n\n\\[\nA = X \\trans Y\n\\]"
+    "text": "Schedule\nThis schedule is tentative and subject to change.\n\n\n   Week 1\n   \n   \n   \n   \n           \n           Jan 16:\n           Lecture 1 Why study linear models?  Class goals and organization.\n                \n           \n           \n           Jan 17:\n           Lab 1 R basics.  Loading data, making plots, style best practices\n                \n           \n           \n           Jan 18:\n           Lecture 2 Simple regression as EDA, prediction, and inference\n                \n           \n   \n   \n   Week 2\n   \n   \n   \n   \n           \n           Jan 23:\n           Lecture 3 Linear algebra review.  Matrix inverses, square roots, projections\n                \n           \n           \n           Jan 24:\n           Lab 2 Simulating data.  Matrix square roots.\n                \n           \n           \n           Jan 25:\n           Lecture 4 Probability review.  Consistency, unbiasedness, CLT\n                \n           \n   \n   \n   Week 3\n   \n   \n   \n   \n           \n           Jan 30:\n           Lecture 5 Multivariate regression as empirical risk minimization.  \n                \n           \n           \n           Jan 31:\n           Lab 3 Train and test error as number of regressors increases\n                \n           \n           \n           Feb 1:\n           Lecture 6 Train / test split and out of sample error\n                \n           \n   \n   \n   Week 4\n   \n   \n   \n   \n           \n           Feb 6:\n           Lecture 7 Multivariate regression as maximum likelihood estimation\n                \n           \n           \n           Feb 7:\n           Lab 4 TBD\n                \n           \n           \n           Feb 8:\n           Lecture 8 Categorical predictors and one-hot encoding\n                \n           \n   \n   \n   Week 5\n   \n   \n   \n   \n           \n           Feb 13:\n           Lecture 9 Frequentist inference.  Level, power, testing, and confidence intervals\n                \n           \n           \n           Feb 14:\n           Lab 5 TBD\n                \n           \n           \n           Feb 15:\n           Lecture 10 Grouping data in the bootstrap\n                \n           \n   \n   \n   Week 6\n   \n   \n   \n   \n           \n           Feb 20:\n           Lecture 11 Asymptotics of empirical risk minimization.  Sandwich covariance\n                \n           \n           \n           Feb 21:\n           Lab 6 TBD\n                \n           \n           \n           Feb 22:\n           Lecture 12 Calibration and conformal inference for prediction\n                \n           \n   \n   \n   Week 7\n   \n   \n   \n   \n           \n           Feb 27:\n           Lecture 13 How regression fails: Omitted variables, endogeneity\n                \n           \n           \n           Feb 28:\n           Lab 7 TBD\n                \n           \n           \n           Feb 29:\n           Lecture 14 How regression fails: Domain changes, Simpson’s paradox, outliers\n                \n           \n   \n   \n   Week 8\n   \n   \n   \n   \n           \n           Mar 5:\n           Lecture 15 How regression fails: Non-independence, small sample sizes\n                \n           \n           \n           Mar 6:\n           Lab 8 Review\n                \n           \n           \n           Mar 7:\n           Lecture 16 Midterm review\n                \n           \n   \n   \n   Week 9\n   \n   \n   \n   \n           \n           Mar 12:\n           Lecture 17 Binary regression for prediction\n                \n           \n           \n           Mar 13:\n           Lab 9 rstanarm\n                \n           \n           \n           Mar 14:\n           Lecture 18 Binary regression for inference\n                \n           \n   \n   \n   Week 10\n   \n   \n   \n   \n           \n           Mar 19:\n           Lecture 19 Bayesian inference: multivariate normal\n                \n           \n           \n           Mar 20:\n           Lab 10 Inference failure for variable selection\n                \n           \n           \n           Mar 21:\n           Lecture 20 Bayesian inference: regression and shrinkage\n                \n           \n   \n   \n   Week 11\n   \n   \n   \n   \n   \n   \n   Week 12\n   \n   \n   \n   \n           \n           Apr 2:\n           Lecture 21 Variable selection: collinearity and shrinkage\n                \n           \n           \n           Apr 3:\n           Lab 11 Double descent\n                \n           \n           \n           Apr 4:\n           Lecture 22 Variable selection: LASSO and post-selection inference\n                \n           \n   \n   \n   Week 13\n   \n   \n   \n   \n           \n           Apr 9:\n           Lecture 23 Basis expansions: Bias and variance\n                \n           \n           \n           Apr 10:\n           Lab 12 Project practice\n                \n           \n           \n           Apr 11:\n           Lecture 24 Basis expansions: Interpolation and double descent\n                \n           \n   \n   \n   Week 14\n   \n   \n   \n   \n           \n           Apr 16:\n           Lecture 25 Influence functions (?)\n                \n           \n           \n           Apr 17:\n           Lab 13 TBD\n                \n           \n           \n           Apr 18:\n           Lecture 26 Permutation testing (?)\n                \n           \n   \n   \n\nNo matching items"
   },
   {
     "objectID": "units/unit1.html",
@@ -88,7 +39,7 @@
     "href": "units/unit1.html#evaluated-python-code-chunk-with-a-plot",
     "title": "Unit 1: Intro",
     "section": "Evaluated Python code chunk, with a plot",
-    "text": "Evaluated Python code chunk, with a plot\n\n\nCode\nimport numpy as np\nx = np.random.normal(size=100)\nimport matplotlib.pyplot as plt\nplt.hist(x)\nplt.show()\nnp.mean(x)\n\n\n\n\n\n0.12943957137134646"
+    "text": "Evaluated Python code chunk, with a plot\n\n\nCode\nimport numpy as np\nx = np.random.normal(size=100)\nimport matplotlib.pyplot as plt\nplt.hist(x)\nplt.show()\nnp.mean(x)\n\n\n\n\n\n0.03090233998094643"
   },
   {
     "objectID": "units/unit1.html#latex",
@@ -123,28 +74,70 @@
     "href": "units/unit1.html#tabset",
     "title": "Unit 1: Intro",
     "section": "Tabset",
-    "text": "Tabset\n\nRPython\n\n\nThis code is not executed.\nfizz_buzz <- function(fbnums = 1:50) {\n  output <- dplyr::case_when(\n    fbnums %% 15 == 0 ~ \"FizzBuzz\",\n    fbnums %% 3 == 0 ~ \"Fizz\",\n    fbnums %% 5 == 0 ~ \"Buzz\",\n    TRUE ~ as.character(fbnums)\n  )\n  print(output)\n}\n\nfizz_buzz(3)\n\n\nThis code is executed.\n\n\nCode\ndef fizz_buzz(num):\n  if num % 15 == 0:\n    print(\"FizzBuzz\")\n  elif num % 5 == 0:\n    print(\"Buzz\")\n  elif num % 3 == 0:\n    print(\"Fizz\")\n  else:\n    print(num)\n    \nfizz_buzz(3)\n\n\nFizz"
+    "text": "Tabset\n\nRPython\n\n\nThis code is not executed.\nfizz_buzz &lt;- function(fbnums = 1:50) {\n  output &lt;- dplyr::case_when(\n    fbnums %% 15 == 0 ~ \"FizzBuzz\",\n    fbnums %% 3 == 0 ~ \"Fizz\",\n    fbnums %% 5 == 0 ~ \"Buzz\",\n    TRUE ~ as.character(fbnums)\n  )\n  print(output)\n}\n\nfizz_buzz(3)\n\n\nThis code is executed.\n\n\nCode\ndef fizz_buzz(num):\n  if num % 15 == 0:\n    print(\"FizzBuzz\")\n  elif num % 5 == 0:\n    print(\"Buzz\")\n  elif num % 3 == 0:\n    print(\"Fizz\")\n  else:\n    print(num)\n    \nfizz_buzz(3)\n\n\nFizz"
   },
   {
-    "objectID": "syllabus.html",
-    "href": "syllabus.html",
-    "title": "Syllabus",
+    "objectID": "units/unit2.html",
+    "href": "units/unit2.html",
+    "title": "Unit 2: Next",
     "section": "",
-    "text": "Jump to:"
+    "text": "This is an example of using an ipynb file as source rather than qmd. It follows instructions from https://github.com/DS-100/course-notes/README.md."
   },
   {
-    "objectID": "syllabus.html#about-data-100",
-    "href": "syllabus.html#about-data-100",
-    "title": "Syllabus",
-    "section": "About Data 100",
-    "text": "About Data 100\nCombining data, computation, and inferential thinking, data science is redefining how people and organizations solve challenging problems and understand their world. This intermediate level class bridges between Data 8 and upper division computer science and statistics courses as well as methods courses in other fields. In this class, we explore key areas of data science including question formulation, data collection and cleaning, visualization, statistical inference, predictive modeling, and decision making.​ Through a strong emphasis on data centric computing, quantitative critical thinking, and exploratory data analysis, this class covers key principles and techniques of data science. These include languages for transforming, querying and analyzing data; algorithms for machine learning methods including regression, classification and clustering; principles behind creating informative data visualizations; statistical concepts of measurement error and prediction; and techniques for scalable data processing.\n\nGoals\n\nPrepare students for advanced Berkeley courses in data-management, machine learning, and statistics, by providing the necessary foundation and context.\nEnable students to start careers as data scientists by providing experience working with real-world data, tools, and techniques.\nEmpower students to apply computational and inferential thinking to address real-world problems.\n\n\n\nPrerequisites\nWhile we are working to make this class widely accessible, we currently require the following (or equivalent) prerequisites. Prerequisites will be enforced in Data 100. It is your responsibility to know the material in the prerequisites."
+    "objectID": "units/unit2.html#latex",
+    "href": "units/unit2.html#latex",
+    "title": "Unit 2: Next",
+    "section": "\\(\\LaTeX\\)",
+    "text": "\\(\\LaTeX\\)\nHere is some \\(\\LaTeX\\). \\[\n\\theta = 7\n\\]"
   },
   {
-    "objectID": "calendar.html",
-    "href": "calendar.html",
-    "title": "Calendar",
+    "objectID": "units/unit2.html#evaluated-python-code",
+    "href": "units/unit2.html#evaluated-python-code",
+    "title": "Unit 2: Next",
+    "section": "Evaluated Python code",
+    "text": "Evaluated Python code\nNote that to get code output shown, the underlying notebook must have executed the code.\n\n\nCode\na=7\nprint(a)\n\n\n7"
+  },
+  {
+    "objectID": "units/unit2.html#callout",
+    "href": "units/unit2.html#callout",
+    "title": "Unit 2: Next",
+    "section": "Callout",
+    "text": "Callout\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title."
+  },
+  {
+    "objectID": "units/macros.html",
+    "href": "units/macros.html",
+    "title": "",
     "section": "",
-    "text": "We can just embed the iframe html:"
+    "text": "\\[\n\\newcommand{\\trans}{^\\mathsf{T}}\n\\newcommand{\\eps}{\\epsilon}\n\\]"
+  },
+  {
+    "objectID": "units/unit3.html",
+    "href": "units/unit3.html",
+    "title": "Unit 3: More",
+    "section": "",
+    "text": "This is an example of using qmd as the source document with pdf as one target. I’ve taken out the qmd stuff that doesn’t seem to render to pdf."
+  },
+  {
+    "objectID": "units/unit3.html#evaluated-python-code-chunk-with-a-plot",
+    "href": "units/unit3.html#evaluated-python-code-chunk-with-a-plot",
+    "title": "Unit 3: More",
+    "section": "Evaluated Python code chunk, with a plot",
+    "text": "Evaluated Python code chunk, with a plot\n\n\nCode\nimport numpy as np\nx = np.random.normal(size=100)\nimport matplotlib.pyplot as plt\nplt.hist(x)\nplt.show()\nnp.mean(x)\n\n\n\n\n\n-0.181617486807401"
+  },
+  {
+    "objectID": "units/unit3.html#latex",
+    "href": "units/unit3.html#latex",
+    "title": "Unit 3: More",
+    "section": "LaTeX",
+    "text": "LaTeX\n\\[\n\\theta = \\int_0^\\infty f(x,\\theta)d\\theta\n\\]"
+  },
+  {
+    "objectID": "units/unit3.html#latex-macro",
+    "href": "units/unit3.html#latex-macro",
+    "title": "Unit 3: More",
+    "section": "LaTeX macro",
+    "text": "LaTeX macro\n\nWarning: need to look back at this as having include-before-body in the yaml causes extra space at top of page.\n\n\\[\nA = X \\trans Y\n\\]"
   },
   {
     "objectID": "data.html",
@@ -166,5 +159,12 @@
     "title": "Data",
     "section": "Data 2",
     "text": "Data 2"
+  },
+  {
+    "objectID": "calendar.html",
+    "href": "calendar.html",
+    "title": "Calendar",
+    "section": "",
+    "text": "We can just embed the iframe html:"
   }
 ]
