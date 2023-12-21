@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://berkeley-stat151a.github.io/spring-2024/index.html</loc>
-    <lastmod>2023-12-21T18:05:55.603Z</lastmod>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/syllabus.html</loc>
+    <lastmod>2023-12-21T22:51:32.258Z</lastmod>
   </url>
   <url>
-    <loc>https://berkeley-stat151a.github.io/spring-2024/units/macros.html</loc>
-    <lastmod>2023-12-21T18:05:55.892Z</lastmod>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/index.html</loc>
+    <lastmod>2023-12-21T22:51:31.766Z</lastmod>
   </url>
   <url>
-    <loc>https://berkeley-stat151a.github.io/spring-2024/units/unit2.html</loc>
-    <lastmod>2023-12-21T18:05:57.668Z</lastmod>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture1_examples.html</loc>
+    <lastmod>2023-12-21T22:51:31.402Z</lastmod>
   </url>
   <url>
-    <loc>https://berkeley-stat151a.github.io/spring-2024/units/unit3.html</loc>
-    <lastmod>2023-12-21T18:06:03.181Z</lastmod>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/macros.html</loc>
+    <lastmod>2023-12-21T22:51:30.362Z</lastmod>
   </url>
   <url>
-    <loc>https://berkeley-stat151a.github.io/spring-2024/units/unit1.html</loc>
-    <lastmod>2023-12-21T18:06:12.202Z</lastmod>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture2.html</loc>
+    <lastmod>2023-12-21T22:51:30.206Z</lastmod>
   </url>
   <url>
-    <loc>https://berkeley-stat151a.github.io/spring-2024/syllabus.html</loc>
-    <lastmod>2023-12-21T18:06:12.647Z</lastmod>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture1.html</loc>
+    <lastmod>2023-12-21T22:51:30.794Z</lastmod>
   </url>
   <url>
-    <loc>https://berkeley-stat151a.github.io/spring-2024/calendar.html</loc>
-    <lastmod>2023-12-21T18:06:12.923Z</lastmod>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/data.html</loc>
+    <lastmod>2023-12-21T22:51:31.554Z</lastmod>
   </url>
   <url>
-    <loc>https://berkeley-stat151a.github.io/spring-2024/data.html</loc>
-    <lastmod>2023-12-21T18:06:13.198Z</lastmod>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/calendar.html</loc>
+    <lastmod>2023-12-21T22:51:31.914Z</lastmod>
   </url>
 </urlset>

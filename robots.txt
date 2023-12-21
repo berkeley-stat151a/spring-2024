@@ -1,1 +1,1 @@
-Sitemap: https://berkeley-stat151a.github.io/spring-2024/sitemap.xml
+Sitemap: git@github.com:berkeley-stat151a/spring-2024/sitemap.xml
