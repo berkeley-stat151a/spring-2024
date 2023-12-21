@@ -16,7 +16,7 @@ website:
       - section: "Lectures"
         contents:
           - lectures/Lecture1.qmd
-          - lectures/Lecture1.ipynb
+          - lectures/Lecture1_examples.ipynb
       - href: data.qmd
         text: Datasets
           
