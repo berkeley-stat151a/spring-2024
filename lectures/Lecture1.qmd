@@ -1,14 +1,11 @@
 ---
-title: "Why study linear models? Class goals and organization."
+title: "Why study linear models?"
 format:
   html:
     code-fold: false
     code-tools: true
     include-before-body:
      - file: macros.md
-    html-math-method:
-      method: mathjax
-      url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
 
@@ -129,7 +126,7 @@ predictions, and inference in a very tentatively reified model is close to
 exploratory data analysis.  Still, I'll lean on this division to help organize
 the course conceptually.
 
-We can look at these examples in [Lecture1.ipynb](Lecture1.ipynb).
+We can look at these examples in [Lecture1_examples.ipynb](Lecture1_examples.ipynb).
 
 
 
