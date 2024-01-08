@@ -1,0 +1,55 @@
+---
+title: "Data"
+---
+
+The following datasets are used in lectures, homework, and labs.
+
+## Aluminum dataset
+
+Dataset containing stress-strain curves for commercially available aluminum samples
+at varying tempertures.  The data accompanies  B.S. Aakash, JohnPatrick Connors, Michael D. Shields,
+Variability in the thermo-mechanical behavior of structural aluminum,
+Thin-Walled Structures,
+Volume 144,
+2019,
+106122,
+ISSN 0263-8231.
+[(link)](https://www.sciencedirect.com/science/article/pii/S0263823118313831?via%3Dihub)
+
+Paper abstract: The nominal performance of structural aluminum alloys at elevated temperature has been thoroughly investigated in the past. Although it is well known that the performance of a given material specimen will differ from the nominal behavior, the extent of this variability has not been quantitied to date. This limits the ability to perform reliability and performance-based design and analysis for aluminum structures subjected to high temperatures (e.g. in structural fire engineering). This work presents an experimental investigation of the variability in the stress-strain behavior of AA 6061-T651 (as a model ductile aluminum alloy). We performed steady-state tensile tests on nine different batches of nominally identical material sourced from different suppliers/manufacturers at six different temperatures (20 °C, 100 °C, 150 °C, 200 °C, 250 °C, and 300 °C) under two different geometries to induce uniaxial tension and plane strain stress states in the gauge section. The results are investigated statistically to illustrate variability in the salient features of the stress-strain behavior of the material ranging from nonlinear elastic behavior to strain localization and ductile fracture. Some observations on material performance and its variability are made along the way. Overall, it is illustrated that variations between batches of material can be quite large and – especially as it relates to strain localization, necking, and material failure – variations can be very large even within a fixed batch of material. To encourage data of this nature to be expanded and integrated into research and practice to improve structural design and investigations, the full searchable dataset are publicly available with experimental details published concurrently through Data in Brief.
+
+
+
+- [Link to csv](aluminum_dataset.csv)
+- [Source link (downloaded Dec 2023)](https://data.mendeley.com/datasets/rd6jm9tyb6/2)
+
+
+## Bodyfat dataset
+
+Bodyfat and other physical measurements on a number of individuals.
+
+Measurement standards are apparently those listed in Benhke and Wilmore (1974),
+pp. 45-48 where, for instance, the abdomen 2 circumference is measured
+"laterally, at the level of the iliac crests, and anteriorly, at the
+umbilicus".
+
+These data are used to produce the predictive equations for lean body weight
+given in the abstract "Generalized body composition prediction equation for men
+using simple measurement techniques", K.W. Penrose, A.G. Nelson, A.G. Fisher,
+FACSM, Human Performance Research Center, Brigham Young University, Provo, Utah
+84602 as listed in Medicine and Science in Sports and Exercise, vol. 17, no. 2,
+April 1985, p. 189. 
+
+
+- [Link to csv](bodyfat.csv)
+- [Source link (downloaded Dec 2023)](https://www.kaggle.com/datasets/fedesoriano/body-fat-prediction-dataset)
+
+
+## Spotify dataset
+
+This dataset consists of roughly 30,000 Songs from the Spotify API with black-box machine learning
+quantifications of musical features.  No guarantees are made on how the tracks were
+sampled.
+
+- [Link to csv](spotify_songs.csv)
+- [Source link (downloaded Dec 2023)](https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs)

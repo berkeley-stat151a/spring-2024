@@ -17,7 +17,7 @@ website:
         contents:
           - lectures/Lecture1.qmd
           - lectures/Lecture1_examples.ipynb
-      - href: data.qmd
+      - href: datasets/data.qmd
         text: Datasets
           
 
