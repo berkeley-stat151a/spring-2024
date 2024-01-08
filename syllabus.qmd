@@ -65,8 +65,7 @@ The primary materials for the course are the lecture notes, which will be posted
 course website in advance of class. The following textbooks are useful supplementary texts 
 but there is no need to purchase them:
 
-- [Applied Regression Analysis and Generalized Linear Models](https://search.library.berkeley.edu/permalink/01UCS_BER/1thfj9n/alma991086117138306532), Fox
-- [Statistics](https://wwnorton.com/books/9780393929720), Freedman, Pisani, and Purves
+- [Linear Models and Extensions](https://arxiv.org/abs/2401.00649) Peng Ding (freely available online)
 - [R for Data Science](https://r4ds.had.co.nz/), Wickham and Grolemund (freely available online)
 
 #### RStudio
