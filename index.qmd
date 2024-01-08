@@ -31,7 +31,7 @@ to the start of class.
 **Instructor:** Ryan Giordano<br>
 ![Ryan Giordano](images/rgiordano.jpg)<br>
 Office: 389 Evans Hall<br>
-Office hours: TBD<br>
+Office hours: 9:30am-11am Mondays (subject to change)<br>
 `rgiordano@berkeley.edu`<br>
 pronouns: He / him
 :::
@@ -51,10 +51,18 @@ pronouns: He / him
 
 
 
-
 ## Schedule
 
-This schedule is tentative and subject to change.
+Lectures will be held Jan 16 2024 -- May 03 2024 
+on Tuesday and Thursday, 9:30 am -- 10:59 am, in
+Etcheverry 3108.
+
+Labs will be held on Wednesdays from 9:00 am -- 11:00 am and 1:00pm -- 3:00 pm
+in Evans 344.
+
+[(Link to official course calendar.)](https://classes.berkeley.edu/content/2024-spring-stat-151a-001-lec-001)
+
+The following subject schedule is tentative and subject to change.
 
 ::: {#schedule}
 :::
