@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ryan Giordano">
-<meta name="author" content="Dohyeong Ki">
 
-<title>Syllabus</title>
+<title>Syllabus and Course Structure</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,26 +65,105 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./syllabus.html">Syllabus</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./stat_bear.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main">
+    <a href="https://github.com/berkeley-stat151a/spring-2024" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home / Schedule</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./syllabus.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/Lecture1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why study linear models?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/Lecture1_examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Three example datasets for linear modeling</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datasets/data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./assignments/assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a>
-  <ul>
-  <li><a href="#course-goals" id="toc-course-goals" class="nav-link" data-scroll-target="#course-goals">Course goals</a></li>
-  </ul></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
   <li><a href="#materials" id="toc-materials" class="nav-link" data-scroll-target="#materials">Materials</a>
   <ul>
-  <li><a href="#textbook" id="toc-textbook" class="nav-link" data-scroll-target="#textbook">Textbook</a></li>
+  <li><a href="#textbooks" id="toc-textbooks" class="nav-link" data-scroll-target="#textbooks">Textbooks</a></li>
   <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio">RStudio</a></li>
   <li><a href="#course-website" id="toc-course-website" class="nav-link" data-scroll-target="#course-website">Course website</a></li>
   </ul></li>
@@ -116,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Syllabus</h1>
+<h1 class="title">Syllabus and Course Structure</h1>
 <p class="subtitle lead">Stat 151A: Linear Models</p>
 </div>
 
@@ -128,7 +206,6 @@ ul.task-list li input[type="checkbox"] {
     <div class="quarto-title-meta-heading">Instructors</div>
     <div class="quarto-title-meta-contents">
              <p>Ryan Giordano </p>
-             <p>Dohyeong Ki </p>
           </div>
   </div>
     
@@ -163,8 +240,6 @@ Warning
 <section id="objectives" class="level3">
 <h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
 <p>Linear models strike a remarkable balance between simplicity and complexity: simple enough to permit detailed theoretical analysis, but complex enough to exhibit many of the strengths and weaknesses of statistics and machine learning more generally. In this course, we will explore classical and cutting-edge topics in statistics and machine learning through the lens of linear models. A strong emphasis will be placed on mathematical rigor, real-world decision-making, and the interplay between the two.</p>
-<section id="course-goals" class="level4">
-<h4 class="anchored" data-anchor-id="course-goals">Course goals</h4>
 <p>By the end of the course, you should be able to</p>
 <ul>
 <li>Express standard regression analyses both mathematically and in R code</li>
@@ -173,7 +248,6 @@ Warning
 <li>Communicate the process and results of a regression analysis simply and clearly for a broad audience, using well-organized prose, reproducible code, and effective data visualizations.</li>
 </ul>
 </section>
-</section>
 <section id="prerequisites" class="level3">
 <h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
 <p>This course will assume familiarity with the material in STAT 135 or STAT 102. STAT 135 implies other prerequisite courses (STAT 134 and its prerequisites). In particular, you must have had linear algebra, so you should be familiar with basic matrix operations, vector subspaces and projections, rank and invertibility of matrices, and quadratic forms.</p>
@@ -181,13 +255,14 @@ Warning
 </section>
 <section id="materials" class="level3">
 <h3 class="anchored" data-anchor-id="materials">Materials</h3>
-<section id="textbook" class="level4">
-<h4 class="anchored" data-anchor-id="textbook">Textbook</h4>
-<p>The primary materials for the course are the lecture notes, which will be posted to the course website in advance of class. The following textbooks are useful supplementary texts but there is no need to purchase them:</p>
+<section id="textbooks" class="level4">
+<h4 class="anchored" data-anchor-id="textbooks">Textbooks</h4>
+<p>Unelss otherwise noted, the primary materials for the course are the lecture notes, which will be posted to the course website in advance of class. The following textbooks are useful supplementary texts and are all freely available online:</p>
 <ul>
-<li><a href="https://search.library.berkeley.edu/permalink/01UCS_BER/1thfj9n/alma991086117138306532">Applied Regression Analysis and Generalized Linear Models</a>, Fox</li>
-<li><a href="https://wwnorton.com/books/9780393929720">Statistics</a>, Freedman, Pisani, and Purves</li>
-<li><a href="https://r4ds.had.co.nz/">R for Data Science</a>, Wickham and Grolemund (freely available online)</li>
+<li><a href="https://arxiv.org/abs/2401.00649">Linear Models and Extensions</a> Ding</li>
+<li><a href="https://avehtari.github.io/ROS-Examples/">Regression and other Stories</a> Gelman, Hill, Vehtari</li>
+<li><a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a> James, Witten, Hastie, Tibshirani</li>
+<li><a href="https://r4ds.had.co.nz/">R for Data Science</a>, Wickham, Grolemund</li>
 </ul>
 </section>
 <section id="rstudio" class="level4">
