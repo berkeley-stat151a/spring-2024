@@ -4,14 +4,10 @@ author: Your name here
 date: "2024-01-16"
 number-sections: true 
 number-depth: 1 
-format:
-  html:
-    include-before-body:
-     - file: ../macros.md
-  pdf: 
-    include-before-body:
-     - file: ../macros.tex
 ---
+
+{{< include ../macros.tex >}}
+
 
 For all questions below, provide answers in complete sentences, and include
 correct and readable code to support your answers.

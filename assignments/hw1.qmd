@@ -1,16 +1,11 @@
 ---
 title: "STAT151A Homework 1: Due Jan 26th"
+author: Your name here
 number-sections: true 
 number-depth: 1 
-format:
-  html:
-    include-before-body:
-     - file: ../macros.md
-  pdf: 
-    include-before-body:
-     - file: ../macros.tex
 ---
 
+{{< include ../macros.tex >}}
 
 # Simple regression in matrix form
 
