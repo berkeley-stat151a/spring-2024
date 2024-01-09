@@ -2,34 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>git@github.com:berkeley-stat151a/spring-2024/syllabus.html</loc>
-    <lastmod>2023-12-21T22:51:32.258Z</lastmod>
+    <lastmod>2024-01-09T19:15:53.440Z</lastmod>
   </url>
   <url>
     <loc>git@github.com:berkeley-stat151a/spring-2024/index.html</loc>
-    <lastmod>2023-12-21T22:51:31.766Z</lastmod>
+    <lastmod>2024-01-09T19:15:52.944Z</lastmod>
   </url>
   <url>
     <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture1_examples.html</loc>
-    <lastmod>2023-12-21T22:51:31.402Z</lastmod>
+    <lastmod>2024-01-09T19:15:52.536Z</lastmod>
   </url>
   <url>
     <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/macros.html</loc>
-    <lastmod>2023-12-21T22:51:30.362Z</lastmod>
+    <lastmod>2024-01-09T19:15:51.536Z</lastmod>
   </url>
   <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture2.html</loc>
-    <lastmod>2023-12-21T22:51:30.206Z</lastmod>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/hw1.html</loc>
+    <lastmod>2024-01-09T19:15:51.084Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/assignments.html</loc>
+    <lastmod>2024-01-09T19:15:50.844Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/lab1.html</loc>
+    <lastmod>2024-01-09T19:15:51.380Z</lastmod>
   </url>
   <url>
     <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture1.html</loc>
-    <lastmod>2023-12-21T22:51:30.794Z</lastmod>
+    <lastmod>2024-01-09T19:15:51.948Z</lastmod>
   </url>
   <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/data.html</loc>
-    <lastmod>2023-12-21T22:51:31.554Z</lastmod>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/datasets/data.html</loc>
+    <lastmod>2024-01-09T19:15:52.728Z</lastmod>
   </url>
   <url>
     <loc>git@github.com:berkeley-stat151a/spring-2024/calendar.html</loc>
-    <lastmod>2023-12-21T22:51:31.914Z</lastmod>
+    <lastmod>2024-01-09T19:15:53.096Z</lastmod>
   </url>
 </urlset>
