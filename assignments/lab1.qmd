@@ -1,0 +1,80 @@
+---
+title: "STAT151A Lab 1: Due January 26th"
+author: Your name here
+date: "2024-01-16"
+number-sections: true 
+number-depth: 1 
+format:
+  html:
+    include-before-body:
+     - file: ../macros.md
+  pdf: 
+    include-before-body:
+     - file: ../macros.tex
+---
+
+For all questions below, provide answers in complete sentences, and include
+correct and readable code to support your answers.
+
+# Spotify dataset
+
+#### (a) 
+
+Find another variable (other than danceability) that is associated with
+popularity according to linear regression.
+
+#### (b) 
+
+How does this association change if you remove low-popularity tracks?
+
+#### (c) 
+
+Identify a song that _defies_ the relationship you found.  (For example,
+having found a positive relationship between danceability and popularity, 
+I might find a song that is highly popular but not ``danceable.'')  
+Listen to the song on Spotify and comment on whether the result makes sense.
+
+
+
+# Bodyfat dataset
+
+#### (a) 
+
+Choose two variables (other than bodyfat).  Use `lm` to regress bodyfat
+on these two variables. 
+
+#### (b)
+
+For the regression in the previous example, construct your own $\X$ and $\Y$
+matrices by hand (don't use the output of `lm`).  Using these, compute your own
+estimate $\bhat$ and confirm that it matches the output of `lm`.
+
+#### (c)
+
+Write a function in `R` that computes $\bhat$ from $\X$ and $\Y$.  Document
+the function's inputs and outputs.  As an example, you might follow
+the `Function Documentation` section of the [Amazon R style guide](https://rstudio-pubs-static.s3.amazonaws.com/390511_286f47c578694d3dbd35b6a71f3af4d6.html).
+
+
+
+# Aluminum dataset
+
+
+#### (a)
+
+Run the regression from Lecture 1 using all three
+specimens, both with and without an intercept term.  Plot
+the results.  
+
+For convenience, here is a filter function to limit
+to the right set of data:
+
+
+```r
+filter(Strain < 0.0035, Strain > 0.0001,
+       loading_type == "T", temp == 20, lot == "A")
+```
+
+
+Comment on whether an intercept should be included and why.
+When the intercept is estimated, how can it be interpreted?

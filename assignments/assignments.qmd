@@ -1,0 +1,11 @@
+---
+title: "Assignments"
+subtitle: "Stat 151A: Linear Models"
+theme: [sandstone, assets/styles.scss]
+sidebar: true
+---
+
+
+- Due Jan 26th:
+    - [Homework 1](hw1.qmd)
+    - [Lab 1](lab1.qmd)

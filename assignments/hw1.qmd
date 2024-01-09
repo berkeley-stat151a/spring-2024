@@ -1,0 +1,265 @@
+---
+title: "STAT151A Homework 1: Due Jan 26th"
+number-sections: true 
+number-depth: 1 
+format:
+  html:
+    include-before-body:
+     - file: ../macros.md
+  pdf: 
+    include-before-body:
+     - file: ../macros.tex
+---
+
+
+# Simple regression in matrix form
+
+Consider the simple linear model
+$y_n = \beta_0 + \beta_1 z_n + \res_n$.
+
+Let $\ybar:= \meann \y_n$ and
+$\zbar:= \meann \z_n$. Recall that the ordinary least
+squares estimates are given by 
+$$
+\begin{aligned}
+    \bhat_1 = \frac{\meann(\z_n - \zbar) (\y- \ybar)}{\meann(\z_n - \zbar)^2}
+    \quad\textrm{and}\quad
+    \bhat_0 = \ybar- \bhat_1 \zbar.
+\end{aligned}
+$$
+
+#### (a)
+
+Write the regression in matrix form, where $\X$ is an $N \times
+2$ matrix, $\bv= (\beta_0, \beta_1)^\trans$, and
+$\Y= \X\bv+ \resv$.
+
+
+#### (b)
+
+Define 
+$$
+\begin{aligned}
+    m_{z^2} := \meann \z_n^2
+    \quad\textrm{and}\quad
+    m_{zy} := \meann \z_n \y_n
+\end{aligned}
+$$ 
+
+Write an explict expressions for $\X^\trans\X$,
+$\X^\trans\Y$, and $\left(\X^\trans\X\right)^{-1}$, all in terms of $\ybar$,
+$\zbar$, $m_{z^2}$, $m_{zy}$, and $N$. Verify that the inverse is
+correct by direct multiplication.
+
+#### (c)
+
+Compute $(\X^\trans\X)^{-1} \X^\trans\Y$. Show
+that the first row is equal to $\bhat_0$ and the second row is
+equal to $\bhat_1$.
+
+
+
+
+# Mean zero residuals.
+
+Consider the model $\y_n = \beta \z_n + \res_n$.
+
+#### (a)
+
+Suppose $\z_n$ is not a constant.  Is it necessarily the case that
+$\meann \reshat_n = 0$?  Prove your answer.
+
+
+#### (b)
+
+Suppose $\z_n$ is a constant, but $\z_n \equiv 5$ for every $n \in \{1, \ldots, N\}$.
+Is it necessarily the case that $\meann \reshat_n = 0$?  Prove your answer.
+
+
+#### (c)
+
+Now the model $\y_n = \beta_1 \z_{n1} + \beta_2 \z_{n2} + \res_n$.
+Suppose that $\z_{n1} = 1$ is $n$ is even, and is $0$ otherwise.
+Similarly, suppose that $\z_{n1} = 1$ is $n$ is odd, and is
+$0$ otherwise.  Is it necessarily the case that $\meann \reshat_n = 0$?
+Prove your answer.
+
+
+
+
+
+
+
+# Inner products and covariances
+
+
+Let $\zv = (\z_1, \ldots, \z_N)$ and $\yv = (\y_1, \ldots, \y_N)$.
+Let $\X$ denote an $N \times P$ matrix whose $n$--th row is the
+$P$-vector $\xv_n$.
+
+#### (a)
+
+Let $\mathcal{Z}'$ denote a random variable
+which is produced by drawing an element with replacement
+from the set $\{z_1, \ldots, \z_N \}$ with equal probability given to each entry.
+This random variables is called a draw from the "empirical distribution" over
+the set $\{z_1, \ldots, \z_N \}$.
+Similarly, let $\mathcal{Y}'$ denote a draw from the empirical distribution
+over the entries of the vector $\yv$.
+
+Prove that $\frac{1}{N} \zv^\trans \yv = \expect{}{\mathcal{Z}' \mathcal{Y}'}$.
+Then prove that
+$\frac{1}{N} \onev^\trans \zv = \expect{}{\mathcal{Z}'}$ as a special case.
+
+
+#### (b)
+
+Now suppose that the entries of $\zv$ are independent and identically
+distributed (IID) realizations of the random variable $\mathcal{Z}$, and that
+the entries of $\yv$ are similarly IID realizations of a random variable
+$\mathcal{Y}$.  Assuming that $\expect{}{|\mathcal{Z}|} < \infty$ and
+$\expect{}{|\mathcal{Y}|} < \infty$, prove that
+
+$$
+\lim_{N\rightarrow\infty} \frac{1}{N} \zv^\trans \yv \rightarrow
+    \expect{}{\mathcal{Z} \mathcal{Y}},
+$$
+
+where the limit is with probability one ("almost sure" convergence).  (Hint: don't prove 
+this from scratch, appeal to a probability theorem.)
+
+
+#### (c)
+
+Using only inner products involving $\yv$, $\zv$, and $\onev$,
+write an expression for $\cov{}{\mathcal{Y}', \mathcal{Z}'}$.  Prove
+that the expression converges with probability one to $\cov{}{\mathcal{Y}, \mathcal{Z}}$.
+(Hint: again, use your previous results and a theorem from probability.)
+
+
+#### (d)
+
+Now, let $\mathcal{X}'$ denote a draw 
+from the empirical distribution over the rows of $\X$.
+Prove that
+
+$$
+\begin{align*}
+\frac{1}{N} \X^\trans \X = \expect{}{\mathcal{X}' \mathcal{X}'^\trans}
+\quad\textrm{and}\quad
+\frac{1}{N} \X^\trans \Y = \expect{}{\mathcal{X}' \mathcal{Y}'}.
+\end{align*}
+$$
+
+
+#### (e)
+
+Now, suppose that rows of $\X$ are IID realizations of the random
+$P$--vector $\mathcal{X}$, and that $\expect{}{|\mathcal{X}_p|} < \infty$
+for each $p \in \{ 1, \ldots, P \}$.  Assume, as above, that
+$\expect{}{|\mathcal{Y}|} < \infty$.
+
+Prove that
+
+$$
+\lim_{N\rightarrow\infty} \frac{1}{N} \X^\trans \X \rightarrow
+    \expect{}{\mathcal{X} \mathcal{X}^\trans}
+\quad\textrm{and}\quad
+\lim_{N\rightarrow\infty} \frac{1}{N} \X^\trans \Y \rightarrow
+    \expect{}{\mathcal{X} \mathcal{Y}},
+$$
+
+where both limits are with probability one.
+
+
+#### (f)
+
+Now assume that, for each $p \in \{1, \ldots, P\}$ and $q \in \{1, \ldots, P\}$,
+$\expect{}{\abs{\mathcal{X}'_p} \abs{\mathcal{X}'_q} \mathcal{Y}^2} < \infty$.
+Prove that 
+
+$$
+\lim_{N\rightarrow\infty} \frac{1}{\sqrt{N}}
+\left( \X^\trans \Y - \expect{}{\X^\trans \Y} \right) \rightarrow \mathcal{Z},
+$$ 
+
+where
+$\mathcal{Z}$ is a multivariate normal random variable, and the limit is in
+distribution.  What is the covariance of $\mathcal{Z}$?
+(Hint: again, appeal to a probability theorem.)
+
+
+
+# Defining the estimator.
+
+
+Consider the simple linear model
+$\y_n = \beta_0 + \beta_1 \z_n + \res_n$.  Assume that
+$\meann \z_n \ne 0$.
+
+
+#### (a)
+
+Fix $\beta_0 = \meann \y_n$ and find a value of
+$\beta_0$ such that $\meann\res_n = 0$. How
+does your answer depend on whether or not $\meann z_n = 0$?
+
+#### (b)
+
+Fix $\beta_1 = 10,000,000$ and find a value of $\beta_0$ such that
+$\meann\res_n = 0$.
+
+
+#### (c)
+
+In general, how many different choices of $\beta_0$ and $\beta_1$ can
+you find that satisfy $\meann\res_n = 0$?  Are all of them reasonable?
+Are any of them reasonable?
+
+#### (d)
+
+Find an $N$--dimensional vector $\vv$ such that 
+$$
+\meann \res_n = 0 \quad\Leftrightarrow\quad \vv^\trans\resv = \zerov.
+$$
+
+#### (e)
+
+Suppose I give you a general $N$--dimensional vector $\vv$ and a scalar
+$a$.  How  many different choices of $\beta_0$ and $\beta_1$ can you find
+such that $\vv^\trans \resv = a$?
+
+#### (f)
+
+Suppose I give you two different vectors, $\vv_1$ and $\vv_2$.  Under what circumstances
+can you find $\beta_0$ and $\beta_1$  such that
+
+$$
+\begin{align}
+\vv_1^\trans \resv = \zerov
+\quad\textrm{and}\quad
+\vv_2^\trans \resv = \zerov?
+\end{align}
+$$
+
+When are there infinitely many solutions?  When is there only one solution?
+(Hint: what if $\vv_1^\trans \onev = \vv_2^\trans \onev = 0$?)
+
+#### (g)
+
+Now, consider the general linear model $\Y = \X \bv + \res$.
+Prove that there always exists $\bv$ and $\res$ so that the
+$\Y = \X \bv + \res$.
+
+
+#### (h)
+
+Suppose, for the general linear model, that the matrix $\X$
+is full-rank (that is, of rank $P$, where $P$ is the number of
+columns of $\X$).  Suppose I give you a $N \times D$ matrix
+$\V$, and ask you to find $\bv$ such that $\V^\trans \resv = \zerov$.
+Under what circumstances are there no solutions?  A single
+solution?  An infinite set of solutions?  (Hint: you
+already answered this question for $P = 2$, now you just
+need to state the result in matrix form.)
+

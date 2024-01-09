@@ -19,6 +19,8 @@ website:
           - lectures/Lecture1_examples.ipynb
       - href: datasets/data.qmd
         text: Datasets
+      - href: assignments/assignments.qmd
+        text: Assignments
           
 
 format:

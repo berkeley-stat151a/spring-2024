@@ -1,5 +1,8 @@
 ---
-title: "Data"
+title: "Datasets"
+subtitle: "Stat 151A: Linear Models"
+theme: [sandstone, assets/styles.scss]
+sidebar: true
 ---
 
 The following datasets are used in lectures, homework, and labs.

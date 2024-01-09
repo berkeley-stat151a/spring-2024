@@ -1,17 +1,16 @@
 ---
-title: "Syllabus"
+title: "Syllabus and Course Structure"
 subtitle: "Stat 151A: Linear Models"
 toc: true
 doi: "Spring 2024"
 doi-title: Term
 author:
     - Ryan Giordano
-    - Dohyeong Ki
 author-title: Instructors
 abstract-title: ""
 theme: [sandstone, assets/styles.scss]
 toc-depth: 4
-sidebar: false
+sidebar: true
 ---
 
 ::: {.callout-warning}
@@ -29,14 +28,13 @@ machine learning through the lens of linear models.  A strong
 emphasis will be placed on mathematical rigor, real-world decision-making, 
 and the interplay between the two.
 
-#### Course goals
-
 By the end of the course, you should be able to
 
 - Express standard regression analyses both mathematically and in R code
 - Critically relate the intended use of a regression analysis to its methods and assumptions
 - Identify common practical and conceptual pitfalls of regression analysis, and to improve the analysis when possible
- - Communicate the process and results of a regression analysis simply and clearly for a broad audience, using well-organized prose, reproducible code, and effective data visualizations.    
+ - Communicate the process and results of a regression analysis simply and clearly for a broad audience, 
+   using well-organized prose, reproducible code, and effective data visualizations.    
 
 ### Prerequisites
 
@@ -59,14 +57,16 @@ class.
 
 ### Materials
 
-#### Textbook
+#### Textbooks
 
-The primary materials for the course are the lecture notes, which will be posted to the 
-course website in advance of class. The following textbooks are useful supplementary texts 
-but there is no need to purchase them:
+Unelss otherwise noted, the primary materials for the course are the lecture notes, 
+which will be posted to the  course website in advance of class. The following textbooks are useful 
+supplementary texts  and are all freely available online:
 
-- [Linear Models and Extensions](https://arxiv.org/abs/2401.00649) Peng Ding (freely available online)
-- [R for Data Science](https://r4ds.had.co.nz/), Wickham and Grolemund (freely available online)
+- [Linear Models and Extensions](https://arxiv.org/abs/2401.00649) Ding
+- [Regression and other Stories](https://avehtari.github.io/ROS-Examples/) Gelman, Hill, Vehtari
+- [An Introduction to Statistical Learning](https://www.statlearning.com/) James, Witten, Hastie, Tibshirani
+- [R for Data Science](https://r4ds.had.co.nz/), Wickham, Grolemund
 
 #### RStudio
 
