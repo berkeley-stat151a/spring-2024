@@ -79,6 +79,12 @@ All of the assignments will be posted to the course website at [https://stat151a
 
 ### Assignments, Exams, and Grading
 
+#### Attendance
+
+Attendance at labs will be optional.  Attendance in lectures will be required and will contribute to the students' participation grade.
+Laptops will not be allowed during lecture.
+
+
 #### Grading.
 
 Grades will not be curved except where otherwise noted.  Letter grades will be
@@ -94,7 +100,7 @@ The weighting for the grades will be:
 - Quizzes (each weighted equally): 20%
 - Final exam: 20%
 - Group project: 20%
-- Lab participation: 10%
+- Participation: 10%
 
 
 #### Final exam.  
@@ -121,7 +127,6 @@ incorrect. We strongly encourage students to submit their own best efforts, even
 if imperfect, rather than copy a correct answer.
 
 
-
 #### Final project.
 Students will form groups of up to three people to
 submit a final project consisting of an analysis of a real dataset applying
@@ -136,7 +141,9 @@ In order to provide flexibility around emergencies that might arise for you thro
 -   one emergency drop for quizzes  
 -   two emergency drops for homework 
 
-This means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. For reading questions, we will drop your two lowest.
+This means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. For homework, we will drop your two lowest.
+Unless students are excused by official university policies, additional drops will not be given.  
+We strongly recommend that students reserve their emergency drops for real emergencies. 
 
 #### Late Work
 

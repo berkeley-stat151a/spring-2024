@@ -39,8 +39,8 @@ pronouns: He / him
 ::: {.g-col-8}
 **GSI**: Dohyeong Ki<br>
 ![Dohyoeng Ki](images/dohyeongki.jpg)<br>
-Office: --- Evans Hall<br>
-Office hours: TBD<br>
+Office: TBD Evans Hall<br>
+Office hours: 3:30pm-5:30pm Thursdays (subject to change)<br>
 `dohyeong_ki@berkeley.edu`<br>
 pronouns: He / him
 :::
