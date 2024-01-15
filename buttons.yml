@@ -4,3 +4,6 @@
 - button: RStudio
   link: https://posit.co/download/rstudio-desktop/
   color: "#FF7F00"
+- button: BCourses
+  link: https://bcourses.berkeley.edu
+  color: "#7F0FFF"
