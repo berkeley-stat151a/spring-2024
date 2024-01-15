@@ -1,9 +1,6 @@
-- button: Ed
-  link: https://ibm.com
-  color: "#3D1679"
-- button: DataHub
-  link: https://r.datahub.berkeley.edu
-  color: "#EE611A"
 - button: Gradescope
-  link: https://ibm.com
+  link: https://www.gradescope.com/
   color: "#0F7FFF"
+- button: RStudio
+  link: https://posit.co/download/rstudio-desktop/
+  color: "#FF7F00"

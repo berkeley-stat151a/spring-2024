@@ -74,16 +74,16 @@ The software that we'll be using for our data analysis is the free and open-sour
 
 #### Course website
 
-All of the assignments will be posted to the course website at [https://stat151a.berkeley.edu/spring-2024/](https://stat151a.berkeley.edu/spring-2024/). This also holds the course notes, the syllabus, and links to Gradescope, Ed, and RStudio.
+All of the assignments will be posted to the course website at [https://stat151a.berkeley.edu/spring-2024/](https://stat151a.berkeley.edu/spring-2024/). This also holds the course notes, the syllabus, and links to Gradescope and RStudio.
 
 
 ### Assignments, Exams, and Grading
 
 #### Attendance
 
-Attendance at labs will be optional.  Attendance in lectures will be required and will contribute to the students' participation grade.
-Laptops will not be allowed during lecture.
+Attendance in lectures will be required and will contribute to the participation portion of the students' grade. Each student will be given four lecture absences without losing any participation points, with the expectation that these absences will be used for illness and emergencies.  Laptops will not be permitted in lectures, and violation of this policy can constitute an absence for the purpose of the participation grade.
 
+Attendance at labs will be optional.
 
 #### Grading.
 
@@ -108,7 +108,8 @@ An in-person pencil-and-paper final exam will be
 scheduled during the usual final exam week.
 
 #### Quizzes.  
-Every two weeks we will have an in-class quiz.  These
+Every two weeks we will have an twenty-minute in-class quiz, typically on the Tuesday
+following a homework due date.  These
 quizzes will take the place of a sitdown midterm exam (i.e., there will be
 no midterm).
 
@@ -205,6 +206,7 @@ And again, if you have questions about the boundaries of the collaboration polic
 #### Laptop policy
 
 Laptops will not be permitted in lecture, but will be required for labs.
+
 If you do not have access to a laptop, you can borrow
 one from the University library.  See the
 [UC Berkeley hardware lending program](https://studenttech.berkeley.edu/hardware-lending) for more details.  The
