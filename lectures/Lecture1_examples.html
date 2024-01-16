@@ -146,8 +146,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Syllabus</span></a>
+  <a href="../course_policies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Policies</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -162,7 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/Lecture1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Why study linear models?</span></a>
+ <span class="menu-text">Course outline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -231,13 +231,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">15</span>, <span class="at">repr.plot.height =</span> <span class="dv">8</span>, <span class="at">repr.plot.res =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+<pre><code>── Attaching core tidyverse packages ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ✔ forcats   1.0.0     ✔ stringr   1.5.0
 ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
 ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ✔ purrr     1.0.1     
-── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+── Conflicts ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
@@ -272,11 +272,12 @@ The following object is masked from ‘package:purrr’:
 <h1>Spotify data</h1>
 <p>Almost 30,000 Songs from the Spotify API with black-box machine learning quantifications of musical features.</p>
 <p>https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="2">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/home/rgiordan/Documents/git_repos/stat151a_website"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>spotify_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/spotify_songs.csv"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(spotify_df)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(spotify_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sprintf</span>(<span class="st">"%d rows in the dataframe."</span>, <span class="fu">nrow</span>(spotify_df)))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(spotify_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A data.frame: 6 × 23</caption>
@@ -478,18 +479,28 @@ The following object is masked from ‘package:purrr’:
 </tbody>
 </table>
 </div>
-<div class="cell-output cell-output-display">
-32833
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "32833 rows in the dataframe."
+ [1] "track_id"                 "track_name"              
+ [3] "track_artist"             "track_popularity"        
+ [5] "track_album_id"           "track_album_name"        
+ [7] "track_album_release_date" "playlist_name"           
+ [9] "playlist_id"              "playlist_genre"          
+[11] "playlist_subgenre"        "danceability"            
+[13] "energy"                   "key"                     
+[15] "loudness"                 "mode"                    
+[17] "speechiness"              "acousticness"            
+[19] "instrumentalness"         "liveness"                
+[21] "valence"                  "tempo"                   
+[23] "duration_ms"             </code></pre>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">qplot</span>(<span class="at">x=</span>track_popularity, <span class="at">geom=</span><span class="st">"histogram"</span>, <span class="at">data=</span>spotify_df),</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">qplot</span>(<span class="at">x=</span><span class="fu">log10</span>(track_popularity), <span class="at">geom=</span><span class="st">"histogram"</span>, <span class="at">data=</span>spotify_df), <span class="at">ncol=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">qplot</span>(<span class="at">x=</span>track_popularity, <span class="at">geom=</span><span class="st">"histogram"</span>, <span class="at">data=</span>spotify_df),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">qplot</span>(<span class="at">x=</span><span class="fu">log10</span>(track_popularity), <span class="at">geom=</span><span class="st">"histogram"</span>, <span class="at">data=</span>spotify_df), <span class="at">ncol=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning message:
-“`qplot()` was deprecated in ggplot2 3.4.0.”
-`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 Warning message:
 “Removed 2703 rows containing non-finite values (`stat_bin()`).”</code></pre>
@@ -498,26 +509,26 @@ Warning message:
 <p><img src="Lecture1_examples_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(spotify_df) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>track_popularity, <span class="at">x=</span>danceability))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(spotify_df) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>track_popularity, <span class="at">x=</span>danceability))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Lecture1_examples_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(spotify_df) <span class="sc">+</span> <span class="fu">geom_density_2d_filled</span>(<span class="fu">aes</span>(<span class="at">y=</span>track_popularity, <span class="at">x=</span>danceability))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(spotify_df) <span class="sc">+</span> <span class="fu">geom_density_2d_filled</span>(<span class="fu">aes</span>(<span class="at">y=</span>track_popularity, <span class="at">x=</span>danceability))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Lecture1_examples_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>reg_small <span class="ot">&lt;-</span> <span class="fu">lm</span>(track_popularity <span class="sc">~</span> danceability, spotify_df)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(reg_small))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(spotify_df) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density_2d_filled</span>(<span class="fu">aes</span>(<span class="at">y=</span>track_popularity, <span class="at">x=</span>danceability)) <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>danceability, <span class="at">y=</span>reg_small<span class="sc">$</span>fitted.values), <span class="at">color=</span><span class="st">"red"</span>, <span class="at">linewidth=</span><span class="dv">2</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>reg_small <span class="ot">&lt;-</span> <span class="fu">lm</span>(track_popularity <span class="sc">~</span> danceability, spotify_df)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(reg_small))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(spotify_df) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density_2d_filled</span>(<span class="fu">aes</span>(<span class="at">y=</span>track_popularity, <span class="at">x=</span>danceability)) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>danceability, <span class="at">y=</span>reg_small<span class="sc">$</span>fitted.values), <span class="at">color=</span><span class="st">"red"</span>, <span class="at">linewidth=</span><span class="dv">2</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -557,10 +568,10 @@ F-statistic: 138.2 on 1 and 32831 DF,  p-value: &lt; 2.2e-16
 </figure>
 </div>
 <p>Image from https://www.topendsports.com/testing/tests/underwater.htm</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bodyfat_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/bodyfat.csv"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bodyfat_df)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(bodyfat_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bodyfat_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/bodyfat.csv"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bodyfat_df)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(bodyfat_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A data.frame: 6 × 15</caption>
@@ -718,29 +729,30 @@ F-statistic: 138.2 on 1 and 32831 DF,  p-value: &lt; 2.2e-16
 252
 </div>
 </div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Weight"</span>, <span class="st">"Height"</span>, <span class="st">"Neck"</span>, <span class="st">"Chest"</span>, <span class="st">"Abdomen"</span>, <span class="st">"Hip"</span>, <span class="st">"Thigh"</span>, <span class="st">"Knee"</span>, <span class="st">"Ankle"</span>, <span class="st">"Biceps"</span>, <span class="st">"Forearm"</span>, <span class="st">"Wrist"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(vars <span class="sc">%in%</span> <span class="fu">names</span>(bodyfat_df)))</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(bodyfat_df) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Abdomen, <span class="at">y=</span>bodyfat)),</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(bodyfat_df) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Height, <span class="at">y=</span>bodyfat)),</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(bodyfat_df) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Weight, <span class="at">y=</span>bodyfat)),</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncol=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Weight"</span>, <span class="st">"Height"</span>, <span class="st">"Neck"</span>, <span class="st">"Chest"</span>, <span class="st">"Abdomen"</span>, <span class="st">"Hip"</span>, </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Thigh"</span>, <span class="st">"Knee"</span>, <span class="st">"Ankle"</span>, <span class="st">"Biceps"</span>, <span class="st">"Forearm"</span>, <span class="st">"Wrist"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(vars <span class="sc">%in%</span> <span class="fu">names</span>(bodyfat_df)))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(bodyfat_df) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Abdomen, <span class="at">y=</span>bodyfat)),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(bodyfat_df) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Height, <span class="at">y=</span>bodyfat)),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(bodyfat_df) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Weight, <span class="at">y=</span>bodyfat)),</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncol=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Lecture1_examples_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>regressors <span class="ot">&lt;-</span> <span class="fu">paste</span>(vars, <span class="at">collapse=</span><span class="st">" + "</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>reg_form <span class="ot">&lt;-</span> <span class="fu">formula</span>(<span class="fu">paste0</span>(<span class="st">"bodyfat ~ 1 + "</span>, regressors))</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(reg_form, bodyfat_df)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>bodyfat_df<span class="sc">$</span>bodyfat, <span class="at">y=</span>reg<span class="sc">$</span>fitted.values)) <span class="sc">+</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">slope=</span><span class="dv">1</span>, <span class="at">intercept=</span><span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">"Actual bodyfat"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Predicted bodyfat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>regressors <span class="ot">&lt;-</span> <span class="fu">paste</span>(vars, <span class="at">collapse=</span><span class="st">" + "</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>reg_form <span class="ot">&lt;-</span> <span class="fu">formula</span>(<span class="fu">paste0</span>(<span class="st">"bodyfat ~ 1 + "</span>, regressors))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(reg_form, bodyfat_df)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>bodyfat_df<span class="sc">$</span>bodyfat, <span class="at">y=</span>reg<span class="sc">$</span>fitted.values)) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">slope=</span><span class="dv">1</span>, <span class="at">intercept=</span><span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">"Actual bodyfat"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Predicted bodyfat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -789,141 +801,35 @@ F-statistic: 58.24 on 12 and 239 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>Taken from https://data.mendeley.com/datasets/rd6jm9tyb6/2</p>
 <p>See paper and methods at https://www.sciencedirect.com/science/article/pii/S0263823118313831?via%3Dihub</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>al_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"datasets/aluminum_dataset.csv"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(loading_type <span class="sc">==</span> <span class="st">"T"</span>, temp <span class="sc">==</span> <span class="dv">20</span>, lot <span class="sc">==</span> <span class="st">"A"</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(al_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>A data.frame: 6 × 7</caption>
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th" scope="col">Strain</th>
-<th data-quarto-table-cell-role="th" scope="col">Stress_MPa</th>
-<th data-quarto-table-cell-role="th" scope="col">loading_type</th>
-<th data-quarto-table-cell-role="th" scope="col">temp</th>
-<th data-quarto-table-cell-role="th" scope="col">lot</th>
-<th data-quarto-table-cell-role="th" scope="col">specimen</th>
-<th data-quarto-table-cell-role="th" scope="col">filename</th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
-<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
-<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
-<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
-<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
-<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
-<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">1</td>
-<td>1.746888e-05</td>
-<td>0.1470586</td>
-<td>T</td>
-<td>20</td>
-<td>A</td>
-<td>1</td>
-<td>T_020_A_1_001_022_03.csv</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">2</td>
-<td>2.096203e-05</td>
-<td>0.1480829</td>
-<td>T</td>
-<td>20</td>
-<td>A</td>
-<td>1</td>
-<td>T_020_A_1_001_022_03.csv</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">3</td>
-<td>1.871861e-05</td>
-<td>0.1676320</td>
-<td>T</td>
-<td>20</td>
-<td>A</td>
-<td>1</td>
-<td>T_020_A_1_001_022_03.csv</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">4</td>
-<td>1.634951e-05</td>
-<td>0.1929697</td>
-<td>T</td>
-<td>20</td>
-<td>A</td>
-<td>1</td>
-<td>T_020_A_1_001_022_03.csv</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">5</td>
-<td>1.951097e-05</td>
-<td>0.2212170</td>
-<td>T</td>
-<td>20</td>
-<td>A</td>
-<td>1</td>
-<td>T_020_A_1_001_022_03.csv</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">6</td>
-<td>2.155187e-05</td>
-<td>0.2569143</td>
-<td>T</td>
-<td>20</td>
-<td>A</td>
-<td>1</td>
-<td>T_020_A_1_001_022_03.csv</td>
-</tr>
-</tbody>
-</table>
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>al_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"datasets/aluminum_dataset.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(loading_type <span class="sc">==</span> <span class="st">"T"</span>, temp <span class="sc">==</span> <span class="dv">20</span>, lot <span class="sc">==</span> <span class="st">"A"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(al_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">table</span>(al_df[<span class="fu">c</span>(<span class="st">"lot"</span>, <span class="st">"specimen"</span>)]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">table</span>(al_df[<span class="fu">c</span>(<span class="st">"lot"</span>, <span class="st">"specimen"</span>)]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   specimen
-lot   1   2   3
-  A 614 645 630</code></pre>
-</div>
-</div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="12">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(al_df) <span class="sc">+</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Strain, <span class="at">y=</span>Stress_MPa, <span class="at">color=</span><span class="fu">factor</span>(specimen)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="Lecture1_examples_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
-</div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="13">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>al_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Strain <span class="sc">&lt;</span> <span class="fl">0.0035</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Strain, <span class="at">y=</span>Stress_MPa, <span class="at">color=</span><span class="fu">factor</span>(specimen)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="Lecture1_examples_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
 </div>
-</div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="14">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>al_reg_df <span class="ot">&lt;-</span> al_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Strain <span class="sc">&lt;</span> <span class="fl">0.0035</span>, Strain <span class="sc">&gt;</span> <span class="fl">0.0001</span>, specimen <span class="sc">==</span> <span class="dv">1</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(al_reg_df) <span class="sc">+</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Strain, <span class="at">y=</span>Stress_MPa, <span class="at">color=</span><span class="fu">factor</span>(specimen)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="Lecture1_examples_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
 </div>
-</div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="15">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(Stress_MPa <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> Strain, al_reg_df)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>al_reg_df<span class="sc">$</span>fit <span class="ot">&lt;-</span> reg<span class="sc">$</span>fitted.values</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>al_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Strain <span class="sc">&lt;</span> <span class="fl">0.0035</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Strain, <span class="at">y=</span>Stress_MPa, <span class="at">color=</span><span class="fu">factor</span>(specimen))) <span class="sc">+</span></span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>Strain, <span class="at">y=</span>fit, <span class="at">color=</span><span class="st">"Specimen 1 Fitted"</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">data=</span>al_reg_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="Lecture1_examples_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
-</div>
 </div>
 
 
