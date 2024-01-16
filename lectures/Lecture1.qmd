@@ -1,5 +1,5 @@
 ---
-title: "Why study linear models?"
+title: "Course outline"
 format:
   html:
     code-fold: false
@@ -44,20 +44,19 @@ enough to exhibit a lot of the strengths and pitfalls of all machine learning
 and statistics.  So really, this is only partly a course about linear models
 *per se*.  I hope to make it a course about concepts in statistics in machine
 learning more generally, but viewed within the relatively simple framework of
-linear models.  Some examples (not all of which will be covered, probably)
-include:
+linear models.  Some examples that I hope to touch on at least briefly include:
 
+- Asymptotics under misspecification
+- Regularization
+- Sparsity
 - The bias / variance tradeoff
 - The influence function
 - Domain transfer
-- Post selection inference
-- Multiple testing
-- Consistency and asymptotic normality
 - Distributed learning
-- Regularization
-- Sparsity
-- Benign overfitting and double descent
-
+- Conformal inference
+- Permutation testing
+- Bayesian methods
+- Benign overfitting
 
 Our results and conclusions will be expressed in formal mathematical statements
 and in software.  For the purpose of this class, I view mathematics and coding

@@ -14,12 +14,6 @@ listing:
 :::
 
 
-::: {.callout-warning}
-This website is under development and is not finalized.  The
-course policies and syllabus will likely continue to change up
-to the start of class.
-:::
-
 
 
 ## Instructors
@@ -48,6 +42,11 @@ pronouns: He / him
 :::
 
 
+
+::: {.callout-important}  
+Due to illness, Jan 16th's class will be held on Zoom.  For the link, look 
+for an email from `rgiordano@berkeley.edu`.
+:::
 
 
 

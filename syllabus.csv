@@ -15,7 +15,7 @@ Lecture,Multivariate regression as maximum likelihood estimation,,
 Lecture,Categorical predictors and one-hot encoding,,"Stat 20 already has this, ANOVA"
 Lab,TBD,,
 ,,,
-Lecture,"Frequentist inference.  Level, power, testing, and confidence intervals",,Check 135
+Lecture,"Basics of frequentist inference in a regression context",,Check 135
 Lecture,Grouping data in the bootstrap,,Uncovered
 Lab,TBD,,
 ,,,
@@ -23,11 +23,11 @@ Lecture,Asymptotics of empirical risk minimization.  Sandwich covariance,,Uncove
 Lecture,Calibration and conformal inference for prediction,,Uncovered
 Lab,TBD,,
 ,,,
-Lecture,"How regression fails: Omitted variables, endogeneity",,
-Lecture,"How regression fails: Domain changes, Simpson’s paradox, outliers",,
+Lecture,"How regression fails: Omitted variables and endogeneity",,
+Lecture,"How regression fails: Domain changes and Simpson’s paradox",,
 Lab,TBD,,
 ,,,
-Lecture,"How regression fails: Non-independence, small sample sizes",,
+Lecture,"How regression fails: Outliers and gross errors",,
 Lecture,Midterm review,,
 Lab,Review,,
 ,,,

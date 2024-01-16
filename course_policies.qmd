@@ -13,20 +13,7 @@ toc-depth: 4
 sidebar: true
 ---
 
-::: {.callout-warning}
-These course policies are a work in progress and subject to change.
-:::
-
 ### Objectives
-
-Linear models strike a remarkable balance between simplicity
-and complexity: simple enough to permit detailed theoretical analysis,
-but complex enough to exhibit many of the strengths and weaknesses
-of statistics and machine learning more generally.  In this course, we
-will explore classical and cutting-edge topics in statistics and
-machine learning through the lens of linear models.  A strong
-emphasis will be placed on mathematical rigor, real-world decision-making, 
-and the interplay between the two.
 
 By the end of the course, you should be able to
 
@@ -36,56 +23,26 @@ By the end of the course, you should be able to
  - Communicate the process and results of a regression analysis simply and clearly for a broad audience, 
    using well-organized prose, reproducible code, and effective data visualizations.    
 
-### Prerequisites
-
-This course will assume familiarity with the material in STAT 135 or STAT 102. 
-STAT 135 implies other prerequisite courses (STAT 134 and
-its prerequisites). In particular, you must have had linear algebra, so you
-should be familiar with basic matrix operations, vector subspaces and
-projections, rank and invertibility of matrices, and quadratic forms.
-
-This semester of Stat151A will include labs and projects in the R language.
-Proficiency with R at the level of the
-\href{https://github.com/dlab-berkeley/R-Fundamentals}{D-lab fundamentals
-course} is a prerequisite.  Students with a strong background in another
-programming language (e.g. Python) will be permitted to enroll with the
-understanding that they will learn R on their own prior to the start of the
-class.  
-
-
-
-
-### Materials
-
-#### Textbooks
-
-Unelss otherwise noted, the primary materials for the course are the lecture notes, 
-which will be posted to the  course website in advance of class. The following textbooks are useful 
-supplementary texts  and are all freely available online:
-
-- [Linear Models and Extensions](https://arxiv.org/abs/2401.00649) Ding
-- [Regression and other Stories](https://avehtari.github.io/ROS-Examples/) Gelman, Hill, Vehtari
-- [An Introduction to Statistical Learning](https://www.statlearning.com/) James, Witten, Hastie, Tibshirani
-- [R for Data Science](https://r4ds.had.co.nz/), Wickham, Grolemund
-
-#### RStudio
-
-The software that we'll be using for our data analysis is the free and open-source language called R that we'll be interacting with via software called RStudio.  If you have difficulty installing RStudio, please reach out to an instructor.
-
-#### Course website
-
-All of the assignments will be posted to the course website at [https://stat151a.berkeley.edu/spring-2024/](https://stat151a.berkeley.edu/spring-2024/). This also holds the course notes, the syllabus, and links to Gradescope and RStudio.
-
-
 ### Assignments, Exams, and Grading
 
 #### Attendance
 
-Attendance in lectures will be required and will contribute to the participation portion of the students' grade. Each student will be given four lecture absences without losing any participation points, with the expectation that these absences will be used for illness and emergencies.  Laptops will not be permitted in lectures, and violation of this policy can constitute an absence for the purpose of the participation grade.
+Attendance in lectures will be required and will contribute to the participation portion of the students' grade.  Laptops will not be permitted in lectures, and violation of this policy can constitute an absence for the purpose of the participation grade.
+
+Each student will be given *four lecture absences* without losing any participation points, with the expectation that these absences will be used for illness and emergencies.
 
 Attendance at labs will be optional.
 
 #### Grading.
+
+The weighting for the grades will be:
+
+  - Homework completion (each weighted equally): 16%
+  - Homework correctness (each weighted equally): 4%
+  - Quizzes (each weighted equally): 20%
+  - Final exam: 20%
+  - Group project: 20%
+  - Participation (primarily lecture attendance): 10%
 
 Grades will not be curved except where otherwise noted.  Letter grades will be
 assigned according the weighted points earned.  A score within [90-92%) will
@@ -93,14 +50,6 @@ earn an A-, [92-98%) will earn an A, and [99-100%) will earn an A+.  Scores in
 the 80's will receive B's, in the 70's will receive C's, with the same
 thresholds for plusses and minuses.  Scores below 70\% will be considered
 failing.   Grades will be non-negotiable.
-
-The weighting for the grades will be:
-- Homework completion (each weighted equally): 16%
-- Homework correctness (each weighted equally): 4%
-- Quizzes (each weighted equally): 20%
-- Final exam: 20%
-- Group project: 20%
-- Participation: 10%
 
 
 #### Final exam.  
@@ -128,7 +77,7 @@ incorrect. We strongly encourage students to submit their own best efforts, even
 if imperfect, rather than copy a correct answer.
 
 
-#### Final project.
+#### Final group project.
 Students will form groups of up to three people to
 submit a final project consisting of an analysis of a real dataset applying
 principles and techniques from the course.
@@ -150,6 +99,47 @@ We strongly recommend that students reserve their emergency drops for real emerg
 
 Late work will not be accepted.  If work is not submitted on time, it will receive a zero.  
 It is entirely the students' responsibility to turn work in on time.
+
+
+
+
+### Prerequisites
+
+This course will assume familiarity with the material in STAT 135 or STAT 102. 
+STAT 135 implies other prerequisite courses (STAT 134 and
+its prerequisites). In particular, you must have had linear algebra, so you
+should be familiar with basic matrix operations, vector subspaces and
+projections, rank and invertibility of matrices, and quadratic forms.
+
+This semester of Stat151A will include labs and projects in the R language.
+Proficiency with R at the level of the
+\href{https://github.com/dlab-berkeley/R-Fundamentals}{D-lab fundamentals
+course} is a prerequisite.  Students with a strong background in another
+programming language (e.g. Python) will be permitted to enroll with the
+understanding that they will learn R on their own prior to the start of the
+class.  
+
+
+
+
+### Materials
+
+Unelss otherwise noted, the primary materials for the course are the lecture notes, 
+which will be posted to the  course website in advance of class. The following textbooks are useful 
+supplementary texts  and are all freely available online:
+
+- [Linear Models and Extensions](https://arxiv.org/abs/2401.00649) Ding
+- [Regression and other Stories](https://avehtari.github.io/ROS-Examples/) Gelman, Hill, Vehtari
+- [An Introduction to Statistical Learning](https://www.statlearning.com/) James, Witten, Hastie, Tibshirani
+- [R for Data Science](https://r4ds.had.co.nz/), Wickham, Grolemund
+
+#### RStudio
+
+The software that we'll be using for our data analysis is the free and open-source language called R that we'll be interacting with via software called RStudio.  If you have difficulty installing RStudio, please reach out to an instructor.
+
+#### Course website
+
+All of the assignments will be posted to the course website at [https://stat151a.berkeley.edu/spring-2024/](https://stat151a.berkeley.edu/spring-2024/). This also holds the course notes, the syllabus, and links to Gradescope and RStudio.
 
 
 

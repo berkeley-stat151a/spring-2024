@@ -11,8 +11,8 @@ website:
     contents:
       - href: index.qmd
         text: Home / Schedule
-      - href: syllabus.qmd
-        text: Syllabus
+      - href: course_policies.qmd
+        text: Course Policies
       - section: "Lectures"
         contents:
           - lectures/Lecture1.qmd

@@ -7,6 +7,8 @@ number-depth: 1
 
 {{< include ../macros.tex >}}
 
+
+
 # Simple regression in matrix form
 
 Consider the simple linear model
@@ -51,6 +53,7 @@ correct by direct multiplication.
 Compute $(\X^\trans\X)^{-1} \X^\trans\Y$. Show
 that the first row is equal to $\bhat_0$ and the second row is
 equal to $\bhat_1$.
+
 
 
 
@@ -182,79 +185,3 @@ where
 $\mathcal{Z}$ is a multivariate normal random variable, and the limit is in
 distribution.  What is the covariance of $\mathcal{Z}$?
 (Hint: again, appeal to a probability theorem.)
-
-
-
-# Defining the estimator.
-
-
-Consider the simple linear model
-$\y_n = \beta_0 + \beta_1 \z_n + \res_n$.  Assume that
-$\meann \z_n \ne 0$.
-
-
-#### (a)
-
-Fix $\beta_0 = \meann \y_n$ and find a value of
-$\beta_0$ such that $\meann\res_n = 0$. How
-does your answer depend on whether or not $\meann z_n = 0$?
-
-#### (b)
-
-Fix $\beta_1 = 10,000,000$ and find a value of $\beta_0$ such that
-$\meann\res_n = 0$.
-
-
-#### (c)
-
-In general, how many different choices of $\beta_0$ and $\beta_1$ can
-you find that satisfy $\meann\res_n = 0$?  Are all of them reasonable?
-Are any of them reasonable?
-
-#### (d)
-
-Find an $N$--dimensional vector $\vv$ such that 
-$$
-\meann \res_n = 0 \quad\Leftrightarrow\quad \vv^\trans\resv = \zerov.
-$$
-
-#### (e)
-
-Suppose I give you a general $N$--dimensional vector $\vv$ and a scalar
-$a$.  How  many different choices of $\beta_0$ and $\beta_1$ can you find
-such that $\vv^\trans \resv = a$?
-
-#### (f)
-
-Suppose I give you two different vectors, $\vv_1$ and $\vv_2$.  Under what circumstances
-can you find $\beta_0$ and $\beta_1$  such that
-
-$$
-\begin{align}
-\vv_1^\trans \resv = \zerov
-\quad\textrm{and}\quad
-\vv_2^\trans \resv = \zerov?
-\end{align}
-$$
-
-When are there infinitely many solutions?  When is there only one solution?
-(Hint: what if $\vv_1^\trans \onev = \vv_2^\trans \onev = 0$?)
-
-#### (g)
-
-Now, consider the general linear model $\Y = \X \bv + \res$.
-Prove that there always exists $\bv$ and $\res$ so that the
-$\Y = \X \bv + \res$.
-
-
-#### (h)
-
-Suppose, for the general linear model, that the matrix $\X$
-is full-rank (that is, of rank $P$, where $P$ is the number of
-columns of $\X$).  Suppose I give you a $N \times D$ matrix
-$\V$, and ask you to find $\bv$ such that $\V^\trans \resv = \zerov$.
-Under what circumstances are there no solutions?  A single
-solution?  An infinite set of solutions?  (Hint: you
-already answered this question for $P = 2$, now you just
-need to state the result in matrix form.)
-
