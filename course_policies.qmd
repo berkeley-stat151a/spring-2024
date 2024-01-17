@@ -29,6 +29,8 @@ By the end of the course, you should be able to
 
 Attendance in lectures will be required and will contribute to the participation portion of the students' grade.  Laptops will not be permitted in lectures, and violation of this policy can constitute an absence for the purpose of the participation grade.
 
+Ipads and phones will be permitted during lecture for note-taking as long as their use doesn't inhibit participation.
+
 Each student will be given *four lecture absences* without losing any participation points, with the expectation that these absences will be used for illness and emergencies.
 
 Attendance at labs will be optional.
@@ -39,8 +41,8 @@ The weighting for the grades will be:
 
   - Homework completion (each weighted equally): 16%
   - Homework correctness (each weighted equally): 4%
-  - Quizzes (each weighted equally): 20%
-  - Final exam: 20%
+  - Quizzes (each weighted equally): 25%
+  - Final exam: 25%
   - Group project: 20%
   - Participation (primarily lecture attendance): 10%
 
@@ -54,19 +56,22 @@ failing.   Grades will be non-negotiable.
 
 #### Final exam.  
 An in-person pencil-and-paper final exam will be
-scheduled during the usual final exam week.
+scheduled during the usual final exam week.  Students will be allowed a one-page
+double-sided "cheatsheet" on the final exam.
 
 #### Quizzes.  
 Every two weeks we will have an twenty-minute in-class quiz, typically on the Tuesday
 following a homework due date.  These
 quizzes will take the place of a sitdown midterm exam (i.e., there will be
-no midterm).
+no midterm).  No external materials, including cheatsheets, will be allowed during quizzes.
 
 #### Homework.  
 Homework assignments will be published on Fridays and due
-two weeks later.  Homework will typically consist of a combination of
+two weeks later at 9pm.  Homework will typically consist of a combination of
 mathematical problems and data analysis in R.  All homework will be due as a pdf
-via Gradescope unless otherwise noted.
+via Gradescope unless otherwise noted.  Students can use whatever tool
+they like to produce the pdf (latex, Rmd, Jupyter, scanned handwritten notes
+for mathematical problems, etc.).
 
 The purpose of homework is for students to attempt to work through problems on
 their own, both to advance their own understanding, and to allow the instructors

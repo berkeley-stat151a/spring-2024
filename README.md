@@ -22,3 +22,9 @@ This is the repository for the course website and course material for Statistics
 The website for which this content is the source materials is available at <https://stat555.berkeley.edu/fall-2024>.
 
 For instructors: please see [these instructions](https://github.com/berkeley-scf/stat999-quarto#instructions-for-course-staff) on how to use this repository.
+
+
+### Some extra resources
+
+Poll Everywhere:
+https://rtl.berkeley.edu/services-programs/student-response-systems/instructors-getting-started-poll-everywhere

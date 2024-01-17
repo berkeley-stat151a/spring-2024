@@ -43,9 +43,8 @@ pronouns: He / him
 
 
 
-::: {.callout-important}  
-Due to illness, Jan 16th's class will be held on Zoom.  For the link, look 
-for an email from `rgiordano@berkeley.edu`.
+::: {.callout-important}
+Day-to-day announcements can be found in BCourses.
 :::
 
 
