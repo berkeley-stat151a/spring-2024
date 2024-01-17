@@ -1,0 +1,13 @@
+---
+title: "Lectures and Labs"
+subtitle: "Stat 151A: Linear Models"
+theme: [sandstone, assets/styles.scss]
+sidebar: true
+---
+
+
+- Lecture Jan 16th:
+    - [Lecture](Lecture1.qmd)
+    - [Code examples](Lecture1_examples.ipynb)
+- Lab Jan 17th:
+    - [Style problem](lab1_student_version.Rmd)

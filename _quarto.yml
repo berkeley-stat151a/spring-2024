@@ -13,14 +13,12 @@ website:
         text: Home / Schedule
       - href: course_policies.qmd
         text: Course Policies
-      - section: "Lectures"
-        contents:
-          - lectures/Lecture1.qmd
-          - lectures/Lecture1_examples.ipynb
-      - href: datasets/data.qmd
-        text: Datasets
+      - href: lectures/lectures.qmd
+        text: Lectures and labs
       - href: assignments/assignments.qmd
         text: Assignments
+      - href: datasets/data.qmd
+        text: Datasets
           
 
 format:

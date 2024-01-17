@@ -34,7 +34,7 @@ Of course, I may deviate from this
 
 We will be interested in what $\xv_n$ can tell us about $\y_n$. This setup is
 called a "regression problem," and can be attacked with lots of models,
-including non-linear modles.  But we will focus on approaches to this problem
+including non-linear models.  But we will focus on approaches to this problem
 that operate via fitting straight lines to the dependence of
 $y_n$ on $\xv_n$.
 

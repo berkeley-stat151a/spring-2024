@@ -1,0 +1,85 @@
+---
+title: "Stat151 Coding style"
+output: html_document
+date: "2024-01-11"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## A bad analysis
+
+Suppose you work at Spotify, and a colleague told you that high energy songs are the most popular. You asked for their code, and this is what they sent you.
+
+-   How did they attempt to answer this question?
+-   Did they make any mistakes?
+-   Is it easy to read and think critically about their analysis?
+-   Would it be easy to re-run their analysis with a slightly different method or dataset?
+-   How would you improve their code while keeping their method the same?
+-   Do you agree with their high-level conclusion? How would you convey these results?
+
+```{r bad}
+data_location <- "/home/rgiordan/Documents/git_repos/stat151a_website/datasets"
+df <- read.csv(file.path(data_location, "spotify_songs.csv"))
+# run analysis
+xx <- df[,c(4,12,13,14,15,16,17,18,19,20,21,22,23)]; xxx =df[,4]
+z=sum((xx[,1]-sum(xx[,1])/nrow(xx))*(xx[,2]-sum(xx[,2])/nrow(xx)))/t(xx[,2]-sum(xx[,2])/nrow(xx))%*%(xx[,2] - sum(xx[,2])/nrow(xx))
+z2=sum((xx[,1]-sum(xx[,1])/nrow(xx))* (xx[,3]-sum(xx[,3])/nrow(xx)))/t(xx[,3]-sum(xx[,3])/nrow(xx))%*%(xx[,3] - sum(xx[,3])/nrow(xx))
+z3=sum((xx[,1]-sum(xx[,1])/nrow(xx))*(xx[,4]-sum(xx[,4])/nrow(xx)))/t(xx[,4]-sum(xx[,4])/nrow(xx))%*%(xx[,4]-sum(xx[,4])/nrow(xx))
+z4<-sum((xx[,1]-sum(xx[,1])/nrow(xx))*(xx[,5]-sum(xx[,5])/nrow(xx)))/t(xx[,5]-sum(xx[,5])/nrow(xx))%*%(xx[,5]-sum(xx[,5])/nrow(xx))
+z5<-sum((xx[,1]-sum(xx[,1])/nrow(xx))*(xx[,6]-sum(xx[,5])/nrow(xx)))/t(xx[,6]-sum(xx[,6])/nrow(xx))%*%(xx[,6]-sum(xx[,6])/nrow(xx))
+z6<-sum((xx[,1]-sum(xx[,1])/nrow(xx))*(xx[,7]-sum(xx[,7])/nrow(xx)))/t(xx[,7]-sum(xx[,2])/nrow(xx))%*%(xx[,7]- sum(xx[,7])/nrow(xx))
+z7<-sum((xx[,1]-sum(xx[,1])/nrow(xx))*(xx[,8]-sum(xx[,8])/nrow(xx)))/t(xx[,8]-sum(xx[,8])/nrow(xx))%*%(xx[,8]- sum(xx[,8])/nrow(xx))
+z8<-sum((xx[,1]-sum(xx[,1])/nrow(xx))*(xx[,9]-sum(xx[,9])/nrow(xx)))/t(xx[,9]-sum(xx[,9])/nrow(xxx))%*%(xx[,9]- sum(xx[,9])/nrow(xx))
+z9<-sum((xx[,1]-sum(xx[,1])/nrow(xx))*(xx[,10]-sum(xx[,10])/nrow(xx)))/t(xx[,10]-sum(xx[,10])/nrow(xxx))%*%(xx[,10] -sum(xx[,10])/nrow(xx))
+z10 <- sum((xx[,1]-sum(xx[,1])/nrow(xx))*(xx[,11]-sum(xx[,11])/nrow(xx)))/t(xx[,11]-sum(xx[,11])/nrow(xxx))%*%(xx[,11] -sum(xx[,11])/nrow(xx))
+z11 <- sum((xx[,1]-sum(xx[,1])/nrow(xx))*(xx[,12]-sum(xx[,12])/nrow(xx)))/t(xx[,12]-sum(xx[,12])/nrow(xx))%*%(xx[,12] -sum(xx[,12])/nrow(xx))
+yy=(names(df)[c(12,13,14,15,16,17,17,19,20,21,22,23)][order(c(z, z2,z3,z4, z5, z6, z7, z8, z9, z10,z11))][1])
+print(sprintf("The best is %s",yy))
+```
+
+## Some guidelines
+
+Some guidelines for readable, reliable, and reusable analyses:
+
+-   Don't repeat code of any complexity
+    -   Bad: Copy and paste
+    -   Good: Write a well-documented function
+-   Use descriptive variable names
+    -   Bad: `xx <- df[, c(1,2)]`
+    -   Good: `df_regressors <- df[, c(1,2)]`
+-   Use description function names which are verbs
+    -   Bad: `zzz <- function( ...)`
+    -   Good: `ComputeRegressionCoefficient <- function( ...)`
+-   Document function inputs, outputs, and purpose
+-   Use consistent spacing, formatting, and style conventions
+-   Use comments to describe what you're doing in ordinary language
+    -   Bad: `mean(x * y)`
+    -   Pointless: `mean(x * y)   # average x and y`
+    -   Good: `mean(x * y)   # Compute the correlation coefficient`
+-   Write for reusability under small changes in data and task
+    -   Bad: `df[[2]]` (fails if the column order changes)
+    -   Good: `df[["response"]]` (robust to changes in input, also more readable)
+-   Sanity check a lot and provide useful error messages
+    -   Sometimes bad: `1 / y`
+    -   Can be better: `stopifnot(y != 0); 1 / y`
+-   Try not to repeat computation (unless it gets too verbose)
+    -   Often bad: `(x - mean(x)) * (x - mean(x))`
+    -   Often better: `x_mean <- mean(x);  (x - x_mean) * (x - x_mean)`
+-   Be careful with variable scoping
+    -   Often bad: `df <- data.frame(...);  ComputeStuff <- function(x) { df["x"] ... }`
+    -   Often better: `df <- data.frame(...);  ComputeStuff <- function(x, df) { df["x"] ... }`
+-   Use [tidy data structures](https://r4ds.had.co.nz/tidy-data.html) when possible
+
+(Note that I don't recommend combining lines with semicolons, I only did this to fit things in the bullets)
+
+For this class it's not important which style guide you use, but please
+follow some consistent style.
+
+[Google style guide](https://google.github.io/styleguide/Rguide.html)
+
+[Hadley style guide](http://adv-r.had.co.nz/Style.html)
+
+[AWS style guide](https://rstudio-pubs-static.s3.amazonaws.com/390511_286f47c578694d3dbd35b6a71f3af4d6.html)
