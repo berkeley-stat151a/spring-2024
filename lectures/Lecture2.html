@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Why study linear models? Class goals and organization.</title>
+<title>Simple regression: a quick review.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -95,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -109,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Why study linear models? Class goals and organization.</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Simple regression: a quick review.</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -145,36 +164,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Syllabus</span></a>
+  <a href="../course_policies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Policies</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Lectures</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/Lecture1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Why study linear models?</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/Lecture1_examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Three example datasets for linear modeling</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lectures and labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datasets/data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
@@ -188,7 +196,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#linear-models-and-matrix-notation" id="toc-linear-models-and-matrix-notation" class="nav-link active" data-scroll-target="#linear-models-and-matrix-notation">Linear models and matrix notation</a></li>
+  <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
+  <li><a href="#scenario" id="toc-scenario" class="nav-link" data-scroll-target="#scenario">Scenario</a></li>
+  <li><a href="#least-squares" id="toc-least-squares" class="nav-link" data-scroll-target="#least-squares">Least squares</a>
+  <ul class="collapse">
+  <li><a href="#alternative-derivation" id="toc-alternative-derivation" class="nav-link" data-scroll-target="#alternative-derivation">Alternative derivation</a></li>
+  </ul></li>
+  <li><a href="#grouping-data-to-get-an-exactly-identified-system-of-equations" id="toc-grouping-data-to-get-an-exactly-identified-system-of-equations" class="nav-link" data-scroll-target="#grouping-data-to-get-an-exactly-identified-system-of-equations">Grouping data to get an exactly identified system of equations</a></li>
+  <li><a href="#other-errors-to-minimize" id="toc-other-errors-to-minimize" class="nav-link" data-scroll-target="#other-errors-to-minimize">Other errors to minimize</a>
+  <ul class="collapse">
+  <li><a href="#nonparameteric-lines" id="toc-nonparameteric-lines" class="nav-link" data-scroll-target="#nonparameteric-lines">Nonparameteric lines</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -215,32 +233,55 @@ $$
 \newcommand{\gradat}[3]{\nabla_{#1} \left. #2 \right|_{#3}}
 \newcommand{\fracat}[3]{\left. \frac{#1}{#2} \right|_{#3}}
 
-% Note that bm and boldface do not work.
 \newcommand{\mybold}[1]{\boldsymbol{#1}}
 
 \newcommand{\X}{\mybold{X}}
-\newcommand{\Y}{\mybold{Y}}
 \newcommand{\x}{x}
+\newcommand{\xbar}{\bar{x}}
 \newcommand{\xv}{\mybold{x}}
+
+\newcommand{\Z}{\mybold{Z}}
 \newcommand{\z}{z}
+\newcommand{\zv}{\mybold{z}}
+\newcommand{\zbar}{\bar{z}}
+
+\newcommand{\Y}{\mybold{Y}}
+\newcommand{\Yhat}{\hat{\Y}}
 \newcommand{\y}{y}
+\newcommand{\yv}{\mybold{y}}
+\newcommand{\yhat}{\hat{\y}}
+\newcommand{\ybar}{\bar{y}}
+
 \newcommand{\res}{\varepsilon}
 \newcommand{\resv}{\mybold{\res}}
+\newcommand{\reshat}{\hat{\res}}
+
 \newcommand{\bv}{\mybold{\beta}}
 \newcommand{\bvhat}{\hat{\bv}}
 \newcommand{\bhat}{\hat{\beta}}
-\newcommand{\reshat}{\hat{\res}}
-\newcommand{\yhat}{\hat{\y}}
-\newcommand{\new}{\mathrm{new}}
 
-\newcommand{\ybar}{\bar{y}}
-\newcommand{\xbar}{\bar{x}}
-\newcommand{\zbar}{\bar{z}}
+\newcommand{\av}{\mybold{\alpha}}
+\newcommand{\avhat}{\hat{\av}}
+\newcommand{\ahat}{\hat{\alpha}}
+
+\newcommand{\gv}{\mybold{\gamma}}
+\newcommand{\gvhat}{\hat{\gv}}
+\newcommand{\ghat}{\hat{\gamma}}
+
+\newcommand{\new}{\mathrm{new}}
+\newcommand{\zerov}{\mybold{0}}
+\newcommand{\onev}{\mybold{1}}
+
+\def\A{\mybold{A}}
+\def\av{\mybold{a}}
+
+\def\V{\mybold{V}}
+\def\vv{\mybold{v}}
 $$
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Why study linear models? Class goals and organization.</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title">Simple regression: a quick review.</h1>
 </div>
 
 
@@ -255,54 +296,51 @@ $$
 
 </header>
 
-<section id="linear-models-and-matrix-notation" class="level2">
-<h2 class="anchored" data-anchor-id="linear-models-and-matrix-notation">Linear models and matrix notation</h2>
-<p>Here is a formal definition of the type of model that we will study for the vast majority of the semester:</p>
-<p><span id="eq-lm-scalar"><span class="math display">\[
-\begin{align*}
-\y_n ={}&amp; \beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP} + \res_{n}, \quad\textrm{For }n=1,\ldots,N.
-\end{align*}
-\qquad(1)\]</span></span></p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Notation">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Some <span class="math inline">\(\LaTeX\)</span> needs to go here for Quarto’s own crazy reasons.</p>
+<section id="goals" class="level1">
+<h1>Goals</h1>
+<ul>
+<li>Review topics that should already be familiar:
+<ul>
+<li>Simple (one-variable) regression</li>
+<li>Minimizing a loss function by setting its gradient to zero</li>
+<li>Some linear algebra (2d matrix inversion)</li>
+</ul></li>
+<li>Introduce some other ways to fit lines through data
+<ul>
+<li>Grouping data</li>
+<li>Swapping regressors and responses</li>
+<li>Minimizing absolute error</li>
+<li>Taking averages within buckets</li>
+</ul></li>
+<li>Set up the question of the strengths and weaknesses of least squares methods</li>
+</ul>
+</section>
+<section id="scenario" class="level1">
+<h1>Scenario</h1>
+<p>Suppose we’re a Spotify engineer and we pulled this data from one datacenter at one particular time, and we’re exploring / sanity checking the ML outputs.</p>
+<p>We’ll assume that song popularity is relatively objective (e.g.&nbsp;number of listens), but the various song features (particularly danceability) are the output of ML systems that we want to sanity check.</p>
+<p>We hope that our ML features are at least somewhat related to popularity. (<em>Why?</em>) Our whole problem is that this graph is not easy to interpret:</p>
+<div class="cell" data-tags="[]" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>PlotBaseSpotify <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(spotify_df, <span class="fu">aes</span>(<span class="at">y=</span>track_popularity, <span class="at">x=</span>danceability)) <span class="sc">+</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_density_2d_filled</span>()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Lecture2_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
 </div>
-<div class="callout-title-container flex-fill">
-Notation
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>I will always use <span class="math inline">\(N\)</span> for the number of observed data points, and <span class="math inline">\(P\)</span> for the dimension of the regression vector.</p>
-</div>
-</div>
-<p><a href="#eq-lm-scalar">Equation&nbsp;1</a> is a general form of simpler cases. For example, if we take <span class="math inline">\(\x_{n1} \equiv 1\)</span>, <span class="math inline">\(\x_{n2}= \z_n\)</span> to be some scalar, and <span class="math inline">\(P = 2\)</span>, then <a href="#eq-lm-scalar">Equation&nbsp;1</a> becomes the straight line</p>
+<p>Basically we want some kind of low-dimensional summary of a potentially complex relationship in the data.</p>
+</section>
+<section id="least-squares" class="level1">
+<h1>Least squares</h1>
+<p>For most of this class, we’ll be studying the “least squares fit”:</p>
 <p><span class="math display">\[
 \begin{align*}
-\y_n ={}&amp; \beta_1  + \beta_2 \z_{n} + \res_{n}, \quad\textrm{For }n=1,\ldots,N.
-\end{align*}
-\]</span></p>
-<p>The residuals <span class="math inline">\(\res_n\)</span> measure the “misfit” of the line. If you know <span class="math inline">\(\beta_1, \ldots, \beta_P\)</span>, then you can compute</p>
-<p><span class="math display">\[
-\begin{align*}
-\res_n ={}&amp; \y_n -  (\beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP}).
-\end{align*}
-\]</span></p>
-<p>But in general we only observe <span class="math inline">\(\y_n\)</span> and <span class="math inline">\(\x_{n1}, \ldots, \x_{nP}\)</span>, and we choose <span class="math inline">\(\beta_1, \ldots, \beta_P\)</span> to make the residuals small. (How we do this precisely will be something we talk about at great length.)</p>
-<p>The general form of <a href="#eq-lm-scalar">Equation&nbsp;1</a> can be written more compactly using matrix and vector notation. Specifically, if we let</p>
-<p><span class="math display">\[
-\begin{align*}
-\xv_n :=
-\begin{pmatrix}
-  \x_{n1} \\ \x_{n2} \\ \vdots \\ \x_{nP}
-\end{pmatrix}
-\quad
-\textrm{and}
-\quad
-\bv :=
-\begin{pmatrix}
-  \beta_{1} \\ \beta_2 \\ \vdots \\ \beta_{P}
-\end{pmatrix}
+\y_n :={}&amp; \textrm{Popularity} \\
+\x_n :={}&amp; \textrm{Danceability}\\
+y_n ={}&amp; \beta_1 \x_n + \beta_0 + \res_n
 \end{align*}
 \]</span></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Notation">
@@ -315,137 +353,494 @@ Notation
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Bold lowercase variables are column vectors (unless otherwise specified).</p>
+<p>Here are some key quantities and their names:</p>
+<ul>
+<li><span class="math inline">\(\y_n\)</span>: The ‘response’</li>
+<li><span class="math inline">\(\x_n\)</span>: The ‘regressors’ or ‘explanatory’ variables</li>
+</ul>
+<p>For a linear model, we also have:</p>
+<ul>
+<li><span class="math inline">\(\res_n\)</span>: The ‘error’ or ‘residual’</li>
+<li><span class="math inline">\(\beta_1, \beta_0\)</span>: The ‘coefficients’, ‘parameters’, ‘slope and intercept’</li>
+</ul>
+<p>We might also have estimates of these quantities:</p>
+<ul>
+<li><span class="math inline">\(\bhat_p\)</span>: Estimate of <span class="math inline">\(\beta_p\)</span></li>
+<li><span class="math inline">\(\reshat\)</span>: Estimate of <span class="math inline">\(\res_n\)</span></li>
+<li><span class="math inline">\(\yhat_n\)</span>: A ‘prediction’ or ‘fitted value’ <span class="math inline">\(\yhat_n = \bhat_0 + \bhat_1 \x_n\)</span></li>
+</ul>
+<p>When we form the estimator by minimizing the estimated residuals, we might call the estimate</p>
+<ul>
+<li>‘Ordinary least squares’ (or ‘OLS’)</li>
+<li>‘Least-squares’</li>
+<li>‘Linear regression’</li>
+</ul>
+<p>An estimate will implicitly be least-squares estimates, but precisely what we mean by an estimate may have to come from context.</p>
 </div>
 </div>
-<p>Recall that the “transpose” operator <span class="math inline">\((\cdot)^\trans\)</span> flips the row and columns of a matrix. For example,</p>
+<p>Note that for any value of <span class="math inline">\(\beta\)</span>, we get a value of the “error” or “residual” <span class="math inline">\(\res_n\)</span>:</p>
+<p><span class="math display">\[
+\res_n = \y_n - (\beta_1 \x_n + \beta_0).
+\]</span></p>
+<p>The “least squares fit” is called this because we choose <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> to make <span class="math inline">\(\sumn \res_n^2\)</span> as small as possible:</p>
 <p><span class="math display">\[
 \begin{align*}
-\xv_n ^\trans =
-\begin{pmatrix}
-  \x_{n1} &amp; \x_{n2} &amp; \ldots &amp; \x_{nP}
-\end{pmatrix}.
+\textrm{Choose }\beta_1,\beta_0\textrm{ so that }
+\sumn \res_n^2 = \sumn \left(  \y_n - (\beta_1 \x_n + \beta_0) \right)^2
+\textrm{ is as small as possible.}
 \end{align*}
 \]</span></p>
-<p>By matrix multiplication rules,</p>
+<p>The quantity we’re trying to minimize is smooth and convex, so if there is a minimum it would satisfy</p>
 <p><span class="math display">\[
 \begin{align*}
-\xv_n^\trans \bv =
+\fracat{\partial \sumn \res_n^2}{\partial \beta_0}{\bhat_0, \bhat_1} ={}&amp; 0 \quad\textrm{and} \\
+\fracat{\partial \sumn \res_n^2}{\partial \beta_1}{\bhat_0, \bhat_1} ={}&amp; 0.
+\end{align*}
+\]</span> These translate to (after dividing by <span class="math inline">\(-2 N\)</span>)</p>
+<p><span class="math display">\[
+\begin{align*}
+\meann \y_n - \bhat_1 \meann \x_n - \bhat_0 ={}&amp; 0 \quad\textrm{and}\\
+\meann \y_n \x_n - \bhat_1 \meann \x_n^2 - \bhat_0 \meann \x_n  ={}&amp; 0.
+\end{align*}
+\]</span></p>
+<p>Let’s introduce the notation</p>
+<p><span class="math display">\[
+\begin{align*}
+\overline{y} ={}&amp; \meann \y_n \\
+\overline{xy} ={}&amp; \meann \x_n \y_n \\
+\overline{xx} ={}&amp; \meann \x_n ^2,
+\end{align*}
+\]</span></p>
+<p>Our estimator them must satisfy</p>
+<p><span class="math display">\[
+\begin{align*}
+\overline{x} \bhat_1  + \bhat_0 ={}&amp; \overline{y} \quad\textrm{and}\\
+\overline{xx} \bhat_1  + \overline{x} \bhat_0  ={}&amp; \overline{yx}.
+\end{align*}
+\]</span></p>
+<p>We have a linear system with two unknowns and two equations. An elegant way to solve them is to subtract <span class="math inline">\(\overline{x}\)</span> times the first equation from the second, giving:</p>
+<p><span class="math display">\[
+\begin{align*}
+\overline{x} \bhat_0 - \overline{x} \bhat_0 +
+    \overline{xx} \bhat_1 - \overline{x}^2 \bhat_1 ={}&amp;
+    \overline{xy} - \overline{x} \overline{y} \Leftrightarrow\\
+\bhat_1 ={}&amp;
+    \frac{\overline{xy} - \overline{x} \overline{y}}
+         {\overline{xx}  - \overline{x}^2},
+\end{align*}
+\]</span></p>
+<p>as long as <span class="math inline">\(\overline{xx} - \overline{x}^2 \ne 0\)</span>. <em>When is it zero?</em></p>
+<p>We can then plug this into the first equation giving</p>
+<p><span class="math display">\[
+\bhat_0 = \overline{y} - \bhat_1 \overline{x}.
+\]</span></p>
+<section id="alternative-derivation" class="level2">
+<h2 class="anchored" data-anchor-id="alternative-derivation">Alternative derivation</h2>
+<p>Alternatively, our criterion can be written in matrix form as</p>
+<p><span class="math display">\[
 \begin{pmatrix}
-  \x_{n1} &amp; \x_{n2} &amp; \ldots &amp; \x_{nP}
+1  &amp; \overline{x} \\
+\overline{x} &amp; \overline{xx}
 \end{pmatrix}
-\quad\quad\quad
 \begin{pmatrix}
-  \beta_{1} \\ \beta_2 \\ \vdots \\ \beta_{P}
+\bhat_0 \\
+\bhat_1
+\end{pmatrix} =
+\begin{pmatrix}
+\overline{y} \\
+\overline{xy}
 \end{pmatrix}
-= \beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP}.
-\end{align*}
 \]</span></p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Notation">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Notation
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>I have written <span class="math inline">\(\xv_n^\trans \bv\)</span> for the “dot product” or “inner product” between <span class="math inline">\(\xv_n\)</span> and <span class="math inline">\(\bv\)</span>. Writing it in this way clarifies the relationship with matrix notation below.</p>
-<p>There are many other ways to denote inner products in the literature, including <span class="math inline">\(\xv_n \cdot \bv\)</span> and <span class="math inline">\(&lt;\xv_n, \bv&gt;\)</span>.</p>
-</div>
-</div>
-<p>Then we can compactly write</p>
+<p>Using the 2D matrix inversion formula, we see that, if <span class="math inline">\(\overline{xx} - \overline{x}^2 \ne 0\)</span>,</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+\bhat_0 \\
+\bhat_1
+\end{pmatrix} =
+\frac{1}{\overline{xx} - \overline{x}^2}
+\begin{pmatrix}
+\overline{xx}  &amp; - \overline{x} \\
+-\overline{x} &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+\overline{y} \\
+\overline{xy}
+\end{pmatrix}
+\]</span></p>
+<p>From this we can read off the familiar answer</p>
 <p><span class="math display">\[
 \begin{align*}
-\y_n ={}&amp; \xv_n ^\trans \bv + \res_{n}, \quad\textrm{For }n=1,\ldots,N.
+\bhat_1 ={}&amp; \frac{\overline{xy} - \overline{x}\,\overline{y}}{\overline{xx} - \overline{x}^2}\\
+\bhat_0 ={}&amp; \frac{\overline{xx}\,\overline{y} - \overline{xy}\,\overline{x}}{\overline{xx} - \overline{x}^2}\\
+  ={}&amp; \frac{\overline{xx}\,\overline{y} -
+      \overline{x}^2 \overline{y} + \overline{x}^2 \overline{y} - \overline{xy}\,\overline{x}}
+    {\overline{xx} - \overline{x}^2}\\
+  ={}&amp; \overline{y} - \frac{\overline{x}^2 \overline{y} - \overline{xy}\,\overline{x}}
+    {\overline{xx} - \overline{x}^2} \\
+  ={}&amp; \overline{y} - \bhat_1 \overline{x}.
 \end{align*}
 \]</span></p>
-<p>We can compactify it even further if we stack the <span class="math inline">\(n\)</span> observations: % <span class="math display">\[
+<p>This derivation was a bit tedious, and we’ll explore more general ways to think about these formulas in the coming lectures, as well as how to think more carefully about when this is the only solution. For now, it’s important to note that an explicit expression exists.</p>
+<p>For the rest of the lecture let’s think about some other ways to solve the problem of fitting a line through data in a way that will shed some light on the strenghts and weakness of least squares.</p>
+</section>
+</section>
+<section id="grouping-data-to-get-an-exactly-identified-system-of-equations" class="level1">
+<h1>Grouping data to get an exactly identified system of equations</h1>
+<p>One perspective on the problem of line-fitting is that we have two degrees of freedom (the slope and the intercept), but more than two equations to satisfy.</p>
+<p>If the data looked like this:</p>
+<p><span class="math display">\[
 \begin{align*}
-\y_1 ={}&amp; \xv_1 ^\trans \bv + \res_{1} \\
-\y_2 ={}&amp; \xv_2 ^\trans \bv + \res_{2} \\
+\y_1 ={}&amp; \beta_0 + \beta_1 \x_1 \\
+\y_2 ={}&amp; \beta_0 + \beta_1 \x_2 \\
+\end{align*}
+\]</span> then we would be able to identify <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> unambiguously:</p>
+<p><span class="math display">\[
+\begin{align*}
+\beta_1 ={}&amp; \frac{\y_1 - \y_2}{\x_2 - \x_1}\\
+\frac{\y_1}{\x_1} - \frac{\y_2}{\x_2} ={}&amp; \left(\frac{1}{\x_1} -  \frac{1}{\x_2}\right)\beta_1 \Rightarrow\\
+\beta_0 ={}&amp; \frac{\x_1 \y_2 - \x_2 \y_1}{\x_1 - \x_2}
+\end{align*}
+\]</span></p>
+<div class="cell" data-tags="[]" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>simple_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">rnorm</span>(<span class="dv">10</span>)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">y=</span><span class="fl">0.2</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(simple_df) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y)) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">data=</span>simple_df[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), ], <span class="at">color=</span><span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">data=</span>simple_df[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), ], <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">data=</span>simple_df[<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>), ], <span class="at">color=</span><span class="st">"green"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Lecture2_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The problem is that we have more equations to satisfy than we have degrees of freedom:</p>
+<p><span class="math display">\[
+\begin{align*}
+\y_1 ={}&amp; \beta_1 + \beta_2 \x_1 \\
+\y_2 ={}&amp; \beta_1 + \beta_2 \x_2 \\
+\y_3 ={}&amp; \beta_1 + \beta_2 \x_3 \\
 \vdots\\
-\y_N ={}&amp; \xv_N ^\trans \bv + \res_{N} \\
+\y_N ={}&amp; \beta_1 + \beta_2 \x_N.
 \end{align*}
-\]</span></p>
-<p>As before we can stack the responses and residuals:</p>
+\]</span> In general, no choice of <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> will satisfy them.</p>
+<p>Here’s the method used by early mathematicians prior to the invention of least squares regression <span class="citation" data-cites="stigler:1990:history">(<a href="#ref-stigler:1990:history" role="doc-biblioref">Stigler 1990</a>)</span>: sum equations together until we get an exactly determined system. In this case, we can partition the data into two groups, A and B, add them up, to get two equations again. Let <span class="math inline">\(N_A\)</span> and <span class="math inline">\(N_B\)</span> be the number of observations in the two groups. Then</p>
 <p><span class="math display">\[
 \begin{align*}
-\Y :=
-\begin{pmatrix}
-  \y_{1} \\ \y_2 \\ \vdots \\ \y_{P}
-\end{pmatrix}
-\quad
-\textrm{and}
-\quad
-\resv :=
-\begin{pmatrix}
-  \res_{1} \\ \res_2 \\ \vdots \\ \res_{P}
-\end{pmatrix}
+\frac{1}{N_A} \sum_{A} \y_n ={}&amp; \beta_1 + \frac{1}{N_A} \sum_{A} \x_n \beta_2 \\
+\frac{1}{N_B} \sum_{B} \y_n ={}&amp; \beta_1 + \frac{1}{N_B} \sum_{B} \x_n \beta_2 .
 \end{align*}
 \]</span></p>
-<p>We can also stack the regressors:</p>
+<p>This gives us the slope</p>
+<p><span class="math display">\[
+\beta_2 = \frac{\frac{1}{N_A} \sum_{A} \y_n - \frac{1}{N_B} \sum_{B} \y_n}
+               {\frac{1}{N_A} \sum_{A} \x_n - \frac{1}{N_B} \sum_{B} \x_n}.
+\]</span></p>
+<p>Is this reasonable? What grouping is best? What groupings fail? Should you weight the groups, and if so, how? A clear answer will be something we learn in this course.</p>
+<p>In the meantime, let’s take a look.</p>
+<div class="cell" data-tags="[]" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return the slope and intercept of a line passing through two points.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Args:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  - x: Two points in the domain</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  - y: Two points in the range</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#  - beta: A vector containing the intercept and slope</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>FitTwoPointLine <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">length</span>(x) <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">length</span>(y) <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  slope <span class="ot">&lt;-</span> (y[<span class="dv">2</span>] <span class="sc">-</span> y[<span class="dv">1</span>])  <span class="sc">/</span> (x[<span class="dv">2</span>] <span class="sc">-</span> x[<span class="dv">1</span>])</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  intercept <span class="ot">&lt;-</span> (y[<span class="dv">2</span>] <span class="sc">*</span> x[<span class="dv">1</span>] <span class="sc">-</span> y[<span class="dv">1</span>] <span class="sc">*</span> x[<span class="dv">2</span>])  <span class="sc">/</span> (x[<span class="dv">1</span>] <span class="sc">-</span> x[<span class="dv">2</span>])</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(intercept, slope))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a line using the above grouping formula.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Args:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   - group: A vector as long as spotify_df containing two values</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  - beta: The estimated intercept and slope</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  - y_vals: The mean of the y values in the two groups</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  - x_vals: The mean of the x values in the two groups</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  - df: The grouped dataframe</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>GetGroupedTerms <span class="ot">&lt;-</span> <span class="cf">function</span>(group) {</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">length</span>(group) <span class="sc">==</span> <span class="fu">nrow</span>(spotify_df))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">length</span>(<span class="fu">unique</span>(group)) <span class="sc">==</span> <span class="dv">2</span>)  <span class="co"># Check there are exactly two values</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  spotify_group_df <span class="ot">&lt;-</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    spotify_df <span class="sc">%&gt;%</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">group=</span>group) <span class="sc">%&gt;%</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">popularity_mean=</span><span class="fu">mean</span>(track_popularity),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">danceability_mean=</span><span class="fu">mean</span>(danceability),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>              <span class="at">count=</span><span class="fu">n</span>()) </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">nrow</span>(spotify_group_df) <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  ycol <span class="ot">&lt;-</span> <span class="st">"popularity_mean"</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  xcol <span class="ot">&lt;-</span> <span class="st">"danceability_mean"</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  y_vals <span class="ot">&lt;-</span> <span class="fu">c</span>(spotify_group_df[<span class="dv">1</span>, ][[ycol]], spotify_group_df[<span class="dv">2</span>, ][[ycol]])</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  x_vals <span class="ot">&lt;-</span> <span class="fu">c</span>(spotify_group_df[<span class="dv">1</span>, ][[xcol]], spotify_group_df[<span class="dv">2</span>, ][[xcol]])</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  beta <span class="ot">&lt;-</span> <span class="fu">FitTwoPointLine</span>(x_vals, y_vals)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="co">#beta1 &lt;- (y_vals[1] * x_vals[2] - y_vals[2] * x_vals[1]) / (x_vals[2] - x_vals[1]) </span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">#beta2 &lt;- (y_vals[2] - y_vals[1]) / (x_vals[2] - x_vals[1])</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">beta=</span>beta, <span class="at">y=</span>y_vals, <span class="at">x=</span>x_vals, <span class="at">df=</span>spotify_group_df))</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Suppose, for example, that we take the groups to be the data with dancability below or above its median. The results are pretty good:</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x_median <span class="ot">&lt;-</span> <span class="fu">median</span>(spotify_df<span class="sc">$</span>danceability)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(spotify_df<span class="sc">$</span>danceability <span class="sc">&lt;=</span> x_median, <span class="st">"A"</span>, <span class="st">"B"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>grouped_fit <span class="ot">&lt;-</span> <span class="fu">GetGroupedTerms</span>(group)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the ordinary least squares estimate for comparison</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>y_on_x <span class="ot">&lt;-</span> <span class="fu">lm</span>(track_popularity <span class="sc">~</span> danceability, spotify_df)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"Y ~ X simple least squares"</span>)) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">slope=</span>grouped_fit<span class="sc">$</span>beta[<span class="dv">2</span>], <span class="at">intercept=</span>grouped_fit<span class="sc">$</span>beta[<span class="dv">1</span>],</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"Y ~ X grouped"</span>)) <span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept=</span>x_median), <span class="at">color=</span><span class="st">"white"</span>, <span class="at">lwd=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">size=</span><span class="dv">3</span>, <span class="at">data=</span><span class="fu">data.frame</span>(<span class="at">x=</span>grouped_fit<span class="sc">$</span>x, <span class="at">y=</span>grouped_fit<span class="sc">$</span>y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Lecture2_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>What if we do the same thing, but randomly assign the groups. The result is garbage!</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rand_group <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="fu">nrow</span>(spotify_df), <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>rand_grouped_fit <span class="ot">&lt;-</span> <span class="fu">GetGroupedTerms</span>(rand_group)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"Y ~ X simple least squares"</span>)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">slope=</span>rand_grouped_fit<span class="sc">$</span>beta[<span class="dv">2</span>], <span class="at">intercept=</span>rand_grouped_fit<span class="sc">$</span>beta[<span class="dv">1</span>],</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"Y ~ X grouped"</span>)) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">size=</span><span class="dv">3</span>, <span class="at">data=</span><span class="fu">data.frame</span>(<span class="at">x=</span>rand_grouped_fit<span class="sc">$</span>x, <span class="at">y=</span>rand_grouped_fit<span class="sc">$</span>y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Lecture2_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Perhaps at this point it is not clear what went wrong in the second case, nor how you might choose good groupings with more than one regressor. But by the end of this class we will understand very well.</p>
+</section>
+<section id="other-errors-to-minimize" class="level1">
+<h1>Other errors to minimize</h1>
+<p>Here’s a slightly more sophisticated way to think about the problem.</p>
+<ol type="1">
+<li>Recognize that, in an overdetermined system, some “equations” will not be satisfied exactly</li>
+<li>Write out the errors explicitly and choose a line based on some criterion that makes the errors “small”</li>
+</ol>
+<p>Specifically, we want a line passing through popularity and danceability. Such a line will look like</p>
 <p><span class="math display">\[
 \begin{align*}
-\X :=
-\begin{pmatrix}
-  \x_{11} &amp; \x_{12} &amp; \ldots &amp; \x_{1P}\\
-  \x_{21} &amp; \x_{22} &amp; \ldots &amp; \x_{2P}\\
-  \vdots\\
-  \x_{n1} &amp; \x_{n2} &amp; \ldots &amp; \x_{nP}\\
-  \vdots\\
-    \x_{N1} &amp; \x_{N2} &amp; \ldots &amp; \x_{NP}
-\end{pmatrix}
-=
-\begin{pmatrix}
-  \xv_{1}^\trans \\ \xv_{2}^\trans \\ \vdots \\ \xv_n^\trans \\ \vdots \\ \xv_{N}^\trans
-\end{pmatrix}
+\y_n :={}&amp; \textrm{Popularity} \\
+\x_n :={}&amp; \textrm{Danceability}\\
+y_n ={}&amp; \beta_1 \x_n + \beta_0 + \res_n\\
 \end{align*}
 \]</span></p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Notation">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Notation
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>I will use upper case bold letters for multi-dimensional matrices like <span class="math inline">\(\X\)</span>. But I may also use upper case bold letters even when the quantity could also be a column vector, when I think it’s more useful to think of the quantity as a matrix with a single column. Examples are <span class="math inline">\(\Y\)</span> above, or <span class="math inline">\(\X\)</span> when <span class="math inline">\(P = 1\)</span>.</p>
-</div>
-</div>
-<p>Note that by matrix multiplication rules,</p>
+<p>Here, the error we commit in equation <span class="math inline">\(n\)</span> is given by <span class="math inline">\(\reshat_n\)</span>. Of course, we might well have written</p>
 <p><span class="math display">\[
 \begin{align*}
-\X  \bv =
-\begin{pmatrix}
-  \xv_{1}^\trans \\ \xv_{2}^\trans \\ \vdots \\ \xv_n^\trans \\ \vdots \\ \xv_{N}^\trans
-\end{pmatrix}
-\quad\quad\quad
-\bv
-=
-\begin{pmatrix}
-  \xv_{1}^\trans\bv \\ \xv_{2}^\trans\bv \\ \vdots \\ \xv_n^\trans\bv \\ \vdots \\ \xv_{N}^\trans\bv
-\end{pmatrix}
+x_n ={}&amp; \alpha_1 \y_n + \alpha_0 + \gamma_n.
 \end{align*}
 \]</span></p>
-<p>so we end up with the extremely tidy expression</p>
+<p>For a particular <span class="math inline">\(\beta\)</span>, we get a vector of <span class="math inline">\(\res_1, \ldots, \res_N\)</span>. We want these all to be “small” in some sense. Two natural ways to do so are to minimize the sum or squares or sum of absolute values:</p>
 <p><span class="math display">\[
 \begin{align*}
-\y_n ={}&amp; \beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP} + \res_{n}, \quad\textrm{For }n=1,\ldots,N
-\\\\&amp;\textrm{is the same as}\quad\\\\
-\Y ={}&amp; \X \bv + \resv.
+\textrm{Choosing the fit using }&amp;
+\min \sumn \reshat_n^2 \quad\textrm{(least squares)}\\
+\textrm{or }&amp;
+\min \sumn |\reshat_n| \quad\textrm{(least absolute deviations)}\\
 \end{align*}
-\]</span></p>
+\]</span> We thus have four combinations to try: <span class="math inline">\(\y_n\)</span> or <span class="math inline">\(\x_n\)</span> on the left hand side, and minimizing the sum of squares or sum of absolute deviations.</p>
+<p>We can compute all these in <code>R</code> and see how they look on the Spotify data. Before we do, try to predict yourself.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Lecture2_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>least_squares_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y_on_x <span class="ot">&lt;-</span> <span class="fu">lm</span>(track_popularity <span class="sc">~</span> danceability, spotify_df)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>least_squares_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>() <span class="sc">-</span> least_squares_time</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>least_abs_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>y_on_x_l1 <span class="ot">&lt;-</span> <span class="fu">l1fit</span>(<span class="at">x=</span>spotify_df<span class="sc">$</span>danceability, <span class="at">y=</span>spotify_df<span class="sc">$</span>track_popularity, <span class="at">intercept=</span><span class="cn">TRUE</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>least_abs_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>() <span class="sc">-</span> least_abs_time</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>x_on_y <span class="ot">&lt;-</span> <span class="fu">lm</span>(danceability <span class="sc">~</span> track_popularity, spotify_df)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>x_on_y_l1 <span class="ot">&lt;-</span> <span class="fu">l1fit</span>(<span class="at">x=</span>spotify_df<span class="sc">$</span>track_popularity, <span class="at">y=</span>spotify_df<span class="sc">$</span>danceability, <span class="at">intercept=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"Y ~ X least squares"</span>)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>x_on_y<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"X ~ Y least squares"</span>)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x_l1<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"Y ~ X least absolute deviation"</span>)) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>x_on_y_l1<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"X ~ Y least absolute deviation"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Lecture2_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Note that it matters a lot whether you have <span class="math inline">\(\y\)</span> or <span class="math inline">\(\x\)</span> on the left-hand side. (To gain some intuition for this, think about what happens as you transform data that lies on a straight line into data in an uncorrelated point cloud.)</p>
+<p>Let’s see the relative times:</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Least absolute deviation time:</span><span class="sc">\t</span><span class="st">"</span>, least_abs_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Least squares time:</span><span class="sc">\t\t</span><span class="st">"</span>, least_squares_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Least absolute deviation time:   0.165724 
+Least squares time:      0.003508091 </code></pre>
+</div>
+</div>
+<p>Least squares took much longer! Why? We’ll talk about that shortly.</p>
+<section id="nonparameteric-lines" class="level2">
+<h2 class="anchored" data-anchor-id="nonparameteric-lines">Nonparameteric lines</h2>
+<p>For only one variable, regression is actually no a very good solution. We would actually probably use something more “nonparametric.” For example, we could bucket up the regressors and keep an average in each bucket.</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>num_buckets <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>spotify_bucketed_df <span class="ot">&lt;-</span> spotify_df <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">danceability_bucket=</span><span class="fu">cut</span>(danceability, num_buckets)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(danceability_bucket) <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_popularity=</span><span class="fu">mean</span>(track_popularity),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">bucket_danceability=</span><span class="fu">median</span>(danceability),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">count=</span><span class="fu">n</span>())</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"Y ~ X least squares"</span>)) <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>bucket_danceability, </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">y=</span>mean_popularity,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"Averages in buckets"</span>),</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>spotify_bucketed_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Lecture2_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>What do you think of this line’s behavior for low danceability?</p>
+<p>Note that <code>cut</code> takes evenly spaced slices, which leads to a very uneven distribution of observations in each bucket. How do you think this affects the graph we saw before?</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(spotify_bucketed_df) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>bucket_danceability, <span class="at">y=</span>count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Lecture2_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>There are more sophisitcated ways to do “nonparametric” smoothers like this automatically, including built-in functions in <code>R</code>.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"Y ~ X least squares"</span>)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="st">"Ggplot smooth"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Lecture2_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The core problem with nonparametrics is the curse of dimensionality. Suppose we have <span class="math inline">\(P\)</span> regressors, and we divide each into ten buckets. In total, we have <span class="math inline">\(10^P\)</span> buckets, and, on average, <span class="math inline">\(N / 10^P\)</span> observations per bucket. Here are some values for the Spotify dataset:</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>regressors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"danceability"</span>, <span class="st">"energy"</span>, <span class="st">"loudness"</span>, <span class="st">"speechiness"</span>, </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"acousticness"</span>, <span class="st">"instrumentalness"</span>, <span class="st">"liveness"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(regressors <span class="sc">%in%</span> <span class="fu">names</span>(spotify_df)))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(regressors)) {</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  num_buckets <span class="ot">=</span> <span class="dv">10</span><span class="sc">^</span>p</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"With %d buckets, we have %0.3f observations per bucket."</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>              p, <span class="fu">nrow</span>(spotify_df) <span class="sc">/</span> num_buckets), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>With 1 buckets, we have 3283.300 observations per bucket. 
+With 2 buckets, we have 328.330 observations per bucket. 
+With 3 buckets, we have 32.833 observations per bucket. 
+With 4 buckets, we have 3.283 observations per bucket. 
+With 5 buckets, we have 0.328 observations per bucket. 
+With 6 buckets, we have 0.033 observations per bucket. 
+With 7 buckets, we have 0.003 observations per bucket. </code></pre>
+</div>
+</div>
+<p>So the strength of regression for EDA is really in higher-dimensional settings. For example, if we wanted to look at all the outputs at once:</p>
+<div class="cell" data-tags="[]" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lm_formula <span class="ot">&lt;-</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"track_popularity ~ 1 + "</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(regressors, <span class="at">collapse=</span><span class="st">" + "</span>))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lm_formula)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>spotify_reg_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">formula</span>(lm_formula), spotify_df)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(y_on_x))</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(spotify_reg_all))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "track_popularity ~ 1 + danceability + energy + loudness + speechiness + acousticness + instrumentalness + liveness"
+
+Call:
+lm(formula = track_popularity ~ danceability, data = spotify_df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-46.024 -18.415   2.934  19.480  57.105 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   35.1757     0.6361   55.30   &lt;2e-16 ***
+danceability  11.1497     0.9484   11.76   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 24.93 on 32831 degrees of freedom
+Multiple R-squared:  0.004192,  Adjusted R-squared:  0.004162 
+F-statistic: 138.2 on 1 and 32831 DF,  p-value: &lt; 2.2e-16
 
 
-<!-- -->
+Call:
+lm(formula = formula(lm_formula), data = spotify_df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-62.259 -17.640   3.169  19.037  73.063 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       70.78317    1.40436  50.402  &lt; 2e-16 ***
+danceability       7.26292    0.95757   7.585 3.42e-14 ***
+energy           -28.96580    1.15306 -25.121  &lt; 2e-16 ***
+loudness           1.66617    0.06295  26.469  &lt; 2e-16 ***
+speechiness       -5.21887    1.35498  -3.852 0.000118 ***
+acousticness       4.86004    0.72643   6.690 2.26e-11 ***
+instrumentalness -12.82676    0.61686 -20.794  &lt; 2e-16 ***
+liveness          -4.39948    0.88735  -4.958 7.16e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 24.23 on 32825 degrees of freedom
+Multiple R-squared:  0.05934,   Adjusted R-squared:  0.05914 
+F-statistic: 295.8 on 7 and 32825 DF,  p-value: &lt; 2.2e-16
+</code></pre>
+</div>
+</div>
+<p>Note that the high dimensional fit can look a bit chaotic when projected onto one dimension:</p>
+<div class="cell" data-tags="[]" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>spotify_reg_all<span class="sc">$</span>fitted.values, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"Y ~ X high dimensional least squares "</span>)) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"Y ~ X simple least squares"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Lecture2_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+
+
 
 </section>
+</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-stigler:1990:history" class="csl-entry" role="listitem">
+Stigler, S. 1990. <em>The History of Statistics</em>. Harvard University Press.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -525,57 +920,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
-    }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
@@ -729,221 +1073,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Why study linear models? Class goals and organization."</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    include-before-body:</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">     - file: macros.md</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method:</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">      method: mathjax</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">      url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Linear models and matrix notation</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Here is a formal definition of the type of model that we will study for the vast</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>majority of the semester:</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>\y_n ={}&amp; \beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP} + \res_{n}, \quad\textrm{For }n=1,\ldots,N.</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>$${#eq-lm-scalar}</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title='Notation'}  </span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>I will always use $N$ for the number of observed data points, and $P$ </span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>for the dimension of the regression vector.</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>@eq-lm-scalar is a general form of simpler cases.  For example,</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>if we take $\x_{n1} \equiv 1$, $\x_{n2}= \z_n$ to be some scalar, and $P = 2$, then</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>@eq-lm-scalar becomes the straight line</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>\y_n ={}&amp; \beta_1  + \beta_2 \z_{n} + \res_{n}, \quad\textrm{For }n=1,\ldots,N.</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>The residuals $\res_n$ measure the "misfit" of the line.  If you know $\beta_1, \ldots, \beta_P$,</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>then you can compute</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>\res_n ={}&amp; \y_n -  (\beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP}).</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>But in general we only observe $\y_n$ and $\x_{n1}, \ldots, \x_{nP}$, and we</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>choose $\beta_1, \ldots, \beta_P$ to make the residuals small.  (How we do</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>this precisely will be something we talk about at great length.)</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>The general form of @eq-lm-scalar can be written more compactly using</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>matrix and vector notation. Specifically, if we let</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>\xv_n := </span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>  \x_{n1} <span class="sc">\\</span> \x_{n2} <span class="sc">\\</span> \vdots <span class="sc">\\</span> \x_{nP}</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>\quad</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>\textrm{and}</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>\quad</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>\bv := </span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>  \beta_{1} <span class="sc">\\</span> \beta_2 <span class="sc">\\</span> \vdots <span class="sc">\\</span> \beta_{P}</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title='Notation'}  </span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>Bold lowercase variables are column vectors (unless otherwise specified).</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>Recall that the "transpose" operator $(\cdot)^\trans$ flips the row and</span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>columns of a matrix.  For example,</span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>\xv_n ^\trans = </span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>  \x_{n1} &amp; \x_{n2} &amp; \ldots &amp; \x_{nP}</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}.</span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>By matrix multiplication rules,</span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>\xv_n^\trans \bv = </span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>  \x_{n1} &amp; \x_{n2} &amp; \ldots &amp; \x_{nP}</span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>\quad\quad\quad</span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>  \beta_{1} <span class="sc">\\</span> \beta_2 <span class="sc">\\</span> \vdots <span class="sc">\\</span> \beta_{P}</span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>= \beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP}.</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title='Notation'}  </span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>I have written $\xv_n^\trans \bv$ for the "dot product" or "inner product"</span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>between $\xv_n$ and $\bv$.  Writing it in this way clarifies the relationship</span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>with matrix notation below.</span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>There are many other ways to denote inner products in the literature,</span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>including $\xv_n \cdot \bv$ and $&lt;\xv_n, \bv&gt;$.</span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>Then we can compactly write</span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>\y_n ={}&amp; \xv_n ^\trans \bv + \res_{n}, \quad\textrm{For }n=1,\ldots,N.</span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>We can compactify it even further if we stack the $n$ observations:</span>
-<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>%</span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>\y_1 ={}&amp; \xv_1 ^\trans \bv + \res_{1} <span class="sc">\\</span></span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>\y_2 ={}&amp; \xv_2 ^\trans \bv + \res_{2} <span class="sc">\\</span></span>
-<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>\vdots<span class="sc">\\</span></span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>\y_N ={}&amp; \xv_N ^\trans \bv + \res_{N} <span class="sc">\\</span></span>
-<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>As before we can stack the responses and residuals:</span>
-<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>\Y := </span>
-<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>  \y_{1} <span class="sc">\\</span> \y_2 <span class="sc">\\</span> \vdots <span class="sc">\\</span> \y_{P}</span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
-<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>\quad</span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>\textrm{and}</span>
-<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>\quad</span>
-<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>\resv := </span>
-<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>  \res_{1} <span class="sc">\\</span> \res_2 <span class="sc">\\</span> \vdots <span class="sc">\\</span> \res_{P}</span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
-<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>We can also stack the regressors:</span>
-<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>\X := </span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>  \x_{11} &amp; \x_{12} &amp; \ldots &amp; \x_{1P}<span class="sc">\\</span></span>
-<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>  \x_{21} &amp; \x_{22} &amp; \ldots &amp; \x_{2P}<span class="sc">\\</span></span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>  \vdots<span class="sc">\\</span></span>
-<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>  \x_{n1} &amp; \x_{n2} &amp; \ldots &amp; \x_{nP}<span class="sc">\\</span></span>
-<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>  \vdots<span class="sc">\\</span></span>
-<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>    \x_{N1} &amp; \x_{N2} &amp; \ldots &amp; \x_{NP}</span>
-<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
-<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>=</span>
-<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>  \xv_{1}^\trans <span class="sc">\\</span> \xv_{2}^\trans <span class="sc">\\</span> \vdots <span class="sc">\\</span> \xv_n^\trans <span class="sc">\\</span> \vdots <span class="sc">\\</span> \xv_{N}^\trans</span>
-<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
-<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title='Notation'}  </span>
-<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>I will use upper case bold letters for multi-dimensional matrices like $\X$.  But</span>
-<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>I may also use upper case bold letters even when the quantity could also be</span>
-<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>a column vector, when I think it's more useful to think of the quantity</span>
-<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>as a matrix with a single column.  Examples are $\Y$ above, or $\X$ when $P = 1$.</span>
-<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>Note that by matrix multiplication rules,</span>
-<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>\X  \bv = </span>
-<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>  \xv_{1}^\trans <span class="sc">\\</span> \xv_{2}^\trans <span class="sc">\\</span> \vdots <span class="sc">\\</span> \xv_n^\trans <span class="sc">\\</span> \vdots <span class="sc">\\</span> \xv_{N}^\trans</span>
-<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
-<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>\quad\quad\quad</span>
-<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>\bv</span>
-<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>=</span>
-<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>  \xv_{1}^\trans\bv <span class="sc">\\</span> \xv_{2}^\trans\bv <span class="sc">\\</span> \vdots <span class="sc">\\</span> \xv_n^\trans\bv <span class="sc">\\</span> \vdots <span class="sc">\\</span> \xv_{N}^\trans\bv</span>
-<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
-<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>so we end up with the extremely tidy expression</span>
-<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>\y_n ={}&amp; \beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP} + \res_{n}, \quad\textrm{For }n=1,\ldots,N</span>
-<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a><span class="sc">\\\\</span>&amp;\textrm{is the same as}\quad<span class="sc">\\\\</span></span>
-<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>\Y ={}&amp; \X \bv + \resv.</span>
-<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</script>
 </div> <!-- /content -->
 
 
