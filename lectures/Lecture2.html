@@ -207,6 +207,7 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#nonparameteric-lines" id="toc-nonparameteric-lines" class="nav-link" data-scroll-target="#nonparameteric-lines">Nonparameteric lines</a></li>
   </ul></li>
+  <li><a href="#comparison-with-least-squares" id="toc-comparison-with-least-squares" class="nav-link" data-scroll-target="#comparison-with-least-squares">Comparison with least squares</a></li>
   </ul>
 </nav>
     </div>
@@ -830,10 +831,39 @@ F-statistic: 295.8 on 7 and 32825 DF,  p-value: &lt; 2.2e-16
 <p><img src="Lecture2_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-
-
-
 </section>
+</section>
+<section id="comparison-with-least-squares" class="level1">
+<h1>Comparison with least squares</h1>
+<p>We saw a few other ways to fit lines. It turns out that all of these actually have close relationships to least squares regression.</p>
+<ul>
+<li>Grouping data
+<ul>
+<li>Grouping data can be seen as a special case of weighting data</li>
+<li>Least squares regression can be seen a an “optimal grouping” in some senses (which may not matter in practice)</li>
+</ul></li>
+<li>Flipping the order of the regressor and response
+<ul>
+<li>Related to “regression to the mean”</li>
+<li>Related to “errors in variables” problems</li>
+</ul></li>
+<li>Minimizing absolute error
+<ul>
+<li>Computationally more expensive</li>
+<li>Can be a more reasonable loss function (less susceptible to outliers)</li>
+</ul></li>
+<li>Bucketing regressors and taking averages (and other nonparametric methods)
+<ul>
+<li>Many versions can be cast as regression with carefully chosen regressors</li>
+<li>Often more reasonable in low dimensions</li>
+<li>Difficult in high dimensions</li>
+<li>Have to choose how “expressive” the model is</li>
+</ul></li>
+</ul>
+<p>In fact, by studying linear regression, we will be casting light on all of these apparent alternatives.</p>
+
+
+
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
