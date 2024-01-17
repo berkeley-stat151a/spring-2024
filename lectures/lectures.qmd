@@ -13,3 +13,6 @@ sidebar: true
 
 - Lab Jan 17th:
     - [Style problem](lab1_student_version.Rmd)
+
+- Lecture Jan 18th:
+    - [Lecture](Lecture2.ipynb)

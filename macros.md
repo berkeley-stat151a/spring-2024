@@ -1,3 +1,4 @@
+$$
 \newcommand{\trans}{\intercal}
 \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
 \newcommand{\abs}[1]{\left|#1\right|}
@@ -18,21 +19,48 @@
 \newcommand{\gradat}[3]{\nabla_{#1} \left. #2 \right|_{#3}}
 \newcommand{\fracat}[3]{\left. \frac{#1}{#2} \right|_{#3}}
 
-\newcommand{\X}{\bm{X}}
-\newcommand{\Y}{\bm{Y}}
+\newcommand{\mybold}[1]{\boldsymbol{#1}}
+
+\newcommand{\X}{\mybold{X}}
 \newcommand{\x}{x}
-\newcommand{\xv}{\bm{x}}
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\xv}{\mybold{x}}
+
+\newcommand{\Z}{\mybold{Z}}
 \newcommand{\z}{z}
+\newcommand{\zv}{\mybold{z}}
+\newcommand{\zbar}{\bar{z}}
+
+\newcommand{\Y}{\mybold{Y}}
+\newcommand{\Yhat}{\hat{\Y}}
 \newcommand{\y}{y}
+\newcommand{\yv}{\mybold{y}}
+\newcommand{\yhat}{\hat{\y}}
+\newcommand{\ybar}{\bar{y}}
+
 \newcommand{\res}{\varepsilon}
-\newcommand{\resv}{\bm{\res}}
-\newcommand{\bv}{\bm{\beta}}
+\newcommand{\resv}{\mybold{\res}}
+\newcommand{\reshat}{\hat{\res}}
+
+\newcommand{\bv}{\mybold{\beta}}
 \newcommand{\bvhat}{\hat{\bv}}
 \newcommand{\bhat}{\hat{\beta}}
-\newcommand{\reshat}{\hat{\res}}
-\newcommand{\yhat}{\hat{\y}}
-\newcommand{\new}{\mathrm{new}}
 
-\newcommand{\ybar}{\bar{y}}
-\newcommand{\xbar}{\bar{x}}
-\newcommand{\zbar}{\bar{z}}
+\newcommand{\av}{\mybold{\alpha}}
+\newcommand{\avhat}{\hat{\av}}
+\newcommand{\ahat}{\hat{\alpha}}
+
+\newcommand{\gv}{\mybold{\gamma}}
+\newcommand{\gvhat}{\hat{\gv}}
+\newcommand{\ghat}{\hat{\gamma}}
+
+\newcommand{\new}{\mathrm{new}}
+\newcommand{\zerov}{\mybold{0}}
+\newcommand{\onev}{\mybold{1}}
+
+\def\A{\mybold{A}}
+\def\av{\mybold{a}}
+
+\def\V{\mybold{V}}
+\def\vv{\mybold{v}}
+$$
