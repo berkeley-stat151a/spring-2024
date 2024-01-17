@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Your name here">
+<meta name="dcterms.date" content="2024-01-16">
 
-<title>Assignments</title>
+<title>STAT151A Lab 1: Due January 26th</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -60,6 +96,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -73,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/assignments.html">Assignments</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">STAT151A Lab 1: Due January 26th</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -121,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/assignments.html" class="sidebar-item-text sidebar-link active">
+  <a href="../assignments/assignments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignments</span></a>
   </div>
 </li>
@@ -137,22 +175,41 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#spotify-dataset" id="toc-spotify-dataset" class="nav-link active" data-scroll-target="#spotify-dataset"><span class="header-section-number">1</span> Spotify dataset</a></li>
+  <li><a href="#bodyfat-dataset" id="toc-bodyfat-dataset" class="nav-link" data-scroll-target="#bodyfat-dataset"><span class="header-section-number">2</span> Bodyfat dataset</a></li>
+  <li><a href="#aluminum-dataset" id="toc-aluminum-dataset" class="nav-link" data-scroll-target="#aluminum-dataset"><span class="header-section-number">3</span> Aluminum dataset</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignments</h1>
-<p class="subtitle lead">Stat 151A: Linear Models</p>
+<h1 class="title">STAT151A Lab 1: Due January 26th</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Your name here </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 16, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -160,15 +217,51 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<ul>
-<li>Due Jan 26th:
-<ul>
-<li><a href="../assignments/hw1_math.html">Homework 1 (math component)</a></li>
-<li><a href="../assignments/hw1_code.html">Homework 1 (code component)</a></li>
-</ul></li>
-</ul>
+<p>For all questions below, provide answers in complete sentences, and include correct and readable code to support your answers.</p>
+<section id="spotify-dataset" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Spotify dataset</h1>
+<section id="a" class="level4">
+<h4 class="anchored" data-anchor-id="a">(a)</h4>
+<p>Find another variable (other than danceability) that is associated with popularity according to linear regression.</p>
+</section>
+<section id="b" class="level4">
+<h4 class="anchored" data-anchor-id="b">(b)</h4>
+<p>How does this association change if you remove low-popularity tracks?</p>
+</section>
+<section id="c" class="level4">
+<h4 class="anchored" data-anchor-id="c">(c)</h4>
+<p>Identify a song that <em>defies</em> the relationship you found. (For example, having found a positive relationship between danceability and popularity, I might find a song that is highly popular but not ``danceable.’’)<br>
+Listen to the song on Spotify and comment on whether the result makes sense.</p>
+</section>
+</section>
+<section id="bodyfat-dataset" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Bodyfat dataset</h1>
+<section id="a-1" class="level4">
+<h4 class="anchored" data-anchor-id="a-1">(a)</h4>
+<p>Choose two variables (other than bodyfat). Use <code>lm</code> to regress bodyfat on these two variables.</p>
+</section>
+<section id="b-1" class="level4">
+<h4 class="anchored" data-anchor-id="b-1">(b)</h4>
+<p>For the regression in the previous example, construct your own <span class="math inline">\(\boldsymbol{X}\)</span> and <span class="math inline">\(\boldsymbol{Y}\)</span> matrices by hand (don’t use the output of <code>lm</code>). Using these, compute your own estimate <span class="math inline">\(\hat{\beta}\)</span> and confirm that it matches the output of <code>lm</code>.</p>
+</section>
+<section id="c-1" class="level4">
+<h4 class="anchored" data-anchor-id="c-1">(c)</h4>
+<p>Write a function in <code>R</code> that computes <span class="math inline">\(\hat{\beta}\)</span> from <span class="math inline">\(\boldsymbol{X}\)</span> and <span class="math inline">\(\boldsymbol{Y}\)</span>. Document the function’s inputs and outputs. As an example, you might follow the <code>Function Documentation</code> section of the <a href="https://rstudio-pubs-static.s3.amazonaws.com/390511_286f47c578694d3dbd35b6a71f3af4d6.html">Amazon R style guide</a>.</p>
+</section>
+</section>
+<section id="aluminum-dataset" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Aluminum dataset</h1>
+<section id="a-2" class="level4">
+<h4 class="anchored" data-anchor-id="a-2">(a)</h4>
+<p>Run the regression from Lecture 1 using all three specimens, both with and without an intercept term. Plot the results.</p>
+<p>For convenience, here is a filter function to limit to the right set of data:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(Strain <span class="sc">&lt;</span> <span class="fl">0.0035</span>, Strain <span class="sc">&gt;</span> <span class="fl">0.0001</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>       loading_type <span class="sc">==</span> <span class="st">"T"</span>, temp <span class="sc">==</span> <span class="dv">20</span>, lot <span class="sc">==</span> <span class="st">"A"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Comment on whether an intercept should be included and why. When the intercept is estimated, how can it be interpreted?</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

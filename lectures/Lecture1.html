@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/Lecture1.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/Lecture1.html">Course outline</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Course outline</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -149,39 +149,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Course Policies</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Lectures</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/Lecture1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Course outline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/Lecture1_examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Three example datasets for linear modeling</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datasets/data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Datasets</span></a>
+  <a href="../lectures/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lectures and labs</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/assignments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datasets/data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
   </div>
 </li>
     </ul>
@@ -292,7 +275,7 @@ Notation
 <p>Of course, I may deviate from this (and any) notation convention by saying so explicitly.</p>
 </div>
 </div>
-<p>We will be interested in what <span class="math inline">\(\xv_n\)</span> can tell us about <span class="math inline">\(\y_n\)</span>. This setup is called a “regression problem,” and can be attacked with lots of models, including non-linear modles. But we will focus on approaches to this problem that operate via fitting straight lines to the dependence of <span class="math inline">\(y_n\)</span> on <span class="math inline">\(\xv_n\)</span>.</p>
+<p>We will be interested in what <span class="math inline">\(\xv_n\)</span> can tell us about <span class="math inline">\(\y_n\)</span>. This setup is called a “regression problem,” and can be attacked with lots of models, including non-linear models. But we will focus on approaches to this problem that operate via fitting straight lines to the dependence of <span class="math inline">\(y_n\)</span> on <span class="math inline">\(\xv_n\)</span>.</p>
 <p>Relative to a lot of other machine learning or statistical procedures, linear models are relatively easy to analyze and understand. Yet they are also complex enough to exhibit a lot of the strengths and pitfalls of all machine learning and statistics. So really, this is only partly a course about linear models <em>per se</em>. I hope to make it a course about concepts in statistics in machine learning more generally, but viewed within the relatively simple framework of linear models. Some examples that I hope to touch on at least briefly include:</p>
 <ul>
 <li>Asymptotics under misspecification</li>
@@ -676,7 +659,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>We will be interested in what $\xv_n$ can tell us about $\y_n$. This setup is</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>called a "regression problem," and can be attacked with lots of models,</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>including non-linear modles.  But we will focus on approaches to this problem</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>including non-linear models.  But we will focus on approaches to this problem</span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>that operate via fitting straight lines to the dependence of</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>$y_n$ on $\xv_n$.</span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
