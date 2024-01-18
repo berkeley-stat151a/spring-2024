@@ -42,6 +42,11 @@ pronouns: He / him
 :::
 
 
+::: {.callout-note}
+Class on Thursday Jan 18th will be held in-person in Etcheverry 3108.
+:::
+
+
 
 ::: {.callout-important}
 Day-to-day announcements can be found in BCourses.
