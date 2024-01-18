@@ -1,0 +1,93 @@
+---
+title: "Note on linear and affine functions"
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    include-before-body:
+     - file: ../macros.md
+---
+
+This course is called "linear models," so it's worth being clear about what
+makes a function linear.  As we will see, in some sense it might be better to call
+the course "affine models."
+
+Suppose we have a function $f(\cdot)$ from one space to another.  For example,
+the input space can be $\mathbb{R}^2$ (2-vectors) and the output can be
+scalars, $\mathbb{R}$.  We'll write the input space as $\mathbb{I}$
+and the output as $\mathbb{O}$.  We assume that addition and scalar multiplication
+make sense in both $\mathbb{I}$ and $\mathbb{O}$.
+
+Let $\z$ and $\z'$ be inputs in $\mathbb{I}$, and let $\alpha \in \mathbb{R}$.
+In some generality, a function $f(\cdot)$ from one space to another is called
+linear if it satsfies, for all $\alpha$, $\z$, and $\z'$:
+
+$$
+f(cdot)\textrm{is a linear function if and only if }\quad
+f(\alpha \z) = \alpha f(\z)
+\quad\textrm{and}\quad
+f(\z + \z') = f(\z) + f(\z').
+$$
+
+For example, fix $\beta \in \mathbb{R}^2$, and let $f(\z) = \beta^\trans \z$. 
+Then $\mathbb{I} = \mathbb{R}^2$, $\mathbb{O} = \mathbb{R}$.  Then 
+$f(\cdot)$ is a linear function.
+
+By this defintion, the regression function
+$$
+f(\z) =  \beta_0 + \beta_1 \z_n + \res_n
+$$
+
+is not linear in $\z_n$.  It's not even linear if we take $\x = (1, \z_n)$ 
+and write $\y_n = g(\x) = \beta^\trans \x_n + \res_n$, because of the residual.
+
+Of course, in non-formal language, we might describe them as "linear" simply because
+their graph is a straight line.  This is one justification for the class
+name "linear models".
+
+Formally, both $f(\cdot)$ and $g(\cot)$ are "affine function," which means
+they are linear with an offset.  
+For the purposes of this class, we can define affine functions as:[^1]
+
+$$
+g(\cdot)
+\textrm{ is an affine function if and only if }
+\textrm{there exists a }b \in \mathbb{O}
+\textrm{ such that }f(\cdot) - b
+\textrm{ is linear.}
+$$
+
+
+Given this, we can see that the relationship $\y_n = \beta_0 + \beta_1 \z_n + \res_n$
+is affine as maps from
+
+$$
+\begin{align*}
+\beta &\mapsto \y_n\\
+\z_n &\mapsto \y_n\\
+\res_n &\mapsto \y_n.
+\end{align*}
+$$
+
+Maybe the course should be called "affine models"!
+
+A final note: it is likely that the models are called "linear models"
+because the expectation of $\y_n$ is, in fact, linear in both the
+regressors and coefficient, under the assumption that the residuals
+have mean zero:
+
+$$
+\expect{}{\y_n} = \beta^\trans \x_n.
+$$
+
+However, keeping with the spirit of the class, I prefer not to bake such 
+an assumption into the defintion of a linear model, reserving
+stochastisicity for concrete situations.
+
+
+[^1]: As I did in lecture, one could instead write the linear transforms in a way that depends on $b$,
+which is then asserted to exist.  But that is a bit clumsy, and equivalent to the given definition.
+[Wikipedia](https://en.wikipedia.org/wiki/Affine_transformation) defines affine transformations
+in terms of invariance relations, whereas [Wolfram](https://mathworld.wolfram.com/AffineFunction.html)
+appears to limit to $\mathbb{R}^d$.  I'm not sure whether my definition here is official,
+but I think it strikes a nice balance.

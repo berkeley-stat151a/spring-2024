@@ -16,3 +16,4 @@ sidebar: true
 
 - Lecture Jan 18th:
     - [Lecture](Lecture2.ipynb)
+    - [Note on linear and affine functions](Lecture2_linearity_note.qmd)
