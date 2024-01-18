@@ -8,7 +8,7 @@ sidebar: true
 
 - Lecture Jan 16th:
     - [Lecture](Lecture1.qmd)
-    - [Code examples](Lecture1_examples.ipynb)
+    - [Code examples](Lecture1_examples.ipynb) 
     - [Recording (available until Jan 23rd)](https://drive.google.com/file/d/14qaXQV4OscF420GquYG5VulYdvfNckL5/view?usp=sharing)
 
 - Lab Jan 17th:

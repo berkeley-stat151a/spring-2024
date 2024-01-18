@@ -1,5 +1,12 @@
 project:
   type: website
+  resources:
+    - Lecture1_examples.ipynb
+  render:
+    - "*.ejs"
+    - "*.qmd"
+    - "*.ipynb"
+    - "!PreWebsiteFiles/"
 
 website:
   sidebar:
