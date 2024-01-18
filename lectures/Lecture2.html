@@ -698,8 +698,8 @@ x_n ={}&amp; \alpha_1 \y_n + \alpha_0 + \gamma_n.
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Least absolute deviation time:</span><span class="sc">\t</span><span class="st">"</span>, least_abs_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Least squares time:</span><span class="sc">\t\t</span><span class="st">"</span>, least_squares_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Least absolute deviation time:   0.165724 
-Least squares time:      0.003508091 </code></pre>
+<pre><code>Least absolute deviation time:   0.2395434 
+Least squares time:      0.005156755 </code></pre>
 </div>
 </div>
 <p>Least squares took much longer! Why? We’ll talk about that shortly.</p>
@@ -768,7 +768,7 @@ With 7 buckets, we have 0.003 observations per bucket. </code></pre>
 </div>
 </div>
 <p>So the strength of regression for EDA is really in higher-dimensional settings. For example, if we wanted to look at all the outputs at once:</p>
-<div class="cell" data-tags="[]" data-execution_count="17">
+<div class="cell" data-tags="[]" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lm_formula <span class="ot">&lt;-</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"track_popularity ~ 1 + "</span>,</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(regressors, <span class="at">collapse=</span><span class="st">" + "</span>))</span>
@@ -827,7 +827,7 @@ F-statistic: 295.8 on 7 and 32825 DF,  p-value: &lt; 2.2e-16
 </div>
 </div>
 <p>Note that the high dimensional fit can look a bit chaotic when projected onto one dimension:</p>
-<div class="cell" data-tags="[]" data-execution_count="18">
+<div class="cell" data-tags="[]" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>spotify_reg_all<span class="sc">$</span>fitted.values, </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"Y ~ X high dimensional least squares "</span>)) <span class="sc">+</span></span>
