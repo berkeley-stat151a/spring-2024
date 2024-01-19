@@ -17,11 +17,13 @@ correct and readable code to support your answers.
 #### (a) 
 
 Find another variable (other than danceability) that is associated with
-popularity according to linear regression.
+popularity according to simple linear regression.
 
 #### (b) 
 
 How does this association change if you remove low-popularity tracks?
+You may define low-popularity tracks however you like, but briefly
+defend your choice.
 
 #### (c) 
 

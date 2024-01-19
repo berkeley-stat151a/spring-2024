@@ -27,9 +27,20 @@ $$
 
 #### (a)
 
-Write the regression in matrix form, where $\X$ is an $N \times
-2$ matrix, $\bv= (\beta_0, \beta_1)^\trans$, and
-$\Y= \X\bv+ \resv$.
+Write the set of equations
+
+$$
+y_n = \beta_0 + \beta_1 z_n + \res_n
+$$
+
+for $n \in \{1, \ldots, N\}$ in matrix form.
+That is, let $\X$ denote an $N \times
+2$ matrix, $\Y$ and $\resv$ denote $N \times 1$ matrices, 
+$\bv= (\beta_0, \beta_1)^\trans$, and 
+express the matrices $\Y$, $\X$, and $\resv$
+in terms of the scalars $\y_n$, $\z_m$, and $\res_n$
+so that $\Y= \X\bv+ \resv$ is equivalent to the set of
+regression equations.
 
 
 #### (b)
@@ -37,22 +48,23 @@ $\Y= \X\bv+ \resv$.
 Define 
 $$
 \begin{aligned}
-    m_{z^2} := \meann \z_n^2
+    \overline{zz} := \meann \z_n^2
     \quad\textrm{and}\quad
-    m_{zy} := \meann \z_n \y_n
+    \overline{zy} := \meann \z_n \y_n
 \end{aligned}
 $$ 
 
 Write an explict expressions for $\X^\trans\X$,
 $\X^\trans\Y$, and $\left(\X^\trans\X\right)^{-1}$, all in terms of $\ybar$,
-$\zbar$, $m_{z^2}$, $m_{zy}$, and $N$. Verify that the inverse is
+$\zbar$, $\overline{zz}$, $\overline{zy}$, and $N$. Verify that the inverse is
 correct by direct multiplication.
 
 #### (c)
 
 Compute $(\X^\trans\X)^{-1} \X^\trans\Y$. Show
 that the first row is equal to $\bhat_0$ and the second row is
-equal to $\bhat_1$.
+equal to $\bhat_1$ as given by the ordinary least squares
+formula in the problem statement above.
 
 
 
@@ -78,7 +90,7 @@ Is it necessarily the case that $\meann \reshat_n = 0$?  Prove your answer.
 
 Now the model $\y_n = \beta_1 \z_{n1} + \beta_2 \z_{n2} + \res_n$.
 Suppose that $\z_{n1} = 1$ is $n$ is even, and is $0$ otherwise.
-Similarly, suppose that $\z_{n1} = 1$ is $n$ is odd, and is
+Similarly, suppose that $\z_{n2} = 1$ is $n$ is odd, and is
 $0$ otherwise.  Is it necessarily the case that $\meann \reshat_n = 0$?
 Prove your answer.
 
@@ -95,6 +107,14 @@ Let $\zv = (\z_1, \ldots, \z_N)$ and $\yv = (\y_1, \ldots, \y_N)$.
 Let $\X$ denote an $N \times P$ matrix whose $n$--th row is the
 $P$-vector $\xv_n$.
 
+(Note: this question involves limits of random variables,
+and there are many distinct ways that random variables can
+converge to limits.  If 
+you're familiar with these different modes of probabilisitic convergence,
+feel free to state what mode of convergence applies, but if you are
+not, don't worry --- modes of convergence will not matter much
+for this class, and you can state your result heuristically.)
+
 #### (a)
 
 Let $\mathcal{Z}'$ denote a random variable
@@ -104,6 +124,10 @@ This random variables is called a draw from the "empirical distribution" over
 the set $\{z_1, \ldots, \z_N \}$.
 Similarly, let $\mathcal{Y}'$ denote a draw from the empirical distribution
 over the entries of the vector $\yv$.
+
+(Hint: it may help to recall that the bootstrap uses draws
+from the empirical distribution, and that, in the empirical distribution,
+the elements of the set are fixed and not random.)
 
 Prove that $\frac{1}{N} \zv^\trans \yv = \expect{}{\mathcal{Z}' \mathcal{Y}'}$.
 Then prove that
@@ -119,12 +143,12 @@ $\mathcal{Y}$.  Assuming that $\expect{}{|\mathcal{Z}|} < \infty$ and
 $\expect{}{|\mathcal{Y}|} < \infty$, prove that
 
 $$
-\lim_{N\rightarrow\infty} \frac{1}{N} \zv^\trans \yv \rightarrow
-    \expect{}{\mathcal{Z} \mathcal{Y}},
+\frac{1}{N} \zv^\trans \yv \rightarrow
+    \expect{}{\mathcal{Z} \mathcal{Y}}
+    \textrm{ as }N \rightarrow \infty
 $$
 
-where the limit is with probability one ("almost sure" convergence).  (Hint: don't prove 
-this from scratch, appeal to a probability theorem.)
+(Hint: don't prove this from scratch, appeal to a probability theorem.)
 
 
 #### (c)
@@ -157,13 +181,13 @@ $P$--vector $\mathcal{X}$, and that $\expect{}{|\mathcal{X}_p|} < \infty$
 for each $p \in \{ 1, \ldots, P \}$.  Assume, as above, that
 $\expect{}{|\mathcal{Y}|} < \infty$.
 
-Prove that
+Prove that, as $N \rightarrow \infty$,
 
 $$
-\lim_{N\rightarrow\infty} \frac{1}{N} \X^\trans \X \rightarrow
+\frac{1}{N} \X^\trans \X \rightarrow
     \expect{}{\mathcal{X} \mathcal{X}^\trans}
 \quad\textrm{and}\quad
-\lim_{N\rightarrow\infty} \frac{1}{N} \X^\trans \Y \rightarrow
+\frac{1}{N} \X^\trans \Y \rightarrow
     \expect{}{\mathcal{X} \mathcal{Y}},
 $$
 
@@ -174,14 +198,14 @@ where both limits are with probability one.
 
 Now assume that, for each $p \in \{1, \ldots, P\}$ and $q \in \{1, \ldots, P\}$,
 $\expect{}{\abs{\mathcal{X}'_p} \abs{\mathcal{X}'_q} \mathcal{Y}^2} < \infty$.
-Prove that 
+Prove that, as $N \rightarrow \infty$, 
 
 $$
-\lim_{N\rightarrow\infty} \frac{1}{\sqrt{N}}
+\frac{1}{\sqrt{N}}
 \left( \X^\trans \Y - \expect{}{\X^\trans \Y} \right) \rightarrow \mathcal{Z},
 $$ 
 
 where
-$\mathcal{Z}$ is a multivariate normal random variable, and the limit is in
-distribution.  What is the covariance of $\mathcal{Z}$?
+$\mathcal{Z}$ is a multivariate normal random variable.  What is the covariance of $\mathcal{Z}$?
 (Hint: again, appeal to a probability theorem.)
+
