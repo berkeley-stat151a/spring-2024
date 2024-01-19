@@ -188,22 +188,26 @@ ul.task-list li input[type="checkbox"] {
 \]</span></p>
 <section id="a" class="level4">
 <h4 class="anchored" data-anchor-id="a">(a)</h4>
-<p>Write the regression in matrix form, where <span class="math inline">\(\boldsymbol{X}\)</span> is an <span class="math inline">\(N \times 2\)</span> matrix, <span class="math inline">\(\boldsymbol{\beta}= (\beta_0, \beta_1)^\intercal\)</span>, and <span class="math inline">\(\boldsymbol{Y}= \boldsymbol{X}\boldsymbol{\beta}+ \boldsymbol{\varepsilon}\)</span>.</p>
+<p>Write the set of equations</p>
+<p><span class="math display">\[
+y_n = \beta_0 + \beta_1 z_n + \varepsilon_n
+\]</span></p>
+<p>for <span class="math inline">\(n \in \{1, \ldots, N\}\)</span> in matrix form. That is, let <span class="math inline">\(\boldsymbol{X}\)</span> denote an <span class="math inline">\(N \times 2\)</span> matrix, <span class="math inline">\(\boldsymbol{Y}\)</span> and <span class="math inline">\(\boldsymbol{\varepsilon}\)</span> denote <span class="math inline">\(N \times 1\)</span> matrices, <span class="math inline">\(\boldsymbol{\beta}= (\beta_0, \beta_1)^\intercal\)</span>, and express the matrices <span class="math inline">\(\boldsymbol{Y}\)</span>, <span class="math inline">\(\boldsymbol{X}\)</span>, and <span class="math inline">\(\boldsymbol{\varepsilon}\)</span> in terms of the scalars <span class="math inline">\(y_n\)</span>, <span class="math inline">\(z_m\)</span>, and <span class="math inline">\(\varepsilon_n\)</span> so that <span class="math inline">\(\boldsymbol{Y}= \boldsymbol{X}\boldsymbol{\beta}+ \boldsymbol{\varepsilon}\)</span> is equivalent to the set of regression equations.</p>
 </section>
 <section id="b" class="level4">
 <h4 class="anchored" data-anchor-id="b">(b)</h4>
 <p>Define <span class="math display">\[
 \begin{aligned}
-    m_{z^2} := \frac{1}{N} \sum_{n=1}^Nz_n^2
+    \overline{zz} := \frac{1}{N} \sum_{n=1}^Nz_n^2
     \quad\textrm{and}\quad
-    m_{zy} := \frac{1}{N} \sum_{n=1}^Nz_n y_n
+    \overline{zy} := \frac{1}{N} \sum_{n=1}^Nz_n y_n
 \end{aligned}
 \]</span></p>
-<p>Write an explict expressions for <span class="math inline">\(\boldsymbol{X}^\intercal\boldsymbol{X}\)</span>, <span class="math inline">\(\boldsymbol{X}^\intercal\boldsymbol{Y}\)</span>, and <span class="math inline">\(\left(\boldsymbol{X}^\intercal\boldsymbol{X}\right)^{-1}\)</span>, all in terms of <span class="math inline">\(\bar{y}\)</span>, <span class="math inline">\(\bar{z}\)</span>, <span class="math inline">\(m_{z^2}\)</span>, <span class="math inline">\(m_{zy}\)</span>, and <span class="math inline">\(N\)</span>. Verify that the inverse is correct by direct multiplication.</p>
+<p>Write an explict expressions for <span class="math inline">\(\boldsymbol{X}^\intercal\boldsymbol{X}\)</span>, <span class="math inline">\(\boldsymbol{X}^\intercal\boldsymbol{Y}\)</span>, and <span class="math inline">\(\left(\boldsymbol{X}^\intercal\boldsymbol{X}\right)^{-1}\)</span>, all in terms of <span class="math inline">\(\bar{y}\)</span>, <span class="math inline">\(\bar{z}\)</span>, <span class="math inline">\(\overline{zz}\)</span>, <span class="math inline">\(\overline{zy}\)</span>, and <span class="math inline">\(N\)</span>. Verify that the inverse is correct by direct multiplication.</p>
 </section>
 <section id="c" class="level4">
 <h4 class="anchored" data-anchor-id="c">(c)</h4>
-<p>Compute <span class="math inline">\((\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} \boldsymbol{X}^\intercal\boldsymbol{Y}\)</span>. Show that the first row is equal to <span class="math inline">\(\hat{\beta}_0\)</span> and the second row is equal to <span class="math inline">\(\hat{\beta}_1\)</span>.</p>
+<p>Compute <span class="math inline">\((\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} \boldsymbol{X}^\intercal\boldsymbol{Y}\)</span>. Show that the first row is equal to <span class="math inline">\(\hat{\beta}_0\)</span> and the second row is equal to <span class="math inline">\(\hat{\beta}_1\)</span> as given by the ordinary least squares formula in the problem statement above.</p>
 </section>
 </section>
 <section id="mean-zero-residuals." class="level1" data-number="2">
@@ -219,25 +223,28 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="c-1" class="level4">
 <h4 class="anchored" data-anchor-id="c-1">(c)</h4>
-<p>Now the model <span class="math inline">\(y_n = \beta_1 z_{n1} + \beta_2 z_{n2} + \varepsilon_n\)</span>. Suppose that <span class="math inline">\(z_{n1} = 1\)</span> is <span class="math inline">\(n\)</span> is even, and is <span class="math inline">\(0\)</span> otherwise. Similarly, suppose that <span class="math inline">\(z_{n1} = 1\)</span> is <span class="math inline">\(n\)</span> is odd, and is <span class="math inline">\(0\)</span> otherwise. Is it necessarily the case that <span class="math inline">\(\frac{1}{N} \sum_{n=1}^N\hat{\varepsilon}_n = 0\)</span>? Prove your answer.</p>
+<p>Now the model <span class="math inline">\(y_n = \beta_1 z_{n1} + \beta_2 z_{n2} + \varepsilon_n\)</span>. Suppose that <span class="math inline">\(z_{n1} = 1\)</span> is <span class="math inline">\(n\)</span> is even, and is <span class="math inline">\(0\)</span> otherwise. Similarly, suppose that <span class="math inline">\(z_{n2} = 1\)</span> is <span class="math inline">\(n\)</span> is odd, and is <span class="math inline">\(0\)</span> otherwise. Is it necessarily the case that <span class="math inline">\(\frac{1}{N} \sum_{n=1}^N\hat{\varepsilon}_n = 0\)</span>? Prove your answer.</p>
 </section>
 </section>
 <section id="inner-products-and-covariances" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Inner products and covariances</h1>
 <p>Let <span class="math inline">\(\boldsymbol{z}= (z_1, \ldots, z_N)\)</span> and <span class="math inline">\(\boldsymbol{y}= (y_1, \ldots, y_N)\)</span>. Let <span class="math inline">\(\boldsymbol{X}\)</span> denote an <span class="math inline">\(N \times P\)</span> matrix whose <span class="math inline">\(n\)</span>–th row is the <span class="math inline">\(P\)</span>-vector <span class="math inline">\(\boldsymbol{x}_n\)</span>.</p>
+<p>(Note: this question involves limits of random variables, and there are many distinct ways that random variables can converge to limits. If you’re familiar with these different modes of probabilisitic convergence, feel free to state what mode of convergence applies, but if you are not, don’t worry — modes of convergence will not matter much for this class, and you can state your result heuristically.)</p>
 <section id="a-2" class="level4">
 <h4 class="anchored" data-anchor-id="a-2">(a)</h4>
 <p>Let <span class="math inline">\(\mathcal{Z}'\)</span> denote a random variable which is produced by drawing an element with replacement from the set <span class="math inline">\(\{z_1, \ldots, z_N \}\)</span> with equal probability given to each entry. This random variables is called a draw from the “empirical distribution” over the set <span class="math inline">\(\{z_1, \ldots, z_N \}\)</span>. Similarly, let <span class="math inline">\(\mathcal{Y}'\)</span> denote a draw from the empirical distribution over the entries of the vector <span class="math inline">\(\boldsymbol{y}\)</span>.</p>
+<p>(Hint: it may help to recall that the bootstrap uses draws from the empirical distribution, and that, in the empirical distribution, the elements of the set are fixed and not random.)</p>
 <p>Prove that <span class="math inline">\(\frac{1}{N} \boldsymbol{z}^\intercal\boldsymbol{y}= \underset{}{\mathbb{E}}\left[\mathcal{Z}' \mathcal{Y}'\right]\)</span>. Then prove that <span class="math inline">\(\frac{1}{N} \boldsymbol{1}^\intercal\boldsymbol{z}= \underset{}{\mathbb{E}}\left[\mathcal{Z}'\right]\)</span> as a special case.</p>
 </section>
 <section id="b-2" class="level4">
 <h4 class="anchored" data-anchor-id="b-2">(b)</h4>
 <p>Now suppose that the entries of <span class="math inline">\(\boldsymbol{z}\)</span> are independent and identically distributed (IID) realizations of the random variable <span class="math inline">\(\mathcal{Z}\)</span>, and that the entries of <span class="math inline">\(\boldsymbol{y}\)</span> are similarly IID realizations of a random variable <span class="math inline">\(\mathcal{Y}\)</span>. Assuming that <span class="math inline">\(\underset{}{\mathbb{E}}\left[|\mathcal{Z}|\right] &lt; \infty\)</span> and <span class="math inline">\(\underset{}{\mathbb{E}}\left[|\mathcal{Y}|\right] &lt; \infty\)</span>, prove that</p>
 <p><span class="math display">\[
-\lim_{N\rightarrow\infty} \frac{1}{N} \boldsymbol{z}^\intercal\boldsymbol{y}\rightarrow
-    \underset{}{\mathbb{E}}\left[\mathcal{Z} \mathcal{Y}\right],
+\frac{1}{N} \boldsymbol{z}^\intercal\boldsymbol{y}\rightarrow
+    \underset{}{\mathbb{E}}\left[\mathcal{Z} \mathcal{Y}\right]
+    \textrm{ as }N \rightarrow \infty
 \]</span></p>
-<p>where the limit is with probability one (“almost sure” convergence). (Hint: don’t prove this from scratch, appeal to a probability theorem.)</p>
+<p>(Hint: don’t prove this from scratch, appeal to a probability theorem.)</p>
 </section>
 <section id="c-2" class="level4">
 <h4 class="anchored" data-anchor-id="c-2">(c)</h4>
@@ -257,24 +264,24 @@ ul.task-list li input[type="checkbox"] {
 <section id="e" class="level4">
 <h4 class="anchored" data-anchor-id="e">(e)</h4>
 <p>Now, suppose that rows of <span class="math inline">\(\boldsymbol{X}\)</span> are IID realizations of the random <span class="math inline">\(P\)</span>–vector <span class="math inline">\(\mathcal{X}\)</span>, and that <span class="math inline">\(\underset{}{\mathbb{E}}\left[|\mathcal{X}_p|\right] &lt; \infty\)</span> for each <span class="math inline">\(p \in \{ 1, \ldots, P \}\)</span>. Assume, as above, that <span class="math inline">\(\underset{}{\mathbb{E}}\left[|\mathcal{Y}|\right] &lt; \infty\)</span>.</p>
-<p>Prove that</p>
+<p>Prove that, as <span class="math inline">\(N \rightarrow \infty\)</span>,</p>
 <p><span class="math display">\[
-\lim_{N\rightarrow\infty} \frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{X}\rightarrow
+\frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{X}\rightarrow
     \underset{}{\mathbb{E}}\left[\mathcal{X} \mathcal{X}^\intercal\right]
 \quad\textrm{and}\quad
-\lim_{N\rightarrow\infty} \frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{Y}\rightarrow
+\frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{Y}\rightarrow
     \underset{}{\mathbb{E}}\left[\mathcal{X} \mathcal{Y}\right],
 \]</span></p>
 <p>where both limits are with probability one.</p>
 </section>
 <section id="f" class="level4">
 <h4 class="anchored" data-anchor-id="f">(f)</h4>
-<p>Now assume that, for each <span class="math inline">\(p \in \{1, \ldots, P\}\)</span> and <span class="math inline">\(q \in \{1, \ldots, P\}\)</span>, <span class="math inline">\(\underset{}{\mathbb{E}}\left[\left|\mathcal{X}'_p\right| \left|\mathcal{X}'_q\right| \mathcal{Y}^2\right] &lt; \infty\)</span>. Prove that</p>
+<p>Now assume that, for each <span class="math inline">\(p \in \{1, \ldots, P\}\)</span> and <span class="math inline">\(q \in \{1, \ldots, P\}\)</span>, <span class="math inline">\(\underset{}{\mathbb{E}}\left[\left|\mathcal{X}'_p\right| \left|\mathcal{X}'_q\right| \mathcal{Y}^2\right] &lt; \infty\)</span>. Prove that, as <span class="math inline">\(N \rightarrow \infty\)</span>,</p>
 <p><span class="math display">\[
-\lim_{N\rightarrow\infty} \frac{1}{\sqrt{N}}
+\frac{1}{\sqrt{N}}
 \left( \boldsymbol{X}^\intercal\boldsymbol{Y}- \underset{}{\mathbb{E}}\left[\boldsymbol{X}^\intercal\boldsymbol{Y}\right] \right) \rightarrow \mathcal{Z},
 \]</span></p>
-<p>where <span class="math inline">\(\mathcal{Z}\)</span> is a multivariate normal random variable, and the limit is in distribution. What is the covariance of <span class="math inline">\(\mathcal{Z}\)</span>? (Hint: again, appeal to a probability theorem.)</p>
+<p>where <span class="math inline">\(\mathcal{Z}\)</span> is a multivariate normal random variable. What is the covariance of <span class="math inline">\(\mathcal{Z}\)</span>? (Hint: again, appeal to a probability theorem.)</p>
 
 
 </section>
