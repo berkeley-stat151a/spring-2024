@@ -92,8 +92,8 @@ Is it necessarily the case that $\meann \reshat_n = 0$?  Prove your answer.
 Now the model $\y_n = \beta_1 \z_{n1} + \beta_2 \z_{n2} + \res_n$.
 Suppose that $\z_{n1} = 1$ is $n$ is even, and is $0$ otherwise.
 Similarly, suppose that $\z_{n2} = 1$ is $n$ is odd, and is
-$0$ otherwise.  Is it necessarily the case that $\meann \reshat_n = 0$?
-Prove your answer.
+$0$ otherwise.  Let $N$ be even.  Is it necessarily the case that 
+$\meann \reshat_n = 0$? Prove your answer.
 
 
 
