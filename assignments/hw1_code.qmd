@@ -39,7 +39,7 @@ Listen to the song on Spotify and comment on whether the result makes sense.
 #### (a) 
 
 Choose two variables (other than bodyfat).  Use `lm` to regress bodyfat
-on these two variables. 
+on these two variables and an intercept.
 
 #### (b)
 

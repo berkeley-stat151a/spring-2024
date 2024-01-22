@@ -72,7 +72,8 @@ formula in the problem statement above.
 
 # Mean zero residuals.
 
-Consider the model $\y_n = \beta \z_n + \res_n$.
+Consider the model $\y_n = \beta \z_n + \res_n$.  Let $\bhat$ denote
+the least squares estimator and $\reshat_n = \y_n - \bhat \z_n$.
 
 #### (a)
 
@@ -105,7 +106,7 @@ Prove your answer.
 
 Let $\zv = (\z_1, \ldots, \z_N)$ and $\yv = (\y_1, \ldots, \y_N)$.
 Let $\X$ denote an $N \times P$ matrix whose $n$--th row is the
-$P$-vector $\xv_n$.
+transpose of the $P$-vector $\xv_n^\trans$.  
 
 (Note: this question involves limits of random variables,
 and there are many distinct ways that random variables can
@@ -115,19 +116,24 @@ feel free to state what mode of convergence applies, but if you are
 not, don't worry --- modes of convergence will not matter much
 for this class, and you can state your result heuristically.)
 
-#### (a)
-
-Let $\mathcal{Z}'$ denote a random variable
-which is produced by drawing an element with replacement
-from the set $\{z_1, \ldots, \z_N \}$ with equal probability given to each entry.
-This random variables is called a draw from the "empirical distribution" over
-the set $\{z_1, \ldots, \z_N \}$.
-Similarly, let $\mathcal{Y}'$ denote a draw from the empirical distribution
-over the entries of the vector $\yv$.
+For a set of quantities (numbers, vectors, pairs of vectors, etc),
+the "empirical distribution" over that set refers to drawing an
+element with replacement from the set with equal probability given
+to each entry.  For example, if $\mathcal{Z}'$ is a drawn
+from the empirical distribution over the set $\{z_1, \ldots, \z_N \}$,
+then $\prob{}{\mathcal{Z}' = \z_n} = 1/N$ for each $n$.  Similarly, if
+$(\mathcal{Z}', \mathcal{Y}')$ is drawn from the empirical distribution
+over the pairs $\{(\z_1, \y_1), \ldots, (\z_N, \y_N)\}$, then
+$\prob{}{(\mathcal{Z}', \mathcal{Y}') = (\z_n, \y_n)} = 1/N$ for all $n$.
 
 (Hint: it may help to recall that the bootstrap uses draws
 from the empirical distribution, and that, in the empirical distribution,
 the elements of the set are fixed and not random.)
+
+#### (a)
+
+Let $(\mathcal{Z}', \mathcal{Y}')$ denote a draw from the empirical distribution
+over the set $\{(\y_1, \z_1), \ldots, (\y_N, \z_N)\}$.
 
 Prove that $\frac{1}{N} \zv^\trans \yv = \expect{}{\mathcal{Z}' \mathcal{Y}'}$.
 Then prove that
@@ -161,15 +167,16 @@ that the expression converges with probability one to $\cov{}{\mathcal{Y}, \math
 
 #### (d)
 
-Now, let $\mathcal{X}'$ denote a draw 
-from the empirical distribution over the rows of $\X$.
-Prove that
+Now, let $(\mathcal{X}', \mathcal{Y}')$ denote a draw 
+from the empirical distribution over $\{(\x_1, \y_1), \ldots, (\x_N, \y_N) \}$.
+(Recall that the vector $\x_n$ is a length--$P$ column vector, and $\x_n^\trans$ is
+the $n$--th row of the matrix $\X$.)
 
 $$
 \begin{align*}
 \frac{1}{N} \X^\trans \X = \expect{}{\mathcal{X}' \mathcal{X}'^\trans}
 \quad\textrm{and}\quad
-\frac{1}{N} \X^\trans \Y = \expect{}{\mathcal{X}' \mathcal{Y}'}.
+\frac{1}{N} \X^\trans \y = \expect{}{\mathcal{X}' \mathcal{Y}'}.
 \end{align*}
 $$
 
