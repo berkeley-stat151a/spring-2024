@@ -197,12 +197,7 @@ div.csl-indent {
    
   <ul>
   <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
-  <li><a href="#first-a-test" id="toc-first-a-test" class="nav-link" data-scroll-target="#first-a-test">First, a test:</a></li>
   <li><a href="#scenario" id="toc-scenario" class="nav-link" data-scroll-target="#scenario">Scenario</a></li>
-  <li><a href="#least-squares" id="toc-least-squares" class="nav-link" data-scroll-target="#least-squares">Least squares</a>
-  <ul class="collapse">
-  <li><a href="#alternative-derivation" id="toc-alternative-derivation" class="nav-link" data-scroll-target="#alternative-derivation">Alternative derivation</a></li>
-  </ul></li>
   <li><a href="#grouping-data-to-get-an-exactly-identified-system-of-equations" id="toc-grouping-data-to-get-an-exactly-identified-system-of-equations" class="nav-link" data-scroll-target="#grouping-data-to-get-an-exactly-identified-system-of-equations">Grouping data to get an exactly identified system of equations</a></li>
   <li><a href="#other-errors-to-minimize" id="toc-other-errors-to-minimize" class="nav-link" data-scroll-target="#other-errors-to-minimize">Other errors to minimize</a>
   <ul class="collapse">
@@ -210,7 +205,7 @@ div.csl-indent {
   </ul></li>
   <li><a href="#comparison-with-least-squares" id="toc-comparison-with-least-squares" class="nav-link" data-scroll-target="#comparison-with-least-squares">Comparison with least squares</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lecture2.out.ipynb" download="Lecture2.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lecture5.out.ipynb" download="Lecture5.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -304,12 +299,6 @@ $$
 <section id="goals" class="level1">
 <h1>Goals</h1>
 <ul>
-<li>Review topics that should already be familiar:
-<ul>
-<li>Simple (one-variable) regression</li>
-<li>Minimizing a loss function by setting its gradient to zero</li>
-<li>Some linear algebra (2d matrix inversion)</li>
-</ul></li>
 <li>Introduce some other ways to fit lines through data
 <ul>
 <li>Grouping data</li>
@@ -319,11 +308,6 @@ $$
 </ul></li>
 <li>Set up the question of the strengths and weaknesses of least squares methods</li>
 </ul>
-</section>
-<section id="first-a-test" class="level1">
-<h1>First, a test:</h1>
-<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/1mCQBMKnReGnhbwJEmCqJ?controls=none&amp;short_poll=true" width="1200px" height="1000px">
-</iframe>
 </section>
 <section id="scenario" class="level1">
 <h1>Scenario</h1>
@@ -337,161 +321,10 @@ $$
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Lecture2_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+<p><img src="Lecture5_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Basically we want some kind of low-dimensional summary of a potentially complex relationship in the data.</p>
-</section>
-<section id="least-squares" class="level1">
-<h1>Least squares</h1>
-<p>For most of this class, we’ll be studying the “least squares fit”:</p>
-<p><span class="math display">\[
-\begin{align*}
-\y_n :={}&amp; \textrm{Popularity} \\
-\x_n :={}&amp; \textrm{Danceability}\\
-y_n ={}&amp; \beta_1 \x_n + \beta_0 + \res_n
-\end{align*}
-\]</span></p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Notation">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Notation
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Here are some key quantities and their names:</p>
-<ul>
-<li><span class="math inline">\(\y_n\)</span>: The ‘response’</li>
-<li><span class="math inline">\(\x_n\)</span>: The ‘regressors’ or ‘explanatory’ variables</li>
-</ul>
-<p>For a linear model, we also have:</p>
-<ul>
-<li><span class="math inline">\(\res_n\)</span>: The ‘error’ or ‘residual’</li>
-<li><span class="math inline">\(\beta_1, \beta_0\)</span>: The ‘coefficients’, ‘parameters’, ‘slope and intercept’</li>
-</ul>
-<p>We might also have estimates of these quantities:</p>
-<ul>
-<li><span class="math inline">\(\bhat_p\)</span>: Estimate of <span class="math inline">\(\beta_p\)</span></li>
-<li><span class="math inline">\(\reshat\)</span>: Estimate of <span class="math inline">\(\res_n\)</span></li>
-<li><span class="math inline">\(\yhat_n\)</span>: A ‘prediction’ or ‘fitted value’ <span class="math inline">\(\yhat_n = \bhat_0 + \bhat_1 \x_n\)</span></li>
-</ul>
-<p>When we form the estimator by minimizing the estimated residuals, we might call the estimate</p>
-<ul>
-<li>‘Ordinary least squares’ (or ‘OLS’)</li>
-<li>‘Least-squares’</li>
-<li>‘Linear regression’</li>
-</ul>
-<p>An estimate will implicitly be least-squares estimates, but precisely what we mean by an estimate may have to come from context.</p>
-</div>
-</div>
-<p>Note that for any value of <span class="math inline">\(\beta\)</span>, we get a value of the “error” or “residual” <span class="math inline">\(\res_n\)</span>:</p>
-<p><span class="math display">\[
-\res_n = \y_n - (\beta_1 \x_n + \beta_0).
-\]</span></p>
-<p>The “least squares fit” is called this because we choose <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> to make <span class="math inline">\(\sumn \res_n^2\)</span> as small as possible:</p>
-<p><span class="math display">\[
-\begin{align*}
-\textrm{Choose }\beta_1,\beta_0\textrm{ so that }
-\sumn \res_n^2 = \sumn \left(  \y_n - (\beta_1 \x_n + \beta_0) \right)^2
-\textrm{ is as small as possible.}
-\end{align*}
-\]</span></p>
-<p>The quantity we’re trying to minimize is smooth and convex, so if there is a minimum it would satisfy</p>
-<p><span class="math display">\[
-\begin{align*}
-\fracat{\partial \sumn \res_n^2}{\partial \beta_0}{\bhat_0, \bhat_1} ={}&amp; 0 \quad\textrm{and} \\
-\fracat{\partial \sumn \res_n^2}{\partial \beta_1}{\bhat_0, \bhat_1} ={}&amp; 0.
-\end{align*}
-\]</span> These translate to (after dividing by <span class="math inline">\(-2 N\)</span>)</p>
-<p><span class="math display">\[
-\begin{align*}
-\meann \y_n - \bhat_1 \meann \x_n - \bhat_0 ={}&amp; 0 \quad\textrm{and}\\
-\meann \y_n \x_n - \bhat_1 \meann \x_n^2 - \bhat_0 \meann \x_n  ={}&amp; 0.
-\end{align*}
-\]</span></p>
-<p>Let’s introduce the notation</p>
-<p><span class="math display">\[
-\begin{align*}
-\overline{y} ={}&amp; \meann \y_n \\
-\overline{xy} ={}&amp; \meann \x_n \y_n \\
-\overline{xx} ={}&amp; \meann \x_n ^2,
-\end{align*}
-\]</span></p>
-<p>Our estimator them must satisfy</p>
-<p><span class="math display">\[
-\begin{align*}
-\overline{x} \bhat_1  + \bhat_0 ={}&amp; \overline{y} \quad\textrm{and}\\
-\overline{xx} \bhat_1  + \overline{x} \bhat_0  ={}&amp; \overline{yx}.
-\end{align*}
-\]</span></p>
-<p>We have a linear system with two unknowns and two equations. An elegant way to solve them is to subtract <span class="math inline">\(\overline{x}\)</span> times the first equation from the second, giving:</p>
-<p><span class="math display">\[
-\begin{align*}
-\overline{x} \bhat_0 - \overline{x} \bhat_0 +
-    \overline{xx} \bhat_1 - \overline{x}^2 \bhat_1 ={}&amp;
-    \overline{xy} - \overline{x} \overline{y} \Leftrightarrow\\
-\bhat_1 ={}&amp;
-    \frac{\overline{xy} - \overline{x} \overline{y}}
-         {\overline{xx}  - \overline{x}^2},
-\end{align*}
-\]</span></p>
-<p>as long as <span class="math inline">\(\overline{xx} - \overline{x}^2 \ne 0\)</span>. <em>When is it zero?</em></p>
-<p>We can then plug this into the first equation giving</p>
-<p><span class="math display">\[
-\bhat_0 = \overline{y} - \bhat_1 \overline{x}.
-\]</span></p>
-<section id="alternative-derivation" class="level2">
-<h2 class="anchored" data-anchor-id="alternative-derivation">Alternative derivation</h2>
-<p>Alternatively, our criterion can be written in matrix form as</p>
-<p><span class="math display">\[
-\begin{pmatrix}
-1  &amp; \overline{x} \\
-\overline{x} &amp; \overline{xx}
-\end{pmatrix}
-\begin{pmatrix}
-\bhat_0 \\
-\bhat_1
-\end{pmatrix} =
-\begin{pmatrix}
-\overline{y} \\
-\overline{xy}
-\end{pmatrix}
-\]</span></p>
-<p>Using the 2D matrix inversion formula, we see that, if <span class="math inline">\(\overline{xx} - \overline{x}^2 \ne 0\)</span>,</p>
-<p><span class="math display">\[
-\begin{pmatrix}
-\bhat_0 \\
-\bhat_1
-\end{pmatrix} =
-\frac{1}{\overline{xx} - \overline{x}^2}
-\begin{pmatrix}
-\overline{xx}  &amp; - \overline{x} \\
--\overline{x} &amp; 1
-\end{pmatrix}
-\begin{pmatrix}
-\overline{y} \\
-\overline{xy}
-\end{pmatrix}
-\]</span></p>
-<p>From this we can read off the familiar answer</p>
-<p><span class="math display">\[
-\begin{align*}
-\bhat_1 ={}&amp; \frac{\overline{xy} - \overline{x}\,\overline{y}}{\overline{xx} - \overline{x}^2}\\
-\bhat_0 ={}&amp; \frac{\overline{xx}\,\overline{y} - \overline{xy}\,\overline{x}}{\overline{xx} - \overline{x}^2}\\
-  ={}&amp; \frac{\overline{xx}\,\overline{y} -
-      \overline{x}^2 \overline{y} + \overline{x}^2 \overline{y} - \overline{xy}\,\overline{x}}
-    {\overline{xx} - \overline{x}^2}\\
-  ={}&amp; \overline{y} - \frac{\overline{x}^2 \overline{y} - \overline{xy}\,\overline{x}}
-    {\overline{xx} - \overline{x}^2} \\
-  ={}&amp; \overline{y} - \bhat_1 \overline{x}.
-\end{align*}
-\]</span></p>
-<p>This derivation was a bit tedious, and we’ll explore more general ways to think about these formulas in the coming lectures, as well as how to think more carefully about when this is the only solution. For now, it’s important to note that an explicit expression exists.</p>
-<p>For the rest of the lecture let’s think about some other ways to solve the problem of fitting a line through data in a way that will shed some light on the strenghts and weakness of least squares.</p>
-</section>
 </section>
 <section id="grouping-data-to-get-an-exactly-identified-system-of-equations" class="level1">
 <h1>Grouping data to get an exactly identified system of equations</h1>
@@ -519,7 +352,7 @@ Notation
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">data=</span>simple_df[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), ], <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">data=</span>simple_df[<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>), ], <span class="at">color=</span><span class="st">"green"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Lecture2_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+<p><img src="Lecture5_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The problem is that we have more equations to satisfy than we have degrees of freedom:</p>
@@ -615,7 +448,7 @@ Notation
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept=</span>x_median), <span class="at">color=</span><span class="st">"white"</span>, <span class="at">lwd=</span><span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">size=</span><span class="dv">3</span>, <span class="at">data=</span><span class="fu">data.frame</span>(<span class="at">x=</span>grouped_fit<span class="sc">$</span>x, <span class="at">y=</span>grouped_fit<span class="sc">$</span>y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Lecture2_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+<p><img src="Lecture5_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>What if we do the same thing, but randomly assign the groups. The result is garbage!</p>
@@ -630,7 +463,7 @@ Notation
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"Y ~ X grouped"</span>)) <span class="sc">+</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">size=</span><span class="dv">3</span>, <span class="at">data=</span><span class="fu">data.frame</span>(<span class="at">x=</span>rand_grouped_fit<span class="sc">$</span>x, <span class="at">y=</span>rand_grouped_fit<span class="sc">$</span>y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Lecture2_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+<p><img src="Lecture5_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Perhaps at this point it is not clear what went wrong in the second case, nor how you might choose good groupings with more than one regressor. But by the end of this class we will understand very well.</p>
@@ -669,7 +502,7 @@ x_n ={}&amp; \alpha_1 \y_n + \alpha_0 + \gamma_n.
 <div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Lecture2_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+<p><img src="Lecture5_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="9">
@@ -691,7 +524,7 @@ x_n ={}&amp; \alpha_1 \y_n + \alpha_0 + \gamma_n.
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x_l1<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"Y ~ X least absolute deviation"</span>)) <span class="sc">+</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>x_on_y_l1<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"X ~ Y least absolute deviation"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Lecture2_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+<p><img src="Lecture5_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Note that it matters a lot whether you have <span class="math inline">\(\y\)</span> or <span class="math inline">\(\x\)</span> on the left-hand side. (To gain some intuition for this, think about what happens as you transform data that lies on a straight line into data in an uncorrelated point cloud.)</p>
@@ -724,7 +557,7 @@ Least squares time:      0.005156755 </code></pre>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"Averages in buckets"</span>),</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>spotify_bucketed_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Lecture2_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+<p><img src="Lecture5_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>What do you think of this line’s behavior for low danceability?</p>
@@ -733,7 +566,7 @@ Least squares time:      0.005156755 </code></pre>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(spotify_bucketed_df) <span class="sc">+</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>bucket_danceability, <span class="at">y=</span>count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Lecture2_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+<p><img src="Lecture5_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>There are more sophisitcated ways to do “nonparametric” smoothers like this automatically, including built-in functions in <code>R</code>.</p>
@@ -745,7 +578,7 @@ Least squares time:      0.005156755 </code></pre>
 <pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Lecture2_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
+<p><img src="Lecture5_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The core problem with nonparametrics is the curse of dimensionality. Suppose we have <span class="math inline">\(P\)</span> regressors, and we divide each into ten buckets. In total, we have <span class="math inline">\(10^P\)</span> buckets, and, on average, <span class="math inline">\(N / 10^P\)</span> observations per bucket. Here are some values for the Spotify dataset:</p>
@@ -836,7 +669,7 @@ F-statistic: 295.8 on 7 and 32825 DF,  p-value: &lt; 2.2e-16
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, </span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"Y ~ X simple least squares"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Lecture2_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+<p><img src="Lecture5_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
