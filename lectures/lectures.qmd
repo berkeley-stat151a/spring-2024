@@ -7,13 +7,30 @@ sidebar: true
 
 
 - Lecture Jan 16th:
-    - [Lecture](Lecture1.qmd)
-    - [Code examples](Lecture1_examples.ipynb) 
+    - [Class organization](Lecture1.qmd)
     - [Recording (available until Jan 23rd)](https://drive.google.com/file/d/14qaXQV4OscF420GquYG5VulYdvfNckL5/view?usp=sharing)
 
 - Lab Jan 17th:
     - [Style problem](lab1_student_version.Rmd)
 
 - Lecture Jan 18th:
-    - [Lecture](Lecture2.ipynb)
+    - [Different kinds of questions](Lecture2_examples.ipynb) 
     - [Note on linear and affine functions](Lecture2_linearity_note.qmd)
+
+
+---
+
+- Lecture Jan 23rd:
+    - [Lecture](Lecture3.qmd)
+
+- Lab Jan 17th:
+    - Linear algebra in R
+
+- Lecture Jan 25th:
+    - TBD
+
+---
+
+
+- Lecture Jan 29th:
+    - [Alternative lines](Lecture5.ipynb)

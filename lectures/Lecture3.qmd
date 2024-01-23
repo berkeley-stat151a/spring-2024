@@ -1,0 +1,811 @@
+---
+title: "Linear algebra for linear regression."
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    include-before-body:
+     - file: ../macros.md
+---
+
+$\textcolor{white}{\LaTeX}$ 
+
+# Goals
+
+- Derive the general form of the ordinary least squares (OLS) estimator in matrix notation
+    - Review simple least squares derivation
+    - Review matrix notation
+    - Review vector calculus
+    - Derive the general OLS formula and show that the simple least squares is a special case
+
+
+# Siomple least squares 
+
+Recall the simple least squares model:
+
+$$
+\begin{align*}
+\y_n :={}& \textrm{Response (e.g. body fat)} \\
+\x_n :={}& \textrm{Regressor (e.g. waist measurement)}\\
+y_n ={}& \beta_2 \x_n + \beta_1 + \res_n \textrm{ Model (straight line through data)}.
+\end{align*}
+$${#eq-lm-simple}
+
+::: {.callout-tip title='Notation'} 
+Here are some key quantities and their names:
+
+   - $\y_n$: The 'response'
+   - $\x_n$: The 'regressors' or 'explanatory' variables
+
+For a linear model, we also have:
+
+   - $\res_n$: The 'error' or 'residual'
+   - $\beta_2, \beta_1$: The 'coefficients', 'parameters', 'slope and intercept'
+
+We might also have estimates of these quantities:
+
+   - $\bhat_p$: Estimate of $\beta_p$
+   - $\reshat$: Estimate of $\res_n$
+   - $\yhat_n$: A 'prediction' or 'fitted value'
+     $\yhat_n = \bhat_1 + \bhat_2 \x_n$
+
+When we form the estimator by minimizing the estimated residuals, we might call the estimate
+
+   - 'Ordinary least squares' (or 'OLS')
+   - 'Least-squares'
+   - 'Linear regression'
+
+An estimate will implicitly be least-squares estimates, but precisely what we mean by an estimate may have to come from context.
+:::
+
+
+Note that for any value of $\beta$, we get a value of the "error"
+or "residual" $\res_n$:
+
+$$
+\res_n = \y_n - (\beta_2 \x_n + \beta_1).
+$$
+
+The "least squares fit" is called this because we choose $\beta_1$ and $\beta_2$
+to make $\sumn \res_n^2$ as small as possible:
+
+$$
+\begin{align*}
+\textrm{Choose }\bhat_2,\bhat_1\textrm{ so that }
+\sumn \res_n^2 = \sumn \left(  \y_n - (\bhat_2 \x_n + \bhat_1) \right)^2
+\textrm{ is as small as possible.}
+\end{align*}
+$$
+
+How do we do this for the simple least squares model?  And what
+if we have more regressors?
+
+
+# Siomple least squares estimator derivation
+
+
+The quantity we're trying to minimize is smooth and convex, so if there
+is a minimum it would satisfy
+
+$$
+\begin{align*}
+\fracat{\partial \sumn \res_n^2}{\partial \beta_1}{\bhat_1, \bhat_2} ={}& 0 \quad\textrm{and} \\
+\fracat{\partial \sumn \res_n^2}{\partial \beta_2}{\bhat_1, \bhat_2} ={}& 0.
+\end{align*}
+$$
+
+::: {.callout-warning title='Question'} 
+When is it sufficient to set the gradient equal to zero to find a minumum?
+:::
+
+
+These translate to (after dividing by $-2 N$)
+
+$$
+\begin{align*}
+\meann \y_n - \bhat_2 \meann \x_n - \bhat_1 ={}& 0 \quad\textrm{and}\\
+\meann \y_n \x_n - \bhat_2 \meann \x_n^2 - \bhat_1 \meann \x_n  ={}& 0.
+\end{align*}
+$$
+
+Let's introduce the notation
+
+$$
+\begin{align*}
+\overline{y} ={}& \meann \y_n \\
+\overline{xy} ={}& \meann \x_n \y_n \\
+\overline{xx} ={}& \meann \x_n ^2,
+\end{align*}
+$$
+
+Our estimator them must satisfy
+
+$$
+\begin{align*}
+ \overline{x} \bhat_2  + \bhat_1 ={}& \overline{y} \quad\textrm{and}\\
+ \overline{xx} \bhat_2  + \overline{x} \bhat_1  ={}& \overline{yx}.
+\end{align*}
+$$
+
+We have a linear system with two unknowns and two equations.  An elegant way to solve them is to subtract $\overline{x}$ times the first equation from the second, giving:
+
+$$
+\begin{align*}
+\overline{x} \bhat_1 - \overline{x} \bhat_1 + 
+    \overline{xx} \bhat_2 - \overline{x}^2 \bhat_2 ={}&
+    \overline{xy} - \overline{x} \overline{y} \Leftrightarrow\\
+\bhat_2 ={}&
+    \frac{\overline{xy} - \overline{x} \overline{y}}
+         {\overline{xx}  - \overline{x}^2},
+\end{align*}
+$$
+
+as long as $\overline{xx} - \overline{x}^2 \ne 0$.  
+
+::: {.callout-warning title='Question'} 
+In ordinary language, what does it mean for $\overline{xx} - \overline{x}^2 = 0$?
+:::
+
+We can then plug this into the first equation giving
+
+$$
+\bhat_1 = \overline{y} - \bhat_2 \overline{x}.
+$$
+
+
+
+
+
+
+# Matrix multiplication version
+
+Alternatively, our criterion can be written in matrix form as
+
+$$
+\begin{pmatrix}
+1  & \overline{x} \\
+\overline{x} & \overline{xx} 
+\end{pmatrix}
+\begin{pmatrix}
+\bhat_1 \\
+\bhat_2
+\end{pmatrix} =
+\begin{pmatrix}
+\overline{y} \\
+\overline{xy}
+\end{pmatrix}
+$${#eq-simple-est-as-matrix}
+
+Recall that there is a special matrix that allows us to get an
+expression for $\bhat_1$ and $\bhat_2$:
+
+
+$$
+\begin{align*}
+\begin{pmatrix}
+1  & \overline{x} \\
+\overline{x} & \overline{xx} 
+\end{pmatrix}^{-1} =
+\frac{1}{\overline{xx} - \overline{x}^2}
+\begin{pmatrix}
+\overline{xx}  & - \overline{x} \\
+-\overline{x} & 1 
+\end{pmatrix}
+\end{align*}
+$$
+
+This matrix is called the "inverse" because
+
+$$
+\begin{align*}
+\begin{pmatrix}
+1  & \overline{x} \\
+\overline{x} & \overline{xx} 
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+1  & \overline{x} \\
+\overline{x} & \overline{xx} 
+\end{pmatrix} =
+\begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}.
+\end{align*}
+$$
+
+
+::: {.callout-warning title='Exercise'} 
+Verify the preceding property.
+:::
+
+Multiplying both sides of @eq-simple-est-as-matrix by
+the matrix inverse gives
+
+$$
+\begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+\bhat_1 \\
+\bhat_2
+\end{pmatrix} =
+\begin{pmatrix}
+\bhat_1 \\
+\bhat_2
+\end{pmatrix} =
+\frac{1}{\overline{xx} - \overline{x}^2}
+\begin{pmatrix}
+\overline{xx}  & - \overline{x} \\
+-\overline{x} & 1 
+\end{pmatrix}
+\begin{pmatrix}
+\overline{y} \\
+\overline{xy}
+\end{pmatrix}.
+$$
+
+From this we can read off the familiar answer
+
+$$
+\begin{align*}
+\bhat_2 ={}& \frac{\overline{xy} - \overline{x}\,\overline{y}}{\overline{xx} - \overline{x}^2}\\
+\bhat_1 ={}& \frac{\overline{xx}\,\overline{y} - \overline{xy}\,\overline{x}}{\overline{xx} - \overline{x}^2}\\
+  ={}& \frac{\overline{xx}\,\overline{y} - 
+      \overline{x}^2 \overline{y} + \overline{x}^2 \overline{y} - \overline{xy}\,\overline{x}}
+    {\overline{xx} - \overline{x}^2}\\
+  ={}& \overline{y} - \frac{\overline{x}^2 \overline{y} - \overline{xy}\,\overline{x}}
+    {\overline{xx} - \overline{x}^2} \\
+  ={}& \overline{y} - \bhat_1 \overline{x}.
+\end{align*}
+$$
+
+
+
+
+
+
+# Matrix notation
+
+The preceding formula came from combining the equations that set the univariate
+gradients equal to zero, and then recognizing a matrix equation.  We can in
+fact do both at the same time!  But first we need some notation
+
+Here is a formal definition of the type of model that we will study for the vast
+majority of the semester:
+
+
+$$
+\begin{align*}
+\y_n ={}& \beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP} + \res_{n}, \quad\textrm{For }n=1,\ldots,N.
+\end{align*}
+$${#eq-lm-scalar}
+
+::: {.callout-tip title='Notation'}  
+I will always use $N$ for the number of observed data points, and $P$ 
+for the dimension of the regression vector.
+:::
+
+@eq-lm-scalar is a general form of simpler cases.  For example,
+if we take $\x_{n1} \equiv 1$, $\x_{n2}= \x_n$ to be some scalar, and $P = 2$, then
+@eq-lm-scalar becomes @eq-lm-simple:
+
+$$
+\begin{align*}
+\y_n ={}& \beta_1  + \beta_2 \x_{n} + \res_{n}, \quad\textrm{For }n=1,\ldots,N.
+\end{align*}
+$$
+
+The residuals $\res_n$ measure the "misfit" of the line.  If you know $\beta_1, \ldots, \beta_P$,
+then you can compute
+
+$$
+\begin{align*}
+\res_n ={}& \y_n -  (\beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP}).
+\end{align*}
+$$
+
+But in general we only observe $\y_n$ and $\x_{n1}, \ldots, \x_{nP}$, and we
+choose $\beta_1, \ldots, \beta_P$ to make the residuals small.  (How we do
+this precisely will be something we talk about at great length.)
+
+The general form of @eq-lm-scalar can be written more compactly using
+matrix and vector notation. Specifically, if we let
+
+$$
+\begin{align*}
+\xv_n := 
+\begin{pmatrix}
+  \x_{n1} \\ \x_{n2} \\ \vdots \\ \x_{nP}
+\end{pmatrix}
+\quad
+\textrm{and}
+\quad
+\bv := 
+\begin{pmatrix}
+  \beta_{1} \\ \beta_2 \\ \vdots \\ \beta_{P}
+\end{pmatrix}
+\end{align*}
+$$
+
+::: {.callout-tip title='Notation'}  
+Bold lowercase variables are column vectors (unless otherwise specified).
+:::
+
+Recall that the "transpose" operator $(\cdot)^\trans$ flips the row and
+columns of a matrix.  For example,
+
+$$
+\begin{align*}
+\xv_n ^\trans = 
+\begin{pmatrix}
+  \x_{n1} & \x_{n2} & \ldots & \x_{nP}
+\end{pmatrix}.
+\end{align*}
+$$
+
+By matrix multiplication rules,
+
+$$
+\begin{align*}
+\xv_n^\trans \bv = 
+\begin{pmatrix}
+  \x_{n1} & \x_{n2} & \ldots & \x_{nP}
+\end{pmatrix}
+\quad\quad\quad
+\begin{pmatrix}
+  \beta_{1} \\ \beta_2 \\ \vdots \\ \beta_{P}
+\end{pmatrix}
+= \beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP}.
+\end{align*}
+$$
+
+
+::: {.callout-tip title='Notation'}  
+I have written $\xv_n^\trans \bv$ for the "dot product" or "inner product"
+between $\xv_n$ and $\bv$.  Writing it in this way clarifies the relationship
+with matrix notation below.
+
+There are many other ways to denote inner products in the literature,
+including $\xv_n \cdot \bv$ and $<\xv_n, \bv>$.
+:::
+
+Then we can compactly write
+
+$$
+\begin{align*}
+\y_n ={}& \xv_n ^\trans \bv + \res_{n}, \quad\textrm{For }n=1,\ldots,N.
+\end{align*}
+$$
+
+We can compactify it even further if we stack the $n$ observations:
+%
+$$
+\begin{align*}
+\y_1 ={}& \xv_1 ^\trans \bv + \res_{1} \\
+\y_2 ={}& \xv_2 ^\trans \bv + \res_{2} \\
+\vdots\\
+\y_N ={}& \xv_N ^\trans \bv + \res_{N} \\
+\end{align*}
+$$
+
+As before we can stack the responses and residuals:
+
+$$
+\begin{align*}
+\Y := 
+\begin{pmatrix}
+  \y_{1} \\ \y_2 \\ \vdots \\ \y_{P}
+\end{pmatrix}
+\quad
+\textrm{and}
+\quad
+\resv := 
+\begin{pmatrix}
+  \res_{1} \\ \res_2 \\ \vdots \\ \res_{P}
+\end{pmatrix}
+\end{align*}
+$$
+
+We can also stack the regressors:
+
+$$
+\begin{align*}
+\X := 
+\begin{pmatrix}
+  \x_{11} & \x_{12} & \ldots & \x_{1P}\\
+  \x_{21} & \x_{22} & \ldots & \x_{2P}\\
+  \vdots\\
+  \x_{n1} & \x_{n2} & \ldots & \x_{nP}\\
+  \vdots\\
+    \x_{N1} & \x_{N2} & \ldots & \x_{NP}
+\end{pmatrix}
+=
+\begin{pmatrix}
+  \xv_{1}^\trans \\ \xv_{2}^\trans \\ \vdots \\ \xv_n^\trans \\ \vdots \\ \xv_{N}^\trans
+\end{pmatrix}
+\end{align*}
+$$
+
+
+::: {.callout-tip title='Notation'}  
+I will use upper case bold letters for multi-dimensional matrices like $\X$.  But
+I may also use upper case bold letters even when the quantity could also be
+a column vector, when I think it's more useful to think of the quantity
+as a matrix with a single column.  Examples are $\Y$ above, or $\X$ when $P = 1$.
+:::
+
+Note that by matrix multiplication rules,
+
+$$
+\begin{align*}
+\X  \bv = 
+\begin{pmatrix}
+  \xv_{1}^\trans \\ \xv_{2}^\trans \\ \vdots \\ \xv_n^\trans \\ \vdots \\ \xv_{N}^\trans
+\end{pmatrix}
+\quad\quad\quad
+\bv
+=
+\begin{pmatrix}
+  \xv_{1}^\trans\bv \\ \xv_{2}^\trans\bv \\ \vdots \\ \xv_n^\trans\bv \\ \vdots \\ \xv_{N}^\trans\bv
+\end{pmatrix}
+\end{align*}
+$$
+
+so we end up with the extremely tidy expression
+
+$$
+\begin{align*}
+\y_n ={}& \beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP} + \res_{n}, \quad\textrm{For }n=1,\ldots,N
+\\\\&\textrm{is the same as}\quad\\\\
+\Y ={}& \X \bv + \resv.
+\end{align*}
+$${#eq-y-matrix}
+
+In the case of simple least squares, we can write
+
+$$
+\begin{align*}
+\X := 
+\begin{pmatrix}
+  1 & \x_{1}\\
+  1 & \x_{2}\\
+  \vdots & \vdots\\
+  1 & \x_{N}\\
+\end{pmatrix},
+\end{align*}
+$${#eq-simple_matrix}
+
+and verify that the $n$--th row of @eq-y-matrix is the same as @eq-lm-simple.
+
+
+# Least squares in matrix notation
+
+Using our tidy expression @eq-y-matrix, we can easily write out the
+sum of the squared errors as
+
+
+$$
+\begin{align*}
+\sumn \res_n^2 = 
+    \resv^\trans \resv = (\Y - \X \bv)^\trans (\Y - \X \bv).
+\end{align*}
+$$
+
+This is a function of the vector $\bv$.  We wish to find the minimum
+of this quantity as a function of $\bv$.  My might hope that
+the minimum occurs at a point where the gradient of this expression
+is zero.
+Rather than compute the
+*univariate* derivative with respect to each component, we can compute
+the *multivariate gradient* with respect to the vector.
+
+Let's recall some facts from vector calculus.  
+
+
+::: {.callout-tip title='Notation'}  
+Take $\z \in \mathbb{R}^P$
+to be a $P$--vector.
+and let $\mybold{f}(\z) \in \mathbb{R}^Q$ denote a $Q$--vector.  We write
+
+$$
+\frac{\partial \mybold{f}}{\partial \zv^\trans}  = 
+\begin{pmatrix}
+\frac{\partial}{\partial \z_1} f_1(\z) & \ldots & 
+    \frac{\partial}{\partial \z_P} f_1(\zv) \\
+    & \vdots & \\
+\frac{\partial}{\partial \z_1} f_Q(\zv) & \ldots & 
+    \frac{\partial}{\partial \z_P} f_Q(\zv)
+\end{pmatrix}.
+$$
+
+That is, the partial $\partial \mybold{f} / \partial \zv^\trans$ is
+a $Q \times P$ matrix with components of $\mybold{f}$ in the rows
+and components of the derivative in the columns.  This matrix
+is called the "Jacobian matrix" of the function $\mybold{f}(\zv)$.
+
+Note that many authors omit the transpose in the denominator
+of the partial derivative, but I will try to do so to emphasize
+the dimension of the output.
+
+I will also sometimes write
+
+$$
+\frac{\partial \mybold{f}^\trans}{\partial \zv}
+=
+\left( 
+    \frac{\partial \mybold{f}}{\partial \zv^\trans}
+\right)^\trans.
+$$
+
+When $Q = 1$ and $f$ is a scalar, I will often write
+
+$$
+\frac{\partial f}{\partial \zv} = 
+\begin{pmatrix}
+\frac{\partial}{\partial \zv_1} f(\zv) \\
+    \vdots  \\
+    \frac{\partial}{\partial \zv_P} f(\zv)
+\end{pmatrix}.
+$$
+
+:::
+
+
+Recall a couple rules from vector calculus:
+
+$$
+\begin{align*}
+\frac{\partial}{\partial \zv} \zv^\trans \zv = 2 \zv
+\quad\textrm{and}\quad
+\frac{\partial}{\partial \zv^\trans} \mybold{A} \zv = \mybold{A}
+\quad\textrm{and}\quad
+\frac{\partial}{\partial \zv} f(\mybold{g}(\zv)) = 
+    \frac{\partial \mybold{g}^\trans}{\partial \zv} \frac{\partial f}{\partial \mybold{g}}
+     \quad
+    \textrm{($f$ is scalar-valued and $\mybold{g}$ is vector-valued)}
+\end{align*}
+$$
+
+::: {.callout-warning title='Exercise'} 
+Prove these results above using univariate derivatives and our stacking convention.
+:::
+
+
+By the chain rule, we then get
+
+
+$$
+\begin{align*}
+\frac{\partial}{\partial \bv} \resv^\trans \resv ={}&
+2 \frac{\partial \resv^\trans}{\partial \bv}  \resv  \\
+={}& 2 \frac{\partial (\Y - \X \bv)^\trans}{\partial \bv}  (\Y - \X \bv)  \\
+={}& -2 \X ^\trans (\Y - \X \bv) \\
+={}& -2 \X^\trans \Y + 2  \X^\trans \X \bv.
+\end{align*}
+$$
+
+Assuming our estimator $\bhat$ sets these partial derivatives are equal to zero, we then
+get
+
+$$
+\begin{align*}
+\X^\trans \X \bvhat ={}& \X^\trans \Y.
+\end{align*}
+$${#eq-ols-esteq}
+
+This is a set of $P$ equations in $P$ unknowns.  If it is not degenerate,
+one can solve for $\bvhat$.  That is, if the matrix $\X^\trans \X$ is invertible, then we
+can multiply both sides of @eq-ols-esteq by $(\X^\trans \X)^{-1}$
+to get
+
+$$
+\bvhat = (\X^\trans \X)^{-1} \X^\trans \Y
+$$
+
+
+::: {.callout-tip title='Notation'}  
+I will use $\onev$ to denote a vector full of ones.  Usually it
+will be a $P$--vector, but sometimes its dimension will just be
+implicit.  Similarly, $\zerov$ is a vector of zeros.
+:::
+
+Indeed, by plugging @eq-simple_matrix into @ols-est-eq, we get
+
+$$
+\X^\trans \X =
+\begin{pmatrix}
+1 & \ldots & 1 \\
+x_1 & \ldots & x_N \\
+\end{pmatrix}
+\begin{pmatrix}
+  1 & \x_{1}\\
+  \vdots & \vdots\\
+  1 & \x_{N}\\
+\end{pmatrix} =
+\begin{pmatrix}
+\onev^\trans \onev  & \onev^\trans \xv \\
+\xv^\trans \onev  & \xv^\trans \xv \\
+\end{pmatrix}
+=
+N
+\begin{pmatrix}
+1  & \overline{x} \\
+\overline{x}  & \overline{xx} \\
+\end{pmatrix} \\
+%
+$$
+
+and
+
+$$
+\X^\trans \Y =
+\begin{pmatrix}
+1 & \ldots & 1 \\
+x_1 & \ldots & x_N \\
+\end{pmatrix}
+\begin{pmatrix}
+  \y_{1}\\
+  \vdots\\
+  \y_{N}\\
+\end{pmatrix} =
+N
+\begin{pmatrix}
+\overline{y} \\
+\overline{xy}
+\end{pmatrix}.
+$$
+
+
+Canceling $N$ shows that @eq-ols-esteq is the same as @eq-simple-est-as-matrix.
+
+
+
+# What if the matrix is not invertible?
+
+I'll end with a short note on what happens with simmple
+linear regression if $\overline{xx} - \overline{x}^2 = 0$.
+Recall that if $\overline{xx} - \overline{x}^2 = 0$
+then the matrix in @eq-ols-esteq is not invertible.
+
+
+::: {.callout-warning title='Exercise'} 
+Prove that $\overline{xx} - \overline{x}^2 = 0$ 
+means $\x_n$ is a constant.  Hint: look at the sample
+variance of $\x_n$.
+:::
+
+For simplicity, let's take $\x_n = 1$.  In that case
+we can rewrite our estimating equation as
+
+$$
+\y_n = \beta_1 + \beta_2 \x_n + \res_n 
+     = (\beta_1 + \beta_2) + \res_n.
+$$
+
+Note that there are an infinite number of combinations
+$\beta_1$ and $\beta_2$ that give exactly the same regression
+line.  For example, if I take
+
+$$
+\beta_1' = \beta_1 - 5 
+\quad\textrm{and}\quad
+\beta_2' = \beta_2 + 5 
+$$
+
+then
+
+$$
+\y_n = (\beta_1 + \beta_2) + \res_n
+     = (\beta_1' + 5 + \beta_2' - 5) + \res_n
+     = (\beta_1' + \beta_2') + \res_n,
+$$
+
+even though $\beta_1 \ne \beta_1'$ and $\beta_2 \ne \beta_2'$.
+We cannot possibly hope to find a unique least squares
+solution --- even though the expressivity of the line
+we are able to fit is unchanged.
+
+In that case,
+
+$$
+\begin{align*}
+\overline{x} ={}& \meann 1 = 1 \\
+\overline{xx} ={}& \meann 1^2 = 1 \\
+\overline{xy} ={}& \meann 1 \y_n = \overline{y},
+\end{align*}
+$$
+
+and we see that our system of equations is
+
+$$
+\begin{pmatrix}
+1  & \overline{x} \\
+\overline{x} & \overline{xx} 
+\end{pmatrix} 
+\begin{pmatrix}
+\beta_1 \\ \beta_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+1  & 1 \\
+1 &  1 
+\end{pmatrix}
+\begin{pmatrix}
+\beta_1 \\ \beta_2
+\end{pmatrix}
+ = 
+\begin{pmatrix}
+\overline{y} \\ \overline{y}
+\end{pmatrix}
+$$
+
+The degeneracy we noticed before manifests in linear
+algebra form by noticing that
+
+$$
+\begin{pmatrix}
+1  & 1 \\
+1 &  1 
+\end{pmatrix}
+\begin{pmatrix}
+1 \\ -1
+\end{pmatrix}
+=
+\begin{pmatrix}
+1  -1 \\ 1 - 1
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 \\ 0
+\end{pmatrix}
+$$
+
+so that
+
+$$
+\begin{pmatrix}
+1  & 1 \\
+1  & 1 \\
+\end{pmatrix} 
+\begin{pmatrix}
+\beta_1 + 5\\ \beta_2 - 5
+\end{pmatrix}
+=
+\begin{pmatrix}
+1  & 1 \\
+1  & 1 \\
+\end{pmatrix} 
+\begin{pmatrix}
+\beta_1\\ \beta_2
+\end{pmatrix}
++ 5
+\begin{pmatrix}
+1  & 1 \\
+1  & 1 \\
+\end{pmatrix} 
+\begin{pmatrix}
+1\\ -1
+\end{pmatrix}
+=
+\begin{pmatrix}
+1  & 1 \\
+1  & 1 \\
+\end{pmatrix} 
+\begin{pmatrix}
+\beta_1\\ \beta_2
+\end{pmatrix}.
+$$
+
+In other words, the fact that the matrix $\X^\trans \X$
+maps a non-zero vector to zero results in the non-existence
+of the OLS solution.  This will turn out to be very general,
+and only one of the ways in which the structure of
+$\X^\trans \X$ will reveal a lot about the behavior
+of the OLS estimate and fit.
+
+
+
+
+
+
