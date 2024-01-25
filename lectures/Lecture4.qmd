@@ -250,26 +250,22 @@ subspace, and got an answer that depends on the basis we chose.
 What if we had chosen a different orthonormal basis, $\V$,
 which spans $\Sc$? Would we have gotten a different answer?
 
+
 It turns out, no.   To see this,
 write each $\uv_p = \V \av_p$ for some $\av_p$.  Stacking the
-$\av_p$, we can write $\U = \V \A$.  Similarly, there is a matrix
-$\A'$ such that $\V = \U \A'$.  Putting these together, we get
+$\av_p$, we can write $\U = \V \A$.
+
+We can then write
 
 $$
-%
 \begin{align*}
-\U = \V \A = \U \A' \A \Rightarrow \id_Q = \A' \A \Rightarrow \A' = \A^{-1}.
+\V^\trans \U ={}& \V^\trans \V \A = \A \\
+\U^\trans \U ={}& \id = \U^\trans \V \A \Rightarrow \\
+\A^{-1} ={}& \U^\trans \V = \left(\V^\trans \U \right)^\trans = \A^\trans.
 \end{align*}
-%
 $$
 
-Furthermore, using the fact that $\U$ and $\V$ are orthonormal,
-
-$$
-\A = \V^\trans \U \Rightarrow \A^{-1} = \U^{-1} (\V^\trans)^{-1} = \U^\trans \V = (\U \V^\trans)^\trans = \A^\trans,
-$$
-
-so $\A$ itself is orthonormal.  Combining these facts,
+So $\A$ itself is orthonormal.  Combining these facts,
 
 $$
 \U \U^\trans = \V \A \A^\trans \V^\trans = \V \V^\trans,
