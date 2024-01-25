@@ -8,7 +8,6 @@ sidebar: true
 
 - Lecture Jan 16th:
     - [Class organization](Lecture1.qmd)
-    - [Recording (available until Jan 23rd)](https://drive.google.com/file/d/14qaXQV4OscF420GquYG5VulYdvfNckL5/view?usp=sharing)
 
 - Lab Jan 17th:
     - [Style problem](lab1_student_version.Rmd)
@@ -27,7 +26,7 @@ sidebar: true
     - Linear algebra in R
 
 - Lecture Jan 25th:
-    - TBD
+    - [Lecture](Lecture4.qmd)
 
 ---
 

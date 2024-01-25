@@ -1,0 +1,573 @@
+---
+title: "Least squares as a projection."
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    include-before-body:
+     - file: ../macros.md
+---
+
+
+# Goals
+- Review / introduce some linear algebra
+  - Orthogonal bases
+  - Eigendecompositions
+  - Matrix square roots
+- Derive the OLS estimator from a geometric perspective
+  - Derive the form of projection operators
+    without using vector calculus
+  - Write the OLS estimator as a projection operator
+  - Briefly discuss some consequences of OLS as a projection
+
+
+# Recap
+
+Last lecture we derived the formula
+
+$$
+\X^\trans \X \bhat = \X^\trans \Y
+$$
+
+which, if $\X^\trans \X$ is inverible, gives
+
+$$
+\bhat = (\X^\trans \X)^{-1} \X^\trans \Y.
+$$
+
+We derived this formula by minimizing the squared error
+using multivariate calculus.  Today we'll do the same 
+thing using the perspective of orthogonal projection operators
+without using vector gradients at all.
+
+Doing so will both shed light on the optimization
+perspective, as well as review a lot of linear algebra concepts
+that will be useful in the remainder of the class.
+
+
+# Bases and spans
+
+When you first encounter linear algebra, you think of
+vectors as lists of numbers.  A more advanced and useful
+way to think of vectors as *linear combinations of basis functions*.
+
+For example, take a vector $\vv \in \rdom{3}$, and take the
+unit vectors $\ev_p$ containing a $1$ in the $p$--th location
+and zeros elsewhere.  We can write
+
+$$
+\vv = 
+\begin{pmatrix}
+\v_1 \\
+\v_2 \\
+\v_3
+\end{pmatrix} =
+\v_1 
+\begin{pmatrix}
+1 \\
+0 \\
+0
+\end{pmatrix} +
+\v_2
+\begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix} +
+\v_3 
+\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}
+=
+\v_1 \ev_1 + \v_2 \ev_2 + \v_3 \ev_3
+=
+\begin{pmatrix}
+\ev_1 & \ev_2 & \ev_3
+\end{pmatrix}
+\begin{pmatrix}
+\v_1 \\
+\v_2 \\
+\v_3
+\end{pmatrix},
+$$
+
+where the matrix in the final expression is $3 \times 3$, and is formed
+by stacking the basis vectors $\ev_p$ horizontally.  (In fact, this
+vector is the identity matrix, which accounts for the final expression.)
+
+In general, if we have $P$ orthonormal basis vectors $\u_p \in \rdom{P}$, which
+are stacked in a matrix
+
+$$
+\U = 
+\begin{pmatrix}
+\u_1 & \ldots & \u_P
+\end{pmatrix},
+$$
+
+then $\U^\trans \U = \id$, so $\U^\trans = \U^{-1}$, and we can 
+represent $\vv \in \rdom{P}$ as a linear combination of the $\u_p$
+by solving
+
+$$
+%
+\begin{align*}
+\vv ={}& \U \av  \Leftrightarrow \\
+\U^\trans \vv ={}& \U ^\trans \U \av  \Leftrightarrow \\
+\U^\trans \vv ={}& \av.
+\end{align*}
+%
+$$
+
+In other words, the cofficient of $\vv$ in front of $\uv_p$ is simply
+given by $\vv^\trans \uv_p$.
+
+The "span" of a set of all linear product of the vectors.  A set of
+$P$ vectors can span a space of dimension at most $P$.  The span
+of a set of vectors defines a "subspace".   In general, a subspace can have many different sets of vectors that span it,
+orthonormal, or not.
+
+Let $\Sc$ be a subspace spanned by orthonormal vectors
+$\uv_1, \ldots, \uv_Q$, all in $\rdom{P}$.  We cannot have $Q > P$,
+since there can be at most $P$ linearly independent vectors
+in $\rdom{P}$.  Correspondingly, when $Q < P$, there will be some vectors
+that do not lie in $\Sc$, since there do exist $P$ linearly independent
+vectors in $\rdom{P}$.  We can use the existence of such vectors
+to construct another subspace, $\Sc^\perp$, spanned by orthonormal
+vectors $\uv^\perp_1, \ldots, \uv^\perp_{P-Q}$, such that
+$(\uv^\perp_i) ^\trans \uv_j = 0$ for all $i$ and $j$. 
+We will collect the vectors $\uv^\perp_p$ as the column
+vectors of a matrix $\U^\perp$.  It follows that we can
+write any vector $vv \in \rdom{P}$ as
+
+$$
+\vv = \U \av + \U^\perp \av^\perp
+$$
+
+for some unique $\av$ and $\av^\perp$.
+
+# Projections
+
+Take a subsapce $\Sc$ of $\rdom{P}$ with dimension $Q < P$.
+We can define the projection of $\vv \in \rdom{P}$ into $\Sc$ as follows:
+
+$$
+\begin{align*}
+  \projop{\Sc} \vv = \argmin{\sv \in \Sc} \norm{\vv - \sv}_2^2
+                 = \argmin{\sv \in \Sc} \left(\vv - \sv \right)^\trans \left(\vv - \sv \right).
+\end{align*}
+$$
+
+(This is formally an "orthogonal projection," but we'll only be discussing
+orthogonal projections in this class, so to save space I'll just
+be saying "projection.")
+
+### A motivating aside
+
+To motivate this, we can notice that if we let
+$\Sc_\X$ denote the set of vectors spanned by the columns of
+$\X$, then any vector in $\Sc_\X$ can be written as
+
+$$
+\vv \in \Sc_\X = \X\beta
+$$
+
+for some $\beta$, and
+
+$$
+\projop{\Sc_\X} \Y = \betahat \X \textrm{ where }
+\betahat = \argmin{\beta} \norm{\Y - \X \beta}_2^2.
+$$
+
+Thus $\projop{\Sc_\X} \Y$ is precisely our least squares fit!
+Unfortunately, the columns of $\X$ are not orthonormal.  For
+now let's assume that we have an orthonormal basis for $\Sc$, and return
+to the problem of non-orthonormal bases later.
+
+### Back to assuming we have an orthonormal basis
+
+Since $\sv \in \Sc$, we can write it as a linear combination of the 
+orthonormal vectors $\u_p$:
+
+$$
+\sv = \U \av \quad\textrm{ for some } \av
+$$
+
+Similarly, we can write
+
+$$
+\begin{align*}
+\vv =& \U \alphav + \U^\perp \alphav^\perp
+\textrm{ where } \alpha_p = \u_p^\trans \vv
+\textrm{ and } \alpha^\perp_p = (\u^\perp_p)^\trans \vv,\\
+\textrm{i.e. } \alphav =& \U^\trans \vv
+\textrm{ and } \alphav^\perp = (\U^\perp)^\trans \vv.
+\end{align*}
+$$
+
+
+Putting these into the projection, we see that the quantity to be
+minimized can be written as a function of $\av$, and that
+
+$$
+\begin{align*}
+    \argmin{\av} \norm{\U \alphav + \U^\perp \alphav^\perp -  \U \av}_2^2 
+    ={}&
+    \argmin{\av} \norm{\U (\alphav - \av) + \U^\perp \alphav^\perp}_2^2
+    \\={}&
+    \argmin{\av} \left( 
+      (\alphav - \av)^\trans \U^\trans \U (\alphav - \av) +
+      (\alphav^\perp)^\trans (\U^\perp)^\trans \U^\perp \alphav^\perp +
+      2 (\alphav - \av)^\trans \U^\trans \U^\perp \alphav^\perp
+    \right)
+    \\={}&
+    \argmin{\av} \left( 
+      \norm{\alphav - \av}_2^2 + \norm{\alphav^\perp}_2^2
+    \right).
+\end{align*}
+$$
+
+The minimum is achieved at
+
+$$
+\av = \alphav = \U^\trans \vv,
+$$
+so
+$$
+  \projop{\Sc} \vv = \U \av = \U \U^\trans \vv.
+$$
+
+It doesn't seem like we did much!  We simply showed that the closest
+vector to $\vv$ in a subspace $\Sc$ is given by its projection onto
+an orthonormal basis of $\Sc$.
+
+## Projection basis invariance
+
+Something suspicious has happened, though --- we started with a
+subspace, and got an answer that depends on the basis we chose.
+What if we had chosen a different orthonormal basis, $\V$,
+which spans $\Sc$? Would we have gotten a different answer?
+
+It turns out, no.   To see this,
+write each $\uv_p = \V \av_p$ for some $\av_p$.  Stacking the
+$\av_p$, we can write $\U = \V \A$.  Similarly, there is a matrix
+$\A'$ such that $\V = \U \A'$.  Putting these together, we get
+
+$$
+%
+\begin{align*}
+\U = \V \A = \U \A' \A \Rightarrow \id_Q = \A' \A \Rightarrow \A' = \A^{-1}.
+\end{align*}
+%
+$$
+
+Furthermore, using the fact that $\U$ and $\V$ are orthonormal,
+
+$$
+\A = \V^\trans \U \Rightarrow \A^{-1} = \U^{-1} (\V^\trans)^{-1} = \U^\trans \V = (\U \V^\trans)^\trans = \A^\trans,
+$$
+
+so $\A$ itself is orthonormal.  Combining these facts,
+
+$$
+\U \U^\trans = \V \A \A^\trans \V^\trans = \V \V^\trans,
+$$
+
+and the projection operator does not depend on the orthonormal basis we choose.  
+We can thus safely define the "projection matrix"
+
+$$
+\proj{\Sc} := \U \U^\trans,
+$$
+
+such that
+
+$$
+\projop{Sc} \vv = \proj{\Sc} \vv,
+$$
+
+and where $\U$ is a matrix whose columns are any orthonormal basis of $\Sc$.
+
+
+
+## Some properties of projection matrices
+
+The projection matrix has some special properties that are worth mentioning.
+
+
+- First, if $\vv \in \Sc$, then $\proj{\Sc}\vv = \vv$
+  Similarly, $\proj{\Sc} \vv = 0$ is $\vv \in \Sc^\perp$.
+
+- Second, $\proj{\Sc}$ is symmetric, since $\U \U^\trans = (\U \U^\trans)^\trans$.
+
+- Third, $\proj{\Sc}$ is "idempotent", meaning $\proj{\Sc} = \proj{\Sc} \proj{\Sc}$.
+
+::: {.callout-warning title='Exercise'} 
+Prove these results.
+:::
+
+These properties say that $\proj{\Sc}$ has a special eigenstructure.  
+Consider a square, symmetric matrix $\A$.  The vector $\vv$ is an
+eigenvector of $\A$ with eigenvalue $\lambda$ if
+
+$$
+\A \vv = \lambda \vv.
+$$
+
+That is, $\A$ maps $\vv$ onto a scaled version of itself.  The final
+property constrains the possible values of the eigenvalues of $\proj{\Sc}$.
+Let $\vv$ and $\lambda$ denote an eigenvector and eigenvalue of $\proj{\Sc}$,
+then
+
+$$
+\lambda \vv = \proj{\Sc} \vv =  \proj{\Sc} \ldots \proj{\Sc} \vv = \lambda^k \vv.
+$$
+
+Therefore we need $\lambda^k = \lambda$ for any $k$!  Only two values
+are possible: $\lambda \in \{ 0, 1\}$.  And we know that, for any basis
+vectors $\av \in \Sc$ and $\av^\perp \in \Sc^\perp$,
+
+$$
+\proj{\Sc} \av = \av \quad\textrm{and}\quad \proj{\Sc} \av^\perp = 0,
+$$
+
+so the eigenvectors are precisely any vectors lying entirely in 
+either $\Sc$ or $\Sc^\perp$.
+
+Finally, given a projection matrix, we can form the orthogonal
+projection matrix by simply subtracting from the identity:
+
+$$
+\proj{\Sc^\perp} = \id - \proj{\Sc}.
+$$
+
+
+## Square roots and inverses via eigendecomposition
+
+The projection matrix was in terms of orthogonal bases.  However,
+we would like it for spaces spanned by a generic, non-orthonormal
+set of vectors to solve our least squares problem.  To bridge
+the gap, we can construct a linear operator that converts
+a set of vectors to an orthogonal basis.
+
+First, recall that a square, symmetric $P \times P$ matrix $\A$ can
+always be written in the form
+
+$$
+\begin{align*}
+\A &= \U \Lambda \U^\trans
+\quad\textrm{where}\quad \\
+\U^\trans\U &= \id \textrm{ ($\U$ is orthogonal) and }\\
+\Lammat &= 
+\begin{pmatrix}
+\lambda_1 & 0  & \ldots & 0 \\
+0 & \lambda_2 & 0\ldots & 0 \\
+\vdots &  & \ddots & \vdots \\
+0 & 0 & \ldots 0 & \lambda_P  \\
+\end{pmatrix}
+\textrm{ is diagonal.}
+\end{align*}
+$$
+
+
+::: {.callout-warning title='Exercise'} 
+Prove that the columns of $\U$ are the eigenvectors, and the $\lambda_p$ are the
+corresponding eigenvalues.  
+:::
+
+A matrix is called "positive definite" if the eigenvalues are
+all strictly positive, and positive semi-definite if they
+are all non-zero.  
+
+::: {.callout-warning title='Exercise'} 
+Prove that positive definiteness is equivalent to $\vv^\trans \A \vv > 0$,
+and semi-definiteness to $\vv^\trans \A \vv \ge 0$.
+:::
+
+::: {.callout-warning title='Exercise'} 
+Prove that if $\A$ is of the form
+$\A = \Q^\trans \Q$ for some $\Q$, then $\A$ is positive semi-definite.
+:::
+
+Note that $\A$ is invertible if and only if its eigenvalues
+are non-zero.  To see that nonzero eigenvalues are sufficient,
+we can write $\A^{-1} = \U \Lambda^{-1} \U^\trans$.
+
+::: {.callout-warning title='Exercise'} 
+Verify that $\A^{-1}$ so defined is an inverse.
+:::
+
+::: {.callout-warning title='Exercise'} 
+Prove that, if some $\lambda_p = 0$, then $\A$
+is not invertible.
+:::
+
+From the eigendecomposition, one can define the *square root* of
+a symmetric positive semit-definite matrix $\A$: that is,
+a matrix $\A^{1/2}$ such that $(\A^{1/2})^\trans \A^{1/2} = \A$.
+First, define
+
+$$
+\Lammat^{1/2} := 
+\begin{pmatrix}
+\sqrt{\lambda_1} & 0  & \ldots & 0 \\
+0 & \sqrt{\lambda_2} & 0\ldots & 0 \\
+\vdots &  & \ddots & \vdots \\
+0 & 0 & \ldots 0 & \sqrt{\lambda_P}  \\
+\end{pmatrix}.
+$$
+
+Then $\U \Lammat^{1/2} \U^\trans$ is a square root of $\A$.
+Matrix square roots are not unique, but that will not matter ---
+all that matters is that symmetric positive semi-definite matrices
+always have a square root.  However, when I write $\A^{1/2}$,
+I will refer to the symmetric square root given in the formula above.
+
+Further $\A^{1/2}$ itself is invertible if and only if
+$\A$ is invertible.
+
+
+::: {.callout-warning title='Exercise'} 
+Prove that $\A^{1/2}$ so defined is a square root.
+:::
+
+::: {.callout-warning title='Exercise'} 
+Find a different matrix than the one given above that is also a square root.
+:::
+
+::: {.callout-warning title='Exercise'} 
+Prove that any square root $\A^{1/2}$ is invertible.
+:::
+
+
+## Matrix square roots for orthonormalization
+
+In our case, recall that we want to find an orthonormal
+basis of the column span of $\X$.  Let us 
+assume that $\X$ has full column rank.  Observe that
+
+1) $\X^\trans \X$ is symmetric and positive definite.
+2) $\Rightarrow$ We can form the inverse square root $(\X^\trans \X)^{-1/2}$.
+3) $\Rightarrow$ We can define $\U := \X (\X^\trans \X)^{-1/2}$.
+
+Then
+
+1) $\U$ is orthonormal and
+2) $\U$ has the same column span as $\X$.
+
+Effectively we have produced an orthonormal basis for $\X$.
+
+::: {.callout-warning title='Exercise'} 
+Prove that $\U$ is orthonormal and $\U$ has the same column span as $\X$.
+:::
+
+
+Note that right multiplying $\X$ effectively transforms each
+row of $\X$ --- that is, the regressor $\x_n$ --- into
+a new regressor $\z_n = (\X^\trans \X)^{-1/2} \z_n$
+which has an identity covariance matrix.
+
+Using our orthonormal basis, we can write the projection matrix as
+
+$$
+\proj{\Sc_\X} = \U \U^\trans = 
+\X (\X^\trans \X)^{-1/2} (\X^\trans \X)^{-1/2} \X^\trans =
+\X (\X^\trans \X)^{-1} \X^\trans.
+$$
+
+
+::: {.callout-warning title='Exercise'} 
+Check directly that any vector that
+can be written in the form $\vv = \X \beta$ satisfies
+$\vv = \proj{\Sc_\X} \vv$, and that any $\vv \in \Sc_\X^\perp$
+satisfies $\proj{\Sc_\X} \vv = \zerov$.  
+
+One might simply begin with the above formula
+and verify that it acts as a projection directly.  However,
+doing so may seem mysterious or somehow lucky.  Bulding
+the projection up as we have done shows where it comes from.
+:::
+
+
+
+Finally, we have derived the projection operator onto
+the span of $\X$:
+
+$$
+\begin{align*}
+\proj{\Sc_\X} \Y ={}& \X (\X^\trans \X)^{-1} \X^\trans \Y 
+     ={} \X \betahat \quad\textrm{where}\\
+     \betahat ={}& (\X^\trans \X)^{-1} \X^\trans \Y.
+\end{align*}
+$$
+
+We give this fitted vector a special name:
+
+$$
+\Yhat := \proj{\Sc_\X} \Y = \X \betahat.
+$$
+
+Additionally, we have that the fitted residuals are given by
+
+$$
+\resvhat = \Y - \X \betahat = \id \Y - \proj{\Sc_\X} \Y 
+  = (\id - \proj{\Sc_\X})\Y = \proj{\Sc_\X^\perp} \Y.
+$$
+
+Note that $\Y = \Yhat + \resvhat = (\proj{\Sc_\X}  + \proj{\Sc_\X^\perp}) \Y$.
+Also, our squared error loss is given by
+$\norm{\resvhat}_2^2 = \norm{\proj{\Sc_\X^\perp} \Y}_2^2$, the squared
+magnitude of the component of $\Y$ not lying in $\X$.
+
+
+## Some facts that follow from this
+
+From the projection form of least squares, we can immediately
+see some facts that may not be obvious from the minimization perspective.
+
+
+#### The residuals sum to zero if and only if $\onev \in \Sc_\X$.
+
+It is often thought that the residuals of OLS have zero mean,
+but this can actually be seen to follow from including
+a constant term.  In particular,
+
+$$
+\meann \reshat_n = \frac{1}{N} \resvhat^\trans \onev = \frac{1}{N} \proj{\Sc_\X^\perp} \onev.
+$$
+
+And $\onev \in \Sc_\X$ if and only if $\proj{\Sc_\X^\perp} \onev = 0$.  Of course
+it suffices to have $\onev$ as a column of $\X$, but $\onev \in \Sc_\X$
+whenever any linear combination of regressors is a constant.  
+
+A common example is the one-hot encoding for a class.  Suppose
+each observation $n$ is in exactly one of $K$ groups, and we set $\x_{nk} = 1$ if
+observation $n$ is in group $k$, and $\x_{nk} = 0$ otherwise.  Since
+each observation is in exactly one group,  $\sum_{k=1}^K \x_{nk} = 1$, and
+$\onev \in \Sc_\X$, and $\meann \res_n = 0$.
+
+
+#### Invertible linear transformations leave the fit unchanged
+
+Suppose someone suggests trying to get a better least
+squares fit by regression on $\z_n = \A \x_n$ rather 
+than $\x_n$, where $\A$ is invertible.  Since the columns of
+$\Z = \X \A^\trans$ are simply linear combinations of
+the columns of $\X$, the column span is the same, and both
+$\Yhat$ and $\resvhat$ are unchanged.  (Note that the
+coefficients will change, however, since we are forming
+linear combinations of a different basis!)
+
+
+#### More regressors can only make the sum of squares smaller
+
+When we include an additional regressor, we can only increase
+the column span of $\Sc_\X$, and so only decrease
+the squared error $\norm{\resvhat}_2^2$.
+
+(This fact is also easy to see from the optimization perspective,
+since minimizing over a more expressive class can never increase
+the optimal error.)
+

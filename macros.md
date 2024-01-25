@@ -6,6 +6,9 @@ $$
 \newcommand{\bbz}{\mathbb{Z}}
 \newcommand{\bbc}{\mathbb{C}}
 
+\newcommand{\argmin}[1]{\underset{#1}{\mathrm{argmin}}\,}
+\newcommand{\projop}[1]{\underset{#1}{\mathrm{Proj}}\,}
+\newcommand{\proj}[1]{\underset{#1}{\mybold{P}}}
 \newcommand{\expect}[2]{\underset{#1}{\mathbb{E}}\left[#2\right]}
 \newcommand{\prob}[2]{\underset{#1}{\mathbb{P}}\left(#2\right)}
 \newcommand{\var}[2]{\underset{#1}{\mathrm{Var}}\left(#2\right)}
@@ -35,20 +38,22 @@ $$
 \newcommand{\Yhat}{\hat{\Y}}
 \newcommand{\y}{y}
 \newcommand{\yv}{\mybold{y}}
-\newcommand{\yhat}{\hat{\y}}
+\newcommand{\yhat}{\hat{\y}}begin
 \newcommand{\ybar}{\bar{y}}
 
 \newcommand{\res}{\varepsilon}
 \newcommand{\resv}{\mybold{\res}}
+\newcommand{\resvhat}{\hat{\mybold{\res}}}
 \newcommand{\reshat}{\hat{\res}}
 
 \newcommand{\bv}{\mybold{\beta}}
 \newcommand{\bvhat}{\hat{\bv}}
 \newcommand{\bhat}{\hat{\beta}}
+\newcommand{\betahat}{\hat{\beta}}
 
-\newcommand{\av}{\mybold{\alpha}}
-\newcommand{\avhat}{\hat{\av}}
-\newcommand{\ahat}{\hat{\alpha}}
+\newcommand{\alphav}{\mybold{\alpha}}
+\newcommand{\alphavhat}{\hat{\av}}
+\newcommand{\alphahat}{\hat{\alpha}}
 
 \newcommand{\gv}{\mybold{\gamma}}
 \newcommand{\gvhat}{\hat{\gv}}
@@ -60,9 +65,35 @@ $$
 \newcommand{\id}{\mybold{I}}
 
 
+\newcommand{\rdom}[1]{\mathbb{R}^{#1}}
+
 \def\A{\mybold{A}}
 \def\av{\mybold{a}}
+\def\a{a}
+
+\def\A{\mybold{A}}
+
+
+\def\S{\mybold{S}}
+\def\sv{\mybold{s}}
+\def\s{s}
+
+\def\R{\mybold{R}}
+\def\rv{\mybold{r}}
+\def\r{r}
 
 \def\V{\mybold{V}}
 \def\vv{\mybold{v}}
+\def\v{v}
+
+\def\U{\mybold{U}}
+\def\uv{\mybold{u}}
+\def\u{u}
+
+\def\Sc{\mathcal{S}}
+\def\ev{\mybold{e}}
+
+\def\Lammat{\mybold{\Lambda}}
+
+
 $$

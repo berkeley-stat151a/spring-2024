@@ -1,200 +1,170 @@
 - days:
   - date: Jan 16
     items:
-    - href: ./lectures/Lecture1.qmd
-      id: 1
+    - id: 1
       name: Why study linear models?  Class goals and organization.
       type: Lecture
   - date: Jan 17
     items:
-    - href: ./labs/Lab1.qmd
-      id: 1
+    - id: 1
       name: R basics.  Loading data, making plots, style best practices
       type: Lab
   - date: Jan 18
     items:
-    - href: ./lectures/Lecture2.qmd
-      id: 2
+    - id: 2
       name: Simple regression as EDA, prediction, and inference
       type: Lecture
   week: 1
 - days:
   - date: Jan 23
     items:
-    - href: ./lectures/Lecture3.qmd
-      id: 3
+    - id: 3
       name: Linear algebra review.  Matrix inverses, square roots, projections
       type: Lecture
   - date: Jan 24
     items:
-    - href: ./labs/Lab2.qmd
-      id: 2
-      name: Simulating data.  Matrix square roots.
+    - id: 2
+      name: Linear algebra in R.
       type: Lab
   - date: Jan 25
     items:
-    - href: ./lectures/Lecture4.qmd
-      id: 4
+    - id: 4
       name: Probability review.  Consistency, unbiasedness, CLT
       type: Lecture
   week: 2
 - days:
   - date: Jan 30
     items:
-    - href: ./lectures/Lecture5.qmd
-      id: 5
+    - id: 5
       name: 'Multivariate regression as empirical risk minimization.  '
       type: Lecture
   - date: Jan 31
     items:
-    - href: ./labs/Lab3.qmd
-      id: 3
-      name: Train and test error as number of regressors increases
+    - id: 3
+      name: TBD
       type: Lab
   - date: Feb 1
     items:
-    - href: ./lectures/Lecture6.qmd
-      id: 6
+    - id: 6
       name: Train / test split and out of sample error
       type: Lecture
   week: 3
 - days:
   - date: Feb 6
     items:
-    - href: ./lectures/Lecture7.qmd
-      id: 7
+    - id: 7
       name: Multivariate regression as maximum likelihood estimation
       type: Lecture
   - date: Feb 7
     items:
-    - href: ./labs/Lab4.qmd
-      id: 4
-      name: Optimziation
+    - id: 4
+      name: TBD
       type: Lab
   - date: Feb 8
     items:
-    - href: ./lectures/Lecture8.qmd
-      id: 8
+    - id: 8
       name: Analysis of variance
       type: Lecture
   week: 4
 - days:
   - date: Feb 13
     items:
-    - href: ./lectures/Lecture9.qmd
-      id: 9
+    - id: 9
       name: Frequentist inference.  Level, power, testing, and confidence intervals
       type: Lecture
   - date: Feb 14
     items:
-    - href: ./labs/Lab5.qmd
-      id: 5
-      name: Bootstrapping
+    - id: 5
+      name: TBD
       type: Lab
   - date: Feb 15
     items:
-    - href: ./lectures/Lecture10.qmd
-      id: 10
+    - id: 10
       name: Grouping data in the bootstrap
       type: Lecture
   week: 5
 - days:
   - date: Feb 20
     items:
-    - href: ./lectures/Lecture11.qmd
-      id: 11
+    - id: 11
       name: Asymptotics of empirical risk minimization.  Sandwich covariance
       type: Lecture
   - date: Feb 21
     items:
-    - href: ./labs/Lab6.qmd
-      id: 6
-      name: Conformal inference
+    - id: 6
+      name: TBD
       type: Lab
   - date: Feb 22
     items:
-    - href: ./lectures/Lecture12.qmd
-      id: 12
+    - id: 12
       name: Calibration and conformal inference for prediction
       type: Lecture
   week: 6
 - days:
   - date: Feb 27
     items:
-    - href: ./lectures/Lecture13.qmd
-      id: 13
+    - id: 13
       name: 'How regression fails: Omitted variables, endogeneity'
       type: Lecture
   - date: Feb 28
     items:
-    - href: ./labs/Lab7.qmd
-      id: 7
+    - id: 7
       name: TBD
       type: Lab
   - date: Feb 29
     items:
-    - href: ./lectures/Lecture14.qmd
-      id: 14
+    - id: 14
       name: "How regression fails: Domain changes, Simpson\u2019s paradox"
       type: Lecture
   week: 7
 - days:
   - date: Mar 5
     items:
-    - href: ./lectures/Lecture15.qmd
-      id: 15
+    - id: 15
       name: 'How regression fails: Outliers and leverage'
       type: Lecture
   - date: Mar 6
     items:
-    - href: ./labs/Lab8.qmd
-      id: 8
+    - id: 8
       name: TBD
       type: Lab
   - date: Mar 7
     items:
-    - href: ./lectures/Lecture16.qmd
-      id: 16
+    - id: 16
       name: 'How regression fails: Model reification'
       type: Lecture
   week: 8
 - days:
   - date: Mar 12
     items:
-    - href: ./lectures/Lecture17.qmd
-      id: 17
+    - id: 17
       name: Binary regression for prediction
       type: Lecture
   - date: Mar 13
     items:
-    - href: ./labs/Lab9.qmd
-      id: 9
-      name: Fitting regressions with rstanarm
+    - id: 9
+      name: TBD
       type: Lab
   - date: Mar 14
     items:
-    - href: ./lectures/Lecture18.qmd
-      id: 18
+    - id: 18
       name: Binary regression for inference
       type: Lecture
   week: 9
 - days:
   - date: Mar 19
     items:
-    - href: ./lectures/Lecture19.qmd
-      id: 19
+    - id: 19
       name: 'Bayesian inference: multivariate normal'
       type: Lecture
   - date: Mar 20
     items:
-    - href: ./labs/Lab10.qmd
-      id: 10
-      name: Inference failure for variable selection
+    - id: 10
+      name: TBD
       type: Lab
   - date: Mar 21
     items:
-    - href: ./lectures/Lecture20.qmd
-      id: 20
+    - id: 20
       name: 'Bayesian inference: regression and shrinkage'
       type: Lecture
   week: 10
@@ -207,60 +177,51 @@
 - days:
   - date: Apr 2
     items:
-    - href: ./lectures/Lecture21.qmd
-      id: 21
+    - id: 21
       name: 'Variable selection: collinearity and shrinkage'
       type: Lecture
   - date: Apr 3
     items:
-    - href: ./labs/Lab11.qmd
-      id: 11
-      name: Using lme4
+    - id: 11
+      name: TBD
       type: Lab
   - date: Apr 4
     items:
-    - href: ./lectures/Lecture22.qmd
-      id: 22
+    - id: 22
       name: 'Variable selection: LASSO and post-selection inference'
       type: Lecture
   week: 12
 - days:
   - date: Apr 9
     items:
-    - href: ./lectures/Lecture23.qmd
-      id: 23
+    - id: 23
       name: Random effects and hierarchical modeling
       type: Lecture
   - date: Apr 10
     items:
-    - href: ./labs/Lab12.qmd
-      id: 12
+    - id: 12
       name: Project office hours
       type: Lab
   - date: Apr 11
     items:
-    - href: ./lectures/Lecture24.qmd
-      id: 24
+    - id: 24
       name: Random effects and hierarchical modeling
       type: Lecture
   week: 13
 - days:
   - date: Apr 16
     items:
-    - href: ./lectures/Lecture25.qmd
-      id: 25
+    - id: 25
       name: 'Basis expansions: Bias and variance'
       type: Lecture
   - date: Apr 17
     items:
-    - href: ./labs/Lab13.qmd
-      id: 13
+    - id: 13
       name: TBD
       type: Lab
   - date: Apr 18
     items:
-    - href: ./lectures/Lecture26.qmd
-      id: 26
+    - id: 26
       name: 'Basis expansions: Interpolation and double descent'
       type: Lecture
   week: 14

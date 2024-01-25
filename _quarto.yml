@@ -17,7 +17,7 @@ website:
         href: https://github.com/berkeley-stat151a/spring-2024
     contents:
       - href: index.qmd
-        text: Home / Schedule
+        text: Home
       - href: course_policies.qmd
         text: Course Policies
       - href: lectures/lectures.qmd
