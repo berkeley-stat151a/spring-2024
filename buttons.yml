@@ -7,3 +7,6 @@
 - button: BCourses
   link: https://bcourses.berkeley.edu
   color: "#7F0FFF"
+- button: ED
+  link: https://edstem.org/us/courses/54962/discussion/
+  color: "#FF007F"
