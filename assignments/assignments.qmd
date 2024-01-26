@@ -9,3 +9,7 @@ sidebar: true
 - Due Jan 26th:
     - [Homework 1 (math component)](hw1_math.qmd)
     - [Homework 1 (code component)](hw1_code.qmd)
+
+- Due Feb 9th:
+    - [Homework 2 (math component)](hw2_math.qmd)
+    - [Homework 2 (code component)](hw2_code.qmd)

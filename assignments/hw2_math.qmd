@@ -1,0 +1,150 @@
+---
+title: "STAT151A Homework 2: Due February 9th"
+author: Your name here
+number-sections: true 
+number-depth: 1 
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    include-before-body:
+     - file: ../macros.md
+---
+
+
+
+# Transformation of variables
+
+Consider two different regressions, $\Y \sim \X \bv$ and $\Y \sim \Z \alphav$,
+with the same $\Y$, where $\X$ and $\Z$ are both $N \times P$ and are both full-rank.
+
+#### (a)
+
+Suppose $\x_n = \A \z_n$ for an invertible $\A$ and for all $n = 1,\ldots,N$.  Find an expression for
+$\alphahat$ in terms of $\betahat$ that does explicitly use $\Y$, $\X$, or $\Z$.
+
+
+#### (b)
+
+Suppose that, for all $n=1,\ldots,N$, $\x_n = f(\z_n)$ for some invertible but non-linear 
+function $f(\cdot)$. In general, can you find an expression for
+$\alphahat$ in terms of $\betahat$ that does not explicitly use $\Y$, $\X$, or $\Z$?  Prove
+why or why not. (To prove not a single counterexample is enough.)
+
+
+#### (c)
+
+Now consider only the regression $\Y \sim \X \bv$, but suppose we are not
+interested in $\bv$, but rather some other $\gv = \phi(\bv)$, where
+$\phi$ is an invertible function.  Prove that the least squares
+estimator of $\gv$ is given by $\gvhat = \phi(\bvhat)$.
+
+#### (d)
+
+Prove that result (a) is special cases of the result (c).
+(Hint: find the corresponding $\phi$.)
+
+
+
+
+
+# Spaces of possible estimators.
+
+Consider the simple linear model
+$\y_n = \beta_0 + \beta_1 \z_n + \res_n$.  Assume that
+$\meann \z_n \ne 0$.
+
+
+#### (a)
+
+Fix $\beta_0 = \meann \y_n$ and find a value of
+$\beta_0$ such that $\meann\res_n = 0$. How
+does your answer depend on whether or not $\meann z_n = 0$?
+
+#### (b)
+
+Fix $\beta_1 = 10,000,000$ and find a value of $\beta_0$ such that
+$\meann\res_n = 0$.
+
+
+#### (c)
+
+In general, how many different choices of $\beta_0$ and $\beta_1$ can
+you find that satisfy $\meann\res_n = 0$?  Are all of them reasonable?
+Are any of them reasonable?
+
+#### (d)
+
+Find an $N$--dimensional vector $\vv$ such that 
+$$
+\meann \res_n = 0 \quad\Leftrightarrow\quad \vv^\trans\resv = \zerov.
+$$
+
+#### (e)
+
+Suppose I give you a general $N$--dimensional vector $\vv$ and a scalar
+$a$.  How  many different choices of $\beta_0$ and $\beta_1$ can you find
+such that $\vv^\trans \resv = a$?
+
+#### (f)
+
+Suppose I give you two different vectors, $\vv_1$ and $\vv_2$.  Under what circumstances
+can you find $\beta_0$ and $\beta_1$  such that
+
+$$
+\begin{align}
+\vv_1^\trans \resv = \zerov
+\quad\textrm{and}\quad
+\vv_2^\trans \resv = \zerov?
+\end{align}
+$$
+
+When are there infinitely many solutions?  When is there only one solution?
+(Hint: what if $\vv_1^\trans \onev = \vv_2^\trans \onev = 0$?)
+
+#### (g)
+
+Now, consider the general linear model $\Y = \X \bv + \res$.
+Prove that there always exists $\bv$ and $\res$ so that the
+$\Y = \X \bv + \res$.
+
+
+#### (h)
+
+Suppose, for the general linear model, that the matrix $\X$
+is full-rank (that is, of rank $P$, where $P$ is the number of
+columns of $\X$).  Suppose I give you a $N \times D$ matrix
+$\V$, and ask you to find $\bv$ such that $\V^\trans \resv = \zerov$.
+Under what circumstances are there no solutions?  A single
+solution?  An infinite set of solutions?  (Hint: you
+already answered this question for $P = 2$, now you just
+need to state the result in matrix form.)
+
+
+
+# Collinear regressors
+
+Suppose that $\X$ does not have full column rank --- that is, $\X$
+has rank $Q < P$.
+
+#### (a)
+
+How many solutions $\betahat$ are there to the least-squares problem
+$$
+\betahat := \argmin{\beta} \norm{\Y - \X \beta}_2^2?
+$$
+
+#### (b)
+
+Relate the solutions $\betahat$ from part (a) to the eigenvectors of $\X^\trans \X$.
+Among the solutions, identify the one with the smallest norm, $\norm{\betahat}_2^2$.
+
+#### (c)
+
+Suppose that $\X'$ is a full column-rank $N \times Q$ matrix with the
+same column span as $\X$, and let $\gammahat$ be the OLS estimator
+for the regression $\Y \sim \X'\gamma$.  Compare the fits
+$\Yhat = \X\betahat$ and $\Yhat' = \X' \gammahat$, and compare the
+sum of squared residuals for the two regressions.  
+
+

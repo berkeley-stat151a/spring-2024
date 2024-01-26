@@ -6,7 +6,7 @@ project:
     - "*.ejs"
     - "*.qmd"
     - "*.ipynb"
-    - "!PreWebsiteFiles/"
+    - "!sandbox/"
 
 website:
   sidebar:

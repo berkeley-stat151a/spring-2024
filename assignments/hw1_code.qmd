@@ -1,5 +1,5 @@
 ---
-title: "STAT151A Lab 1: Due January 26th"
+title: "STAT151A Code homework 1: Due January 26th"
 author: Your name here
 date: "2024-01-16"
 number-sections: true 

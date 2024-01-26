@@ -1,0 +1,116 @@
+---
+title: "STAT151A Code homework 2: Due February 9th"
+author: Your name here
+date: "2024-01-25"
+number-sections: true 
+number-depth: 1 
+---
+
+In this homework, you'll implement some linear algebra ideas in `R`.
+
+For each problem, provide a solution in the form of a function,
+and then test it using following provided functions:
+
+
+```r
+# Check whether matrix `x` == `y` for all entries,
+# up to the tolerance `tol`.  If not, an error is raised.
+AssertMatricesEqual <- function(x, y, tol=1e-9) {
+  if (!(all(dim(x) == dim(y)))) {
+    stop("The dimensions do not match.")
+  }
+  err <- max(abs(x - y))
+  if (err > tol) {
+    stop(sprintf("The error %f is greater than the tolerance.", err))
+  }
+}
+
+
+# Generate an `nrow` x `ncol` matrix with random standard normal entries.
+GenerateMatrix <- function(nrow, ncol) {
+  return(rnorm(nrow * ncol) %>% matrix(nrow, ncol))
+}
+```
+
+For example,
+
+```r
+# Should fail --- the matrices have the wrong dimension.
+AssertMatricesEqual(GenerateMatrix(3, 3), GenerateMatrix(4, 3))
+
+# Should fail --- the matrices are not equal.
+A <- GenerateMatrix(3, 3)
+AssertMatricesEqual(GenerateMatrix(3, 3), A + 5)
+
+# Should pass
+AssertMatricesEqual(A, A)
+```
+
+
+
+1)
+    Starting from `GenerateMatrix()`, write a function that generates a random
+    symmetric matrix.
+
+1)
+    Starting from `AssertMatricesEqual()`, write a function that checks whether a 
+    matrix is symmetric.
+
+1)
+    Starting from `GenerateMatrix()`, 
+    write a function to generate a random symmetric positive semi-definite matrix
+    of a given size.
+
+1)
+    Starting from `GenerateMatrix()`,
+    write a function to generate a random symmetric positive definite matrix
+    of a given size whose smallest eigenvalue is greater than one.
+    (Hint: you can add something to your previous solution.)
+
+1)
+    Write a function that takes in a symmetric PSD matrix and returns
+    an inverse computed from the eigendecomposition.  You may use `eigen()`.
+
+1)
+    Write a function that takes in a symmetric PSD matrix and returns
+    a square root computed from the eigen-decomposition.  You may use `eigen()`.
+
+1)
+    Write a function that takes in a symmetric PSD matrix and returns
+    a (possibly non-symmetric) square root computed from the cholesky 
+    decomposition.  You may use `chol()`.
+
+1)
+    Write a function that takes in a potentially non-square matrix and returns
+    a projection matrix onto the column span.
+
+1)
+    Write a function that takes in a potentially non-square matrix and returns
+    a projection matrix onto the row span.
+
+1)
+    Write a function that takes in a potentially non-square matrix and returns
+    a projection matrix onto the orthogonal complement of the column span.
+
+1)
+    Write a function that takes in a potentially non-square matrix and
+    returns an orthonormal basis for its column span.
+
+1)
+    Write a function that takes in a covariance matrix and returns a
+    draw from the multivariate normal distribution with mean zero and the
+    given covariance matrix.  You may use only `rnorm(n, mean=0, sd=1)` to generate
+    random variables.
+    Verify that you have succeeded using Monte Carlo draws
+    and `AssertMatricesEqual()` with an appropriate tolerance.
+
+
+
+
+
+
+
+
+
+
+
