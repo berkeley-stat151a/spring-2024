@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Your name here">
+
+<title>STAT151A Homework 2: Due February 9th</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">STAT151A Homework 2: Due February 9th</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../stat_bear.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main">
+    <a href="https://github.com/berkeley-stat151a/spring-2024" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course_policies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Policies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lectures and labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datasets/data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#transformation-of-variables" id="toc-transformation-of-variables" class="nav-link active" data-scroll-target="#transformation-of-variables"><span class="header-section-number">1</span> Transformation of variables</a></li>
+  <li><a href="#spaces-of-possible-estimators." id="toc-spaces-of-possible-estimators." class="nav-link" data-scroll-target="#spaces-of-possible-estimators."><span class="header-section-number">2</span> Spaces of possible estimators.</a></li>
+  <li><a href="#collinear-regressors" id="toc-collinear-regressors" class="nav-link" data-scroll-target="#collinear-regressors"><span class="header-section-number">3</span> Collinear regressors</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+$$
+\newcommand{\trans}{\intercal}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbc}{\mathbb{C}}
+
+\newcommand{\argmin}[1]{\underset{#1}{\mathrm{argmin}}\,}
+\newcommand{\projop}[1]{\underset{#1}{\mathrm{Proj}}\,}
+\newcommand{\proj}[1]{\underset{#1}{\mybold{P}}}
+\newcommand{\expect}[2]{\underset{#1}{\mathbb{E}}\left[#2\right]}
+\newcommand{\prob}[2]{\underset{#1}{\mathbb{P}}\left(#2\right)}
+\newcommand{\var}[2]{\underset{#1}{\mathrm{Var}}\left(#2\right)}
+\newcommand{\cov}[2]{\underset{#1}{\mathrm{Cov}}\left(#2\right)}
+\newcommand{\sumn}{\sum_{n=1}^N}
+\newcommand{\meann}{\frac{1}{N} \sumn}
+
+\newcommand{\trace}[1]{\mathrm{trace}\left(#1\right)}
+\newcommand{\diag}[1]{\mathrm{Diag}\left(#1\right)}
+\newcommand{\grad}[2]{\nabla_{#1} \left. #2 \right.}
+\newcommand{\gradat}[3]{\nabla_{#1} \left. #2 \right|_{#3}}
+\newcommand{\fracat}[3]{\left. \frac{#1}{#2} \right|_{#3}}
+
+\newcommand{\mybold}[1]{\boldsymbol{#1}}
+
+\newcommand{\X}{\mybold{X}}
+\newcommand{\x}{x}
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\xv}{\mybold{x}}
+
+\newcommand{\Z}{\mybold{Z}}
+\newcommand{\z}{z}
+\newcommand{\zv}{\mybold{z}}
+\newcommand{\zbar}{\bar{z}}
+
+\newcommand{\Y}{\mybold{Y}}
+\newcommand{\Yhat}{\hat{\Y}}
+\newcommand{\y}{y}
+\newcommand{\yv}{\mybold{y}}
+\newcommand{\yhat}{\hat{\y}}begin
+\newcommand{\ybar}{\bar{y}}
+
+\newcommand{\res}{\varepsilon}
+\newcommand{\resv}{\mybold{\res}}
+\newcommand{\resvhat}{\hat{\mybold{\res}}}
+\newcommand{\reshat}{\hat{\res}}
+
+\newcommand{\bv}{\mybold{\beta}}
+\newcommand{\bvhat}{\hat{\bv}}
+\newcommand{\bhat}{\hat{\beta}}
+\newcommand{\betahat}{\hat{\beta}}
+
+\newcommand{\alphav}{\mybold{\alpha}}
+\newcommand{\alphavhat}{\hat{\av}}
+\newcommand{\alphahat}{\hat{\alpha}}
+
+\newcommand{\gv}{\mybold{\gamma}}
+\newcommand{\gvhat}{\hat{\gv}}
+\newcommand{\ghat}{\hat{\gamma}}
+
+\newcommand{\new}{\mathrm{new}}
+\newcommand{\zerov}{\mybold{0}}
+\newcommand{\onev}{\mybold{1}}
+\newcommand{\id}{\mybold{I}}
+
+
+\newcommand{\rdom}[1]{\mathbb{R}^{#1}}
+
+\def\A{\mybold{A}}
+\def\av{\mybold{a}}
+\def\a{a}
+
+\def\A{\mybold{A}}
+
+
+\def\S{\mybold{S}}
+\def\sv{\mybold{s}}
+\def\s{s}
+
+\def\R{\mybold{R}}
+\def\rv{\mybold{r}}
+\def\r{r}
+
+\def\V{\mybold{V}}
+\def\vv{\mybold{v}}
+\def\v{v}
+
+\def\U{\mybold{U}}
+\def\uv{\mybold{u}}
+\def\u{u}
+
+\def\Sc{\mathcal{S}}
+\def\ev{\mybold{e}}
+
+\def\Lammat{\mybold{\Lambda}}
+
+
+$$
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">STAT151A Homework 2: Due February 9th</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Your name here </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="transformation-of-variables" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Transformation of variables</h1>
+<p>Consider two different regressions, <span class="math inline">\(\Y \sim \X \bv\)</span> and <span class="math inline">\(\Y \sim \Z \alphav\)</span>, with the same <span class="math inline">\(\Y\)</span>, where <span class="math inline">\(\X\)</span> and <span class="math inline">\(\Z\)</span> are both <span class="math inline">\(N \times P\)</span> and are both full-rank.</p>
+<section id="a" class="level4">
+<h4 class="anchored" data-anchor-id="a">(a)</h4>
+<p>Suppose <span class="math inline">\(\x_n = \A \z_n\)</span> for an invertible <span class="math inline">\(\A\)</span> and for all <span class="math inline">\(n = 1,\ldots,N\)</span>. Find an expression for <span class="math inline">\(\alphahat\)</span> in terms of <span class="math inline">\(\betahat\)</span> that does explicitly use <span class="math inline">\(\Y\)</span>, <span class="math inline">\(\X\)</span>, or <span class="math inline">\(\Z\)</span>.</p>
+</section>
+<section id="b" class="level4">
+<h4 class="anchored" data-anchor-id="b">(b)</h4>
+<p>Suppose that, for all <span class="math inline">\(n=1,\ldots,N\)</span>, <span class="math inline">\(\x_n = f(\z_n)\)</span> for some invertible but non-linear function <span class="math inline">\(f(\cdot)\)</span>. In general, can you find an expression for <span class="math inline">\(\alphahat\)</span> in terms of <span class="math inline">\(\betahat\)</span> that does not explicitly use <span class="math inline">\(\Y\)</span>, <span class="math inline">\(\X\)</span>, or <span class="math inline">\(\Z\)</span>? Prove why or why not. (To prove not a single counterexample is enough.)</p>
+</section>
+<section id="c" class="level4">
+<h4 class="anchored" data-anchor-id="c">(c)</h4>
+<p>Now consider only the regression <span class="math inline">\(\Y \sim \X \bv\)</span>, but suppose we are not interested in <span class="math inline">\(\bv\)</span>, but rather some other <span class="math inline">\(\gv = \phi(\bv)\)</span>, where <span class="math inline">\(\phi\)</span> is an invertible function. Prove that the least squares estimator of <span class="math inline">\(\gv\)</span> is given by <span class="math inline">\(\gvhat = \phi(\bvhat)\)</span>.</p>
+</section>
+<section id="d" class="level4">
+<h4 class="anchored" data-anchor-id="d">(d)</h4>
+<p>Prove that result (a) is special cases of the result (c). (Hint: find the corresponding <span class="math inline">\(\phi\)</span>.)</p>
+</section>
+</section>
+<section id="spaces-of-possible-estimators." class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Spaces of possible estimators.</h1>
+<p>Consider the simple linear model <span class="math inline">\(\y_n = \beta_0 + \beta_1 \z_n + \res_n\)</span>. Assume that <span class="math inline">\(\meann \z_n \ne 0\)</span>.</p>
+<section id="a-1" class="level4">
+<h4 class="anchored" data-anchor-id="a-1">(a)</h4>
+<p>Fix <span class="math inline">\(\beta_0 = \meann \y_n\)</span> and find a value of <span class="math inline">\(\beta_0\)</span> such that <span class="math inline">\(\meann\res_n = 0\)</span>. How does your answer depend on whether or not <span class="math inline">\(\meann z_n = 0\)</span>?</p>
+</section>
+<section id="b-1" class="level4">
+<h4 class="anchored" data-anchor-id="b-1">(b)</h4>
+<p>Fix <span class="math inline">\(\beta_1 = 10,000,000\)</span> and find a value of <span class="math inline">\(\beta_0\)</span> such that <span class="math inline">\(\meann\res_n = 0\)</span>.</p>
+</section>
+<section id="c-1" class="level4">
+<h4 class="anchored" data-anchor-id="c-1">(c)</h4>
+<p>In general, how many different choices of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> can you find that satisfy <span class="math inline">\(\meann\res_n = 0\)</span>? Are all of them reasonable? Are any of them reasonable?</p>
+</section>
+<section id="d-1" class="level4">
+<h4 class="anchored" data-anchor-id="d-1">(d)</h4>
+<p>Find an <span class="math inline">\(N\)</span>–dimensional vector <span class="math inline">\(\vv\)</span> such that <span class="math display">\[
+\meann \res_n = 0 \quad\Leftrightarrow\quad \vv^\trans\resv = \zerov.
+\]</span></p>
+</section>
+<section id="e" class="level4">
+<h4 class="anchored" data-anchor-id="e">(e)</h4>
+<p>Suppose I give you a general <span class="math inline">\(N\)</span>–dimensional vector <span class="math inline">\(\vv\)</span> and a scalar <span class="math inline">\(a\)</span>. How many different choices of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> can you find such that <span class="math inline">\(\vv^\trans \resv = a\)</span>?</p>
+</section>
+<section id="f" class="level4">
+<h4 class="anchored" data-anchor-id="f">(f)</h4>
+<p>Suppose I give you two different vectors, <span class="math inline">\(\vv_1\)</span> and <span class="math inline">\(\vv_2\)</span>. Under what circumstances can you find <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> such that</p>
+<p><span class="math display">\[
+\begin{align}
+\vv_1^\trans \resv = \zerov
+\quad\textrm{and}\quad
+\vv_2^\trans \resv = \zerov?
+\end{align}
+\]</span></p>
+<p>When are there infinitely many solutions? When is there only one solution? (Hint: what if <span class="math inline">\(\vv_1^\trans \onev = \vv_2^\trans \onev = 0\)</span>?)</p>
+</section>
+<section id="g" class="level4">
+<h4 class="anchored" data-anchor-id="g">(g)</h4>
+<p>Now, consider the general linear model <span class="math inline">\(\Y = \X \bv + \res\)</span>. Prove that there always exists <span class="math inline">\(\bv\)</span> and <span class="math inline">\(\res\)</span> so that the <span class="math inline">\(\Y = \X \bv + \res\)</span>.</p>
+</section>
+<section id="h" class="level4">
+<h4 class="anchored" data-anchor-id="h">(h)</h4>
+<p>Suppose, for the general linear model, that the matrix <span class="math inline">\(\X\)</span> is full-rank (that is, of rank <span class="math inline">\(P\)</span>, where <span class="math inline">\(P\)</span> is the number of columns of <span class="math inline">\(\X\)</span>). Suppose I give you a <span class="math inline">\(N \times D\)</span> matrix <span class="math inline">\(\V\)</span>, and ask you to find <span class="math inline">\(\bv\)</span> such that <span class="math inline">\(\V^\trans \resv = \zerov\)</span>. Under what circumstances are there no solutions? A single solution? An infinite set of solutions? (Hint: you already answered this question for <span class="math inline">\(P = 2\)</span>, now you just need to state the result in matrix form.)</p>
+</section>
+</section>
+<section id="collinear-regressors" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Collinear regressors</h1>
+<p>Suppose that <span class="math inline">\(\X\)</span> does not have full column rank — that is, <span class="math inline">\(\X\)</span> has rank <span class="math inline">\(Q &lt; P\)</span>.</p>
+<section id="a-2" class="level4">
+<h4 class="anchored" data-anchor-id="a-2">(a)</h4>
+<p>How many solutions <span class="math inline">\(\betahat\)</span> are there to the least-squares problem <span class="math display">\[
+\betahat := \argmin{\beta} \norm{\Y - \X \beta}_2^2?
+\]</span></p>
+</section>
+<section id="b-2" class="level4">
+<h4 class="anchored" data-anchor-id="b-2">(b)</h4>
+<p>Relate the solutions <span class="math inline">\(\betahat\)</span> from part (a) to the eigenvectors of <span class="math inline">\(\X^\trans \X\)</span>. Among the solutions, identify the one with the smallest norm, <span class="math inline">\(\norm{\betahat}_2^2\)</span>.</p>
+</section>
+<section id="c-2" class="level4">
+<h4 class="anchored" data-anchor-id="c-2">(c)</h4>
+<p>Suppose that <span class="math inline">\(\X'\)</span> is a full column-rank <span class="math inline">\(N \times Q\)</span> matrix with the same column span as <span class="math inline">\(\X\)</span>, and let <span class="math inline">\(\gammahat\)</span> be the OLS estimator for the regression <span class="math inline">\(\Y \sim \X'\gamma\)</span>. Compare the fits <span class="math inline">\(\Yhat = \X\betahat\)</span> and <span class="math inline">\(\Yhat' = \X' \gammahat\)</span>, and compare the sum of squared residuals for the two regressions.</p>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "STAT151A Homework 2: Due February 9th"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> Your name here</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">number-sections:</span><span class="co"> true </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">number-depth:</span><span class="co"> 1 </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    include-before-body:</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">     - file: ../macros.md</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu"># Transformation of variables</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Consider two different regressions, $\Y \sim \X \bv$ and $\Y \sim \Z \alphav$,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>with the same $\Y$, where $\X$ and $\Z$ are both $N \times P$ and are both full-rank.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (a)</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Suppose $\x_n = \A \z_n$ for an invertible $\A$ and for all $n = 1,\ldots,N$.  Find an expression for</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>$\alphahat$ in terms of $\betahat$ that does explicitly use $\Y$, $\X$, or $\Z$.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (b)</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Suppose that, for all $n=1,\ldots,N$, $\x_n = f(\z_n)$ for some invertible but non-linear </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>function $f(\cdot)$. In general, can you find an expression for</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>$\alphahat$ in terms of $\betahat$ that does not explicitly use $\Y$, $\X$, or $\Z$?  Prove</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>why or why not. (To prove not a single counterexample is enough.)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (c)</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>Now consider only the regression $\Y \sim \X \bv$, but suppose we are not</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>interested in $\bv$, but rather some other $\gv = \phi(\bv)$, where</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>$\phi$ is an invertible function.  Prove that the least squares</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>estimator of $\gv$ is given by $\gvhat = \phi(\bvhat)$.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (d)</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>Prove that result (a) is special cases of the result (c).</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>(Hint: find the corresponding $\phi$.)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu"># Spaces of possible estimators.</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>Consider the simple linear model</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>$\y_n = \beta_0 + \beta_1 \z_n + \res_n$.  Assume that</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>$\meann \z_n \ne 0$.</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (a)</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>Fix $\beta_0 = \meann \y_n$ and find a value of</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>$\beta_0$ such that $\meann\res_n = 0$. How</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>does your answer depend on whether or not $\meann z_n = 0$?</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (b)</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>Fix $\beta_1 = 10,000,000$ and find a value of $\beta_0$ such that</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>$\meann\res_n = 0$.</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (c)</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>In general, how many different choices of $\beta_0$ and $\beta_1$ can</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>you find that satisfy $\meann\res_n = 0$?  Are all of them reasonable?</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>Are any of them reasonable?</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (d)</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>Find an $N$--dimensional vector $\vv$ such that </span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>\meann \res_n = 0 \quad\Leftrightarrow\quad \vv^\trans\resv = \zerov.</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (e)</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>Suppose I give you a general $N$--dimensional vector $\vv$ and a scalar</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>$a$.  How  many different choices of $\beta_0$ and $\beta_1$ can you find</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>such that $\vv^\trans \resv = a$?</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (f)</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>Suppose I give you two different vectors, $\vv_1$ and $\vv_2$.  Under what circumstances</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>can you find $\beta_0$ and $\beta_1$  such that</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>\vv_1^\trans \resv = \zerov</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>\quad\textrm{and}\quad</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>\vv_2^\trans \resv = \zerov?</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>When are there infinitely many solutions?  When is there only one solution?</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>(Hint: what if $\vv_1^\trans \onev = \vv_2^\trans \onev = 0$?)</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (g)</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>Now, consider the general linear model $\Y = \X \bv + \res$.</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>Prove that there always exists $\bv$ and $\res$ so that the</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>$\Y = \X \bv + \res$.</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (h)</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>Suppose, for the general linear model, that the matrix $\X$</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>is full-rank (that is, of rank $P$, where $P$ is the number of</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>columns of $\X$).  Suppose I give you a $N \times D$ matrix</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>$\V$, and ask you to find $\bv$ such that $\V^\trans \resv = \zerov$.</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>Under what circumstances are there no solutions?  A single</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>solution?  An infinite set of solutions?  (Hint: you</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>already answered this question for $P = 2$, now you just</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>need to state the result in matrix form.)</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="fu"># Collinear regressors</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>Suppose that $\X$ does not have full column rank --- that is, $\X$</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>has rank $Q &lt; P$.</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (a)</span></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>How many solutions $\betahat$ are there to the least-squares problem</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>\betahat := \argmin{\beta} \norm{\Y - \X \beta}_2^2?</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (b)</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>Relate the solutions $\betahat$ from part (a) to the eigenvectors of $\X^\trans \X$.</span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>Among the solutions, identify the one with the smallest norm, $\norm{\betahat}_2^2$.</span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (c)</span></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>Suppose that $\X'$ is a full column-rank $N \times Q$ matrix with the</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>same column span as $\X$, and let $\gammahat$ be the OLS estimator</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>for the regression $\Y \sim \X'\gamma$.  Compare the fits</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>$\Yhat = \X\betahat$ and $\Yhat' = \X' \gammahat$, and compare the</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>sum of squared residuals for the two regressions.  </span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
