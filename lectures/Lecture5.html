@@ -350,7 +350,7 @@ $$
 <p>Suppose we’re a Spotify engineer and we pulled this data from one datacenter at one particular time, and we’re exploring / sanity checking the ML outputs.</p>
 <p>We’ll assume that song popularity is relatively objective (e.g.&nbsp;number of listens), but the various song features (particularly danceability) are the output of ML systems that we want to sanity check.</p>
 <p>We hope that our ML features are at least somewhat related to popularity. (<em>Why?</em>) Our whole problem is that this graph is not easy to interpret:</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="11">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>PlotBaseSpotify <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(spotify_df, <span class="fu">aes</span>(<span class="at">y=</span>track_popularity, <span class="at">x=</span>danceability)) <span class="sc">+</span> </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_density_2d_filled</span>() <span class="sc">+</span></span>
@@ -382,7 +382,7 @@ $$
 \beta_0 ={}&amp; \frac{\x_1 \y_2 - \x_2 \y_1}{\x_1 - \x_2}
 \end{align*}
 \]</span></p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="3">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>simple_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">rnorm</span>(<span class="dv">10</span>)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">y=</span><span class="fl">0.2</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(simple_df) <span class="sc">+</span></span>
@@ -418,7 +418,7 @@ $$
 \]</span></p>
 <p>Is this reasonable? What grouping is best? What groupings fail? Should you weight the groups, and if so, how? A clear answer will be something we learn in this course.</p>
 <p>In the meantime, let’s take a look.</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="4">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return the slope and intercept of a line passing through two points.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Args:</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  - x: Two points in the domain</span></span>
@@ -433,7 +433,7 @@ $$
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(intercept, slope))</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="5">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a line using the above grouping formula.</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Args:</span></span>
@@ -471,7 +471,7 @@ $$
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Suppose, for example, that we take the groups to be the data with dancability below or above its median. The results are pretty good:</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="6">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x_median <span class="ot">&lt;-</span> <span class="fu">median</span>(spotify_df<span class="sc">$</span>danceability)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(spotify_df<span class="sc">$</span>danceability <span class="sc">&lt;=</span> x_median, <span class="st">"A"</span>, <span class="st">"B"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>grouped_fit <span class="ot">&lt;-</span> <span class="fu">GetGroupedTerms</span>(group)</span>
@@ -491,7 +491,7 @@ $$
 </div>
 </div>
 <p>What if we do the same thing, but randomly assign the groups. The result is garbage!</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="7">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rand_group <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="fu">nrow</span>(spotify_df), <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>rand_grouped_fit <span class="ot">&lt;-</span> <span class="fu">GetGroupedTerms</span>(rand_group)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -538,13 +538,13 @@ x_n ={}&amp; \alpha_1 \y_n + \alpha_0 + \gamma_n.
 \end{align*}
 \]</span> We thus have four combinations to try: <span class="math inline">\(\y_n\)</span> or <span class="math inline">\(\x_n\)</span> on the left hand side, and minimizing the sum of squares or sum of absolute deviations.</p>
 <p>We can compute all these in <code>R</code> and see how they look on the Spotify data. Before we do, try to predict yourself.</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="8">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Lecture5_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="9">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>least_squares_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y_on_x <span class="ot">&lt;-</span> <span class="fu">lm</span>(track_popularity <span class="sc">~</span> danceability, spotify_df)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>least_squares_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>() <span class="sc">-</span> least_squares_time</span>
@@ -556,7 +556,7 @@ x_n ={}&amp; \alpha_1 \y_n + \alpha_0 + \gamma_n.
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>x_on_y <span class="ot">&lt;-</span> <span class="fu">lm</span>(danceability <span class="sc">~</span> track_popularity, spotify_df)</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>x_on_y_l1 <span class="ot">&lt;-</span> <span class="fu">l1fit</span>(<span class="at">x=</span>spotify_df<span class="sc">$</span>track_popularity, <span class="at">y=</span>spotify_df<span class="sc">$</span>danceability, <span class="at">intercept=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="10">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"Y ~ X least squares"</span>)) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>x_on_y<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"X ~ Y least squares"</span>)) <span class="sc">+</span></span>
