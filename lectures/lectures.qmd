@@ -20,16 +20,20 @@ sidebar: true
 ---
 
 - Lecture Jan 23rd:
-    - [Lecture](Lecture3.qmd)
+    - [Multilinear regression as minimization](Lecture3.qmd)
 
 - Lab Jan 17th:
     - Linear algebra in R
 
 - Lecture Jan 25th:
-    - [Lecture](Lecture4.qmd)
+    - [Multilinear regression as projection](Lecture4.qmd)
 
 ---
 
 
 - Lecture Jan 29th:
-    - [Alternative lines](Lecture5.ipynb)
+    - [Alternative ways to draw lines through points](Lecture5.ipynb)
+- Lab Jan 30th:
+    - Homework 1 review
+- Lecture Feb 1st:
+    - Multivariate probability

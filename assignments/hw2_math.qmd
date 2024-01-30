@@ -21,7 +21,7 @@ with the same $\Y$, where $\X$ and $\Z$ are both $N \times P$ and are both full-
 #### (a)
 
 Suppose $\x_n = \A \z_n$ for an invertible $\A$ and for all $n = 1,\ldots,N$.  Find an expression for
-$\alphahat$ in terms of $\betahat$ that does explicitly use $\Y$, $\X$, or $\Z$.
+$\alphahat$ in terms of $\betahat$ that does not explicitly use $\Y$, $\X$, or $\Z$.
 
 
 #### (b)
@@ -29,7 +29,7 @@ $\alphahat$ in terms of $\betahat$ that does explicitly use $\Y$, $\X$, or $\Z$.
 Suppose that, for all $n=1,\ldots,N$, $\x_n = f(\z_n)$ for some invertible but non-linear 
 function $f(\cdot)$. In general, can you find an expression for
 $\alphahat$ in terms of $\betahat$ that does not explicitly use $\Y$, $\X$, or $\Z$?  Prove
-why or why not. (To prove not a single counterexample is enough.)
+why or why not. (To prove that you cannot, finding a single counterexample is enough.)
 
 
 #### (c)
@@ -58,7 +58,7 @@ $\meann \z_n \ne 0$.
 #### (a)
 
 Fix $\beta_0 = \meann \y_n$ and find a value of
-$\beta_0$ such that $\meann\res_n = 0$. How
+$\beta_1$ such that $\meann\res_n = 0$. How
 does your answer depend on whether or not $\meann z_n = 0$?
 
 #### (b)

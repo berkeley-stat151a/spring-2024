@@ -2,11 +2,13 @@ project:
   type: website
   resources:
     - Lecture1_examples.ipynb
+    - quizzes/quiz1.pdf
   render:
     - "*.ejs"
     - "*.qmd"
     - "*.ipynb"
     - "!sandbox/"
+    - "!quizzes/"
 
 website:
   sidebar:
