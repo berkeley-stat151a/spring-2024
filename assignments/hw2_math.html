@@ -319,11 +319,11 @@ $$
 <p>Consider two different regressions, <span class="math inline">\(\Y \sim \X \bv\)</span> and <span class="math inline">\(\Y \sim \Z \alphav\)</span>, with the same <span class="math inline">\(\Y\)</span>, where <span class="math inline">\(\X\)</span> and <span class="math inline">\(\Z\)</span> are both <span class="math inline">\(N \times P\)</span> and are both full-rank.</p>
 <section id="a" class="level4">
 <h4 class="anchored" data-anchor-id="a">(a)</h4>
-<p>Suppose <span class="math inline">\(\x_n = \A \z_n\)</span> for an invertible <span class="math inline">\(\A\)</span> and for all <span class="math inline">\(n = 1,\ldots,N\)</span>. Find an expression for <span class="math inline">\(\alphahat\)</span> in terms of <span class="math inline">\(\betahat\)</span> that does explicitly use <span class="math inline">\(\Y\)</span>, <span class="math inline">\(\X\)</span>, or <span class="math inline">\(\Z\)</span>.</p>
+<p>Suppose <span class="math inline">\(\x_n = \A \z_n\)</span> for an invertible <span class="math inline">\(\A\)</span> and for all <span class="math inline">\(n = 1,\ldots,N\)</span>. Find an expression for <span class="math inline">\(\alphahat\)</span> in terms of <span class="math inline">\(\betahat\)</span> that does not explicitly use <span class="math inline">\(\Y\)</span>, <span class="math inline">\(\X\)</span>, or <span class="math inline">\(\Z\)</span>.</p>
 </section>
 <section id="b" class="level4">
 <h4 class="anchored" data-anchor-id="b">(b)</h4>
-<p>Suppose that, for all <span class="math inline">\(n=1,\ldots,N\)</span>, <span class="math inline">\(\x_n = f(\z_n)\)</span> for some invertible but non-linear function <span class="math inline">\(f(\cdot)\)</span>. In general, can you find an expression for <span class="math inline">\(\alphahat\)</span> in terms of <span class="math inline">\(\betahat\)</span> that does not explicitly use <span class="math inline">\(\Y\)</span>, <span class="math inline">\(\X\)</span>, or <span class="math inline">\(\Z\)</span>? Prove why or why not. (To prove not a single counterexample is enough.)</p>
+<p>Suppose that, for all <span class="math inline">\(n=1,\ldots,N\)</span>, <span class="math inline">\(\x_n = f(\z_n)\)</span> for some invertible but non-linear function <span class="math inline">\(f(\cdot)\)</span>. In general, can you find an expression for <span class="math inline">\(\alphahat\)</span> in terms of <span class="math inline">\(\betahat\)</span> that does not explicitly use <span class="math inline">\(\Y\)</span>, <span class="math inline">\(\X\)</span>, or <span class="math inline">\(\Z\)</span>? Prove why or why not. (To prove that you cannot, finding a single counterexample is enough.)</p>
 </section>
 <section id="c" class="level4">
 <h4 class="anchored" data-anchor-id="c">(c)</h4>
@@ -339,7 +339,7 @@ $$
 <p>Consider the simple linear model <span class="math inline">\(\y_n = \beta_0 + \beta_1 \z_n + \res_n\)</span>. Assume that <span class="math inline">\(\meann \z_n \ne 0\)</span>.</p>
 <section id="a-1" class="level4">
 <h4 class="anchored" data-anchor-id="a-1">(a)</h4>
-<p>Fix <span class="math inline">\(\beta_0 = \meann \y_n\)</span> and find a value of <span class="math inline">\(\beta_0\)</span> such that <span class="math inline">\(\meann\res_n = 0\)</span>. How does your answer depend on whether or not <span class="math inline">\(\meann z_n = 0\)</span>?</p>
+<p>Fix <span class="math inline">\(\beta_0 = \meann \y_n\)</span> and find a value of <span class="math inline">\(\beta_1\)</span> such that <span class="math inline">\(\meann\res_n = 0\)</span>. How does your answer depend on whether or not <span class="math inline">\(\meann z_n = 0\)</span>?</p>
 </section>
 <section id="b-1" class="level4">
 <h4 class="anchored" data-anchor-id="b-1">(b)</h4>
@@ -711,7 +711,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (a)</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Suppose $\x_n = \A \z_n$ for an invertible $\A$ and for all $n = 1,\ldots,N$.  Find an expression for</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>$\alphahat$ in terms of $\betahat$ that does explicitly use $\Y$, $\X$, or $\Z$.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>$\alphahat$ in terms of $\betahat$ that does not explicitly use $\Y$, $\X$, or $\Z$.</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (b)</span></span>
@@ -719,7 +719,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Suppose that, for all $n=1,\ldots,N$, $\x_n = f(\z_n)$ for some invertible but non-linear </span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>function $f(\cdot)$. In general, can you find an expression for</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>$\alphahat$ in terms of $\betahat$ that does not explicitly use $\Y$, $\X$, or $\Z$?  Prove</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>why or why not. (To prove not a single counterexample is enough.)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>why or why not. (To prove that you cannot, finding a single counterexample is enough.)</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (c)</span></span>
@@ -748,7 +748,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (a)</span></span>
 <span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>Fix $\beta_0 = \meann \y_n$ and find a value of</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>$\beta_0$ such that $\meann\res_n = 0$. How</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>$\beta_1$ such that $\meann\res_n = 0$. How</span>
 <span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>does your answer depend on whether or not $\meann z_n = 0$?</span>
 <span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="fu">#### (b)</span></span>
