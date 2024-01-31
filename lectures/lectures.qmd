@@ -32,8 +32,10 @@ sidebar: true
 
 
 - Lecture Jan 29th:
+    - Quiz 1
     - [Alternative ways to draw lines through points](Lecture5.ipynb)
 - Lab Jan 30th:
     - Homework 1 review
 - Lecture Feb 1st:
-    - Multivariate probability
+    - [Some payoffs for prediction](Lecture6.qmd)
+    - [Code](Lecture6_code.ipynb)

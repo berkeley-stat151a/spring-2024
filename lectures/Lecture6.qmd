@@ -1,0 +1,540 @@
+---
+title: "Some payoffs from the linear algebra perspective."
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    include-before-body:
+     - file: ../macros.md
+---
+
+$\LaTeX$
+
+
+```{r}
+#| echo: false
+#| include: false
+library(tidyverse)
+library(gridExtra)
+
+options(repr.plot.width = 15, repr.plot.height = 8, repr.plot.res = 300)
+theme_update(text = element_text(size=24))
+options(repr.plot.width=12, repr.plot.height=6)
+
+data_location <- "/home/rgiordan/Documents/git_repos/stat151a_website/datasets"
+bodyfat_df <- read.csv(file.path(data_location, "bodyfat.csv"))
+head(bodyfat_df)
+nrow(bodyfat_df)
+```
+
+# Goals
+- Use our technical results to answer two questions about prediction:
+    - How can we form new predictors for prediction problems?
+- Introduce / review multivariate probability
+    - The law of large numbers for vectors and matrices
+    - The multivariate normal distribution
+    - The central limit theorem for vectors
+
+
+# Prediction in the bodyfat example
+
+Recall our bodyweight example.  Suppose we've chosen a couple of variables
+to form our prediction: Height, Weight, and Abdomen.
+
+```{r}
+reg <- lm(bodyfat ~ Abdomen + Height + Weight, bodyfat_df)
+print(reg$coefficients)
+print(sprintf("Error: %f", mean(reg$residuals^2)))
+```
+
+### Question 1
+
+Noting that all three of these variables are on different scales,
+you might think you would get a better fit by normalizing them.
+Let's see what happens:
+
+```{r}
+bodyfat_df <- bodyfat_df %>%
+    mutate(height_norm=(Height - mean(Height)) / sd(Height),
+           weight_norm=(Weight - mean(Weight)) / sd(Weight),
+           abdomen_norm=(Abdomen - mean(Abdomen)) / sd(Abdomen))
+reg_norm <- lm(bodyfat ~ abdomen_norm + height_norm + weight_norm, bodyfat_df)
+print(reg_norm$coefficients)
+print(sprintf("Error: %f", mean(reg_norm$residuals^2)))
+```
+
+Our coefficients changed, but our fitted error didn't change at all!  **Why not?**
+
+
+### Question 2
+
+Suppose we think, okay, maybe it's the difference between normalized
+height and weight that helps us predict.
+
+```{r}
+bodyfat_df <- bodyfat_df %>%
+    mutate(hw_diff = height_norm - weight_norm)
+reg_diff <- lm(bodyfat ~ abdomen_norm + height_norm + weight_norm + hw_diff, bodyfat_df)
+print(reg_diff$coefficients)
+print(sprintf("Error: %f", mean(reg_diff$residuals^2)))
+```
+
+Now, our fitted error didn't change at all, but our difference coefficient
+wasn't even estimated.  **What is going on?**
+
+
+### Question 3
+
+What about the ratio of weight to height?
+
+```{r}
+bodyfat_df <- bodyfat_df %>%
+    mutate(hw_ratio = height_norm / weight_norm)
+reg_ratio <- lm(bodyfat ~ abdomen_norm + height_norm + weight_norm + hw_ratio, bodyfat_df)
+print(reg_ratio$coefficients)
+print(sprintf("Error: %f", mean(reg_ratio$residuals^2)))
+```
+
+Our fitted error finally changed, and we could estimate this coefficient.
+**What's different between this example and the previous one?**
+
+
+
+### Question 4
+
+Let $\x_n = (\textrm{Abdomen}_n, \textrm{Height}_n, \textrm{Weight}_n, \textrm{Wrist}_n ...)$
+contain all the measured variables in the dataset.
+
+A colleague suggests a research project where you 
+improve your fit by regressing $\y_n \sim \z_n$ for new regressors $\z_n$
+of the form $\z_n = \A \x_n$ where the matrix $\A$ is chosen optimally.
+
+A different colleague suggests a research project where you try the same
+thing, but let $\z_n = f(\x_n)$ for any function $f$, where you optimize
+over all functions.
+
+**What do you think of these ideas?**
+
+# Answer to Question 1
+
+## Linear combinations of variables in simple least squares
+
+To answer question 1, let's look at a slightly simpler example,
+where we perform simple least squares on heigh.
+
+```{r}
+reg_height <- lm(bodyfat ~ Height, bodyfat_df)
+print(reg_height$coefficients)
+print(sprintf("Error: %f", mean(reg_height$residuals^2)))
+
+reg_height_norm <- lm(bodyfat ~ height_norm, bodyfat_df)
+print(reg_height_norm$coefficients)
+print(sprintf("Error: %f", mean(reg_height_norm$residuals^2)))
+```
+
+Why do these two have different coefficients, but the same
+fit?  The answer comes from our projection result.  Let's let
+$\x_n = \textrm{Height}_n$, and $\z_n = \textrm{height\_norm}_n$.
+Recall that `R` includes a constant in the regression by default,
+so our two regressions are:
+
+$$
+\begin{aligned}
+\textrm{height: } && \textrm{height\_norm} \\
+\y_n = \beta_0 + \beta_1 \x_n + \res_n &&
+\y_n = \gamma_0 + \gamma_1 \z_n + \nu_n.
+\end{aligned}
+$$
+
+What's the relationship between these two regressions?
+Well, taking $\overline{x} := \meann \x_n$ and
+$\sigmahat_x := \sqrt{\meann (\x_n - \overline{x})^2}$.
+In our case, $\sigmahat_x > 0$, so we've set
+
+$$
+\z_n = \frac{\x_n - \overline{x}}{\sigmahat_x} = 
+  \frac{1}{\sigmahat_x} \x_n - \frac{\overline{x}}{\sigmahat_x}.
+$${#eq-beta-to-gamma-1d}
+
+That means we can write
+
+$$
+\begin{aligned}
+\gamma_0 + \gamma_1 \z_n + \nu_n ={}&
+\gamma_0 + \gamma_1 \left( \frac{1}{\sigmahat_x} \x_n - 
+  \frac{\overline{x}}{\sigmahat_x} \right) + \nu_n  \\
+={}& 
+\left(\gamma_0 - \frac{\overline{x}}{\sigmahat_x} \gamma_1 \right)  + 
+   \left( \frac{\gamma_1}{\sigmahat_x}\right) \x_n  + \nu_n.
+\end{aligned}
+$$
+
+By identifying
+
+$$
+\gamma_0 - \frac{\overline{x}}{\sigmahat_x} \gamma_1 = \beta_0 \quad\textrm{and}\quad
+\frac{\gamma_1}{\sigmahat_x} = \beta_1,
+$$
+
+we see that the two regressions are exactly the same!  From 
+this two conclusions follow:
+
+- It is impossible for you to get a better fit with one than the other.
+- In general the coefficients will be different.
+
+In fact, we can write down the rule to convert between the two. 
+Let's check that it works:
+
+```{r}
+xbar <- mean(bodyfat_df$Height)
+sigmahat <- sd(bodyfat_df$Height)
+gammahat_0 <- reg_height_norm$coefficients["(Intercept)"]
+gammahat_1 <- reg_height_norm$coefficients["height_norm"]
+betahat_0 <- reg_height$coefficients["(Intercept)"]
+betahat_1 <- reg_height$coefficients["Height"]
+
+print("Intercept: ")
+cat(betahat_0, " = ", gammahat_0 - gammahat_1 * xbar / sigmahat, "\n")
+cat(betahat_1, " = ", gammahat_1  / sigmahat, "\n")
+```
+
+## Linear combinations of variables in matrix form
+
+To extend what we just did, let's put our result in matrix
+notation.  First, write
+
+$$
+\xv_n = \begin{pmatrix}
+1 \\ \x_n
+\end{pmatrix}
+\quad\textrm{and}\quad
+\zv_n = \begin{pmatrix}
+1 \\ \z_n
+\end{pmatrix}.
+$$
+
+In this notation, we can write @eq-beta-to-gamma-1d as
+
+$$
+\zv_n =
+\begin{pmatrix}
+1 & 0 \\
+-\frac{\overline{x}}{\sigmahat_x} & \frac{1}{\sigmahat_x}
+\end{pmatrix} 
+\xv_n
+=: \A \xv_n.
+$$
+
+We can see that $\A$ is invertible whenever $\sigmahat_x > 0$.  Using the
+matrix $\A$, we can write $\Z = \X \A^\trans$, so
+
+$$
+\Y = \Z \gamma + \etav = 
+\X \A^\trans \gamma + \etav =
+\X  \beta + \resv,
+$$
+
+which gives
+
+$$
+\etav = \resv 
+\quad\Leftrightarrow \quad
+\A^\trans \gamma =  \beta
+\quad\Leftrightarrow \quad
+ \gamma = (\A^\trans)^{-1} \beta
+.
+$$
+
+We can confirm that this condition does indeed hold at the optimum
+of each regression:
+
+```{r}
+a_mat = matrix(NA, 2, 2)
+a_mat[1,1] <- 1
+a_mat[1,2] <- 0
+a_mat[2,1] <- -xbar / sigmahat
+a_mat[2,2] <- 1 / sigmahat
+print(t(a_mat) %*% reg_height_norm$coefficients %>% as.numeric())
+print(reg_height$coefficients)
+```
+
+
+Note that we were able to do this only because we included an intercept
+in the regression!  In fact, we can show that we get different
+fits if we don't include the intercept:
+
+```{r}
+reg_height_noint <- lm(bodyfat ~ Height - 1, bodyfat_df)
+print(sprintf("Error: %f", mean(reg_height_noint$residuals^2)))
+
+reg_height_norm_noint <- lm(bodyfat ~ height_norm - 1, bodyfat_df)
+print(sprintf("Error: %f", mean(reg_height_norm_noint$residuals^2)))
+```
+
+
+## Linear combinations of variables in general
+
+Note that the argument which we made in the special case above
+actually holds in general.  Let's go to $P$--dimensional
+regression, but otherwise retaining the notation
+$\y_n \sim \z_n^\trans\gamma$ and $\y_n \sim \x_n^\trans \beta$.  If we can find an invertible
+$\A$ such that $\z_n = \A \x_n$, then we still have
+
+
+$$
+\Y = \Z \gamma + \etav = 
+\X \A^\trans \gamma + \etav =
+\X  \beta + \resv,
+$$
+
+$$
+\etav = \resv 
+\quad\Leftrightarrow \quad
+\A^\trans \gamma =  \beta
+\quad\Leftrightarrow \quad
+ \gamma = (\A^\trans)^{-1} \beta
+.
+$$
+
+How can we recognize a linear transformation from $\x_n$ to $\z_n$?  
+It's enough for each entry of $\z_n$ to be a linear transform 
+$\z_{np}= \a_p^\trans \x_n$,
+since we can then just stack the $\a_p^\trans$ vectors to form $\A$.
+
+- Linear transformations of $\x_n$ always look like 
+  $\z_{np} = \a_{p1} \x_{n1} + \ldots \a_{pP} \x_{nP}$.
+- Entries that are unchanged are always the (trivial) identity linear transformation
+  $\a_{p} = (0, 0, \ldots, 0, 1,  0, \ldots, 0)$
+
+Note that adding a constant is an affine, not a linear transformation.
+However, it can be a linear transformation if your model includes an intercept ---
+or if some sum of the entries of $\x_n$ is always a constant.
+
+Not that it is not always easy to see whether a linear transformation is invertible!
+We will talk about that problem shortly.
+
+In this way, one can see that the normalization of Question 1 is a linear
+transformation.
+
+
+
+
+## Linear transformations and column spans
+
+Finally, recall our projection result that states
+
+$$
+\Yhat = \proj{\S_\X} \Y = \X (\X^\trans \X)^{-1} \X^\trans \Y,
+$$
+
+where $\S_\X$ is the space of linear combinations of the
+columns of $\X$.  If $\A$ is invertible, then the column
+span of $\Z = \X \A^\trans$ is equal to the column span of $\X$.
+Consequently, a regression on an invertible linear
+combination of regressors cannot affect the fit.
+
+Although this intuition is clear enough if you're comfortable
+with linear algebra, you can also check directly that
+
+
+$$
+\proj{\S_\Z} \Y = 
+\Z (\Z^\trans \Z)^{-1} \Z^\trans \Y =
+\X \A^\trans (\A \X^\trans \X \A^\trans)^{-1} \A \X^\trans \Y =
+\X \A^\trans (\A^\trans)^{-1} (\X^\trans \X)^{-1} \A^{-1} \A \X^\trans \Y =
+\X (\X^\trans \X)^{-1} \X^\trans \Y =
+\proj{\S_\X} \Y. 
+$$
+
+
+# Answer to Question 2
+
+## Redundant variables in simple regression
+
+Once again, it will be useful to start with a simpler example.  Suppose you
+have a regression $\y_n \sim \xv_n^\trans \beta$, with $\xv_n = (1, \x_n)^\trans$,
+where $\sigmahat_x > 0$ (as defined above).  Now suppose you want to
+run a new regression $\y_n \sim \z_n^\trans \gamma$ with
+
+$$
+\zv_n =
+\begin{pmatrix}
+1 \\
+\x_n \\
+\x_n - 1
+\end{pmatrix}.
+$$
+
+Note that the new regression is the same as
+
+$$
+\begin{aligned}
+\y_n ={}& \gamma_1 + \gamma_2 \x_n + \gamma_3 (\x_n - 1) + \eta_n \\
+ ={}& (\gamma_1 - \gamma_3) + (\gamma_2 + \gamma_3) \x_n +  \eta_n \\
+ ={}& \beta_1 + \beta_2 \x_n +  \res_n.
+\end{aligned}
+$$
+
+We achieve the same fit --- $\res_n = \eta_n$ for all $n$  --- whenever
+
+$$
+\gamma_1 - \gamma_3 = \beta_1 
+\quad\textrm{and}\quad
+\gamma_2 + \gamma_3 = \beta_2. 
+$$
+
+By the arguments above, the two regressions must have the same optimal fit.
+But in this case, there are actually a whole infinite dimensional set
+of $\gammav$ that correspond to each $\bv$.  In particular, for any
+$a$, we can take
+
+$$
+\begin{aligned}
+\gamma_1 &\rightarrow \gamma_1 + a \\
+\gamma_2 &\rightarrow \gamma_2 - a \\
+\gamma_3 &\rightarrow \gamma_3 + a,
+\end{aligned}
+$$
+
+and achieve exactly the same fit.  In other words, the optimal
+fit $\Yhat$ is the same for the two regressions, but the optimal
+parameter
+
+$$
+\gammahat := \argmin{\gamma} \meann \eta_n^2
+$$
+
+is not uniquely defined --- there is a whole family of coefficients
+that acheive the same optimal fit.
+
+
+## Redundant variables in matrix form
+
+How can we understand this in matrix form?  In this case,
+we can write the third element of the $\zv_n$ regressor
+as a linear combination of the other two:
+
+$$
+\zv_{n3} = \x_n - 1 = \zv_{n2} - \zv_{n1}
+\quad\Leftrightarrow\quad
+\zv_{n3} - \zv_{n2} + \zv_{n1}  = 0
+\quad\Leftrightarrow\quad
+\zv_n^\trans
+\begin{pmatrix}
+1 \\
+-1 \\
+1
+\end{pmatrix} =: \zv_n^\trans \vv = 0.
+$$
+
+Since this is true for every row, we have that
+$\Z \vv = \zerov$ as well, and so
+
+$$
+\vv^\trans (\Z^\trans \Z) \vv = 0.
+$$
+
+In other words, $\vv$ is a non-zero vector in the nullspace of
+$\Z^\trans \Z$.  It follows that $\Z^\trans \Z$ is not invertible,
+and the OLS coefficient $(\Z^\trans\Z)^{-1} \Z^\trans \Y$ is not defined!
+
+But that does not prevent us from finding the optimal projection.  That is,
+we can still find
+
+$$
+\textrm{Well-defined: }\quad
+\min_{\gamma} \norm{\Y - \Z \gamma}_2^2
+\quad\quad\quad
+\quad\quad\quad
+\textrm{Ill-defined: }\quad
+\argmin{\gamma} \norm{\Y - \Z \gamma}_2^2.
+$$
+
+Specifically, 
+
+$$
+\min_{\gamma} \norm{\Y - \Z \gamma}_2^2 = \norm{(\id - \proj{\S_\Z}) \Y}_2^2
+$$
+
+is the norm of the projection perpendicular to the space spanned by the columns
+of $\Z$, it's just that this space is two-dimensional, not three-dimensional.
+
+## In R
+
+It turns out that `R` does not actually estimate the OLS fit by forming
+$(\X^\trans \X)^{-1} \X^\trans \Y$.  It uses an iterative procedure
+that is roughly similar to Gaussian elimination to estimate one component at a time.
+When it gets to a component that cannot be estimated beacuse $\X^\trans \X$
+has a non-trivial nullspace, then the fit terminates, and it reports the
+values for the coefficients estimated up to that point, with `NA` for the rest.
+
+In our example, the difference `hw_diff` is a linear combination of
+`height_norm` and `weight_norm`.  Thus the regressors have a non-trivial
+nullspace, and the best fit $\Yhat$ is defined even though the
+regressors are not.
+
+
+# Answer to Question 3
+
+The above arguments apply only to linear transformations.  Non-linear
+transformations of the regressors give different fits.
+
+A single counterexample is enough to prove the general
+statement.  Take $\y_n = 1$ for all $n$, $N$ to be even, and take
+$$
+\x_n = 
+\begin{cases}
+  -1 & \textrm{if }n\textrm{ is odd} \\
+  1 & \textrm{if }n\textrm{ is even}. \\
+\end{cases}
+$$
+
+Take $\z_n = \x_n^2$, which is a nonlinear function.  Regressing
+$\y_n \sim \x_n \beta$ and $\y_n \sim \z_n \gamma$, we get
+
+$$
+\betahat = \frac{\sumn \y_n \x_n}{\sumn \x_n^2} 
+  = \frac{\sum_{n\textrm{ odd}} (-1) + \sum_{n\textrm{ even}}1}{\sumn 1}
+  = 0
+$$
+
+but
+
+$$
+\gammahat = \frac{\sumn \y_n \z_n}{\sumn \z_n^2} 
+  = \frac{\sum_{n\textrm{ odd}} (-1)^2 + \sum_{n\textrm{ even}}1}{\sumn 1}
+  = 1.
+$$
+
+Of course, a non-linear transform can still be linear on a particular
+dataset --- for example, if $\x_n$ are all a positive constant, then 
+the column span of the regressors $\x_n$ and $\x_n^2$ is the same.
+
+A more pathological example is as follows.  Suppose that
+the $\x_n$ are all distinct, and define sets $B_n$ such that
+$\x_n \in B_n$ but $\x_n \notin B_m$ for $n \ne m$.  Then define
+an $N$--dimensional regressor
+$$
+\z_{np} = 
+\begin{cases}
+1 & \x_{n} \in B_p \\
+0 & \x_{n} \notin B_p.
+\end{cases}
+$$
+
+This is a perfectly well-defined function of $\x_n$!  However,
+$\Z$ is the identity matrix, so the OLS solution to $\y_n \sim \z_n \beta$ is
+$\beta = \Y$, with zero error.
+
+It is difficult to say in general what effect nonlinear transformations
+will have on a regression, but to answer Question 3, it suffices
+to notice that `height_norm` / `weight_norm` is a nonlinear function
+of the two variables, and so provide a linearly independent regressor
+in general.
+
+
+
+# Answer to Question 4
+
+Hopefully you will find that we have already answered Question 4!
+Neither are a very good idea.

@@ -64,6 +64,10 @@ $$
 \newcommand{\gvhat}{\hat{\gv}}
 \newcommand{\ghat}{\hat{\gamma}}
 
+\newcommand{\hv}{\mybold{\h}}
+\newcommand{\hvhat}{\hat{\hv}}
+\newcommand{\hhat}{\hat{\h}}
+
 \newcommand{\gammav}{\mybold{\gamma}}
 \newcommand{\gammavhat}{\hat{\gammav}}
 \newcommand{\gammahat}{\hat{\gamma}}
@@ -73,6 +77,10 @@ $$
 \newcommand{\onev}{\mybold{1}}
 \newcommand{\id}{\mybold{I}}
 
+\newcommand{\sigmahat}{\hat{\sigma}}
+
+
+\newcommand{\etav}{\mybold{\eta}}
 
 \newcommand{\rdom}[1]{\mathbb{R}^{#1}}
 
