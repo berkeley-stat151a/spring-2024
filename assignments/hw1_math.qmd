@@ -3,6 +3,11 @@ title: "STAT151A Homework 1: Due Jan 26th"
 author: Your name here
 number-sections: true 
 number-depth: 1 
+format: 
+  html: default
+  pdf:
+    output-file: 90688c5f85f921b95bfebf7018f41fe7.pdf
+format-links: false
 ---
 
 {{< include ../macros.tex >}}
@@ -42,6 +47,32 @@ in terms of the scalars $\y_n$, $\z_m$, and $\res_n$
 so that $\Y= \X\bv+ \resv$ is equivalent to the set of
 regression equations.
 
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+$$
+\X =
+\begin{pmatrix}
+1 & z_1 \\
+\vdots & \vdots \\
+1 & z_N 
+\end{pmatrix}
+\quad\quad\quad
+\Y = \begin{pmatrix}
+y_1 \\
+\vdots \\
+y_N
+\end{pmatrix}
+\quad\quad\quad
+\resv = \begin{pmatrix}
+\res_1 \\
+\vdots \\
+\res_N
+\end{pmatrix}
+$$
+
+:::
 
 #### (b)
 
@@ -59,12 +90,46 @@ $\X^\trans\Y$, and $\left(\X^\trans\X\right)^{-1}$, all in terms of $\ybar$,
 $\zbar$, $\overline{zz}$, $\overline{zy}$, and $N$. Verify that the inverse is
 correct by direct multiplication.
 
+
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+$$
+\X^\trans\X = 
+N \begin{pmatrix}
+1 & \overline{z} \\
+\overline{z} & \overline{zz} \\
+\end{pmatrix}
+\quad\quad\quad
+\X^\trans \Y = N \begin{pmatrix}
+\overline{y} \\
+\overline{zy} \\
+\end{pmatrix}
+\quad\quad\quad
+(\X^\trans \X)^{-1} = 
+\frac{1}{N}
+\frac{1}{\overline{zz} - \overline{z}^2}
+\begin{pmatrix}
+\overline{zz} & -\overline{z} \\
+-\overline{z} & 1 \\
+\end{pmatrix}
+$$
+
+:::
+
 #### (c)
 
 Compute $(\X^\trans\X)^{-1} \X^\trans\Y$. Show
 that the first row is equal to $\bhat_0$ and the second row is
 equal to $\bhat_1$ as given by the ordinary least squares
 formula in the problem statement above.
+
+::: {.content-hidden when-format="html"}
+**Solution**:
+Just do matrix multiplication correctly.  The calculation is 
+also done in [Lecture 3](/lectures/Lecture3.qmd).
+:::
 
 
 
@@ -80,12 +145,25 @@ the least squares estimator and $\reshat_n = \y_n - \bhat \z_n$.
 Suppose $\z_n$ is not a constant.  Is it necessarily the case that
 $\meann \reshat_n = 0$?  Prove your answer.
 
+::: {.content-hidden when-format="html"}
+**Solution**:
+It is not.  A counterexample is enough.  For example, take
+$\y_n = 1$, $N$ even and $\z_n = (-1)^n$.  Then
+$\betahat = \sumn \y_n \z_n / \sumn \z_n^2 = 0$, so
+$\reshat_n = 1$. 
+:::
+
 
 #### (b)
 
 Suppose $\z_n$ is a constant, but $\z_n \equiv 5$ for every $n \in \{1, \ldots, N\}$.
 Is it necessarily the case that $\meann \reshat_n = 0$?  Prove your answer.
 
+::: {.content-hidden when-format="html"}
+**Solution**:
+Yes.  You can either do the calculation directly, or you can use the
+fact that $\resv \perp \zv$.
+:::
 
 #### (c)
 
@@ -95,6 +173,11 @@ Similarly, suppose that $\z_{n2} = 1$ is $n$ is odd, and is
 $0$ otherwise.  Let $N$ be even.  Is it necessarily the case that 
 $\meann \reshat_n = 0$? Prove your answer.
 
+::: {.content-hidden when-format="html"}
+**Solution**:
+It is the case.  The ones vector $\onev$ is in the linear span
+of $\zv$ since $\z_{n1} + \z_{n2} = 1$, so $\resv \perp \onev$.
+:::
 
 
 
@@ -121,10 +204,10 @@ the "empirical distribution" over that set refers to drawing an
 element with replacement from the set with equal probability given
 to each entry.  For example, if $\mathcal{Z}'$ is a drawn
 from the empirical distribution over the set $\{z_1, \ldots, \z_N \}$,
-then $\prob{}{\mathcal{Z}' = \z_n} = 1/N$ for each $n$.  Similarly, if
+then $\prob{\mathcal{Z}' = \z_n} = 1/N$ for each $n$.  Similarly, if
 $(\mathcal{Z}', \mathcal{Y}')$ is drawn from the empirical distribution
 over the pairs $\{(\z_1, \y_1), \ldots, (\z_N, \y_N)\}$, then
-$\prob{}{(\mathcal{Z}', \mathcal{Y}') = (\z_n, \y_n)} = 1/N$ for all $n$.
+$\prob{(\mathcal{Z}', \mathcal{Y}') = (\z_n, \y_n)} = 1/N$ for all $n$.
 
 (Hint: it may help to recall that the bootstrap uses draws
 from the empirical distribution, and that, in the empirical distribution,
@@ -135,9 +218,15 @@ the elements of the set are fixed and not random.)
 Let $(\mathcal{Z}', \mathcal{Y}')$ denote a draw from the empirical distribution
 over the set $\{(\y_1, \z_1), \ldots, (\y_N, \z_N)\}$.
 
-Prove that $\frac{1}{N} \zv^\trans \yv = \expect{}{\mathcal{Z}' \mathcal{Y}'}$.
+Prove that $\frac{1}{N} \zv^\trans \yv = \expect{\mathcal{Z}' \mathcal{Y}'}$.
 Then prove that
-$\frac{1}{N} \onev^\trans \zv = \expect{}{\mathcal{Z}'}$ as a special case.
+$\frac{1}{N} \onev^\trans \zv = \expect{\mathcal{Z}'}$ as a special case.
+
+::: {.content-hidden when-format="html"}
+**Solution**: Recognize the inner product as a sum.
+Then both follow from the definition of the expectation
+with respect to the empirical distribution.
+:::
 
 
 #### (b)
@@ -145,16 +234,21 @@ $\frac{1}{N} \onev^\trans \zv = \expect{}{\mathcal{Z}'}$ as a special case.
 Now suppose that the entries of $\zv$ are independent and identically
 distributed (IID) realizations of the random variable $\mathcal{Z}$, and that
 the entries of $\yv$ are similarly IID realizations of a random variable
-$\mathcal{Y}$.  Assuming that $\expect{}{|\mathcal{Z}|} < \infty$ and
-$\expect{}{|\mathcal{Y}|} < \infty$, prove that
+$\mathcal{Y}$.  Assuming that $\expect{|\mathcal{Z}|} < \infty$ and
+$\expect{|\mathcal{Y}|} < \infty$, prove that
 
 $$
 \frac{1}{N} \zv^\trans \yv \rightarrow
-    \expect{}{\mathcal{Z} \mathcal{Y}}
+    \expect{\mathcal{Z} \mathcal{Y}}
     \textrm{ as }N \rightarrow \infty
 $$
 
 (Hint: don't prove this from scratch, appeal to a probability theorem.)
+
+::: {.content-hidden when-format="html"}
+**Solution**: Recognize the inner product as a sum, then appeal 
+to the law of large numbers (weak or strong is okay).
+:::
 
 
 #### (c)
@@ -163,6 +257,21 @@ Using only inner products involving $\yv$, $\zv$, and $\onev$,
 write an expression for $\cov{}{\mathcal{Y}', \mathcal{Z}'}$.  Prove
 that the expression converges with probability one to $\cov{}{\mathcal{Y}, \mathcal{Z}}$.
 (Hint: again, use your previous results and a theorem from probability.)
+
+::: {.content-hidden when-format="html"}
+**Solution**: Using our previous results,
+$$
+\begin{aligned}
+\cov{}{\mathcal{Y}', \mathcal{Z}'} ={}&
+    \expect{(\mathcal{Y}' - \expect{\mathcal{Y}'})(\mathcal{Z}' - \expect{\mathcal{Z}'})} \\
+={}&
+    \expect{(\mathcal{Y}' - N^{-1} \onev^\trans \yv)(\mathcal{Z}' - N^{-1} \onev^\trans \zv)} \\
+={}&
+    N^{-1} (\yv - N^{-1} \onev^\trans \yv)^\trans(\zv - N^{-1} \onev^\trans \zv).
+\end{aligned}
+$$
+
+:::
 
 
 #### (d)
@@ -173,46 +282,55 @@ from the empirical distribution over $\{(\x_1, \y_1), \ldots, (\x_N, \y_N) \}$.
 the $n$--th row of the matrix $\X$.)
 
 $$
-\begin{align*}
-\frac{1}{N} \X^\trans \X = \expect{}{\mathcal{X}' \mathcal{X}'^\trans}
+\begin{aligned}
+\frac{1}{N} \X^\trans \X = \expect{\mathcal{X}' \mathcal{X}'^\trans}
 \quad\textrm{and}\quad
-\frac{1}{N} \X^\trans \y = \expect{}{\mathcal{X}' \mathcal{Y}'}.
-\end{align*}
+\frac{1}{N} \X^\trans \y = \expect{\mathcal{X}' \mathcal{Y}'}.
+\end{aligned}
 $$
 
+::: {.content-hidden when-format="html"}
+**Solution**: Apply the previous results componentwise.
+:::
 
 #### (e)
 
 Now, suppose that rows of $\X$ are IID realizations of the random
-$P$--vector $\mathcal{X}$, and that $\expect{}{|\mathcal{X}_p|} < \infty$
+$P$--vector $\mathcal{X}$, and that $\expect{|\mathcal{X}_p|} < \infty$
 for each $p \in \{ 1, \ldots, P \}$.  Assume, as above, that
-$\expect{}{|\mathcal{Y}|} < \infty$.
+$\expect{|\mathcal{Y}|} < \infty$.
 
 Prove that, as $N \rightarrow \infty$,
 
 $$
 \frac{1}{N} \X^\trans \X \rightarrow
-    \expect{}{\mathcal{X} \mathcal{X}^\trans}
+    \expect{\mathcal{X} \mathcal{X}^\trans}
 \quad\textrm{and}\quad
 \frac{1}{N} \X^\trans \Y \rightarrow
-    \expect{}{\mathcal{X} \mathcal{Y}},
+    \expect{\mathcal{X} \mathcal{Y}},
 $$
 
 where both limits are with probability one.
 
+::: {.content-hidden when-format="html"}
+**Solution**: Apply the previous results componentwise.
+:::
 
 #### (f)
 
 Now assume that, for each $p \in \{1, \ldots, P\}$ and $q \in \{1, \ldots, P\}$,
-$\expect{}{\abs{\mathcal{X}'_p} \abs{\mathcal{X}'_q} \mathcal{Y}^2} < \infty$.
+$\expect{\abs{\mathcal{X}'_p} \abs{\mathcal{X}'_q} \mathcal{Y}^2} < \infty$.
 Prove that, as $N \rightarrow \infty$, 
 
 $$
 \frac{1}{\sqrt{N}}
-\left( \X^\trans \Y - \expect{}{\X^\trans \Y} \right) \rightarrow \mathcal{Z},
+\left( \X^\trans \Y - \expect{\X^\trans \Y} \right) \rightarrow \mathcal{Z},
 $$ 
 
 where
 $\mathcal{Z}$ is a multivariate normal random variable.  What is the covariance of $\mathcal{Z}$?
 (Hint: again, appeal to a probability theorem.)
 
+::: {.content-hidden when-format="html"}
+**Solution**: Appeal to the multivariate central limit theorem.
+:::

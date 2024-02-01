@@ -1,5 +1,5 @@
 ---
-title: "Some payoffs from the linear algebra perspective."
+title: "Transformations of regressors: Some payoffs from the linear algebra perspective."
 format:
   html:
     code-fold: false
@@ -28,12 +28,8 @@ nrow(bodyfat_df)
 ```
 
 # Goals
-- Use our technical results to answer two questions about prediction:
+- Use our technical results to answer some questions about prediction:
     - How can we form new predictors for prediction problems?
-- Introduce / review multivariate probability
-    - The law of large numbers for vectors and matrices
-    - The multivariate normal distribution
-    - The central limit theorem for vectors
 
 
 # Prediction in the bodyfat example

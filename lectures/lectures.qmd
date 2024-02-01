@@ -37,5 +37,14 @@ sidebar: true
 - Lab Jan 30th:
     - Homework 1 review
 - Lecture Feb 1st:
-    - [Some payoffs for prediction](Lecture6.qmd)
-    - [Code](Lecture6_code.ipynb)
+    - [Transformations of variables](Lecture6.qmd)
+
+
+---
+
+- Lecture Feb 6th:
+    - [Probability and asymptotics with vectors and matrices](Lecture7.qmd)
+- Lab Feb 7th:
+    - Homework consultation
+- Lecture Feb 8th:
+    - [Some regression asymptotics](Lecture8.qmd)
