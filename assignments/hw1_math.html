@@ -230,19 +230,19 @@ y_n = \beta_0 + \beta_1 z_n + \varepsilon_n
 <h1 data-number="3"><span class="header-section-number">3</span> Inner products and covariances</h1>
 <p>Let <span class="math inline">\(\boldsymbol{z}= (z_1, \ldots, z_N)\)</span> and <span class="math inline">\(\boldsymbol{y}= (y_1, \ldots, y_N)\)</span>. Let <span class="math inline">\(\boldsymbol{X}\)</span> denote an <span class="math inline">\(N \times P\)</span> matrix whose <span class="math inline">\(n\)</span>–th row is the transpose of the <span class="math inline">\(P\)</span>-vector <span class="math inline">\(\boldsymbol{x}_n^\intercal\)</span>.</p>
 <p>(Note: this question involves limits of random variables, and there are many distinct ways that random variables can converge to limits. If you’re familiar with these different modes of probabilisitic convergence, feel free to state what mode of convergence applies, but if you are not, don’t worry — modes of convergence will not matter much for this class, and you can state your result heuristically.)</p>
-<p>For a set of quantities (numbers, vectors, pairs of vectors, etc), the “empirical distribution” over that set refers to drawing an element with replacement from the set with equal probability given to each entry. For example, if <span class="math inline">\(\mathcal{Z}'\)</span> is a drawn from the empirical distribution over the set <span class="math inline">\(\{z_1, \ldots, z_N \}\)</span>, then <span class="math inline">\(\underset{}{\mathbb{P}}\left(\mathcal{Z}' = z_n\right) = 1/N\)</span> for each <span class="math inline">\(n\)</span>. Similarly, if <span class="math inline">\((\mathcal{Z}', \mathcal{Y}')\)</span> is drawn from the empirical distribution over the pairs <span class="math inline">\(\{(z_1, y_1), \ldots, (z_N, y_N)\}\)</span>, then <span class="math inline">\(\underset{}{\mathbb{P}}\left((\mathcal{Z}', \mathcal{Y}') = (z_n, y_n)\right) = 1/N\)</span> for all <span class="math inline">\(n\)</span>.</p>
+<p>For a set of quantities (numbers, vectors, pairs of vectors, etc), the “empirical distribution” over that set refers to drawing an element with replacement from the set with equal probability given to each entry. For example, if <span class="math inline">\(\mathcal{Z}'\)</span> is a drawn from the empirical distribution over the set <span class="math inline">\(\{z_1, \ldots, z_N \}\)</span>, then <span class="math inline">\(\mathbb{P}\left(\mathcal{Z}' = z_n\right) = 1/N\)</span> for each <span class="math inline">\(n\)</span>. Similarly, if <span class="math inline">\((\mathcal{Z}', \mathcal{Y}')\)</span> is drawn from the empirical distribution over the pairs <span class="math inline">\(\{(z_1, y_1), \ldots, (z_N, y_N)\}\)</span>, then <span class="math inline">\(\mathbb{P}\left((\mathcal{Z}', \mathcal{Y}') = (z_n, y_n)\right) = 1/N\)</span> for all <span class="math inline">\(n\)</span>.</p>
 <p>(Hint: it may help to recall that the bootstrap uses draws from the empirical distribution, and that, in the empirical distribution, the elements of the set are fixed and not random.)</p>
 <section id="a-2" class="level4">
 <h4 class="anchored" data-anchor-id="a-2">(a)</h4>
 <p>Let <span class="math inline">\((\mathcal{Z}', \mathcal{Y}')\)</span> denote a draw from the empirical distribution over the set <span class="math inline">\(\{(y_1, z_1), \ldots, (y_N, z_N)\}\)</span>.</p>
-<p>Prove that <span class="math inline">\(\frac{1}{N} \boldsymbol{z}^\intercal\boldsymbol{y}= \underset{}{\mathbb{E}}\left[\mathcal{Z}' \mathcal{Y}'\right]\)</span>. Then prove that <span class="math inline">\(\frac{1}{N} \boldsymbol{1}^\intercal\boldsymbol{z}= \underset{}{\mathbb{E}}\left[\mathcal{Z}'\right]\)</span> as a special case.</p>
+<p>Prove that <span class="math inline">\(\frac{1}{N} \boldsymbol{z}^\intercal\boldsymbol{y}= \mathbb{E}\left[\mathcal{Z}' \mathcal{Y}'\right]\)</span>. Then prove that <span class="math inline">\(\frac{1}{N} \boldsymbol{1}^\intercal\boldsymbol{z}= \mathbb{E}\left[\mathcal{Z}'\right]\)</span> as a special case.</p>
 </section>
 <section id="b-2" class="level4">
 <h4 class="anchored" data-anchor-id="b-2">(b)</h4>
-<p>Now suppose that the entries of <span class="math inline">\(\boldsymbol{z}\)</span> are independent and identically distributed (IID) realizations of the random variable <span class="math inline">\(\mathcal{Z}\)</span>, and that the entries of <span class="math inline">\(\boldsymbol{y}\)</span> are similarly IID realizations of a random variable <span class="math inline">\(\mathcal{Y}\)</span>. Assuming that <span class="math inline">\(\underset{}{\mathbb{E}}\left[|\mathcal{Z}|\right] &lt; \infty\)</span> and <span class="math inline">\(\underset{}{\mathbb{E}}\left[|\mathcal{Y}|\right] &lt; \infty\)</span>, prove that</p>
+<p>Now suppose that the entries of <span class="math inline">\(\boldsymbol{z}\)</span> are independent and identically distributed (IID) realizations of the random variable <span class="math inline">\(\mathcal{Z}\)</span>, and that the entries of <span class="math inline">\(\boldsymbol{y}\)</span> are similarly IID realizations of a random variable <span class="math inline">\(\mathcal{Y}\)</span>. Assuming that <span class="math inline">\(\mathbb{E}\left[|\mathcal{Z}|\right] &lt; \infty\)</span> and <span class="math inline">\(\mathbb{E}\left[|\mathcal{Y}|\right] &lt; \infty\)</span>, prove that</p>
 <p><span class="math display">\[
 \frac{1}{N} \boldsymbol{z}^\intercal\boldsymbol{y}\rightarrow
-    \underset{}{\mathbb{E}}\left[\mathcal{Z} \mathcal{Y}\right]
+    \mathbb{E}\left[\mathcal{Z} \mathcal{Y}\right]
     \textrm{ as }N \rightarrow \infty
 \]</span></p>
 <p>(Hint: don’t prove this from scratch, appeal to a probability theorem.)</p>
@@ -255,32 +255,32 @@ y_n = \beta_0 + \beta_1 z_n + \varepsilon_n
 <h4 class="anchored" data-anchor-id="d">(d)</h4>
 <p>Now, let <span class="math inline">\((\mathcal{X}', \mathcal{Y}')\)</span> denote a draw from the empirical distribution over <span class="math inline">\(\{(x_1, y_1), \ldots, (x_N, y_N) \}\)</span>. (Recall that the vector <span class="math inline">\(x_n\)</span> is a length–<span class="math inline">\(P\)</span> column vector, and <span class="math inline">\(x_n^\intercal\)</span> is the <span class="math inline">\(n\)</span>–th row of the matrix <span class="math inline">\(\boldsymbol{X}\)</span>.)</p>
 <p><span class="math display">\[
-\begin{align*}
-\frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{X}= \underset{}{\mathbb{E}}\left[\mathcal{X}' \mathcal{X}'^\intercal\right]
+\begin{aligned}
+\frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{X}= \mathbb{E}\left[\mathcal{X}' \mathcal{X}'^\intercal\right]
 \quad\textrm{and}\quad
-\frac{1}{N} \boldsymbol{X}^\intercal y= \underset{}{\mathbb{E}}\left[\mathcal{X}' \mathcal{Y}'\right].
-\end{align*}
+\frac{1}{N} \boldsymbol{X}^\intercal y= \mathbb{E}\left[\mathcal{X}' \mathcal{Y}'\right].
+\end{aligned}
 \]</span></p>
 </section>
 <section id="e" class="level4">
 <h4 class="anchored" data-anchor-id="e">(e)</h4>
-<p>Now, suppose that rows of <span class="math inline">\(\boldsymbol{X}\)</span> are IID realizations of the random <span class="math inline">\(P\)</span>–vector <span class="math inline">\(\mathcal{X}\)</span>, and that <span class="math inline">\(\underset{}{\mathbb{E}}\left[|\mathcal{X}_p|\right] &lt; \infty\)</span> for each <span class="math inline">\(p \in \{ 1, \ldots, P \}\)</span>. Assume, as above, that <span class="math inline">\(\underset{}{\mathbb{E}}\left[|\mathcal{Y}|\right] &lt; \infty\)</span>.</p>
+<p>Now, suppose that rows of <span class="math inline">\(\boldsymbol{X}\)</span> are IID realizations of the random <span class="math inline">\(P\)</span>–vector <span class="math inline">\(\mathcal{X}\)</span>, and that <span class="math inline">\(\mathbb{E}\left[|\mathcal{X}_p|\right] &lt; \infty\)</span> for each <span class="math inline">\(p \in \{ 1, \ldots, P \}\)</span>. Assume, as above, that <span class="math inline">\(\mathbb{E}\left[|\mathcal{Y}|\right] &lt; \infty\)</span>.</p>
 <p>Prove that, as <span class="math inline">\(N \rightarrow \infty\)</span>,</p>
 <p><span class="math display">\[
 \frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{X}\rightarrow
-    \underset{}{\mathbb{E}}\left[\mathcal{X} \mathcal{X}^\intercal\right]
+    \mathbb{E}\left[\mathcal{X} \mathcal{X}^\intercal\right]
 \quad\textrm{and}\quad
 \frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{Y}\rightarrow
-    \underset{}{\mathbb{E}}\left[\mathcal{X} \mathcal{Y}\right],
+    \mathbb{E}\left[\mathcal{X} \mathcal{Y}\right],
 \]</span></p>
 <p>where both limits are with probability one.</p>
 </section>
 <section id="f" class="level4">
 <h4 class="anchored" data-anchor-id="f">(f)</h4>
-<p>Now assume that, for each <span class="math inline">\(p \in \{1, \ldots, P\}\)</span> and <span class="math inline">\(q \in \{1, \ldots, P\}\)</span>, <span class="math inline">\(\underset{}{\mathbb{E}}\left[\left|\mathcal{X}'_p\right| \left|\mathcal{X}'_q\right| \mathcal{Y}^2\right] &lt; \infty\)</span>. Prove that, as <span class="math inline">\(N \rightarrow \infty\)</span>,</p>
+<p>Now assume that, for each <span class="math inline">\(p \in \{1, \ldots, P\}\)</span> and <span class="math inline">\(q \in \{1, \ldots, P\}\)</span>, <span class="math inline">\(\mathbb{E}\left[\left|\mathcal{X}'_p\right| \left|\mathcal{X}'_q\right| \mathcal{Y}^2\right] &lt; \infty\)</span>. Prove that, as <span class="math inline">\(N \rightarrow \infty\)</span>,</p>
 <p><span class="math display">\[
 \frac{1}{\sqrt{N}}
-\left( \boldsymbol{X}^\intercal\boldsymbol{Y}- \underset{}{\mathbb{E}}\left[\boldsymbol{X}^\intercal\boldsymbol{Y}\right] \right) \rightarrow \mathcal{Z},
+\left( \boldsymbol{X}^\intercal\boldsymbol{Y}- \mathbb{E}\left[\boldsymbol{X}^\intercal\boldsymbol{Y}\right] \right) \rightarrow \mathcal{Z},
 \]</span></p>
 <p>where <span class="math inline">\(\mathcal{Z}\)</span> is a multivariate normal random variable. What is the covariance of <span class="math inline">\(\mathcal{Z}\)</span>? (Hint: again, appeal to a probability theorem.)</p>
 
