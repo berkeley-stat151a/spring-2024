@@ -220,8 +220,9 @@ $$
 \newcommand{\argmin}[1]{\underset{#1}{\mathrm{argmin}}\,}
 \newcommand{\projop}[1]{\underset{#1}{\mathrm{Proj}}\,}
 \newcommand{\proj}[1]{\underset{#1}{\mybold{P}}}
-\newcommand{\expect}[2]{\underset{#1}{\mathbb{E}}\left[#2\right]}
-\newcommand{\prob}[2]{\underset{#1}{\mathbb{P}}\left(#2\right)}
+\newcommand{\expect}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\prob}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\dens}[1]{\mathit{p}\left(#1\right)}
 \newcommand{\var}[2]{\underset{#1}{\mathrm{Var}}\left(#2\right)}
 \newcommand{\cov}[2]{\underset{#1}{\mathrm{Cov}}\left(#2\right)}
 \newcommand{\sumn}{\sum_{n=1}^N}
@@ -275,6 +276,10 @@ $$
 \newcommand{\gvhat}{\hat{\gv}}
 \newcommand{\ghat}{\hat{\gamma}}
 
+\newcommand{\hv}{\mybold{\h}}
+\newcommand{\hvhat}{\hat{\hv}}
+\newcommand{\hhat}{\hat{\h}}
+
 \newcommand{\gammav}{\mybold{\gamma}}
 \newcommand{\gammavhat}{\hat{\gammav}}
 \newcommand{\gammahat}{\hat{\gamma}}
@@ -284,8 +289,18 @@ $$
 \newcommand{\onev}{\mybold{1}}
 \newcommand{\id}{\mybold{I}}
 
+\newcommand{\sigmahat}{\hat{\sigma}}
+
+
+\newcommand{\etav}{\mybold{\eta}}
 
 \newcommand{\rdom}[1]{\mathbb{R}^{#1}}
+
+\newcommand{\RV}[1]{\tilde{#1}}
+
+
+
+\def\A{\mybold{A}}
 
 \def\A{\mybold{A}}
 \def\av{\mybold{a}}
@@ -354,7 +369,7 @@ $$
 <p>Suppose we’re a Spotify engineer and we pulled this data from one datacenter at one particular time, and we’re exploring / sanity checking the ML outputs.</p>
 <p>We’ll assume that song popularity is relatively objective (e.g.&nbsp;number of listens), but the various song features (particularly danceability) are the output of ML systems that we want to sanity check.</p>
 <p>We hope that our ML features are at least somewhat related to popularity. (<em>Why?</em>) Our whole problem is that this graph is not easy to interpret:</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="2">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>PlotBaseSpotify <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(spotify_df, <span class="fu">aes</span>(<span class="at">y=</span>track_popularity, <span class="at">x=</span>danceability)) <span class="sc">+</span> </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_density_2d_filled</span>() <span class="sc">+</span></span>
@@ -386,7 +401,7 @@ $$
 \beta_0 ={}&amp; \frac{\x_1 \y_2 - \x_2 \y_1}{\x_1 - \x_2}
 \end{align*}
 \]</span></p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="3">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>simple_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">rnorm</span>(<span class="dv">10</span>)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">y=</span><span class="fl">0.2</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(simple_df) <span class="sc">+</span></span>
@@ -422,7 +437,7 @@ $$
 \]</span></p>
 <p>Is this reasonable? What grouping is best? What groupings fail? Should you weight the groups, and if so, how? A clear answer will be something we learn in this course.</p>
 <p>In the meantime, let’s take a look.</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="4">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return the slope and intercept of a line passing through two points.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Args:</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  - x: Two points in the domain</span></span>
@@ -437,7 +452,7 @@ $$
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(intercept, slope))</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="5">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a line using the above grouping formula.</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Args:</span></span>
@@ -475,7 +490,7 @@ $$
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Suppose, for example, that we take the groups to be the data with dancability below or above its median. The results are pretty good:</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="6">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x_median <span class="ot">&lt;-</span> <span class="fu">median</span>(spotify_df<span class="sc">$</span>danceability)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(spotify_df<span class="sc">$</span>danceability <span class="sc">&lt;=</span> x_median, <span class="st">"A"</span>, <span class="st">"B"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>grouped_fit <span class="ot">&lt;-</span> <span class="fu">GetGroupedTerms</span>(group)</span>
@@ -495,7 +510,7 @@ $$
 </div>
 </div>
 <p>What if we do the same thing, but randomly assign the groups. The result is garbage!</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="7">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rand_group <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="fu">nrow</span>(spotify_df), <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>rand_grouped_fit <span class="ot">&lt;-</span> <span class="fu">GetGroupedTerms</span>(rand_group)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -542,13 +557,13 @@ x_n ={}&amp; \alpha_1 \y_n + \alpha_0 + \gamma_n.
 \end{align*}
 \]</span> We thus have four combinations to try: <span class="math inline">\(\y_n\)</span> or <span class="math inline">\(\x_n\)</span> on the left hand side, and minimizing the sum of squares or sum of absolute deviations.</p>
 <p>We can compute all these in <code>R</code> and see how they look on the Spotify data. Before we do, try to predict yourself.</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="8">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Lecture5_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="9">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>least_squares_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y_on_x <span class="ot">&lt;-</span> <span class="fu">lm</span>(track_popularity <span class="sc">~</span> danceability, spotify_df)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>least_squares_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>() <span class="sc">-</span> least_squares_time</span>
@@ -560,7 +575,7 @@ x_n ={}&amp; \alpha_1 \y_n + \alpha_0 + \gamma_n.
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>x_on_y <span class="ot">&lt;-</span> <span class="fu">lm</span>(danceability <span class="sc">~</span> track_popularity, spotify_df)</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>x_on_y_l1 <span class="ot">&lt;-</span> <span class="fu">l1fit</span>(<span class="at">x=</span>spotify_df<span class="sc">$</span>track_popularity, <span class="at">y=</span>spotify_df<span class="sc">$</span>danceability, <span class="at">intercept=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="10">
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"Y ~ X least squares"</span>)) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>x_on_y<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"X ~ Y least squares"</span>)) <span class="sc">+</span></span>
@@ -572,148 +587,73 @@ x_n ={}&amp; \alpha_1 \y_n + \alpha_0 + \gamma_n.
 </div>
 <p>Note that it matters a lot whether you have <span class="math inline">\(\y\)</span> or <span class="math inline">\(\x\)</span> on the left-hand side. (To gain some intuition for this, think about what happens as you transform data that lies on a straight line into data in an uncorrelated point cloud.)</p>
 <p>Let’s see the relative times:</p>
-<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="11">
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Least absolute deviation time:</span><span class="sc">\t</span><span class="st">"</span>, least_abs_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Least squares time:</span><span class="sc">\t\t</span><span class="st">"</span>, least_squares_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Least absolute deviation time:   0.1598475 
-Least squares time:      0.002751112 </code></pre>
-</div>
 </div>
 <p>Least squares took much longer! Why? We’ll talk about that shortly.</p>
 <section id="nonparameteric-lines" class="level2">
 <h2 class="anchored" data-anchor-id="nonparameteric-lines">Nonparameteric lines</h2>
 <p>For only one variable, regression is actually no a very good solution. We would actually probably use something more “nonparametric.” For example, we could bucket up the regressors and keep an average in each bucket.</p>
-<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>num_buckets <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>spotify_bucketed_df <span class="ot">&lt;-</span> spotify_df <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">danceability_bucket=</span><span class="fu">cut</span>(danceability, num_buckets)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(danceability_bucket) <span class="sc">%&gt;%</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_popularity=</span><span class="fu">mean</span>(track_popularity),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">bucket_danceability=</span><span class="fu">median</span>(danceability),</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">count=</span><span class="fu">n</span>())</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"Y ~ X least squares"</span>)) <span class="sc">+</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>bucket_danceability, </span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">y=</span>mean_popularity,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"Averages in buckets"</span>),</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>spotify_bucketed_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="Lecture5_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
-</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>num_buckets <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>spotify_bucketed_df <span class="ot">&lt;-</span> spotify_df <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">danceability_bucket=</span><span class="fu">cut</span>(danceability, num_buckets)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(danceability_bucket) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_popularity=</span><span class="fu">mean</span>(track_popularity),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">bucket_danceability=</span><span class="fu">median</span>(danceability),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">count=</span><span class="fu">n</span>())</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"Y ~ X least squares"</span>)) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>bucket_danceability, </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">y=</span>mean_popularity,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"Averages in buckets"</span>),</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>spotify_bucketed_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What do you think of this line’s behavior for low danceability?</p>
 <p>Note that <code>cut</code> takes evenly spaced slices, which leads to a very uneven distribution of observations in each bucket. How do you think this affects the graph we saw before?</p>
-<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(spotify_bucketed_df) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>bucket_danceability, <span class="at">y=</span>count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="Lecture5_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
-</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(spotify_bucketed_df) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>bucket_danceability, <span class="at">y=</span>count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There are more sophisitcated ways to do “nonparametric” smoothers like this automatically, including built-in functions in <code>R</code>.</p>
-<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"Y ~ X least squares"</span>)) <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="st">"Ggplot smooth"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="Lecture5_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
-</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, <span class="at">color=</span><span class="st">"Y ~ X least squares"</span>)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="st">"Ggplot smooth"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The core problem with nonparametrics is the curse of dimensionality. Suppose we have <span class="math inline">\(P\)</span> regressors, and we divide each into ten buckets. In total, we have <span class="math inline">\(10^P\)</span> buckets, and, on average, <span class="math inline">\(N / 10^P\)</span> observations per bucket. Here are some values for the Spotify dataset:</p>
-<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>regressors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"danceability"</span>, <span class="st">"energy"</span>, <span class="st">"loudness"</span>, <span class="st">"speechiness"</span>, </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"acousticness"</span>, <span class="st">"instrumentalness"</span>, <span class="st">"liveness"</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(regressors <span class="sc">%in%</span> <span class="fu">names</span>(spotify_df)))</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(regressors)) {</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  num_buckets <span class="ot">=</span> <span class="dv">10</span><span class="sc">^</span>p</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"With %d buckets, we have %0.3f observations per bucket."</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>              p, <span class="fu">nrow</span>(spotify_df) <span class="sc">/</span> num_buckets), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>With 1 buckets, we have 3283.300 observations per bucket. 
-With 2 buckets, we have 328.330 observations per bucket. 
-With 3 buckets, we have 32.833 observations per bucket. 
-With 4 buckets, we have 3.283 observations per bucket. 
-With 5 buckets, we have 0.328 observations per bucket. 
-With 6 buckets, we have 0.033 observations per bucket. 
-With 7 buckets, we have 0.003 observations per bucket. </code></pre>
-</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>regressors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"danceability"</span>, <span class="st">"energy"</span>, <span class="st">"loudness"</span>, <span class="st">"speechiness"</span>, </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"acousticness"</span>, <span class="st">"instrumentalness"</span>, <span class="st">"liveness"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(regressors <span class="sc">%in%</span> <span class="fu">names</span>(spotify_df)))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(regressors)) {</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  num_buckets <span class="ot">=</span> <span class="dv">10</span><span class="sc">^</span>p</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"With %d buckets, we have %0.3f observations per bucket."</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>              p, <span class="fu">nrow</span>(spotify_df) <span class="sc">/</span> num_buckets), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>So the strength of regression for EDA is really in higher-dimensional settings. For example, if we wanted to look at all the outputs at once:</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lm_formula <span class="ot">&lt;-</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"track_popularity ~ 1 + "</span>,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(regressors, <span class="at">collapse=</span><span class="st">" + "</span>))</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lm_formula)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>spotify_reg_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">formula</span>(lm_formula), spotify_df)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(y_on_x))</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(spotify_reg_all))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "track_popularity ~ 1 + danceability + energy + loudness + speechiness + acousticness + instrumentalness + liveness"
-
-Call:
-lm(formula = track_popularity ~ danceability, data = spotify_df)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--46.024 -18.415   2.934  19.480  57.105 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   35.1757     0.6361   55.30   &lt;2e-16 ***
-danceability  11.1497     0.9484   11.76   &lt;2e-16 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Residual standard error: 24.93 on 32831 degrees of freedom
-Multiple R-squared:  0.004192,  Adjusted R-squared:  0.004162 
-F-statistic: 138.2 on 1 and 32831 DF,  p-value: &lt; 2.2e-16
-
-
-Call:
-lm(formula = formula(lm_formula), data = spotify_df)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--62.259 -17.640   3.169  19.037  73.063 
-
-Coefficients:
-                  Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)       70.78317    1.40436  50.402  &lt; 2e-16 ***
-danceability       7.26292    0.95757   7.585 3.42e-14 ***
-energy           -28.96580    1.15306 -25.121  &lt; 2e-16 ***
-loudness           1.66617    0.06295  26.469  &lt; 2e-16 ***
-speechiness       -5.21887    1.35498  -3.852 0.000118 ***
-acousticness       4.86004    0.72643   6.690 2.26e-11 ***
-instrumentalness -12.82676    0.61686 -20.794  &lt; 2e-16 ***
-liveness          -4.39948    0.88735  -4.958 7.16e-07 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Residual standard error: 24.23 on 32825 degrees of freedom
-Multiple R-squared:  0.05934,   Adjusted R-squared:  0.05914 
-F-statistic: 295.8 on 7 and 32825 DF,  p-value: &lt; 2.2e-16
-</code></pre>
-</div>
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>lm_formula <span class="ot">&lt;-</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"track_popularity ~ 1 + "</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(regressors, <span class="at">collapse=</span><span class="st">" + "</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lm_formula)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>spotify_reg_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">formula</span>(lm_formula), spotify_df)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(y_on_x))</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(spotify_reg_all))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that the high dimensional fit can look a bit chaotic when projected onto one dimension:</p>
-<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>spotify_reg_all<span class="sc">$</span>fitted.values, </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"Y ~ X high dimensional least squares "</span>)) <span class="sc">+</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"Y ~ X simple least squares"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="Lecture5_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
-</div>
+<div class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotBaseSpotify</span>() <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>spotify_reg_all<span class="sc">$</span>fitted.values, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"Y ~ X high dimensional least squares "</span>)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y_on_x<span class="sc">$</span>fitted.values, </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"Y ~ X simple least squares"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
