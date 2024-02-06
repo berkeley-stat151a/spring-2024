@@ -1,0 +1,607 @@
+---
+title: "Asymptotics and probability with vectors and matrices.  The multivariate normal distribution."
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    include-before-body:
+     - file: ../macros.md
+---
+
+$\LaTeX$
+
+
+# Goals
+- Introduce / review multivariate probability
+    - The law of large numbers for vectors and matrices
+    - The multivariate normal distribution
+    - The central limit theorem for vectors
+
+
+# Uncertainty in prediction problems
+
+
+```{r}
+#| echo: false
+#| include: false
+library(tidyverse)
+library(gridExtra)
+
+options(repr.plot.width = 15, repr.plot.height = 8, repr.plot.res = 300)
+theme_update(text = element_text(size=24))
+options(repr.plot.width=12, repr.plot.height=6)
+
+data_location <- "/home/rgiordan/Documents/git_repos/stat151a_website/datasets"
+bodyfat_df <- read.csv(file.path(data_location, "bodyfat.csv"))
+
+PlotFit <- function(reg) {
+    ggplot() +
+        geom_point(aes(x=reg$model$bodyfat, y=reg$fitted.values)) +
+        geom_abline(aes(slope=1, intercept=0)) +
+        xlab("Actual bodyfat") + ylab("Predicted bodyfat")
+}
+```
+
+Recall our bodyfat prediction problem.  Suppose we decide we want to
+predict bodyfat using the abdomen measurement, height, and weight;
+these variables, plus a constant, will be included in $\xv_n$,
+and we'll take $\y_n$ to be measured bodyfat, and regress
+$\y_n \sim \xv_n^\trans Bv$.
+(We will talk later about how to choose which regressors to 
+include, but for now we'll take them as fixed.)  
+
+We fit a line using OLS, giving us $\bvhat$.
+
+```{r}
+reg <- lm(bodyfat ~ Abdomen + Height + Weight, bodyfat_df)
+print(reg$coefficients)
+PlotFit(reg)
+```
+
+Later, a new person will come into the doctor's office with
+measurements $\xv_\new$.  We would like to know their
+$\y_\new$, and are considering approximate it with 
+$\yhat_\new = \xv_\new^\trans Bvhat$, hoping that $\yhat_\new Approx \y_\new$.
+
+Here are some questions to ask:
+
+1) How much error do we expect to incur on an individual with $\xv_\new$?
+1) How much error do we expect to incur, on average, over a large number of new individuals?
+1) Would a different set of regressors have given us better prediction?
+1) Would it improve our estimates to gather more data (i.e. to increase $N$)?
+1) Were we to get a new dataset of the same size, would we come up with a different $Betahat$? How different?
+1) Are these errors tolerable for our intended usage?
+
+Without more assumptions about how the data were gathered, and what
+sorts of individuals we expect to see in the future, these questions
+are impossible to answer at all, much less quantitatively.
+
+
+
+
+
+# Stochastic assumptions
+
+In order to attempt to provide useful answers to these questions --- or at
+least approximate answers --- we will be imposing *stochastic assumptions*.  This
+means we will model the data as having come from a random distribution, and
+use probability calculus to make statements about the errors we are
+likely to make.   This does not mean the data *did* come from a random distribution, nor 
+does it mean that the analysis is worthless if the data did *not* come from a random
+distribution.  I like to think that we are using stochastic models as 
+metaphors for what we don't know.  Ideally these metaphors are both convincing
+but also falsifiable.
+
+We will study a variety of stochastic models, but they will all involve
+the following assumption:
+
+::: {.callout-tip title="Assumption 1: IID"}
+The pairs $(\xv_n, \y_n)$ are drawn IID from some distribution.
+:::
+
+The benefit of Assumption 1 is that we can use *asymptotics* to study
+the behavior of the least squares fit when $N$ is large.  This is good
+beacause (a) $N$ is at least sometimes large and (b) it's much harder
+to do statistical inference without aysmpotitics.  Additionally, a lot
+of classical statistical theory that is still in use is asymptotic in
+nature, and so it is good to critically understand asymptotics
+in order to understand a lot of statistical practice, even (or especially)
+questionable statistical practice.
+
+
+::: {.callout-warning title='Exercise'} 
+Describe a circumstance when Assumption 1 is reasonable in our bodyfat example,
+and one where it is unreasonable.
+:::
+
+Asymptotic answers to our questions will come down to understanding the 
+stochastic behavior of $Bvhat$ as $N$ gets large, and $Bvhat$ is a
+vector, which is computed from matrices.  So we need to extend
+the asymptotics you know about scalar-valued quantities
+to vector and matrix valued-quantities.
+
+There are essentially three asymptotic results we'll need:
+
+- Laws of large numbers, or convergence of sample averages to population expectations
+- Central limit theorems, or convergence of rescaled sample averages to normal distributions and
+- Theorems that combine the two.
+
+
+# Univariate random variable review
+
+
+::: {.callout-tip title="Notation"}
+Some authors use capital letters to denote random variables, and lower-case letters
+to denote their realizations.  I will not do so since that will conflict with
+the existing matrix notation.  Though I recognize the importance of differentiating
+between random variables and their realizations, I'm not sure I want to commit
+right now to one particular notation.  For now I will use tildes: 
+$\RV{\x}$ will be a random variable, and $\x$ a realization.  
+Hopefully future lecture notes will settle on one consistent solution.
+:::
+
+A scalar-valued random variable $\RV{\x}$ is formally a mapping that assigns
+probabilities to sets of possible values that $\RV{\x}$ can take.
+That is, for any legitimate set $A$, we can evaluate $\prob{\RV{\x} \in A}$,
+in a way that respects common-sense rules of probability:
+
+- $\prob{\RV{\x} \in A} \in [0, 1]$
+- If $A$ and $B$ are disjoint ($A \bigcap B = \emptyset$), then
+  $\prob{\RV{\x} \in A \bigcup B} = \prob{\RV{\x} \in A} + \prob{\RV{\x} \in B}$.  
+- Furthermore,
+  you can do this for infinitely many sets --- if $A_n$ and all mutually disjoint for $n=1, 2, \ldots$,
+  then $\prob{\RV{\x} \in \bigcup_{n=1}^N A_n} = \sumn \prob{\RV{\x} \in A_n}$.
+- $\prob{\RV{\x} \in \Omega} = 1$, where $\Omega$ is the set of all values $\RV{\x}$ might take.
+
+Many of the random variables we'll encounter in this course have *densities*, which 
+give probabilities as integrals.  For example, if $\RV{\x}$ has a density $\dens{x}$, then
+
+$$
+\prob{\RV{\x} \in A} = \int_A \dens{x} dx.
+$$
+
+Sadly the notation for densities is often ambiguous.  Different random variables
+have different densities, of course, and they are all denoted with the letter
+$\dens{\cdot}$.  The argument is typically used to denote which random variable the 
+density applies to, as I have done here: $\dens{x}$ is the density for the random
+variable $\RV{\x}$ evaluated at the point $x$.  Perhaps it would be better to write
+$p_{\RV{\x}}(x)$, but often this is not done, and it is hopefully clear from the context
+precisely which density we mean.
+
+The density is useful to define expectations of functions of $\RV{\x}$.  Specifically, for
+a (sufficiently well-behaved) function $f(x)$, 
+
+$$
+\expect{f(\RV{\x})} = \int f(x) \dens{x} dx.
+$$
+
+An important property of expectation is that it's linear.  That means that,
+for any fixed numbers (not random variables!) $a$ and $b$, we have
+
+$$
+\expect{a \RV{\x} + b} = a\expect{\RV{\x}}  + b.
+$$
+
+This property follows from linearity of the integral.
+
+Two special expectations are particularly important: $f(x) = x$ and $f(x) = x^2$.  The
+expectations of these functions correspond to the "first and second moments" of $\RV{\x}$.
+In principle, these moments may not be finite, though in this class we will typically
+assume that they are finite.
+
+The variance of a random variable, when it exists, is defined in terms of these moments as
+$$
+\var{\RV{\x}} := \expect{\x^2} - \expect{\x}^2 = \expect{(\x - \expect{\x})^2}.
+$$
+
+The right hand side shows that the variance can never be negative, although it can be zero.
+
+
+
+::: {.callout-warning title='Exercise'} 
+Using linearity of expectation, what is $\var{a \RV{\x}}$?
+:::
+
+## Normal random variables
+
+There is a special distribution called a "Normal" or "Gaussian" distribution that
+plays a special role in statistics largely due to the Central Limit Theorem
+(which we will discuss shortly).
+Specifically, $\RV{\z}$ is a "standard normal random variable" if
+
+  - $\expect{\RV{\z}}$ = 0
+  - $\var{\RV{\z}}$ = 1
+  - $\dens{z} = \frac{1}{\sqrt{2\pi}} \exp\left( - \frac{z^2}{2} \right)$.
+
+For this class, the particular form of the density will not be too important,
+except possibly when doing Bayesian statistics.  But importantly, 
+if $\RV{\z}$ is standard normal, then we can accurately calculate the probability
+$\prob{\RV{\z} \le z}$ for any $z \in \rdom{}$.
+
+::: {.callout-warning title='Exercise'} 
+From $\prob{\RV{\z} \le z}$, show how to compute
+$\prob{\RV{\z} \ge z'}$ and $\prob{\abs{\RV{\z}} \le z''}$
+for any $z'$ and $z''$.
+:::
+
+For any $\mu$ and $\sigma$, we say that the random variable
+$\RV{\x} = \mu + \sigma \z$ is also standard normal, but with
+
+  - $\expect{\RV{\x}} = \mu$
+  - $\var{\RV{\x}} = \sigma^2$
+  - $\dens{x} = \frac{1}{\sigma \sqrt{2\pi}} \exp\left( - \frac{(x - \mu)^2}{2\sigma^2} \right)$.
+
+Further, if we have two independent normal random variables, $\RV{u}$ and $\RV{v}$,
+the sum $\RV{u} + \RV{v}$ is itself normal, with mean and variance given by
+the ordinary rules of expectation. Recall that independence means things like:
+
+- $\expect{\RV{u} \RV{v}} = \expect{\RV{u}} \expect{\RV{v}}$
+- $\expect{\RV{u} | \RV{v}} = \expect{\RV{u}}$
+- $\prob{\RV{u} \in A \textrm{ and } \RV{v} \in B} = \prob{\RV{u} \in A} \prob{\RV{v} \in B}$,
+
+and so on. 
+
+::: {.callout-tip title='Notation'} 
+I will write $\RV{\x} \sim \gauss{\mu, \sigma^2}$ to mean that $\RV{\x}$ is a normal random
+variable with mean $\mu$ and variance $\sigma^2$.
+:::
+
+
+
+## Limit theorems
+
+There are two important limit theorems that we will use: laws of large numbers (LLN)
+and central limit theorems (CLT).  In this class I will not worry too much about
+getting the strongest possible results (e.g., weakest possible assumptions
+for a particular convergence guarantee).  So I'll choose conditions that are
+simple to work with.
+
+
+### LLN
+
+First, let's state and prove a LLN.  Suppose $\RV{\x}_n$ are independent random variables
+for $n =1, \ldots, \infty$ such that $\max_n \var{\RV{\x}_n} < \infty$.  That is, 
+every variance is finite and the variances do not diverge.  
+Write $\expect{\RV{\x}_n} = \mu_n$ and assume that
+$\meann \mu_n \rightarrow \overline{\mu} < \infty$.  Then consider the 
+random variable
+$$
+\overline{x} := \frac{1}{N} \sumn \RV{\x}_n.
+$$
+
+We can see that
+
+$$
+\begin{aligned}
+\expect{\overline{x}} ={}& \meann \mu_n \\
+\var{\overline{x}} ={}& \
+  \expect{\left(\overline{x} - \meann \mu_n\right)^2} \\
+={}&  \expect{\left(\meann (\RV{\x}_n - \mu_n) \right)^2} \\
+={}&  \frac{1}{N^2} \sumn \expect{(\RV{\x}_n - \mu_n)^2} \\
+\le{}&  \frac{1}{N^2}  N \max_n \var{\RV{\x}_n} \rightarrow 0
+\quad\textrm{as }N\rightarrow \infty.
+\end{aligned}
+$$
+
+A random variable with zero variance is just a constant, so we have shown
+that $\overline{x}$ converges to the constant $\overline{\mu}$, which
+is the limit of $\meann \mu_n$.  (Markov's theorem gives a formal
+proof of convergence in probability, but I think that's beyond the
+scope of this class.)
+$$
+\overline{x} \rightarrow \overline{\mu} \quad
+\textrm{ as }N\rightarrow \infty.
+$$
+
+Note that in the preceding statement, $\overline{x}$ is a random variable,
+but $\overline{\mu}$ is a constant.  
+
+If $\mu_n = \mu = \overline{\mu}$,
+then this gives the familiar LLN from introductory probability, but
+this more general form will be useful in regression.
+
+### CLT
+
+The normal distribution is special because it is the limit of
+a rescaled average.  Take the setting of the previous example,
+and recall that, as $N \rightarrow \infty$,
+
+$$
+\overline{x} - \overline{\mu} = \meann (\RV{\x}_n - \mu_n) \rightarrow 0.
+$$
+
+One might note that, by the same argument of the previous section,
+
+$$
+\var{N (\overline{x} - \overline{\mu})} \rightarrow \infty.
+$$
+
+That is, if you scale $\overline{x} - \overline{\mu}$ by $N$, for large
+$N$, you get a random variable that takes arbitrarily large values
+with nonzero probability.  However,
+
+$$
+\begin{aligned}
+\var{\sqrt{N} \overline{x}} ={}& \
+  \expect{\left(\sqrt{N} \overline{x} - \sqrt{N} \meann \mu_n\right)^2} \\
+={}&  \expect{\left(\sqrt{N} \meann (\RV{\x}_n - \mu_n) \right)^2} \\
+={}&  \frac{1}{N} \sumn \expect{(\RV{\x}_n - \mu_n)^2} \\
+={}&  \meann \var{\RV{\x}_n},
+\end{aligned}
+$$
+
+a quantity that might reasonably converge to a constant, giving 
+$\sqrt{N} (\overline{x} - \overline{\mu})$ converging to a nondegenerate,
+but also nondivergent, random variable, as long as
+$$
+\meann \var{\RV{\x}_n} \rightarrow \overline{v}.
+$$
+
+(Note that the limit must be finite by assumption, but we do need to
+additionally assume that the limit exists.)
+
+In fact, the CLT says something stronger.  Not only does 
+$\sqrt{N} (\overline{x} - \overline{\mu})$ converge to a nicely behaved
+random variable, but the variable it converges to is normally 
+distributed:
+
+$$
+\sqrt{N} (\overline{x} - \overline{\mu}) =
+\frac{1}{\sqrt{N}} \sumn (\RV{\x}_n - \mu_n) \rightarrow \RV{\z}
+\quad\textrm{where }\RV{\z} \sim \gauss{0, \overline{v}}.
+$$
+
+I won't prove this here, but you can find lots of references that do
+prove it.   As above, taking $\mu_n = \mu = \overline{\mu}$
+and $\var{\RV{\x}_n} = \overline{v}$ gives the familiar IID result.
+
+
+
+# Vector-valued random variables
+
+## The bivariate normal distribution
+
+Suppose that $\RV{\u}_1$ and $\RV{\u}_2$ are independent
+standard normal random variables.   Suppose we define the new random variables
+
+$$
+\begin{aligned}
+\RV{\x_1} :={}& a_{11} \RV{\u}_1 + a_{12} \RV{\u}_2 \\
+\RV{\x_2} :={}& a_{21} \RV{\u}_1 + a_{22} \RV{\u}_2.
+\end{aligned}
+$$
+
+We can see that $\RV{\x_1}$ and $\RV{x_2}$ are each normal random variables,
+and we can compute their means and variances:
+
+$$
+\begin{aligned}
+\expect{\RV{\x_1}} :={}& a_{11} \expect{\RV{\u}_1} + a_{12} \expect{\RV{\u}_2} = 0 \\
+\expect{\RV{\x_2}} :={}& a_{21} \expect{\RV{\u}_1} + a_{22} \expect{\RV{\u}_2} = 0 \\
+\var{\RV{\x_1}} :={}& a_{11}^2 \var{\RV{\u}_1} + a_{12}^2 \var{\RV{\u}_2} = a_{11}^2 + a_{12}^2 \\
+\var{\RV{\x_2}} :={}& a_{21}^2 \var{\RV{\u}_1} + a_{22}^2 \var{\RV{\u}_2} = a_{21}^2 + a_{22}^2.
+\end{aligned}
+$$
+
+But in general $\RV{\x_1}$ and $\RV{x_2}$  are not independent.  If they were, we would have 
+$\expect{\RV{\x_1} \RV{\x_2}} = \expect{\RV{\x_1}} \expect{\RV{\x_2}} = 0$, but
+in fact we have
+
+$$
+\expect{\RV{\x_1} \RV{\x_2}} =
+\expect{(a_{11} \RV{\u}_1 + a_{12} \RV{\u}_2)(a_{21} \RV{\u}_1 + a_{22} \RV{\u}_2)} = 
+a_{11} a_{21} \expect{\RV{\u}_1^2} + a_{12} a_{22} \expect{\RV{\u}_2^2} = 
+a_{11} a_{21} + a_{12} a_{22}.
+$$
+
+The variables $\RV{\x_1}$ and $\RV{x_2}$ are instances of the *bivariate normal distribution*,
+which is the two-dimensional analogue of the normal distribution.  One can define
+the bivariate normal distribution in many ways.  Here, we have defined it by taking
+linear combinations of independent univariate normal distributions.  It turns out
+this is always possible, and for the purposes of this class, we will see that it is
+enough to use such a definition.
+
+The properties we derived above can in fact be represented more succinctly in vector
+notation.  We can write
+
+$$
+\RV{\xv} = 
+\begin{pmatrix}
+\RV{\x_1} \\
+\RV{\x_2} \\
+\end{pmatrix} =
+\begin{pmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{pmatrix} 
+\begin{pmatrix}
+\RV{\u}_1 \\
+\RV{\u}_2 \\
+\end{pmatrix} =:
+\A \RV{\uv}.
+$$
+
+Note that the matrix $\A$ is not random.  Defining the expectation of a vector
+to be the vector of expectations of its entries, we get
+
+$$
+\expect{\RV{\xv}} = \A \expect{\RV{\uv}} = \A \zerov = \zerov,
+$$
+
+just as above.
+
+Defining the "variance" of $\RV{\xv}$ is more subtle.  Recall that a normal
+distribution is fully characterized by its variance.  We would like this
+to be the case for the bivariate normal as well.  But for this it is not enough
+to know the marginal varianecs $\var{\RV{\x_1}}$ and $\var{\RV{\x_2}}$, since the
+"covariance" $\cov{\RV{\x_1}, \RV{\x_2}}$ is also very important for the behavior
+of the random variable. 
+
+A convenient way to write all the covariances in a single expression is to define
+
+$$
+\begin{aligned}
+\cov{\RV{\xv}} ={}&
+  \expect{\left(\RV{\xv} - \expect{\RV{\xv}} \right)
+          \left(\RV{\xv} - \expect{\RV{\xv}} \right)^\trans}
+          \\={}&
+  \expect{
+    \begin{pmatrix}
+      (\RV{\x_1} - \expect{\RV{\x_1}})^2 & 
+        (\RV{\x_1} - \expect{\RV{\x_1}})(\RV{\x_2} - \expect{\RV{\x_2}}) \\
+      (\RV{\x_1} - \expect{\RV{\x_1}})(\RV{\x_2} - \expect{\RV{\x_2}}) &
+        (\RV{\x_2} - \expect{\RV{\x_2}})^2
+    \end{pmatrix}
+  }
+          \\={}&
+  \begin{pmatrix}
+  \var{\RV{\x_1}} & \cov{\RV{\x_1}, \RV{\x_2}} \\
+  \cov{\RV{\x_1}, \RV{\x_2}} & \var{\RV{\x_2}}
+  \end{pmatrix}.
+\end{aligned}
+$$
+
+Note that the dimension of the matrix inside the expectation is $2 \times 2$, since
+we take the transpose on the left.  By expanding, we see that each entry of this
+"covariance matrix" has the covariance between two entries of the vector, and the
+diagonal contains the "marginal" variances.
+
+This expression in fact allows quite convenient calculation of all the covariances
+above, since
+
+$$
+\begin{aligned}
+\cov{\RV{\xv}} ={}&
+\expect{\A \RV{\uv} \RV{\uv}^\trans \A^\trans} 
+\\={}&
+\A  \expect{\RV{\uv} \RV{\uv}^\trans } \A^\trans
+\\={}&
+\A  \id \A^\trans
+\\={}&
+\A \A^\trans.
+\end{aligned}
+$$
+
+You can readily verify that the expression matches the ones derived
+manually above.
+
+
+## The multivariate normal distribution
+
+We can readily generalize the previous section to $P$--dimensional vectors.
+Let $\RV{\uv}$ denote a vector of $P$ standard normal random variables.
+Then define
+
+$$
+\RV{\xv} := \A \RV{\uv} + \muv.
+$$
+
+Then we say that $\RV{\xv}$ is a multivariate normal random
+variable with mean
+
+$$
+\expect{\RV{\xv}} = \A \expect{\RV{\uv}} + \muv = \muv
+$$
+
+and 
+
+$$
+\cov{\RV{\xv}} =
+\expect{(\RV{\xv} - \muv)(\RV{\xv} - \muv)^\trans} =
+\expect{(\A \RV{\uv})(\A \RV{\uv})^\trans} =
+\A \A^\trans,
+$$
+
+writing
+
+$$
+\RV{\xv} \sim \gauss{\muv, \A \A^\trans}.
+$$
+
+Suppose we want to design a multivariate normal with
+a given covariance matrix $\Sigmam$.  If we require that
+$\Sigmam$ be positive semi-definite (see exercise),
+the we can take $\A = \Sigmam^{1/2}$, giving the 
+following definition:
+
+::: {.callout-tip title='Notation'} 
+I will write $\RV{\xv} \sim \gauss{\muv, \Sigmam}$ to mean that $\RV{\xv}$ is a
+multivariate normal random variable with mean $\muv$ and covariance matrix
+$\Sigmam$.  
+:::
+
+Note that we will not typically go through the construction
+$\RV{\xv} = \Sigmam^{1/2} \RV{\uv}$ --- we'll take for granted that
+we can do so.  The construction in terms of univariate random variables
+is simply an easy way to define multivariate random variables without
+having to deal with multivariate densities.
+
+
+
+::: {.callout-warning title='Exercise'} 
+Show that if you have a vector-valued random variable
+with a non positive semi-definite covariance matrix,
+you can construct a univariate random variable with
+negative variance, which is impossible.  It follows
+that every vector covariance must be postive
+semi-definite.
+:::
+
+A few useful properties come out immediately from properties
+of the univariate normal distribution:
+
+- The entries of a multivariate normal random vector are
+independent if an only if the covariance matrix is diagonal.
+- Any linear combination of a multivariate normal random variable
+is itself multivariate normal (possibly with different dimension).
+- $\prob{\RV{\xv} \in S} = \prob{\RV{\uv} \in \{\uv: \A \uv \in S\}}$
+
+
+
+## Generic random vectors
+
+In general, we can consider a random vector --- or a random matrix ---
+as a collection of potentially non-independent random values.  
+For such a vector $\RV{\xv} \in \rdom{P}$, we can speak about its expectation
+and covariance just as we would for a multivariate normal distribution.
+Specifically,
+
+$$
+\expect{\RV{\xv}} =
+\begin{pmatrix}
+\expect{\RV{\x}_1} \\
+\vdots \\
+\expect{\RV{\x}_P} \\
+\end{pmatrix}
+\quad\textrm{and}\quad
+\cov{\RV{\xv}} =
+\expect{\left(\RV{\xv} - \expect{\RV{\xv}} \right) 
+        \left(\RV{\xv} - \expect{\RV{\xv}} \right)^\trans} =
+\begin{pmatrix}
+\var{\RV{\x_1}} & \cov{\RV{\x_1}, \RV{\x_2}} & \ldots & \cov{\RV{\x_1}, \RV{\x_P}} \\
+\cov{\RV{\x_2}, \RV{\x_1}} & \ldots & \ldots & \cov{\RV{\x_2}, \RV{\x_P}} \\
+\vdots & & & \vdots \\
+\cov{\RV{\x_P}, \RV{\x_1}} & \ldots & \ldots & \var{\RV{\x_P}} \\
+\end{pmatrix}.
+$$
+
+For these expressions to exist, it suffices for $\expect{\RV{\x}_p^2} < \infty$ 
+for all $p \in \{1,\ldots,P\}$.
+
+We will at times talk about the expectation of a random matrix,
+$\RV{\X}$, which is simply the matrix of expectations.  The notation
+for covariances of course doesn't make sense for matrices, but it 
+won't be needed.  (In fact, in cases where the covariance of a random matrix
+is needed in statistics, the matrix is typically stacked into a vector first.)
+
+
+
+## The law of large numbers for vectors
+
+
+## The central limit theorem for vectors
+
+
+## Combinations of results
+
+We will need two more key results, which we will state without proof.

@@ -254,15 +254,15 @@ to the law of large numbers (weak or strong is okay).
 #### (c)
 
 Using only inner products involving $\yv$, $\zv$, and $\onev$,
-write an expression for $\cov{}{\mathcal{Y}', \mathcal{Z}'}$.  Prove
-that the expression converges with probability one to $\cov{}{\mathcal{Y}, \mathcal{Z}}$.
+write an expression for $\cov{\mathcal{Y}', \mathcal{Z}'}$.  Prove
+that the expression converges with probability one to $\cov{\mathcal{Y}, \mathcal{Z}}$.
 (Hint: again, use your previous results and a theorem from probability.)
 
 ::: {.content-hidden when-format="html"}
 **Solution**: Using our previous results,
 $$
 \begin{aligned}
-\cov{}{\mathcal{Y}', \mathcal{Z}'} ={}&
+\cov{\mathcal{Y}', \mathcal{Z}'} ={}&
     \expect{(\mathcal{Y}' - \expect{\mathcal{Y}'})(\mathcal{Z}' - \expect{\mathcal{Z}'})} \\
 ={}&
     \expect{(\mathcal{Y}' - N^{-1} \onev^\trans \yv)(\mathcal{Z}' - N^{-1} \onev^\trans \zv)} \\

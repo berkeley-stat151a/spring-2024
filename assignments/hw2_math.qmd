@@ -17,16 +17,18 @@ format:
 
 Consider two different regressions, $\Y \sim \X \bv$ and $\Y \sim \Z \alphav$,
 with the same $\Y$, where $\X$ and $\Z$ are both $N \times P$ and are both full-rank.
+Let the $n$--th row of $\X$ be written $\xv_n^\trans$, and the
+$n$--th row of $\Z$ be $\zv_n^\trans$.
 
 #### (a)
 
-Suppose $\x_n = \A \z_n$ for an invertible $\A$ and for all $n = 1,\ldots,N$.  Find an expression for
+Suppose $\xv_n = \A \zv_n$ for an invertible $\A$ and for all $n = 1,\ldots,N$.  Find an expression for
 $\alphahat$ in terms of $\betahat$ that does not explicitly use $\Y$, $\X$, or $\Z$.
 
 
 #### (b)
 
-Suppose that, for all $n=1,\ldots,N$, $\x_n = f(\z_n)$ for some invertible but non-linear 
+Suppose that, for all $n=1,\ldots,N$, $\xv_n = f(\zv_n)$ for some invertible but non-linear 
 function $f(\cdot)$. In general, can you find an expression for
 $\alphahat$ in terms of $\betahat$ that does not explicitly use $\Y$, $\X$, or $\Z$?  Prove
 why or why not. (To prove that you cannot, finding a single counterexample is enough.)
@@ -41,7 +43,7 @@ estimator of $\gv$ is given by $\gvhat = \phi(\bvhat)$.
 
 #### (d)
 
-Prove that result (a) is special cases of the result (c).
+Prove that result (a) is special case of the result (c).
 (Hint: find the corresponding $\phi$.)
 
 
@@ -86,7 +88,7 @@ Suppose I give you a general $N$--dimensional vector $\vv$ and a scalar
 $a$.  How  many different choices of $\beta_0$ and $\beta_1$ can you find
 such that $\vv^\trans \resv = a$?
 
-#### (f)
+#### (f) (Optional --- this will not be graded)
 
 Suppose I give you two different vectors, $\vv_1$ and $\vv_2$.  Under what circumstances
 can you find $\beta_0$ and $\beta_1$  such that
@@ -109,7 +111,7 @@ Prove that there always exists $\bv$ and $\res$ so that the
 $\Y = \X \bv + \res$.
 
 
-#### (h)
+#### (h)  (Optional --- this will not be graded)
 
 Suppose, for the general linear model, that the matrix $\X$
 is full-rank (that is, of rank $P$, where $P$ is the number of
@@ -125,7 +127,7 @@ need to state the result in matrix form.)
 # Collinear regressors
 
 Suppose that $\X$ does not have full column rank --- that is, $\X$
-has rank $Q < P$.
+is $N \times P$ but has column rank $Q < P$.
 
 #### (a)
 
@@ -136,8 +138,9 @@ $$
 
 #### (b)
 
-Relate the solutions $\betahat$ from part (a) to the eigenvectors of $\X^\trans \X$.
-Among the solutions, identify the one with the smallest norm, $\norm{\betahat}_2^2$.
+Relate the solutions $\betahat$ from part (a) to spaces spanned by 
+eigenvectors of $\X^\trans \X$. Among the solutions, identify the one with the 
+smallest norm, $\norm{\betahat}_2^2$.
 
 #### (c)
 

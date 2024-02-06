@@ -27,6 +27,7 @@ head(bodyfat_df)
 nrow(bodyfat_df)
 ```
 
+
 # Goals
 - Use our technical results to answer some questions about prediction:
     - How can we form new predictors for prediction problems?

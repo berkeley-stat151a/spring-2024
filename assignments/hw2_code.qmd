@@ -48,13 +48,34 @@ AssertMatricesEqual(A, A)
 
 
 
-1)
+1) (Example)
     Starting from `GenerateMatrix()`, write a function that generates a random
     symmetric matrix.
 
-1)
+Solution:
+
+```r
+GenerateSymmetricMatrix <- function(dim) {
+    a_mat <- GenerateMatrix(dim, dim)
+    return(0.5 * (a_mat + t(a_mat)))
+}
+
+a_sym <- GenerateSymmetricMatrix(4)
+AssertMatricesEqual(a_sim, t(a_sim))
+```
+
+
+1) (Example)
     Starting from `AssertMatricesEqual()`, write a function that checks whether a 
     matrix is symmetric.
+
+Solution:
+```r
+CheckSymmetricMatrix <- function(a) {
+    AssertMatricesEqual(a, t(a))
+}
+```
+
 
 1)
     Starting from `GenerateMatrix()`, 
