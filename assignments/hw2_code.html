@@ -237,8 +237,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Should pass</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">AssertMatricesEqual</span>(A, A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol type="1">
-<li><p>Starting from <code>GenerateMatrix()</code>, write a function that generates a random symmetric matrix.</p></li>
-<li><p>Starting from <code>AssertMatricesEqual()</code>, write a function that checks whether a matrix is symmetric.</p></li>
+<li>(Example) Starting from <code>GenerateMatrix()</code>, write a function that generates a random symmetric matrix.</li>
+</ol>
+<p>Solution:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>GenerateSymmetricMatrix <span class="ot">&lt;-</span> <span class="cf">function</span>(dim) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    a_mat <span class="ot">&lt;-</span> <span class="fu">GenerateMatrix</span>(dim, dim)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fl">0.5</span> <span class="sc">*</span> (a_mat <span class="sc">+</span> <span class="fu">t</span>(a_mat)))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>a_sym <span class="ot">&lt;-</span> <span class="fu">GenerateSymmetricMatrix</span>(<span class="dv">4</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">AssertMatricesEqual</span>(a_sim, <span class="fu">t</span>(a_sim))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li>(Example) Starting from <code>AssertMatricesEqual()</code>, write a function that checks whether a matrix is symmetric.</li>
+</ol>
+<p>Solution:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>CheckSymmetricMatrix <span class="ot">&lt;-</span> <span class="cf">function</span>(a) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">AssertMatricesEqual</span>(a, <span class="fu">t</span>(a))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
 <li><p>Starting from <code>GenerateMatrix()</code>, write a function to generate a random symmetric positive semi-definite matrix of a given size.</p></li>
 <li><p>Starting from <code>GenerateMatrix()</code>, write a function to generate a random symmetric positive definite matrix of a given size whose smallest eigenvalue is greater than one. (Hint: you can add something to your previous solution.)</p></li>
 <li><p>Write a function that takes in a symmetric PSD matrix and returns an inverse computed from the eigendecomposition. You may use <code>eigen()</code>.</p></li>
