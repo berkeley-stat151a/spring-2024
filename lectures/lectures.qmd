@@ -43,8 +43,8 @@ sidebar: true
 ---
 
 - Lecture Feb 6th:
-    - [Probability and asymptotics with vectors and matrices](Lecture7.qmd)
+    - [Univariate statistics and limit theorems.](Lecture7.qmd)
 - Lab Feb 7th:
     - Homework consultation
 - Lecture Feb 8th:
-    - [Some regression asymptotics](Lecture8.qmd)
+    - [Vector and matrix-valued statistics and limit theorems](Lecture8.qmd)
