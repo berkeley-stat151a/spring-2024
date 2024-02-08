@@ -103,22 +103,26 @@ CheckSymmetricMatrix <- function(a) {
 
 1)
     Write a function that takes in a potentially non-square matrix and returns
-    a projection matrix onto the column span.
+    a projection matrix onto the column span.  You may assume the matrix
+    is full-rank.
 
 1)
     Write a function that takes in a potentially non-square matrix and returns
-    a projection matrix onto the row span.
+    a projection matrix onto the row span.  You may assume the matrix
+    is full-rank.
 
 1)
     Write a function that takes in a potentially non-square matrix and returns
-    a projection matrix onto the orthogonal complement of the column span.
+    a projection matrix onto the orthogonal complement of the column span.  You 
+    may assume the matrix is full-rank.
 
 1)
     Write a function that takes in a potentially non-square matrix and
-    returns an orthonormal basis for its column span.
+    returns an orthonormal basis for its column span.  You may assume the matrix
+    is full-rank.
 
 1)
-    Write a function that takes in a covariance matrix and returns a
+    Write a function that takes in a positive definite covariance matrix and returns a
     draw from the multivariate normal distribution with mean zero and the
     given covariance matrix.  You may use only `rnorm(n, mean=0, sd=1)` to generate
     random variables.
