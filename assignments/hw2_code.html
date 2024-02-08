@@ -260,11 +260,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Write a function that takes in a symmetric PSD matrix and returns an inverse computed from the eigendecomposition. You may use <code>eigen()</code>.</p></li>
 <li><p>Write a function that takes in a symmetric PSD matrix and returns a square root computed from the eigen-decomposition. You may use <code>eigen()</code>.</p></li>
 <li><p>Write a function that takes in a symmetric PSD matrix and returns a (possibly non-symmetric) square root computed from the cholesky decomposition. You may use <code>chol()</code>.</p></li>
-<li><p>Write a function that takes in a potentially non-square matrix and returns a projection matrix onto the column span.</p></li>
-<li><p>Write a function that takes in a potentially non-square matrix and returns a projection matrix onto the row span.</p></li>
-<li><p>Write a function that takes in a potentially non-square matrix and returns a projection matrix onto the orthogonal complement of the column span.</p></li>
-<li><p>Write a function that takes in a potentially non-square matrix and returns an orthonormal basis for its column span.</p></li>
-<li><p>Write a function that takes in a covariance matrix and returns a draw from the multivariate normal distribution with mean zero and the given covariance matrix. You may use only <code>rnorm(n, mean=0, sd=1)</code> to generate random variables. Verify that you have succeeded using Monte Carlo draws and <code>AssertMatricesEqual()</code> with an appropriate tolerance.</p></li>
+<li><p>Write a function that takes in a potentially non-square matrix and returns a projection matrix onto the column span. You may assume the matrix is full-rank.</p></li>
+<li><p>Write a function that takes in a potentially non-square matrix and returns a projection matrix onto the row span. You may assume the matrix is full-rank.</p></li>
+<li><p>Write a function that takes in a potentially non-square matrix and returns a projection matrix onto the orthogonal complement of the column span. You may assume the matrix is full-rank.</p></li>
+<li><p>Write a function that takes in a potentially non-square matrix and returns an orthonormal basis for its column span. You may assume the matrix is full-rank.</p></li>
+<li><p>Write a function that takes in a positive definite covariance matrix and returns a draw from the multivariate normal distribution with mean zero and the given covariance matrix. You may use only <code>rnorm(n, mean=0, sd=1)</code> to generate random variables. Verify that you have succeeded using Monte Carlo draws and <code>AssertMatricesEqual()</code> with an appropriate tolerance.</p></li>
 </ol>
 
 
