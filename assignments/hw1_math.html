@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.3.450" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+<meta name="author" content="Your name here" />
+
+<title>STAT151A Homework 1: Due Jan 26th</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+<!-- htmldependencies:E3FAD763 -->
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn"
+      data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
+      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <h1 class="quarto-secondary-nav-title"></h1>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
+      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="/index.html" class="sidebar-logo-link">
+      <img src="/stat_bear.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"/>
+      </a>
+      <div class="sidebar-tools-main">
+    <a href="https://github.com/berkeley-stat151a/spring-2024" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/course_policies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Policies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/lectures/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lectures and labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/assignments/assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/datasets/data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" ></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <div id="quarto-toc-target"></div>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">STAT151A Homework 1: Due Jan 26th</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Your name here </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#simple-regression-in-matrix-form" id="toc-simple-regression-in-matrix-form"><span class="header-section-number">1</span> Simple regression in matrix form</a></li>
+  <li><a href="#mean-zero-residuals." id="toc-mean-zero-residuals."><span class="header-section-number">2</span> Mean zero residuals.</a></li>
+  <li><a href="#inner-products-and-covariances" id="toc-inner-products-and-covariances"><span class="header-section-number">3</span> Inner products and covariances</a></li>
+  </ul>
+</nav>
+<section id="simple-regression-in-matrix-form" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Simple regression in matrix form</h1>
+<p>Consider the simple linear model <span class="math inline">\(y_n = \beta_0 + \beta_1 z_n + \varepsilon_n\)</span>.</p>
+<p>Let <span class="math inline">\(\bar{y}:= \frac{1}{N} \sum_{n=1}^Ny_n\)</span> and <span class="math inline">\(\bar{z}:= \frac{1}{N} \sum_{n=1}^Nz_n\)</span>. Recall that the ordinary least squares estimates are given by <span class="math display">\[
+\begin{aligned}
+    \hat{\beta}_1 = \frac{\frac{1}{N} \sum_{n=1}^N(z_n - \bar{z}) (y- \bar{y})}{\frac{1}{N} \sum_{n=1}^N(z_n - \bar{z})^2}
+    \quad\textrm{and}\quad
+    \hat{\beta}_0 = \bar{y}- \hat{\beta}_1 \bar{z}.
+\end{aligned}
+\]</span></p>
+<section id="a" class="level4">
+<h4>(a)</h4>
+<p>Write the set of equations</p>
+<p><span class="math display">\[
+y_n = \beta_0 + \beta_1 z_n + \varepsilon_n
+\]</span></p>
+<p>for <span class="math inline">\(n \in \{1, \ldots, N\}\)</span> in matrix form. That is, let <span class="math inline">\(\boldsymbol{X}\)</span> denote an <span class="math inline">\(N \times 2\)</span> matrix, <span class="math inline">\(\boldsymbol{Y}\)</span> and <span class="math inline">\(\boldsymbol{\varepsilon}\)</span> denote <span class="math inline">\(N \times 1\)</span> matrices, <span class="math inline">\(\boldsymbol{\beta}= (\beta_0, \beta_1)^\intercal\)</span>, and express the matrices <span class="math inline">\(\boldsymbol{Y}\)</span>, <span class="math inline">\(\boldsymbol{X}\)</span>, and <span class="math inline">\(\boldsymbol{\varepsilon}\)</span> in terms of the scalars <span class="math inline">\(y_n\)</span>, <span class="math inline">\(z_m\)</span>, and <span class="math inline">\(\varepsilon_n\)</span> so that <span class="math inline">\(\boldsymbol{Y}= \boldsymbol{X}\boldsymbol{\beta}+ \boldsymbol{\varepsilon}\)</span> is equivalent to the set of regression equations.</p>
+</section>
+<section id="b" class="level4">
+<h4>(b)</h4>
+<p>Define <span class="math display">\[
+\begin{aligned}
+    \overline{zz} := \frac{1}{N} \sum_{n=1}^Nz_n^2
+    \quad\textrm{and}\quad
+    \overline{zy} := \frac{1}{N} \sum_{n=1}^Nz_n y_n
+\end{aligned}
+\]</span></p>
+<p>Write an explict expressions for <span class="math inline">\(\boldsymbol{X}^\intercal\boldsymbol{X}\)</span>, <span class="math inline">\(\boldsymbol{X}^\intercal\boldsymbol{Y}\)</span>, and <span class="math inline">\(\left(\boldsymbol{X}^\intercal\boldsymbol{X}\right)^{-1}\)</span>, all in terms of <span class="math inline">\(\bar{y}\)</span>, <span class="math inline">\(\bar{z}\)</span>, <span class="math inline">\(\overline{zz}\)</span>, <span class="math inline">\(\overline{zy}\)</span>, and <span class="math inline">\(N\)</span>. Verify that the inverse is correct by direct multiplication.</p>
+</section>
+<section id="c" class="level4">
+<h4>(c)</h4>
+<p>Compute <span class="math inline">\((\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} \boldsymbol{X}^\intercal\boldsymbol{Y}\)</span>. Show that the first row is equal to <span class="math inline">\(\hat{\beta}_0\)</span> and the second row is equal to <span class="math inline">\(\hat{\beta}_1\)</span> as given by the ordinary least squares formula in the problem statement above.</p>
+</section>
+</section>
+<section id="mean-zero-residuals." class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Mean zero residuals.</h1>
+<p>Consider the model <span class="math inline">\(y_n = \beta z_n + \varepsilon_n\)</span>. Let <span class="math inline">\(\hat{\beta}\)</span> denote the least squares estimator and <span class="math inline">\(\hat{\varepsilon}_n = y_n - \hat{\beta}z_n\)</span>.</p>
+<section id="a-1" class="level4">
+<h4>(a)</h4>
+<p>Suppose <span class="math inline">\(z_n\)</span> is not a constant. Is it necessarily the case that <span class="math inline">\(\frac{1}{N} \sum_{n=1}^N\hat{\varepsilon}_n = 0\)</span>? Prove your answer.</p>
+</section>
+<section id="b-1" class="level4">
+<h4>(b)</h4>
+<p>Suppose <span class="math inline">\(z_n\)</span> is a constant, but <span class="math inline">\(z_n \equiv 5\)</span> for every <span class="math inline">\(n \in \{1, \ldots, N\}\)</span>. Is it necessarily the case that <span class="math inline">\(\frac{1}{N} \sum_{n=1}^N\hat{\varepsilon}_n = 0\)</span>? Prove your answer.</p>
+</section>
+<section id="c-1" class="level4">
+<h4>(c)</h4>
+<p>Now the model <span class="math inline">\(y_n = \beta_1 z_{n1} + \beta_2 z_{n2} + \varepsilon_n\)</span>. Suppose that <span class="math inline">\(z_{n1} = 1\)</span> is <span class="math inline">\(n\)</span> is even, and is <span class="math inline">\(0\)</span> otherwise. Similarly, suppose that <span class="math inline">\(z_{n2} = 1\)</span> is <span class="math inline">\(n\)</span> is odd, and is <span class="math inline">\(0\)</span> otherwise. Let <span class="math inline">\(N\)</span> be even. Is it necessarily the case that <span class="math inline">\(\frac{1}{N} \sum_{n=1}^N\hat{\varepsilon}_n = 0\)</span>? Prove your answer.</p>
+</section>
+</section>
+<section id="inner-products-and-covariances" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Inner products and covariances</h1>
+<p>Let <span class="math inline">\(\boldsymbol{z}= (z_1, \ldots, z_N)\)</span> and <span class="math inline">\(\boldsymbol{y}= (y_1, \ldots, y_N)\)</span>. Let <span class="math inline">\(\boldsymbol{X}\)</span> denote an <span class="math inline">\(N \times P\)</span> matrix whose <span class="math inline">\(n\)</span>–th row is the transpose of the <span class="math inline">\(P\)</span>-vector <span class="math inline">\(\boldsymbol{x}_n^\intercal\)</span>.</p>
+<p>(Note: this question involves limits of random variables, and there are many distinct ways that random variables can converge to limits. If you’re familiar with these different modes of probabilisitic convergence, feel free to state what mode of convergence applies, but if you are not, don’t worry — modes of convergence will not matter much for this class, and you can state your result heuristically.)</p>
+<p>For a set of quantities (numbers, vectors, pairs of vectors, etc), the “empirical distribution” over that set refers to drawing an element with replacement from the set with equal probability given to each entry. For example, if <span class="math inline">\(\mathcal{Z}&#39;\)</span> is a drawn from the empirical distribution over the set <span class="math inline">\(\{z_1, \ldots, z_N \}\)</span>, then <span class="math inline">\(\mathbb{P}\left(\mathcal{Z}&#39; = z_n\right) = 1/N\)</span> for each <span class="math inline">\(n\)</span>. Similarly, if <span class="math inline">\((\mathcal{Z}&#39;, \mathcal{Y}&#39;)\)</span> is drawn from the empirical distribution over the pairs <span class="math inline">\(\{(z_1, y_1), \ldots, (z_N, y_N)\}\)</span>, then <span class="math inline">\(\mathbb{P}\left((\mathcal{Z}&#39;, \mathcal{Y}&#39;) = (z_n, y_n)\right) = 1/N\)</span> for all <span class="math inline">\(n\)</span>.</p>
+<p>(Hint: it may help to recall that the bootstrap uses draws from the empirical distribution, and that, in the empirical distribution, the elements of the set are fixed and not random.)</p>
+<section id="a-2" class="level4">
+<h4>(a)</h4>
+<p>Let <span class="math inline">\((\mathcal{Z}&#39;, \mathcal{Y}&#39;)\)</span> denote a draw from the empirical distribution over the set <span class="math inline">\(\{(y_1, z_1), \ldots, (y_N, z_N)\}\)</span>.</p>
+<p>Prove that <span class="math inline">\(\frac{1}{N} \boldsymbol{z}^\intercal\boldsymbol{y}= \mathbb{E}\left[\mathcal{Z}&#39; \mathcal{Y}&#39;\right]\)</span>. Then prove that <span class="math inline">\(\frac{1}{N} \boldsymbol{1}^\intercal\boldsymbol{z}= \mathbb{E}\left[\mathcal{Z}&#39;\right]\)</span> as a special case.</p>
+</section>
+<section id="b-2" class="level4">
+<h4>(b)</h4>
+<p>Now suppose that the entries of <span class="math inline">\(\boldsymbol{z}\)</span> are independent and identically distributed (IID) realizations of the random variable <span class="math inline">\(\mathcal{Z}\)</span>, and that the entries of <span class="math inline">\(\boldsymbol{y}\)</span> are similarly IID realizations of a random variable <span class="math inline">\(\mathcal{Y}\)</span>. Assuming that <span class="math inline">\(\mathbb{E}\left[|\mathcal{Z}|\right] &lt; \infty\)</span> and <span class="math inline">\(\mathbb{E}\left[|\mathcal{Y}|\right] &lt; \infty\)</span>, prove that</p>
+<p><span class="math display">\[
+\frac{1}{N} \boldsymbol{z}^\intercal\boldsymbol{y}\rightarrow
+    \mathbb{E}\left[\mathcal{Z} \mathcal{Y}\right]
+    \textrm{ as }N \rightarrow \infty
+\]</span></p>
+<p>(Hint: don’t prove this from scratch, appeal to a probability theorem.)</p>
+</section>
+<section id="c-2" class="level4">
+<h4>(c)</h4>
+<p>Using only inner products involving <span class="math inline">\(\boldsymbol{y}\)</span>, <span class="math inline">\(\boldsymbol{z}\)</span>, and <span class="math inline">\(\boldsymbol{1}\)</span>, write an expression for <span class="math inline">\(\mathrm{Cov}\left(\mathcal{Y}&#39;, \mathcal{Z}&#39;\right)\)</span>. Prove that the expression converges with probability one to <span class="math inline">\(\mathrm{Cov}\left(\mathcal{Y}, \mathcal{Z}\right)\)</span>. (Hint: again, use your previous results and a theorem from probability.)</p>
+</section>
+<section id="d" class="level4">
+<h4>(d)</h4>
+<p>Now, let <span class="math inline">\((\mathcal{X}&#39;, \mathcal{Y}&#39;)\)</span> denote a draw from the empirical distribution over <span class="math inline">\(\{(x_1, y_1), \ldots, (x_N, y_N) \}\)</span>. (Recall that the vector <span class="math inline">\(x_n\)</span> is a length–<span class="math inline">\(P\)</span> column vector, and <span class="math inline">\(x_n^\intercal\)</span> is the <span class="math inline">\(n\)</span>–th row of the matrix <span class="math inline">\(\boldsymbol{X}\)</span>.)</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{X}= \mathbb{E}\left[\mathcal{X}&#39; \mathcal{X}&#39;^\intercal\right]
+\quad\textrm{and}\quad
+\frac{1}{N} \boldsymbol{X}^\intercal y= \mathbb{E}\left[\mathcal{X}&#39; \mathcal{Y}&#39;\right].
+\end{aligned}
+\]</span></p>
+</section>
+<section id="e" class="level4">
+<h4>(e)</h4>
+<p>Now, suppose that rows of <span class="math inline">\(\boldsymbol{X}\)</span> are IID realizations of the random <span class="math inline">\(P\)</span>–vector <span class="math inline">\(\mathcal{X}\)</span>, and that <span class="math inline">\(\mathbb{E}\left[|\mathcal{X}_p|\right] &lt; \infty\)</span> for each <span class="math inline">\(p \in \{ 1, \ldots, P \}\)</span>. Assume, as above, that <span class="math inline">\(\mathbb{E}\left[|\mathcal{Y}|\right] &lt; \infty\)</span>.</p>
+<p>Prove that, as <span class="math inline">\(N \rightarrow \infty\)</span>,</p>
+<p><span class="math display">\[
+\frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{X}\rightarrow
+    \mathbb{E}\left[\mathcal{X} \mathcal{X}^\intercal\right]
+\quad\textrm{and}\quad
+\frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{Y}\rightarrow
+    \mathbb{E}\left[\mathcal{X} \mathcal{Y}\right],
+\]</span></p>
+<p>where both limits are with probability one.</p>
+</section>
+<section id="f" class="level4">
+<h4>(f)</h4>
+<p>Now assume that, for each <span class="math inline">\(p \in \{1, \ldots, P\}\)</span> and <span class="math inline">\(q \in \{1, \ldots, P\}\)</span>, <span class="math inline">\(\mathbb{E}\left[\left|\mathcal{X}&#39;_p\right| \left|\mathcal{X}&#39;_q\right| \mathcal{Y}^2\right] &lt; \infty\)</span>. Prove that, as <span class="math inline">\(N \rightarrow \infty\)</span>,</p>
+<p><span class="math display">\[
+\frac{1}{\sqrt{N}}
+\left( \boldsymbol{X}^\intercal\boldsymbol{Y}- \mathbb{E}\left[\boldsymbol{X}^\intercal\boldsymbol{Y}\right] \right) \rightarrow \mathcal{Z},
+\]</span></p>
+<p>where <span class="math inline">\(\mathcal{Z}\)</span> is a multivariate normal random variable. What is the covariance of <span class="math inline">\(\mathcal{Z}\)</span>? (Hint: again, appeal to a probability theorem.)</p>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden" data-render-id="quarto-int-sidebar-title">STAT151A Homework 1: Due Jan 26th</span> <span class="hidden" data-render-id="quarto-int-navbar-title">STAT151A Homework 1: Due Jan 26th</span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html">Home</span> <span class="hidden" data-render-id="quarto-int-sidebar:/course_policies.html">Course Policies</span> <span class="hidden" data-render-id="quarto-int-sidebar:/lectures/lectures.html">Lectures and labs</span> <span class="hidden" data-render-id="quarto-int-sidebar:/assignments/assignments.html">Assignments</span> <span class="hidden" data-render-id="quarto-int-sidebar:/datasets/data.html">Datasets</span></p>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden" data-render-id="quarto-metatitle">STAT151A Homework 1: Due Jan 26th</span> <span class="hidden" data-render-id="quarto-twittercardtitle">STAT151A Homework 1: Due Jan 26th</span> <span class="hidden" data-render-id="quarto-ogcardtitle">STAT151A Homework 1: Due Jan 26th</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id = "quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+</body>
+
+</html>
