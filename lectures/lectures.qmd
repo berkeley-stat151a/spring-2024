@@ -48,3 +48,14 @@ sidebar: true
     - Homework consultation
 - Lecture Feb 8th:
     - [Vector and matrix-valued statistics and limit theorems](Lecture8.qmd)
+
+
+
+---
+
+- Lecture Feb 13th:
+    - [Estimating prediction variance.](Lecture9.qmd)
+- Lab Feb 14th:
+    - Homework 2 review
+- Lecture Feb 15th:
+    - [Estimating training data variability effect on prediction.](Lecture10.qmd)

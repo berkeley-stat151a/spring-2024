@@ -1,0 +1,481 @@
+---
+title: "Vector and matrix-valued statistics and limit theorems."
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    include-before-body:
+     - file: ../macros.md
+---
+
+$\LaTeX$
+
+
+# Goals
+- Introduce / review multivariate probability
+    - The law of large numbers for vectors and matrices
+    - The multivariate normal distribution
+    - The central limit theorem for vectors
+
+
+# Normal random variables
+
+There is a special distribution called a "Normal" or "Gaussian" distribution that
+plays a special role in statistics largely due to the Central Limit Theorem
+(which we will discuss shortly).
+Specifically, $\RV{\z}$ is a "standard normal random variable" if
+
+  - $\expect{\RV{\z}}$ = 0
+  - $\var{\RV{\z}}$ = 1
+  - $\dens{z} = \frac{1}{\sqrt{2\pi}} \exp\left( - \frac{z^2}{2} \right)$.
+
+For this class, the particular form of the density will not be too important,
+except possibly when doing Bayesian statistics.  But importantly, 
+if $\RV{\z}$ is standard normal, then we can accurately calculate the probability
+$\prob{\RV{\z} \le z}$ for any $z \in \rdom{}$.
+
+::: {.callout-warning title='Exercise'} 
+From $\prob{\RV{\z} \le z}$, show how to compute
+$\prob{\RV{\z} \ge z'}$ and $\prob{\abs{\RV{\z}} \le z''}$
+for any $z'$ and $z''$.
+:::
+
+For any $\mu$ and $\sigma$, we say that the random variable
+$\RV{\x} = \mu + \sigma \z$ is also standard normal, but with
+
+  - $\expect{\RV{\x}} = \mu$
+  - $\var{\RV{\x}} = \sigma^2$
+  - $\dens{x} = \frac{1}{\sigma \sqrt{2\pi}} \exp\left( - \frac{(x - \mu)^2}{2\sigma^2} \right)$.
+
+Further, if we have two independent normal random variables, $\RV{u}$ and $\RV{v}$,
+the sum $\RV{u} + \RV{v}$ is itself normal, with mean and variance given by
+the ordinary rules of expectation. Recall that independence means things like:
+
+- $\expect{\RV{u} \RV{v}} = \expect{\RV{u}} \expect{\RV{v}}$
+- $\expect{\RV{u} | \RV{v}} = \expect{\RV{u}}$
+- $\prob{\RV{u} \in A \textrm{ and } \RV{v} \in B} = \prob{\RV{u} \in A} \prob{\RV{v} \in B}$,
+
+and so on. 
+
+::: {.callout-tip title='Notation'} 
+I will write $\RV{\x} \sim \gauss{\mu, \sigma^2}$ to mean that $\RV{\x}$ is a normal random
+variable with mean $\mu$ and variance $\sigma^2$.
+:::
+
+# Vector-valued random variables
+
+
+## The bivariate normal distribution
+
+Suppose that $\RV{\u}_1$ and $\RV{\u}_2$ are independent
+standard normal random variables.   Suppose we define the new random variables
+
+$$
+\begin{aligned}
+\RV{\x_1} :={}& a_{11} \RV{\u}_1 + a_{12} \RV{\u}_2 \\
+\RV{\x_2} :={}& a_{21} \RV{\u}_1 + a_{22} \RV{\u}_2.
+\end{aligned}
+$$
+
+We can see that $\RV{\x_1}$ and $\RV{x_2}$ are each normal random variables,
+and we can compute their means and variances:
+
+$$
+\begin{aligned}
+\expect{\RV{\x_1}} :={}& a_{11} \expect{\RV{\u}_1} + a_{12} \expect{\RV{\u}_2} = 0 \\
+\expect{\RV{\x_2}} :={}& a_{21} \expect{\RV{\u}_1} + a_{22} \expect{\RV{\u}_2} = 0 \\
+\var{\RV{\x_1}} :={}& a_{11}^2 \var{\RV{\u}_1} + a_{12}^2 \var{\RV{\u}_2} = a_{11}^2 + a_{12}^2 \\
+\var{\RV{\x_2}} :={}& a_{21}^2 \var{\RV{\u}_1} + a_{22}^2 \var{\RV{\u}_2} = a_{21}^2 + a_{22}^2.
+\end{aligned}
+$$
+
+But in general $\RV{\x_1}$ and $\RV{x_2}$  are not independent.  If they were, we would have 
+$\expect{\RV{\x_1} \RV{\x_2}} = \expect{\RV{\x_1}} \expect{\RV{\x_2}} = 0$, but
+in fact we have
+
+$$
+\expect{\RV{\x_1} \RV{\x_2}} =
+\expect{(a_{11} \RV{\u}_1 + a_{12} \RV{\u}_2)(a_{21} \RV{\u}_1 + a_{22} \RV{\u}_2)} = 
+a_{11} a_{21} \expect{\RV{\u}_1^2} + a_{12} a_{22} \expect{\RV{\u}_2^2} = 
+a_{11} a_{21} + a_{12} a_{22}.
+$$
+
+The variables $\RV{\x_1}$ and $\RV{x_2}$ are instances of the *bivariate normal distribution*,
+which is the two-dimensional analogue of the normal distribution.  One can define
+the bivariate normal distribution in many ways.  Here, we have defined it by taking
+linear combinations of independent univariate normal distributions.  It turns out
+this is always possible, and for the purposes of this class, we will see that it is
+enough to use such a definition.
+
+The properties we derived above can in fact be represented more succinctly in vector
+notation.  We can write
+
+$$
+\RV{\xv} = 
+\begin{pmatrix}
+\RV{\x_1} \\
+\RV{\x_2} \\
+\end{pmatrix} =
+\begin{pmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{pmatrix} 
+\begin{pmatrix}
+\RV{\u}_1 \\
+\RV{\u}_2 \\
+\end{pmatrix} =:
+\A \RV{\uv}.
+$$
+
+Note that the matrix $\A$ is not random.  Defining the expectation of a vector
+to be the vector of expectations of its entries, we get
+
+$$
+\expect{\RV{\xv}} = \A \expect{\RV{\uv}} = \A \zerov = \zerov,
+$$
+
+just as above.
+
+Defining the "variance" of $\RV{\xv}$ is more subtle.  Recall that a normal
+distribution is fully characterized by its variance.  We would like this
+to be the case for the bivariate normal as well.  But for this it is not enough
+to know the marginal varianecs $\var{\RV{\x_1}}$ and $\var{\RV{\x_2}}$, since the
+"covariance" $\cov{\RV{\x_1}, \RV{\x_2}}$ is also very important for the behavior
+of the random variable. 
+
+
+
+::: {.callout-tip title="Notation"}
+When dealing with two scalar-- or vector--valued random variables, I will
+write the covariance as a function of two arguments, e.g., 
+$\cov{\RV{\x_1}, \RV{\x_2}}$.  However, when speaking of only a single
+random variable I might write $\cov{\RV{\xv}}$ as a shorthand for
+the covariance of a vector with itself, e.g.,
+$\cov{\RV{\xv}} = \cov{\RV{\xv}, \RV{\xv}}$.  I will try to reserve
+the variance $\var{\RV{\x}}$ for only the variance of a single scalar
+random variable.
+:::
+
+
+A convenient way to write all the covariances in a single expression is to define
+
+$$
+\begin{aligned}
+\cov{\RV{\xv}} ={}&
+  \expect{\left(\RV{\xv} - \expect{\RV{\xv}} \right)
+          \left(\RV{\xv} - \expect{\RV{\xv}} \right)^\trans}
+          \\={}&
+  \expect{
+    \begin{pmatrix}
+      (\RV{\x_1} - \expect{\RV{\x_1}})^2 & 
+        (\RV{\x_1} - \expect{\RV{\x_1}})(\RV{\x_2} - \expect{\RV{\x_2}}) \\
+      (\RV{\x_1} - \expect{\RV{\x_1}})(\RV{\x_2} - \expect{\RV{\x_2}}) &
+        (\RV{\x_2} - \expect{\RV{\x_2}})^2
+    \end{pmatrix}
+  }
+          \\={}&
+  \begin{pmatrix}
+  \var{\RV{\x_1}} & \cov{\RV{\x_1}, \RV{\x_2}} \\
+  \cov{\RV{\x_1}, \RV{\x_2}} & \var{\RV{\x_2}}
+  \end{pmatrix}.
+\end{aligned}
+$$
+
+Note that the dimension of the matrix inside the expectation is $2 \times 2$, since
+we take the transpose on the left.  By expanding, we see that each entry of this
+"covariance matrix" has the covariance between two entries of the vector, and the
+diagonal contains the "marginal" variances.
+
+This expression in fact allows quite convenient calculation of all the covariances
+above, since
+
+$$
+\begin{aligned}
+\cov{\RV{\xv}} ={}&
+\expect{\A \RV{\uv} \RV{\uv}^\trans \A^\trans} 
+\\={}&
+\A  \expect{\RV{\uv} \RV{\uv}^\trans } \A^\trans
+\\={}&
+\A  \id \A^\trans
+\\={}&
+\A \A^\trans.
+\end{aligned}
+$$
+
+You can readily verify that the expression matches the ones derived
+manually above.
+
+
+## The multivariate normal distribution
+
+We can readily generalize the previous section to $P$--dimensional vectors.
+Let $\RV{\uv}$ denote a vector of $P$ standard normal random variables.
+Then define
+
+$$
+\RV{\xv} := \A \RV{\uv} + \muv.
+$$
+
+Then we say that $\RV{\xv}$ is a multivariate normal random
+variable with mean
+
+$$
+\expect{\RV{\xv}} = \A \expect{\RV{\uv}} + \muv = \muv
+$$
+
+and 
+
+$$
+\cov{\RV{\xv}} =
+\expect{(\RV{\xv} - \muv)(\RV{\xv} - \muv)^\trans} =
+\expect{(\A \RV{\uv})(\A \RV{\uv})^\trans} =
+\A \A^\trans,
+$$
+
+writing
+
+$$
+\RV{\xv} \sim \gauss{\muv, \A \A^\trans}.
+$$
+
+Suppose we want to design a multivariate normal with
+a given covariance matrix $\Sigmam$.  If we require that
+$\Sigmam$ be positive semi-definite (see exercise),
+the we can take $\A = \Sigmam^{1/2}$, giving the 
+following definition:
+
+::: {.callout-tip title='Notation'} 
+I will write $\RV{\xv} \sim \gauss{\muv, \Sigmam}$ to mean that $\RV{\xv}$ is a
+multivariate normal random variable with mean $\muv$ and covariance matrix
+$\Sigmam$.  
+:::
+
+Note that we will not typically go through the construction
+$\RV{\xv} = \Sigmam^{1/2} \RV{\uv}$ --- we'll take for granted that
+we can do so.  The construction in terms of univariate random variables
+is simply an easy way to define multivariate random variables without
+having to deal with multivariate densities.
+
+
+
+::: {.callout-warning title='Exercise'} 
+Show that if you have a vector-valued random variable
+with a non positive semi-definite covariance matrix,
+you can construct a univariate random variable with
+negative variance, which is impossible.  It follows
+that every vector covariance must be postive
+semi-definite.
+:::
+
+A few useful properties come out immediately from properties
+of the univariate normal distribution:
+
+- The entries of a multivariate normal random vector are
+independent if an only if the covariance matrix is diagonal.
+- Any linear combination of a multivariate normal random variable
+is itself multivariate normal (possibly with different dimension).
+- $\prob{\RV{\xv} \in S} = \prob{\RV{\uv} \in \{\uv: \A \uv \in S\}}$
+
+
+
+## Generic random vectors
+
+In general, we can consider a random vector --- or a random matrix ---
+as a collection of potentially non-independent random values.  
+For such a vector $\RV{\xv} \in \rdom{P}$, we can speak about its expectation
+and covariance just as we would for a multivariate normal distribution.
+Specifically,
+
+$$
+\expect{\RV{\xv}} =
+\begin{pmatrix}
+\expect{\RV{\x}_1} \\
+\vdots \\
+\expect{\RV{\x}_P} \\
+\end{pmatrix}
+\quad\textrm{and}\quad
+\cov{\RV{\xv}} =
+\expect{\left(\RV{\xv} - \expect{\RV{\xv}} \right) 
+        \left(\RV{\xv} - \expect{\RV{\xv}} \right)^\trans} =
+\begin{pmatrix}
+\var{\RV{\x_1}} & \cov{\RV{\x_1}, \RV{\x_2}} & \ldots & \cov{\RV{\x_1}, \RV{\x_P}} \\
+\cov{\RV{\x_2}, \RV{\x_1}} & \ldots & \ldots & \cov{\RV{\x_2}, \RV{\x_P}} \\
+\vdots & & & \vdots \\
+\cov{\RV{\x_P}, \RV{\x_1}} & \ldots & \ldots & \var{\RV{\x_P}} \\
+\end{pmatrix}.
+$$
+
+For these expressions to exist, it suffices for $\expect{\RV{\x}_p^2} < \infty$ 
+for all $p \in \{1,\ldots,P\}$.
+
+We will at times talk about the expectation of a random matrix,
+$\RV{\X}$, which is simply the matrix of expectations.  The notation
+for covariances of course doesn't make sense for matrices, but it 
+won't be needed.  (In fact, in cases where the covariance of a random matrix
+is needed in statistics, the matrix is typically stacked into a vector first.)
+
+
+## The law of large numbers for vectors
+
+The law of large numbers is particularly simple for vectors --- as 
+long as the dimension stays fixed as $N \rightarrow \infty$, you can
+simply apply the LLN to each component separately.  Suppose you're
+given a sequence of vector-valued random variables, $\RV{\xv}_n \in \rdom{P}$.
+Write $\expect{\RV{\xv}_n} = \muv_n$, and
+$\var{\RV{\xv}_{np}} = \v_{np}$ for each $p \in \{1,\ldots,P\}$. Assume that
+$\max_{n,p} \v_{np} < \infty$, and that $\muv_n \rightarrow \overline{\muv}$.
+Then we can apply the LLN to each component, getting
+
+$$
+\overline{\RV{\xv}} :=
+\meann \RV{\xv}_n \rightarrow \overline{\muv}
+\quad\textrm{as }N\rightarrow \infty.
+$$
+
+You might be worried that we're combining probabilistic arguments,
+even though the entries of $\xv_n$ might not be independent.  
+(If you are worried about that, wonderful!)  Since the dimension
+is fixed, note that we can write
+
+$$
+\prob{\abs{\overline{\RV{\xv}}_p - \overline{\muv}_p} < \varepsilon \textrm{ for all }p} =
+\prob{\abs{\overline{\RV{\xv}}_1 - \overline{\muv}_1} < \varepsilon \ldots\textrm{ and }\ldots
+  \abs{\overline{\RV{\xv}}_P - \overline{\muv}_P} < \varepsilon 
+} \le
+\sum_{p=1}^P
+  \prob{\abs{\overline{\RV{\xv}}_p - \overline{\muv}_p} < \varepsilon}
+  \rightarrow 0,
+$$
+
+since each entry in the sum goes to zero.
+
+
+## Extensions
+
+Since we see that the shape of the vector doesn't matter, we
+can also apply the LLN to matrices.  For example, if $\RV{\X}_n$
+is a sequence of random matrices, with $\expect{\RV{\X}_n} = \A$,
+then
+
+$$
+\meann \RV{\X}_n \rightarrow \A.
+$$
+
+
+We will also use (without proof) a theorem called the **continuous
+mapping theorem**, which says that, for a continous function $f(\cdot)$,
+then
+
+$$
+f\left(\meann \RV{\xv}_n\right) \rightarrow f(\overline{\mu}).
+$$
+
+Note that the preceding statment is different than saying
+
+$$
+\meann  f\left( RV{\xv}_n \right) \rightarrow \expect{f\left( RV{\xv}_n \right)},
+$$
+
+which may also be true, but which applies the LLN to the random variables
+$f\left( RV{\xv}_n \right)$.
+
+
+
+
+
+
+
+## The central limit theorem for vectors
+
+We might hope that we can apply the CLT componentwise just as we did
+for the LLN, but we are not so lucky.  It is true that, assuming (as
+before) that $\meann \v_{np} \rightarrow \overline{v}_p$ for each
+$p$, that
+
+$$
+\sqrt{N} (\overline{\RV{\xv}}_p - \overline{\mu}_p) \rightarrow 
+  \gauss{0, \overline{v}_p}.
+$$
+
+However, this does not tell us about the *joint* behavior of the
+random variables.  Here's a simple example that illustrates the
+problem.  Consider two settings, based on IID standard normal
+scalar variables $\RV{u}_n$ and $\RV{v}_n$.
+
+#### Setting one
+
+Take
+
+$$\RV{\xv}_n =
+\begin{pmatrix}
+\RV{u}_n\\
+\RV{v}_n
+\end{pmatrix}.
+$$
+
+We know that $\frac{1}{\sqrt{N}} \RV{\xv}_n$ is exactly multivariate normal
+with mean $\zerov$ and covariance matrix $\id{}$ for all $N$.  So, *a fortiori*,
+
+$$
+\frac{1}{\sqrt{N}} \RV{\xv}_n \rightarrow \gauss{\zerov, \id{}}.
+$$
+
+#### Setting two
+
+Take
+
+$$\RV{\yv}_n =
+\begin{pmatrix}
+\RV{u}_n\\
+\RV{u}_n
+\end{pmatrix}.
+$$
+
+We know that $\frac{1}{\sqrt{N}} \RV{\yv}_n$ is exactly multivariate normal
+with mean $\zerov$ and covariance matrix $\onev \onev^\trans$ for all $N$.  
+So, *a fortiori*,
+
+$$
+\frac{1}{\sqrt{N}} \RV{\yv}_n \rightarrow \gauss{\zerov, \onev \onev^\trans}.
+$$
+
+For both $\RV{\xv}$ and $\RV{\yv}$, each component converges to a standard
+normal random variable.  But for $\RV{\xv}$ the two components were
+independent, and for $\RV{\yv}$ they were perfectly dependent.  The behavior
+of the marginals cannot tell you about the joint behavior.
+
+Consequently, we have to consider the behavior of the whole vector.
+In particular, write
+
+$$
+\Sigmam_n := \cov{\RV{\xv}_n}
+$$
+
+and assume that
+
+$$
+\meann \Sigmam_n \rightarrow \overline{\Sigmam}
+$$
+
+for each entry of the matrix,
+where $\overline{\Sigmam}$ is element-wise finite.  (Note that this
+requires the average of each entry of the diagonal to to converge!)
+Then
+
+$$
+\frac{1}{\sqrt{N}} \left( \RV{\xv}_n - \expect{\RV{\xv}_n} \right)
+\rightarrow \RV{\zv} \quad\textrm{ where }
+\RV{\zv} \sim \gauss{\zerov, \overline{\Sigmam}}.
+$$
+
+
+## Extensions
+ 
+Finally, we note that the continuous mapping theorem applies
+to the CLT as well.  That is, if $f(\cdot)$ is continuous, then
+
+$$
+f\left( \frac{1}{\sqrt{N}} \left( \RV{\xv}_n - \expect{\RV{\xv}_n} \right) \right)
+\rightarrow f\left( \RV{\zv} \right) \quad\textrm{ where }
+\RV{\zv} \sim \gauss{\zerov, \overline{\Sigmam}}.
+$$

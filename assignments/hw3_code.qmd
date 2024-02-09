@@ -1,0 +1,134 @@
+---
+title: "STAT151A Code homework 3: Due February 23rd"
+author: Your name here
+number-sections: true 
+number-depth: 1 
+include-before-body:
+    - file: ../macros.md
+---
+
+
+In this homework problem, we'll simulate some data and check our predictions
+for a regression problem of the form $\y_n = \xv_n^\trans \betav + \res_n$,
+where $\res_n \sim \gauss{0, \sigma^2}$, independetly of $\xv_n$.
+
+For this problem, do not use `lm()` or other regression functions
+(except possibly to sanity check that you have done things correctly).  You 
+may (and are in fact encouraged) to use your solutions to past homeworks.
+
+# Implementation
+
+Implement the following functions:
+
+```r
+# Generate a random covariance matrix.
+#
+# Args:
+#   dim: The dimension of the covariance matrix
+#
+# Returns:
+#   A valid dim x dim covariance matrix
+DrawCovMat <- function(dim) {
+    # ... your code here ...
+}
+```
+
+```r
+# Generate a random matrix of regressors.
+#
+# Args:
+#   n_obs: The number of regression observations
+#   cov_mat: A dim x dim valid covariance matrix
+#
+# Returns:
+#   A n_obs x dim matrix of normally distributed random regressors
+#   where the rows have covariance cov_mat
+SimulateRegressors <- function(n_obs, cov_mat) {
+    # ... your code here ...
+}
+```
+
+```r
+# Generate the response for a linear model.
+#
+# Args:
+#   x_mat: A n_obs x dim matrix of regressors
+#   beta: A dim-length vector of true regression coefficients
+#   sigma: The standard deviation of the residuals
+#
+# Returns:
+#   A n_obs-vector of responses drawn from the regression
+#   model y_n ~ x_n^T \beta + \epsilon_n, where \epsilon_n
+#   is distributed N(0, sigma^2),
+SimulateResponses <- function(x_mat, beta, sigma) {
+    # ... your code here ...
+}
+```
+
+```r
+# Estimate the regression coefficient.
+#
+# Args:
+#   x: A n_obs x dim matrix of regressors
+#   y: A n_obs-length vector of responses
+#
+# Returns:
+#   A dim-length vector estimating the coefficient 
+#   for the least squares regression y ~ x.
+GetBetahat <- function(x, y) {
+    # ... your code here ...
+}
+```
+
+```r
+# Estimate the residual standard deviation.
+#
+# Args:
+#   x: A n_obs x dim matrix of regressors
+#   y: A n_obs-length vector of responses
+#
+# Returns:
+#   An estimate of the residual standard deviation 
+#   for the least squares regression y ~ x.
+GetSigmahat <- function(x, y) {
+    # ... your code here ...
+}
+```
+
+
+# Draw and check
+
+Choose a dimension.  Using a large $N$, check
+that your functions are working correctly.
+
+
+
+# Draw a training set and test set
+
+Simulate a training set $\X$ and $\Y$ with $N = 1000$ and $P = 3$,
+and values of $\beta$ and $\sigma$ that you choose.
+Use the training set to form estimates $\betavhat$ and $\sigmahat$.  Then, 
+draw a new set of $500$ test data points, $\X_\new$ and $\Y_\new$.
+
+Use $\betavhat$, $\sigmahat$, and $\X_\new$ to form an 
+approximate 80\% predictive interval for each
+response $\Y_\new$.  Compute what proportion of the time the $\Y_\new$
+actually lie in the interval.  Is your prediction interval
+performing as expected?  Why or why not?
+
+
+
+# Vary the setting
+
+Choose three of the following questions to answer.
+
+Explore how the coverage of the test set varies when:
+
+- $N$ increases or decreases, all else fixed
+- The value of $\sigma$ increase and decreases, all else fixed
+- The values in $\beta$ increase and decreases, all else fixed
+- $P$ increase and decreases (and $\beta$ changes with it)
+- The distribution of the residuals changes (i.e., try something other than a normal)
+- You draw new values for the training set (but keep the test set fixed)
+- You draw new values for the test set (but keep the training set fixed)
+- Pick something else that you find interesting to vary!

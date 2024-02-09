@@ -35,6 +35,7 @@ $$
 \newcommand{\x}{x}
 \newcommand{\xbar}{\bar{x}}
 \newcommand{\xv}{\mybold{x}}
+\newcommand{\Xcov}{\Sigmam_{\X}}
 
 \newcommand{\Z}{\mybold{Z}}
 \newcommand{\z}{z}
@@ -52,6 +53,10 @@ $$
 \newcommand{\resv}{\mybold{\res}}
 \newcommand{\resvhat}{\hat{\mybold{\res}}}
 \newcommand{\reshat}{\hat{\res}}
+
+\newcommand{\betav}{\mybold{\beta}}
+\newcommand{\betavhat}{\hat{\bv}}
+\newcommand{\betahat}{\hat{\beta}}
 
 \newcommand{\bv}{\mybold{\beta}}
 \newcommand{\bvhat}{\hat{\bv}}
