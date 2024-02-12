@@ -97,13 +97,22 @@ $$\Sigmam =
 \end{pmatrix}.
 $$
 
+Note that we can write
+$$
+\RV{\xv}_n = 
+\begin{pmatrix}
+\RV{\xv}_{n1} \\
+\RV{\xv}_{n2}
+\end{pmatrix},
+$$
+where $\RV{\xv}_{n1}$ and $\RV{\xv}_{n2}$ are scalars.
 Find the limiting distributions of each of the following expressions:
 
 $$
 \begin{aligned}
-\frac{1}{\sqrt{N}} \sumn \RV{\xv_n}_1 \rightarrow& \textrm{?}\\
-\frac{1}{\sqrt{N}} \sumn \RV{\xv_n}_2 \rightarrow& \textrm{?} \\
-\frac{1}{\sqrt{N}} \sumn (\RV{\xv_n}_1 + \RV{\xv_n}_2) \rightarrow& \textrm{?}
+\frac{1}{\sqrt{N}} \sumn \RV{\xv}_{n1} \rightarrow& \textrm{?}\\
+\frac{1}{\sqrt{N}} \sumn \RV{\xv}_{n2} \rightarrow& \textrm{?} \\
+\frac{1}{\sqrt{N}} \sumn (\RV{\xv}_{n1} + \RV{\xv}_{n2}) \rightarrow& \textrm{?}
 \end{aligned}
 $$
 
