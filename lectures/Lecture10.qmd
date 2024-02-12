@@ -1,0 +1,38 @@
+---
+title: "Estimating prediction uncertainty: Estimating the residual variance"
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    include-before-body:
+     - file: ../macros.md
+---
+
+$\LaTeX$
+
+
+
+# Estimating the residual variance
+
+
+## Method 1: Apply LLN to the squared residuals
+
+
+## Method 2: Projection to get the unbiased estimate
+
+
+(Note connection to RSS.)
+
+
+
+# Putting it all together
+
+For large $N$, we thus have (approximately),
+
+$$
+\y_\new - \yhat_\new \sim \gauss{0, \sigmahat^2}
+\quad\Leftrightarrow\quad
+\y_\new \sim \gauss{\yhat_\new, \sigmahat^2}
+$$.
+
+Let's see how it does with some data!

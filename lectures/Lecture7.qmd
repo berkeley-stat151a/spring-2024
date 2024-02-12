@@ -219,6 +219,17 @@ simple to work with.
 First, let's state and prove a LLN.  Suppose $\RV{\x}_n$ are independent random variables
 for $n =1, \ldots, \infty$ such that $\max_n \var{\RV{\x}_n} < \infty$.  That is, 
 every variance is finite and the variances do not diverge.  
+
+
+::: {.callout-important title='Note to future instructors'} 
+Actually, all we need is
+$\lim_{N\rightarrow\infty} \max_{n=1,\ldots,N} \frac{1}{N} \var{\RV{\x}_n} = 0$,
+which is more convenient when we actually use this for the fixed regressor
+setting, but which complicates the exhibition here.
+:::
+
+
+
 Write $\expect{\RV{\x}_n} = \mu_n$ and assume that
 $\meann \mu_n \rightarrow \overline{\mu} < \infty$.  Then consider the 
 random variable

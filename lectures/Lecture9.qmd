@@ -1,0 +1,404 @@
+---
+title: "Estimating prediction uncertainty: prediction error variance"
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    include-before-body:
+     - file: ../macros.md
+---
+
+$\LaTeX$
+
+
+
+# Goals
+- Apply the LLN formula to OLS and find it not that informative at first
+- Propose a hierarchy structural assumptions to make the result more interpretable
+- Under the most restrictive assumption, show that $\betahat \rightarrow \beta$
+  as $N \rightarrow \infty$.
+
+# Setup
+
+We've developed some linear algebra tools and some probability tools.  Now
+let's put them together to understand linear regression.  
+
+Suppose we have a prediction problem.  We're going to use the
+training data to fit $\betavhat$, and predict a new value using
+
+$$
+\yhat_\new = \xv_\new^\trans \betavhat,
+$$
+
+hoping that $\yhat_\new \approx \y_\new$, where we do not get to see $\y_\new$
+(at least, not until after we've made our prediction).  
+
+For now, we will assume that $(\xv_n, \y_n)$ for both the training
+data and test points are drawn IID from some unknown
+distribution.
+
+We will be interested in two key classes of question:
+
+1) Given our fit, how much error do we expect to make in prediction?
+2) How might our fit have been different had we gotten different (random) training data?
+
+Roughly speaking, these two classes of question will correspond to two
+different notions of what is random:
+
+1) Given our prediction $\betavhat$, what is the typical
+   variability of $\y_\new - \yhat_\new$?
+2) What is the variability of $\betavhat$ under new samples of the training data
+   $\X$ and $\Y$?
+
+Recall that $\betavhat$ is a function of
+the traning data.  So, in turn, the prediction $\yhat_\new = \xv_\new^\trans \betavhat$ is
+a function of the training data, and the new regressor.  The 
+prediction error $\y_\new - \yhat_\new$, is a function of the training data,
+the new regressor, and the new unseen response.
+
+So for the first question, it makes sense to think of the training data as
+fixed, and only the repsonse as random.  For the second question, it makes
+sense to think of the training data as random.  One might combine the two
+to ask
+
+3) What is my uncertainty about the value of $\yhat_\new$, given $\xv_\new$?
+
+Taking random variability as a proxy for epistemic uncertainty,
+it might make sense to think about the randomness in both
+the training data and the new data point's response.   (We will be very
+careful about what precisely this means.)
+
+Finally, we might also ask, before even seeing the regressor,
+
+4) What is my uncertainty about the value of the next $\yhat_\new$ I'll see?
+
+...for which you'll want to take into account the variability in the
+regressors.
+
+
+
+# The large-sample behavior of the regression coefficient
+
+The key ingredient to (approximately) answering all of these questions will in fact be
+the large-sample behavior of $\betavhat$.  Recall that
+
+
+$$
+\betavhat = (\X^\trans\X)^{-1} \X^\trans\Y = (\frac{1}{N} \X^\trans\X)^{-1} \frac{1}{N} \X^\trans\Y.
+$$
+
+We already have the tools we need to describe the large $N$ behavior of $\betavhat$,
+but without further assumptions it won't (at first) seem very useful.
+Assume that $\cov{\xv_n} = \Xcov$ is finite, positive definite, and the same for all $\xv_n$.
+Then, by the LLN for matrices,
+
+$$
+\frac{1}{N} \X^\trans\X = \meann \xv_n \xv_n^\trans \rightarrow \Xcov.
+$$
+
+Furthermore, because the map $f(\Xcov) = \Xcov^{-1}$ is continuous at $\Xcov$
+(since $\Xcov$ is positive definite), we have that
+
+$$
+\left( \frac{1}{N} \X^\trans\X \right)^{-1} \rightarrow \Xcov^{-1}.
+$$
+
+
+::: {.callout-warning title='Exercise'} 
+What do you think is the large-sample behavior of $(\frac{1}{N} \X^\trans\X)^{-1}$
+is $\cov{\xv_n}$ is degenerate, i.e., has a non-empty nullspace?
+:::
+
+Next, note that $\xv_n \y_n$ is itself a random vector in $\rdom{P}$, since $\y_n$
+is a scalar, and potentially not independent of $\xv_n$.  (In fact, since
+we're doing regression, it had better not be independent of $\xv_n$.)
+
+
+So if we assume that $\cov{\xv_n \y_n}$ is finite and the same for all
+$n$, then by the LLN for vectors,
+
+$$
+\frac{1}{N} \X^\trans \Y = \meann \xv_n \y_n \rightarrow \expect{\xv_1 \y_1}.
+$$
+
+(Here I have used $\xv_1 \y_1$ to emphasize that the observations are IID.)
+It follows that
+
+$$
+\betahat \rightarrow \Xcov^{-1} \expect{\xv_1 \y_1}.
+$$
+
+In this form, this actually doesn't look very useful.  To make this useful,
+it will help to make some assumptions about the relationship between $\y_n$
+and $\x_n$.
+
+
+# A hierarchy of assumptions
+
+In the coming weeks, we will (roughly) study the following hierarchy of assumptions.
+
+- **Gaussian assumption**:
+  Assume that $\y_n = \x_n^\trans \betav + \res_n$ for some $\beta$, where $\res_n \sim \gauss{0, \sigma^2}$,
+  and $\res_n$ is independent of $\x_n$.
+- **Homeskedastic assumption**:
+  Assume that $\y_n = \x_n^\trans \betav + \res_n$ for some $\beta$, where $\expect{\res_n} = 0$,
+  $\var{\res_n} = \sigma^2 < \infty$, and $\res_n$ is independent of $\x_n$.
+- **Heteroskedastic assumption**:
+  Assume that $\y_n = \x_n^\trans \betav + \res_n$ for some $\beta$, where $\expect{\res_n | \xv_n} = 0$ and
+  $\var{\res_n \vert \xv_n} = \sigma_n^2 < \infty$.
+- **Machine learning assumption**:
+  Assume that $\y_n = f(\x_n) + \res_n$ for some $f$, where $\expect{\res_n | \xv_n} = 0$ and
+  $\var{\res_n \vert \xv_n} = \sigma_n^2 < \infty$.
+
+Broadly speaking,
+ 
+- The earlier assumptions are more concrete and so, in a sense, easier to analyze.
+- The latter assumptions tend to be more abstract and so, in a sense, harder to analyze.
+- The earlier assumptions are less realistic for many cases, especially prediction problems.
+- The later assumptions are more realistic, especially the last one, which, as we will see, 
+  is little more than a tautology for IID samples (other than the finite variance condition).
+- The earlier assumptions were studied earlier in the history of statistics, and are most
+  common in introductory textbooks.
+- The later assumptions were studied relatively more recently (though are still
+  very classical), and are less common in introductory textbooks.
+
+I plan to start at the top of this list and work down.
+
+My goal for this class is for you to feel comfortable choosing assumptions appropriate
+to the task at hand, without thinking of one set of assumptions as "linear regression"
+per se.
+
+For each set of assumptions, the core technical techniques that we have
+been developing --- linear algebra and probability --- will all be the same, just 
+applied in different ways.
+
+
+
+# The Gaussian assumption
+
+Let's begin by assessing the prediction error under the Gaussian assumption.
+Specifically, for the moment, we'll assume:
+
+
+::: {.callout-note title='Gaussian assumption, fixed regressors'} 
+Assume that $\y_n = \x_n^\trans \betav + \res_n$ for some $\beta$, where $\res_n \sim \gauss{0, \sigma^2}$,
+the $\res_n$ are IID, and the regressors $\x_n$ are fixed (not random).
+:::
+
+This is about the most restrictive assumption you can imagine making.  It's
+also the one under which you can get some very clear results.
+
+In this model, the residuals are random but the regressors are fixed.  
+Additionally, the vector $\beta$ is viewed as fixed (but unknown),
+That means that $\Y = \X \beta + \resv$ is random --- specifically,
+$$
+\Y \sim \gauss{\X \beta, \sigma^2 \id{}}.
+$$
+
+Furthermore, if we observe a new datapoint, $\y_\new = \xv_\new^\trans \beta + \res_\new$,
+then $\res_\new$ is random, and $\y_\new$ in turn is random, but $\xv_\new$ and $\beta$
+are not.
+
+However, since we have
+$$
+\betahat = (\X^\trans \X)^{-1} \X^\trans \Y,
+$$
+
+our estimator $\betahat$ *is* random, at least unless we condition on (fix) the
+training data.
+
+
+
+## Prediction error with the Gaussian assumption
+
+Under our Gaussian assumption with fixed regressors we can write
+
+$$
+\begin{aligned}
+\y_\new ={}& \xv_\new^\trans \betav + \res_\new\\
+\yhat_\new ={}& \xv_\new^\trans \betavhat \Rightarrow \\
+\y_\new - \yhat_\new ={}& \xv_\new^\trans (\betav - \betavhat) + \res_\new.
+\end{aligned}
+$$
+
+From this we can see that the error $\y_\new - \yhat_\new$ is normally distributed. 
+In particular, if we condition on (fix) the training data, and so fix
+$\betavhat$, then
+
+$$
+\y_\new - \yhat_\new | \X, \Y \sim \gauss{\xv_\new^\trans (\betav - \betavhat), \sigma^2}.
+$$
+
+Unfortunately we do not know $\betav$ nor $\res_\new$.  In fact,
+we don't even know $\sigma^2$, the variance of $\res_\new$.  
+
+However, under our assumptions, we can show that $\betavhat \rightarrow \beta$.
+That will mean that $\xv_\new^\trans (\betav - \betavhat) \approx 0$
+for large $N$.  Even more, this fact will allow us to form
+an estimate of $\sigma$ which is accurate for large $N$.
+
+We'll prove $\betavhat \rightarrow \beta$ a few different ways.
+In each case, the key will be to use the formula
+
+$$
+\betahat = (\X^\trans \X)^{-1} \X^\trans \Y,
+$$
+
+together with
+
+$$
+\Y = \X \beta + \resv,
+$$
+
+where the Gaussian assumption means that
+
+$$
+\resv \sim \gauss{\zerov, \sigma^2 \id{}_N},
+$$
+
+which is an $N$--dimensional Gaussian random vector. 
+Note that this is equivalent to
+
+$$
+\Y \sim \gauss{\X\beta, \sigma^2 \id{}_N}.
+$$
+
+
+
+## Method 1 for regressor consistency: Use normality
+
+Plugging in, we get
+$$
+\betahat = (\X^\trans \X)^{-1} \X^\trans \Y = 
+(\X^\trans \X)^{-1} \X^\trans (\X \beta + \resv) =
+\beta + (\X^\trans \X)^{-1} \X^\trans \resv.
+$$
+
+In this expression, only $\resv$ is random!  In fact, since $\resv$
+is Gaussian, and $\betahat$ is an affine transformation of $\resv$,
+then $\betahat$ itself is Gaussian --- albeit with an unknown mean
+and variance.  Noting that
+
+$$
+\begin{aligned}
+\expect{\betahat} ={}& \beta + (\X^\trans \X)^{-1} \X^\trans \expect{\resv} = \beta \\
+\cov{\betahat} ={}& \expect{(\betahat - \beta) (\betahat - \beta)^\trans}
+\\ ={}& \expect{(\X^\trans \X)^{-1} \X^\trans \resv \resv^\trans \X (\X^\trans \X)^{-1} }
+\\ ={}& (\X^\trans \X)^{-1} \X^\trans \expect{\resv \resv^\trans} \X (\X^\trans \X)^{-1}
+\\ ={}& (\X^\trans \X)^{-1} \X^\trans \sigma^2 \id{} \X (\X^\trans \X)^{-1}
+\\ ={}& \sigma^2 (\X^\trans \X)^{-1} \X^\trans \X (\X^\trans \X)^{-1}
+\\ ={}& \sigma^2 (\X^\trans \X)^{-1},
+\end{aligned}
+$$
+
+we get the beautiful expression
+$$
+\betahat \sim \gauss{\beta, \sigma^2 (\X^\trans \X)^{-1}}.
+$$
+
+Now, $\X$ is not random, but $\X^\trans \X = \sumn \xv_n \xv_n^\trans$,
+so it's reasonable to assume by analogy with the LLN that:
+
+::: {.callout-note title='Nicely behaved fixed regressors assumption'} 
+Assume that the deterministic sequence $\xv_n$ satisfies
+$$
+\lim_{N\rightarrow\infty} \frac{1}{N} \X^\trans \X =
+\lim_{N\rightarrow\infty} \meann \xv_n \xv_n^\trans \rightarrow \Sigmam_\X,
+$$
+where $\Sigmam_\X$ is positive definite.
+:::
+
+
+::: {.callout-warning title='Exercise'} 
+How would the OLS solution behave if the previous assumption were violated?
+Note that there are two parts --- positive definiteness of the limit, 
+and existence of the limit when scaling $\X^\trans \X$ by $1/N$.
+:::
+
+
+With "nicely behaved regressors" we thus get that
+
+$$
+\betahat \sim \gauss{\beta, \frac{1}{N} \sigma^2 \left(\frac{1}{N} \X^\trans \X \right)^{-1}}
+\approx \gauss{\beta, \frac{1}{N} \sigma^2 \Sigmam_\X^{-1}}.
+$$
+
+It follows that the variance of $\betahat$ goes to zero as $N \rightarrow \infty$,
+and so it concentrates at its mean, $\beta$.
+
+
+
+## Method 2 for regressor consistency: Use the LLN
+
+The previous proof really relied on Normality.  However, we can get a similar
+result using only the LLN.  Write:
+
+$$
+\begin{aligned}
+\betahat - \beta ={}&  
+  \left(\X^\trans \X\right)^{-1} \X^\trans \resv 
+\\={}&
+  \left(\frac{1}{N} \X^\trans \X\right)^{-1} \frac{1}{N} \X^\trans \resv.
+\end{aligned}
+$$
+
+We've already assumed that 
+
+$$
+\left(\frac{1}{N} \X^\trans \X \right)^{-1} \rightarrow \Sigmam_\X^{-1}.
+$$
+
+What about the second term?  This is something to which we can apply
+the vector LLN.  If we write $\zv_n := \xv_n \res_n$, then
+$\expect{\zv_n} = \zerov$ and
+
+$\cov{\zv_n} = \sigma^2 \xv_n \xv_n^\trans$.  If we assume that
+$\xv_n \xv_n^\trans$ is bounded for all $n$, then we can apply
+our LLN to get
+
+$$
+\frac{1}{N} \X^\trans \resv = \meann \xv_n \resv_n \rightarrow \expect{\xv_1 \resv_1} = \xv_1  \expect{\resv_1} = \zerov.
+$$
+
+From this it follows that
+
+$$
+\betahat \rightarrow \beta \quad\textrm{as }N \rightarrow \infty
+$$
+
+by the LLN alone.
+
+::: {.callout-warning title='Exercise'} 
+In fact, we do not require $\xv_n \xv_n^\trans$ is bounded for all $n$ ---
+all we really need is $\max_{n\in\{1, \ldots, N\},p} \frac{1}{N} \xv_{np}^2  \rightarrow 0$
+as $N \rightarrow \infty$.  Refer back to our proof of the LLN and show that (a)
+this condition suffices for the LLN and (b) that it is implied by our "nice regressor"
+assumption.
+:::
+
+
+## Method 3 for regressor consistency: Plug into the general formula
+
+At the beginning, we derived the (initially disappointing) general formula
+
+$$
+\betahat \rightarrow \Xcov^{-1} \expect{\xv_1 \y_1}.
+$$
+
+If we revert to letting $\xv_n$ be random, then we can simply plug in to get
+
+$$
+\begin{aligned}
+\betahat \rightarrow{}& \Xcov^{-1} \expect{\xv_1 (\xv_1^\trans \beta + \res_1)} 
+\\={}& \Xcov^{-1} \expect{\xv_1 \xv_1^\trans} \beta + \Xcov^{-1} \expect{\xv_1 \res_1}
+\\={}& \Xcov^{-1} \Xcov \beta + \Xcov^{-1} \expect{\xv_1 \expect{\res_1 | \xv_1}}
+\\={}& \beta + \Xcov^{-1} \expect{\xv_1 0}
+\\={}& \beta.
+\end{aligned}
+$$
+
+Though superficially different, all three of these methods relied on the same
+facts behind the scenes --- namely, that
+$\expect{\betahat} = \beta$, and $\cov{\betahat} \rightarrow \zerov$ as $N \rightarrow \infty$.
+
+

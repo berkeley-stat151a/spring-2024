@@ -324,6 +324,16 @@ given a sequence of vector-valued random variables, $\RV{\xv}_n \in \rdom{P}$.
 Write $\expect{\RV{\xv}_n} = \muv_n$, and
 $\var{\RV{\xv}_{np}} = \v_{np}$ for each $p \in \{1,\ldots,P\}$. Assume that
 $\max_{n,p} \v_{np} < \infty$, and that $\muv_n \rightarrow \overline{\muv}$.
+
+
+::: {.callout-important title='Note to future instructors'} 
+As with the univariate LLN, we really need
+$\lim_{N\rightarrow\infty} \max_{n=1,\ldots,N, p} \frac{1}{N} \v_{np} = 0$,
+which is more convenient when we actually use this for the fixed regressor
+setting, but which complicates the exhibition here.
+:::
+
+
 Then we can apply the LLN to each component, getting
 
 $$
