@@ -58,4 +58,10 @@ sidebar: true
 - Lab Feb 14th:
     - Homework 2 review
 - Lecture Feb 15th:
-    - [Estimating training data variability effect on prediction.](Lecture10.qmd)
+    - [Simulations and the law of large numbers.](Lecture10_code.ipynb)
+
+
+---
+
+- Lecture Feb 20th:
+    - Estimating training data variability effect on prediction.
