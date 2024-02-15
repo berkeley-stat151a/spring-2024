@@ -225,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="scalar-valued-random-variables" class="level1">
 <h1>Scalar-valued random variables</h1>
 <p>Here’s an example of the kind of thing we’ll do today. We’ll begin by looking at the LLN for standard normal random variables. Then, you’ll modify this code to explore other aspects of the LLN.</p>
-<div class="cell" data-tags="[]" data-execution_count="2">
+<div class="cell" data-tags="[]" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the key function to modify.  The rest is boilerplate (meaning code that is pretty much the</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># same every time you use it).</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -244,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">data.frame</span>(<span class="at">n=</span>n_obs, <span class="at">value=</span><span class="fu">sum</span>(x) <span class="sc">/</span> n_obs, <span class="at">quantity=</span><span class="st">"normal"</span>))</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="3">
+<div class="cell" data-tags="[]" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a random sample mean.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Inputs:</span></span>
@@ -255,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns:</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   A dataframe with the output of DrawFun, and a column indicating which draw</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   index produced that dataframe.</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>ConductLLNExperiment <span class="ot">&lt;-</span> <span class="cf">function</span>(DrawFun, n_obs_vec, num_draws) {</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>ConductLLNExperiment <span class="ot">&lt;-</span> <span class="cf">function</span>(DrawFun, <span class="at">n_obs_vec=</span><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">3000</span>, <span class="at">by=</span><span class="dv">30</span>), <span class="at">num_draws=</span><span class="dv">20</span>) {</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The rest of this can be mostly the same every time you run a univariate analysis</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    lln_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    pb <span class="ot">&lt;-</span> <span class="fu">txtProgressBar</span>(<span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="fu">max</span>(n_obs_vec), <span class="at">initial=</span><span class="dv">0</span>, <span class="at">style=</span><span class="dv">3</span>)</span>
@@ -271,13 +271,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(lln_df)</span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="4">
+<div class="cell" data-tags="[]" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate the sample average for these numbers of observations</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>true_mean <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>lln_df <span class="ot">&lt;-</span> <span class="fu">ConductLLNExperiment</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">DrawFun=</span><span class="cf">function</span>(n_obs) { <span class="fu">DrawLLNSample</span>(n_obs, <span class="at">true_mean=</span>true_mean) }, </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_obs_vec=</span><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">3000</span>, <span class="at">by=</span><span class="dv">30</span>),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_draws=</span><span class="dv">20</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>DrawFun <span class="ot">&lt;-</span> <span class="cf">function</span>(n_obs) {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">DrawLLNSample</span>(n_obs, <span class="at">true_mean=</span>true_mean)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>lln_df <span class="ot">&lt;-</span> <span class="fu">ConductLLNExperiment</span>(DrawFun)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lln_df) <span class="sc">+</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>n, <span class="at">y=</span>value), <span class="at">alpha=</span><span class="fl">1.0</span>) <span class="sc">+</span></span>
@@ -289,18 +289,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="Lecture10_code_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="5">
+<div class="cell" data-tags="[]" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A good way to compare different settings is to save them in the same dataframe</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># but with a descriptive column telling them apart</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>lln_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (true_mean <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>)) {</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    lln_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        lln_df,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ConductLLNExperiment</span>(</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">DrawFun=</span><span class="cf">function</span>(n_obs) { <span class="fu">DrawLLNSample</span>(n_obs, <span class="at">true_mean=</span>true_mean) }, </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_obs_vec=</span><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">3000</span>, <span class="at">by=</span><span class="dv">30</span>),</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">num_draws=</span><span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>DrawFun <span class="ot">&lt;-</span> <span class="cf">function</span>(n_obs) {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">DrawLLNSample</span>(n_obs, <span class="at">true_mean=</span>true_mean)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (true_mean <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>)) {</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    lln_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        lln_df,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ConductLLNExperiment</span>(DrawFun) <span class="sc">%&gt;%</span></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">true_mean=</span>true_mean)</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -414,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We can now do the much the same thing for vectors that we did for scalars.</p>
-<div class="cell" data-tags="[]" data-execution_count="8">
+<div class="cell" data-tags="[]" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a random sample mean.</span></span>
@@ -435,7 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>           <span class="fu">mutate</span>(<span class="at">n=</span>n_obs, <span class="at">quantity=</span><span class="st">"xbar"</span>))</span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="9">
+<div class="cell" data-tags="[]" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set some parameters and sanity check the output</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x_dim <span class="ot">&lt;-</span> <span class="dv">3</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>true_mean <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>x_dim</span>
@@ -461,19 +461,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>xbar.1.1</td>
-<td>0.9836521</td>
+<td>0.2453106</td>
 <td>xbar</td>
 <td>10</td>
 </tr>
 <tr class="even">
 <td>xbar.2.1</td>
-<td>2.4143063</td>
+<td>2.3163778</td>
 <td>xbar</td>
 <td>10</td>
 </tr>
 <tr class="odd">
 <td>xbar.3.1</td>
-<td>2.8995738</td>
+<td>3.2369185</td>
 <td>xbar</td>
 <td>10</td>
 </tr>
@@ -481,12 +481,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<div class="cell" data-execution_count="10">
+<div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate the sample average for these numbers of observations</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>lln_df <span class="ot">&lt;-</span> <span class="fu">ConductLLNExperiment</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">DrawFun=</span><span class="cf">function</span>(n_obs) { <span class="fu">DrawLLNVectorSample</span>(n_obs, <span class="at">true_mean=</span>true_mean, <span class="at">cov_mat=</span>cov_mat) }, </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_obs_vec=</span><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">3000</span>, <span class="at">by=</span><span class="dv">30</span>),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_draws=</span><span class="dv">20</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>DrawFun <span class="ot">&lt;-</span> <span class="cf">function</span>(n_obs) {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">DrawLLNVectorSample</span>(n_obs, <span class="at">true_mean=</span>true_mean, <span class="at">cov_mat=</span>cov_mat)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>lln_df <span class="ot">&lt;-</span> <span class="fu">ConductLLNExperiment</span>(DrawFun)</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lln_df) <span class="sc">+</span></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>n, <span class="at">y=</span>value, <span class="at">color=</span>component), <span class="at">alpha=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
@@ -527,16 +527,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  y_vec <span class="ot">&lt;-</span> x_mat <span class="sc">%*%</span> beta_true <span class="sc">+</span> eps_true</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  xtx_mean <span class="ot">&lt;-</span> <span class="fu">t</span>(x_mat) <span class="sc">%*%</span> x_mat <span class="sc">/</span> n_obs</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  xtx_mean_inv <span class="ot">&lt;-</span> <span class="fu">SafeSolve</span>(xtx_mean)</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  xty_mean <span class="ot">&lt;-</span> <span class="fu">t</span>(x_mat) <span class="sc">%*%</span> y_vec <span class="sc">/</span> n_obs</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  betahat <span class="ot">&lt;-</span> xtx_mean_inv <span class="sc">%*%</span> xty_mean</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">FlattenMatrix</span>(xtx_mean, <span class="at">prefix=</span><span class="st">"xtx"</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">n=</span>n_obs))</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Sanity check</span></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="fu">DrawRegressionResult</span>(<span class="dv">10</span>, <span class="at">x_cov=</span>x_cov, <span class="at">beta_true=</span>beta_true, <span class="at">sigma_true=</span>sigma_true)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">FlattenMatrix</span>(xtx_mean, <span class="at">prefix=</span><span class="st">"xtx"</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">n=</span>n_obs))</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Sanity check</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="fu">DrawRegressionResult</span>(<span class="dv">10</span>, <span class="at">x_cov=</span>x_cov, <span class="at">beta_true=</span>beta_true, <span class="at">sigma_true=</span>sigma_true)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 4 × 4</caption>
@@ -583,15 +579,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="12">
+<div class="cell" data-tags="[]" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>xtx_limit <span class="ot">&lt;-</span> <span class="fu">FlattenMatrix</span>(x_cov, <span class="at">prefix=</span><span class="st">"xtx"</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate the sample average for these numbers of observations</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>lln_df <span class="ot">&lt;-</span> <span class="fu">ConductLLNExperiment</span>(</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">DrawFun=</span><span class="cf">function</span>(n_obs) { <span class="fu">DrawRegressionResult</span>(n_obs, <span class="at">x_cov=</span>x_cov, <span class="at">beta_true=</span>beta_true, <span class="at">sigma_true=</span>sigma_true) }, </span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_obs_vec=</span><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">1000</span>, <span class="at">by=</span><span class="dv">30</span>),</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_draws=</span><span class="dv">20</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>DrawFun <span class="ot">&lt;-</span> <span class="cf">function</span>(n_obs) {</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">DrawRegressionResult</span>(n_obs, <span class="at">x_cov=</span>x_cov, <span class="at">beta_true=</span>beta_true, <span class="at">sigma_true=</span>sigma_true)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>lln_df <span class="ot">&lt;-</span> <span class="fu">ConductLLNExperiment</span>(DrawFun)</span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lln_df) <span class="sc">+</span></span>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>n, <span class="at">y=</span>value, <span class="at">color=</span>component, <span class="at">group=</span><span class="fu">interaction</span>(draw, component))) <span class="sc">+</span></span>
