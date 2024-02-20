@@ -64,4 +64,8 @@ sidebar: true
 ---
 
 - Lecture Feb 20th:
-    - Estimating training data variability effect on prediction.
+    - [Consistency of prediction variance.](Lecture11.qmd)
+- Lab Feb 21st:
+    - Homework 3 consultation
+- Lecture Feb 22nd:
+    - [Linear algebra review](LinearAlgebraReview.qmd) and Quiz 2 retake
