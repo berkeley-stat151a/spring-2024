@@ -184,9 +184,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-gaussian-assumption" id="toc-the-gaussian-assumption" class="nav-link" data-scroll-target="#the-gaussian-assumption">The Gaussian assumption</a>
   <ul class="collapse">
   <li><a href="#prediction-error-with-the-gaussian-assumption" id="toc-prediction-error-with-the-gaussian-assumption" class="nav-link" data-scroll-target="#prediction-error-with-the-gaussian-assumption">Prediction error with the Gaussian assumption</a></li>
-  <li><a href="#method-1-for-regressor-consistency-use-normality" id="toc-method-1-for-regressor-consistency-use-normality" class="nav-link" data-scroll-target="#method-1-for-regressor-consistency-use-normality">Method 1 for regressor consistency: Use normality</a></li>
-  <li><a href="#method-2-for-regressor-consistency-use-the-lln" id="toc-method-2-for-regressor-consistency-use-the-lln" class="nav-link" data-scroll-target="#method-2-for-regressor-consistency-use-the-lln">Method 2 for regressor consistency: Use the LLN</a></li>
-  <li><a href="#method-3-for-regressor-consistency-plug-into-the-general-formula" id="toc-method-3-for-regressor-consistency-plug-into-the-general-formula" class="nav-link" data-scroll-target="#method-3-for-regressor-consistency-plug-into-the-general-formula">Method 3 for regressor consistency: Plug into the general formula</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -347,7 +344,7 @@ $$
 <ul>
 <li>Apply the LLN formula to OLS and find it not that informative at first</li>
 <li>Propose a hierarchy structural assumptions to make the result more interpretable</li>
-<li>Under the most restrictive assumption, show that <span class="math inline">\(\betahat \rightarrow \beta\)</span> as <span class="math inline">\(N \rightarrow \infty\)</span>.</li>
+<li>Propose a Gaussian assumption (to start), and show what we need to estimate to make predictions</li>
 </ul>
 </section>
 <section id="setup" class="level1">
@@ -499,122 +496,6 @@ Additionally, the vector <span class="math inline">\(\beta\)</span> is viewed as
 <p><span class="math display">\[
 \Y \sim \gauss{\X\beta, \sigma^2 \id{}_N}.
 \]</span></p>
-</section>
-<section id="method-1-for-regressor-consistency-use-normality" class="level2">
-<h2 class="anchored" data-anchor-id="method-1-for-regressor-consistency-use-normality">Method 1 for regressor consistency: Use normality</h2>
-<p>Plugging in, we get <span class="math display">\[
-\betahat = (\X^\trans \X)^{-1} \X^\trans \Y =
-(\X^\trans \X)^{-1} \X^\trans (\X \beta + \resv) =
-\beta + (\X^\trans \X)^{-1} \X^\trans \resv.
-\]</span></p>
-<p>In this expression, only <span class="math inline">\(\resv\)</span> is random! In fact, since <span class="math inline">\(\resv\)</span> is Gaussian, and <span class="math inline">\(\betahat\)</span> is an affine transformation of <span class="math inline">\(\resv\)</span>, then <span class="math inline">\(\betahat\)</span> itself is Gaussian — albeit with an unknown mean and variance. Noting that</p>
-<p><span class="math display">\[
-\begin{aligned}
-\expect{\betahat} ={}&amp; \beta + (\X^\trans \X)^{-1} \X^\trans \expect{\resv} = \beta \\
-\cov{\betahat} ={}&amp; \expect{(\betahat - \beta) (\betahat - \beta)^\trans}
-\\ ={}&amp; \expect{(\X^\trans \X)^{-1} \X^\trans \resv \resv^\trans \X (\X^\trans \X)^{-1} }
-\\ ={}&amp; (\X^\trans \X)^{-1} \X^\trans \expect{\resv \resv^\trans} \X (\X^\trans \X)^{-1}
-\\ ={}&amp; (\X^\trans \X)^{-1} \X^\trans \sigma^2 \id{} \X (\X^\trans \X)^{-1}
-\\ ={}&amp; \sigma^2 (\X^\trans \X)^{-1} \X^\trans \X (\X^\trans \X)^{-1}
-\\ ={}&amp; \sigma^2 (\X^\trans \X)^{-1},
-\end{aligned}
-\]</span></p>
-<p>we get the beautiful expression <span class="math display">\[
-\betahat \sim \gauss{\beta, \sigma^2 (\X^\trans \X)^{-1}}.
-\]</span></p>
-<p>Now, <span class="math inline">\(\X\)</span> is not random, but <span class="math inline">\(\X^\trans \X = \sumn \xv_n \xv_n^\trans\)</span>, so it’s reasonable to assume by analogy with the LLN that:</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Nicely behaved fixed regressors assumption">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nicely behaved fixed regressors assumption
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Assume that the deterministic sequence <span class="math inline">\(\xv_n\)</span> satisfies <span class="math display">\[
-\lim_{N\rightarrow\infty} \frac{1}{N} \X^\trans \X =
-\lim_{N\rightarrow\infty} \meann \xv_n \xv_n^\trans \rightarrow \Sigmam_\X,
-\]</span> where <span class="math inline">\(\Sigmam_\X\)</span> is positive definite.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled" title="Exercise">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Exercise
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>How would the OLS solution behave if the previous assumption were violated? Note that there are two parts — positive definiteness of the limit, and existence of the limit when scaling <span class="math inline">\(\X^\trans \X\)</span> by <span class="math inline">\(1/N\)</span>.</p>
-</div>
-</div>
-<p>With “nicely behaved regressors” we thus get that</p>
-<p><span class="math display">\[
-\betahat \sim \gauss{\beta, \frac{1}{N} \sigma^2 \left(\frac{1}{N} \X^\trans \X \right)^{-1}}
-\approx \gauss{\beta, \frac{1}{N} \sigma^2 \Sigmam_\X^{-1}}.
-\]</span></p>
-<p>It follows that the variance of <span class="math inline">\(\betahat\)</span> goes to zero as <span class="math inline">\(N \rightarrow \infty\)</span>, and so it concentrates at its mean, <span class="math inline">\(\beta\)</span>.</p>
-</section>
-<section id="method-2-for-regressor-consistency-use-the-lln" class="level2">
-<h2 class="anchored" data-anchor-id="method-2-for-regressor-consistency-use-the-lln">Method 2 for regressor consistency: Use the LLN</h2>
-<p>The previous proof really relied on Normality. However, we can get a similar result using only the LLN. Write:</p>
-<p><span class="math display">\[
-\begin{aligned}
-\betahat - \beta ={}&amp;  
-  \left(\X^\trans \X\right)^{-1} \X^\trans \resv
-\\={}&amp;
-  \left(\frac{1}{N} \X^\trans \X\right)^{-1} \frac{1}{N} \X^\trans \resv.
-\end{aligned}
-\]</span></p>
-<p>We’ve already assumed that</p>
-<p><span class="math display">\[
-\left(\frac{1}{N} \X^\trans \X \right)^{-1} \rightarrow \Sigmam_\X^{-1}.
-\]</span></p>
-<p>What about the second term? This is something to which we can apply the vector LLN. If we write <span class="math inline">\(\zv_n := \xv_n \res_n\)</span>, then <span class="math inline">\(\expect{\zv_n} = \zerov\)</span> and</p>
-<p><span class="math inline">\(\cov{\zv_n} = \sigma^2 \xv_n \xv_n^\trans\)</span>. If we assume that <span class="math inline">\(\xv_n \xv_n^\trans\)</span> is bounded for all <span class="math inline">\(n\)</span>, then we can apply our LLN to get</p>
-<p><span class="math display">\[
-\frac{1}{N} \X^\trans \resv = \meann \xv_n \resv_n \rightarrow \expect{\xv_1 \resv_1} = \xv_1  \expect{\resv_1} = \zerov.
-\]</span></p>
-<p>From this it follows that</p>
-<p><span class="math display">\[
-\betahat \rightarrow \beta \quad\textrm{as }N \rightarrow \infty
-\]</span></p>
-<p>by the LLN alone.</p>
-<div class="callout callout-style-default callout-warning callout-titled" title="Exercise">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Exercise
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In fact, we do not require <span class="math inline">\(\xv_n \xv_n^\trans\)</span> is bounded for all <span class="math inline">\(n\)</span> — all we really need is <span class="math inline">\(\max_{n\in\{1, \ldots, N\},p} \frac{1}{N} \xv_{np}^2 \rightarrow 0\)</span> as <span class="math inline">\(N \rightarrow \infty\)</span>. Refer back to our proof of the LLN and show that (a) this condition suffices for the LLN and (b) that it is implied by our “nice regressor” assumption.</p>
-</div>
-</div>
-</section>
-<section id="method-3-for-regressor-consistency-plug-into-the-general-formula" class="level2">
-<h2 class="anchored" data-anchor-id="method-3-for-regressor-consistency-plug-into-the-general-formula">Method 3 for regressor consistency: Plug into the general formula</h2>
-<p>At the beginning, we derived the (initially disappointing) general formula</p>
-<p><span class="math display">\[
-\betahat \rightarrow \Xcov^{-1} \expect{\xv_1 \y_1}.
-\]</span></p>
-<p>If we revert to letting <span class="math inline">\(\xv_n\)</span> be random, then we can simply plug in to get</p>
-<p><span class="math display">\[
-\begin{aligned}
-\betahat \rightarrow{}&amp; \Xcov^{-1} \expect{\xv_1 (\xv_1^\trans \beta + \res_1)}
-\\={}&amp; \Xcov^{-1} \expect{\xv_1 \xv_1^\trans} \beta + \Xcov^{-1} \expect{\xv_1 \res_1}
-\\={}&amp; \Xcov^{-1} \Xcov \beta + \Xcov^{-1} \expect{\xv_1 \expect{\res_1 | \xv_1}}
-\\={}&amp; \beta + \Xcov^{-1} \expect{\xv_1 0}
-\\={}&amp; \beta.
-\end{aligned}
-\]</span></p>
-<p>Though superficially different, all three of these methods relied on the same facts behind the scenes — namely, that <span class="math inline">\(\expect{\betahat} = \beta\)</span>, and <span class="math inline">\(\cov{\betahat} \rightarrow \zerov\)</span> as <span class="math inline">\(N \rightarrow \infty\)</span>.</p>
 
 
 <!-- -->
@@ -924,8 +805,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu"># Goals</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Apply the LLN formula to OLS and find it not that informative at first</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Propose a hierarchy structural assumptions to make the result more interpretable</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Under the most restrictive assumption, show that $\betahat \rightarrow \beta$</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  as $N \rightarrow \infty$.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Propose a Gaussian assumption (to start), and show what we need to estimate to</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>make predictions</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># Setup</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
@@ -1171,145 +1052,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>\Y \sim \gauss{\X\beta, \sigma^2 \id{}_N}.</span>
 <span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a><span class="fu">## Method 1 for regressor consistency: Use normality</span></span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>Plugging in, we get</span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>\betahat = (\X^\trans \X)^{-1} \X^\trans \Y = </span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>(\X^\trans \X)^{-1} \X^\trans (\X \beta + \resv) =</span>
-<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>\beta + (\X^\trans \X)^{-1} \X^\trans \resv.</span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>In this expression, only $\resv$ is random!  In fact, since $\resv$</span>
-<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>is Gaussian, and $\betahat$ is an affine transformation of $\resv$,</span>
-<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>then $\betahat$ itself is Gaussian --- albeit with an unknown mean</span>
-<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>and variance.  Noting that</span>
-<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>\expect{\betahat} ={}&amp; \beta + (\X^\trans \X)^{-1} \X^\trans \expect{\resv} = \beta <span class="sc">\\</span></span>
-<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>\cov{\betahat} ={}&amp; \expect{(\betahat - \beta) (\betahat - \beta)^\trans}</span>
-<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span> ={}&amp; \expect{(\X^\trans \X)^{-1} \X^\trans \resv \resv^\trans \X (\X^\trans \X)^{-1} }</span>
-<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span> ={}&amp; (\X^\trans \X)^{-1} \X^\trans \expect{\resv \resv^\trans} \X (\X^\trans \X)^{-1}</span>
-<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span> ={}&amp; (\X^\trans \X)^{-1} \X^\trans \sigma^2 \id{} \X (\X^\trans \X)^{-1}</span>
-<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span> ={}&amp; \sigma^2 (\X^\trans \X)^{-1} \X^\trans \X (\X^\trans \X)^{-1}</span>
-<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span> ={}&amp; \sigma^2 (\X^\trans \X)^{-1},</span>
-<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>we get the beautiful expression</span>
-<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>\betahat \sim \gauss{\beta, \sigma^2 (\X^\trans \X)^{-1}}.</span>
-<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>Now, $\X$ is not random, but $\X^\trans \X = \sumn \xv_n \xv_n^\trans$,</span>
-<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>so it's reasonable to assume by analogy with the LLN that:</span>
-<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title='Nicely behaved fixed regressors assumption'} </span>
-<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>Assume that the deterministic sequence $\xv_n$ satisfies</span>
-<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>\lim_{N\rightarrow\infty} \frac{1}{N} \X^\trans \X =</span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>\lim_{N\rightarrow\infty} \meann \xv_n \xv_n^\trans \rightarrow \Sigmam_\X,</span>
-<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>where $\Sigmam_\X$ is positive definite.</span>
-<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning title='Exercise'} </span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>How would the OLS solution behave if the previous assumption were violated?</span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>Note that there are two parts --- positive definiteness of the limit, </span>
-<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>and existence of the limit when scaling $\X^\trans \X$ by $1/N$.</span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>With "nicely behaved regressors" we thus get that</span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>\betahat \sim \gauss{\beta, \frac{1}{N} \sigma^2 \left(\frac{1}{N} \X^\trans \X \right)^{-1}}</span>
-<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>\approx \gauss{\beta, \frac{1}{N} \sigma^2 \Sigmam_\X^{-1}}.</span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>It follows that the variance of $\betahat$ goes to zero as $N \rightarrow \infty$,</span>
-<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>and so it concentrates at its mean, $\beta$.</span>
-<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a><span class="fu">## Method 2 for regressor consistency: Use the LLN</span></span>
-<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>The previous proof really relied on Normality.  However, we can get a similar</span>
-<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>result using only the LLN.  Write:</span>
-<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>\betahat - \beta ={}&amp;  </span>
-<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>  \left(\X^\trans \X\right)^{-1} \X^\trans \resv </span>
-<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp;</span>
-<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>  \left(\frac{1}{N} \X^\trans \X\right)^{-1} \frac{1}{N} \X^\trans \resv.</span>
-<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>We've already assumed that </span>
-<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>\left(\frac{1}{N} \X^\trans \X \right)^{-1} \rightarrow \Sigmam_\X^{-1}.</span>
-<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>What about the second term?  This is something to which we can apply</span>
-<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>the vector LLN.  If we write $\zv_n := \xv_n \res_n$, then</span>
-<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>$\expect{\zv_n} = \zerov$ and</span>
-<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>$\cov{\zv_n} = \sigma^2 \xv_n \xv_n^\trans$.  If we assume that</span>
-<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>$\xv_n \xv_n^\trans$ is bounded for all $n$, then we can apply</span>
-<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>our LLN to get</span>
-<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>\frac{1}{N} \X^\trans \resv = \meann \xv_n \resv_n \rightarrow \expect{\xv_1 \resv_1} = \xv_1  \expect{\resv_1} = \zerov.</span>
-<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>From this it follows that</span>
-<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>\betahat \rightarrow \beta \quad\textrm{as }N \rightarrow \infty</span>
-<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>by the LLN alone.</span>
-<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning title='Exercise'} </span>
-<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>In fact, we do not require $\xv_n \xv_n^\trans$ is bounded for all $n$ ---</span>
-<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>all we really need is $\max_{n\in<span class="sc">\{</span>1, \ldots, N<span class="sc">\}</span>,p} \frac{1}{N} \xv_{np}^2  \rightarrow 0$</span>
-<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>as $N \rightarrow \infty$.  Refer back to our proof of the LLN and show that (a)</span>
-<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>this condition suffices for the LLN and (b) that it is implied by our "nice regressor"</span>
-<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>assumption.</span>
-<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a><span class="fu">## Method 3 for regressor consistency: Plug into the general formula</span></span>
-<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>At the beginning, we derived the (initially disappointing) general formula</span>
-<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>\betahat \rightarrow \Xcov^{-1} \expect{\xv_1 \y_1}.</span>
-<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>If we revert to letting $\xv_n$ be random, then we can simply plug in to get</span>
-<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>\betahat \rightarrow{}&amp; \Xcov^{-1} \expect{\xv_1 (\xv_1^\trans \beta + \res_1)} </span>
-<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp; \Xcov^{-1} \expect{\xv_1 \xv_1^\trans} \beta + \Xcov^{-1} \expect{\xv_1 \res_1}</span>
-<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp; \Xcov^{-1} \Xcov \beta + \Xcov^{-1} \expect{\xv_1 \expect{\res_1 | \xv_1}}</span>
-<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp; \beta + \Xcov^{-1} \expect{\xv_1 0}</span>
-<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp; \beta.</span>
-<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>Though superficially different, all three of these methods relied on the same</span>
-<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>facts behind the scenes --- namely, that</span>
-<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>$\expect{\betahat} = \beta$, and $\cov{\betahat} \rightarrow \zerov$ as $N \rightarrow \infty$.</span>
-<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

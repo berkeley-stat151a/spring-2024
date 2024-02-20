@@ -2,106 +2,114 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture5.html</loc>
-    <lastmod>2024-02-15T17:25:06.090Z</lastmod>
+    <lastmod>2024-02-20T22:15:41.331Z</lastmod>
   </url>
   <url>
     <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture2.html</loc>
-    <lastmod>2024-02-15T17:25:04.450Z</lastmod>
+    <lastmod>2024-02-20T22:15:39.695Z</lastmod>
   </url>
   <url>
     <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture10_code.html</loc>
-    <lastmod>2024-02-15T17:25:02.662Z</lastmod>
+    <lastmod>2024-02-20T22:15:37.927Z</lastmod>
   </url>
   <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture9.html</loc>
-    <lastmod>2024-02-15T17:25:01.826Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture7.html</loc>
-    <lastmod>2024-02-15T17:25:00.178Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture4.html</loc>
-    <lastmod>2024-02-15T17:24:56.646Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture2_linearity_note.html</loc>
-    <lastmod>2024-02-15T17:24:54.690Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture1.html</loc>
-    <lastmod>2024-02-15T17:24:54.242Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/datasets/data.html</loc>
-    <lastmod>2024-02-15T17:24:53.658Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/calendar.html</loc>
-    <lastmod>2024-02-15T17:24:53.118Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/hw3_code.html</loc>
-    <lastmod>2024-02-15T17:24:52.678Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/hw2_code.html</loc>
-    <lastmod>2024-02-15T17:24:52.022Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/hw1_code.html</loc>
-    <lastmod>2024-02-15T17:24:48.666Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/assignments.html</loc>
-    <lastmod>2024-02-15T17:24:48.346Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/hw1_math.html</loc>
-    <lastmod>2024-02-15T17:24:51.722Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/hw2_math.html</loc>
-    <lastmod>2024-02-15T17:24:52.382Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/hw3_math.html</loc>
-    <lastmod>2024-02-15T17:24:52.962Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/course_policies.html</loc>
-    <lastmod>2024-02-15T17:24:53.470Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/index.html</loc>
-    <lastmod>2024-02-15T17:24:53.842Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture10.html</loc>
-    <lastmod>2024-02-15T17:24:54.406Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture3.html</loc>
-    <lastmod>2024-02-15T17:24:55.722Z</lastmod>
-  </url>
-  <url>
-    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture6.html</loc>
-    <lastmod>2024-02-15T17:24:58.406Z</lastmod>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/LinearAlgebraReview.html</loc>
+    <lastmod>2024-02-20T22:15:37.023Z</lastmod>
   </url>
   <url>
     <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture8.html</loc>
-    <lastmod>2024-02-15T17:25:01.030Z</lastmod>
+    <lastmod>2024-02-20T22:15:36.115Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture6.html</loc>
+    <lastmod>2024-02-20T22:15:33.556Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture3.html</loc>
+    <lastmod>2024-02-20T22:15:30.792Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture11.html</loc>
+    <lastmod>2024-02-20T22:15:29.444Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture1.html</loc>
+    <lastmod>2024-02-20T22:15:28.820Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/datasets/data.html</loc>
+    <lastmod>2024-02-20T22:15:28.204Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/calendar.html</loc>
+    <lastmod>2024-02-20T22:15:27.652Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/hw3_code.html</loc>
+    <lastmod>2024-02-20T22:15:27.232Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/hw2_code.html</loc>
+    <lastmod>2024-02-20T22:15:26.560Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/hw1_code.html</loc>
+    <lastmod>2024-02-20T22:15:23.200Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/assignments.html</loc>
+    <lastmod>2024-02-20T22:15:22.904Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/hw1_math.html</loc>
+    <lastmod>2024-02-20T22:15:26.268Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/hw2_math.html</loc>
+    <lastmod>2024-02-20T22:15:26.916Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/assignments/hw3_math.html</loc>
+    <lastmod>2024-02-20T22:15:27.504Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/course_policies.html</loc>
+    <lastmod>2024-02-20T22:15:28.004Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/index.html</loc>
+    <lastmod>2024-02-20T22:15:28.404Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture10.html</loc>
+    <lastmod>2024-02-20T22:15:28.976Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture2_linearity_note.html</loc>
+    <lastmod>2024-02-20T22:15:29.728Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture4.html</loc>
+    <lastmod>2024-02-20T22:15:31.780Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture7.html</loc>
+    <lastmod>2024-02-20T22:15:35.284Z</lastmod>
+  </url>
+  <url>
+    <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture9.html</loc>
+    <lastmod>2024-02-20T22:15:36.695Z</lastmod>
   </url>
   <url>
     <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/lectures.html</loc>
-    <lastmod>2024-02-15T17:25:02.046Z</lastmod>
+    <lastmod>2024-02-20T22:15:37.247Z</lastmod>
   </url>
   <url>
     <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture1_examples.html</loc>
-    <lastmod>2024-02-15T17:25:03.670Z</lastmod>
+    <lastmod>2024-02-20T22:15:38.923Z</lastmod>
   </url>
   <url>
     <loc>git@github.com:berkeley-stat151a/spring-2024/lectures/Lecture2_examples.html</loc>
-    <lastmod>2024-02-15T17:25:05.454Z</lastmod>
+    <lastmod>2024-02-20T22:15:40.683Z</lastmod>
   </url>
 </urlset>
