@@ -26,15 +26,17 @@ Recall that we want to form predictions for $\y_\new$
 using only $\x_\new$ and the OLS predictor $\betahat = (\X^\trans \X)^{-1} \X^\trans \Y$.
 We're using the assumptions
 
-  - *A1:* The $\res_n$ (including $\res_\new$) are IID $\gauss{0, \sigma^2}$
+  - *A1*: The $\y_n$ (including $\y_\new$) are actually generated according
+    to $\y_n = \xv_n^\trans \beta + \res_n$ for some unknown $\beta$.  The
+    $\xv_n$ are not random.
+  - *A2:* The $\res_n$ (including $\res_\new$) are IID $\gauss{0, \sigma^2}$
     for some (unknown) $\sigma$
-  - *A2*: The $\y_n$ (including $\y_\new$) are actually generated according
-    to $\y_n = \xv_n^\trans \beta + \res_n$ for some unknown $\beta$
 
   We'll additionally need the following assumption:
 
   - *A3*: $\frac{1}{N} \X^\trans \X = \meann \xv_n \xv_n^\trans$ converges
-    to a non-singular matrix, $\Xcov$
+    to a non-singular matrix, $\Xcov$.  (Note that the $\xv_n$ are not random,
+    so this is deterministic convergence.)
 
 For now, we're only interested in how much error we'll commit when
 we keep the training data fixed.  That is, we're interested in
@@ -42,8 +44,8 @@ the distribution of
 
 $$
 \begin{aligned}
-\y_\new ={}& \xv_\new^\trans \beta + \res_\new &\textrm{(by A2)} \\
-        \sim{}& \gauss{\xv_\new^\trans \beta, \sigma^2}. &\textrm{(by A1, and properties of normals)} \\
+\y_\new ={}& \xv_\new^\trans \beta + \res_\new &\textrm{(by A1)} \\
+        \sim{}& \gauss{\xv_\new^\trans \beta, \sigma^2}. &\textrm{(by A2, and properties of normals)} \\
 \end{aligned}
 $$
 
@@ -69,9 +71,126 @@ $$
 \prob{\y_\new \in (\y_{low}, \y_{up})} = 1 - \alpha
 $$
 
-for some small $\alpha$.  Here, we're imagining that we know
-$\beta$ and $\sigma$.
+for some small $\alpha$.  
 
+For the moment, suppose that we know $\beta$ and $\sigma$.  
+How can we find $\y_{low}$ and $\y_{up}$?  Let's do it by
+building up an expression for $\y_\new$ in terms of the
+standard normal distribution, whose properties we are able 
+to calculate.
+
+Recall that, if $\z$ follows standard normal distribution
+$\RV{\z} \sim \gauss{0,1}$, then we can compute the tail probability
+$\prob{\RV{\z} \le \z_0}$ for any $\z_0$.  This probability is
+usually denoted with $\Phi(\cdot)$:
+
+$$
+\Phi(\z_0) := \prob{\RV{\z} \le \z_0}.
+$$
+
+Furthermore, we can invert $\Phi(\cdot)$ to find a $\z_0$
+such that $\Phi(\z_0)$ is equal to some value:
+
+$$
+a := \prob{\RV{\z} \le \Phi^{-1}(a)}.
+$$
+
+::: {.callout-warning title='Exercise'} 
+Prove that $\Phi(\cdot)$ has the following properties:
+
+-  $\Phi(-\infty) = 0$
+-  $\Phi(\infty) = 1$
+-  $\Phi(-\z) = 1 - \Phi(\z)$
+-  $\Phi(\cdot)$ is increasing
+-  $\Phi(\cdot)$ is continuous
+-  $\Phi(\cdot)$ is invertible
+:::
+
+Suppose we take $\z_\alpha := \Phi^{-1}(\alpha / 2)$ so that
+$\prob{\RV{\z} \le \z_\alpha} = 1 - \alpha / 2$ for $\alpha < 1$.
+Note that $\z_\alpha > 0$ (why?).  Then 
+
+$$
+\begin{aligned}
+\prob{-\z_\alpha \le \RV{\z} \le \z_\alpha} ={}&
+1 - \prob{\RV{\z} \le -\z_\alpha \textrm{ or } \RV{\z} \ge \z_\alpha}
+\\={}&
+1 - \left( \prob{\RV{\z} \le -\z_\alpha} + \prob{\RV{\z} \ge \z_\alpha} \right)
+  &\textrm{(the regions are disjoint)}
+\\={}&
+1 - 2 \prob{\RV{\z} \ge \z_\alpha}
+  &\textrm{(symmetry of $\RV{\z}$)}
+\\={}&
+1 - 2 \left(1 - \Phi(\z_\alpha) \right)
+  &\textrm{(definition of $\Phi$)}
+\\={}&
+1 - 2 \frac{\alpha}{2}
+  &\textrm{(definition of $\z_\alpha$)}
+\\={}&
+1 - \alpha.
+\end{aligned}
+$$
+
+Now we just need to transform the preceding expression, which is about
+a standard normal random variable, into an expression about $\y_\new$. 
+By standard transformations of normal random variables, $\y_new$
+has the same distribution as $\beta^\trans \xv_\new + \sigma \RV{\z}$.
+So we can write
+
+$$
+\begin{aligned}
+1- \alpha
+={}&
+  \prob{-\z_\alpha \le \RV{\z} \le \z_\alpha}
+\\={}&
+  \prob{\beta^\trans \xv_\new-\sigma \z_\alpha \le 
+    \beta^\trans \xv_\new + \sigma \RV{\z} \le 
+    \beta^\trans \xv_\new + \sigma \z_\alpha}
+\\={}&
+  \prob{\beta^\trans \xv_\new-\sigma \z_\alpha \le 
+    \y_\new \le 
+    \beta^\trans \xv_\new + \sigma \z_\alpha}.
+\end{aligned}
+$$
+
+We have thus found an interval for $\y_\new$:
+
+$$
+\y_{low} = \beta^\trans \xv_\new - \sigma \z_\alpha 
+\quad\textrm{and}\quad
+\y_{up} = \beta^\trans \xv_\new + \sigma \z_\alpha
+\quad\Rightarrow\quad
+\prob{\y_{low} \le \y_\new \le \y_{up}} = 1- \alpha.
+$$
+
+
+In practice, we replace $\sigma$ with $\sigmahat$ and $\beta$ with $\betahat$,
+giving
+
+$$
+\hat\y_{low} = \betahat^\trans \xv_\new - \sigmahat \z_\alpha 
+\quad\textrm{and}\quad
+\hat\y_{up} = \betahat^\trans \xv_\new + \sigmahat \z_\alpha.
+$$
+
+In general, $\prob{\hat\y_{low} \le \y_\new \le \hat\y_{up}} \ne 1 - \alpha$.
+It may be higher or lower.  In fact, the probability is random, as it depends
+on $\betahat$ and $\sigmahat$, which depend on the (random) training data.
+But the probability does approach $1- \alpha$ as $N \rightarrow \infty$
+as long as $\betahat \rightarrow \beta$ and
+$\sigmahat \rightarrow \sigma$.  So we now turn to showing that.
+
+::: {.callout-warning title='Exercise'} 
+
+If it is the case that $\betahat \rightarrow \beta$ and
+$\sigmahat \rightarrow \sigma$, then 
+
+$$
+\prob{\hat\y_{low} \le \y_\new \le \hat\y_{up}} \rightarrow 1 - \alpha
+$$
+
+by the continuous mapping theorem applied to $\Phi(\cdot)$.
+:::
 
 
 # Coefficient consistency
@@ -108,28 +227,8 @@ $$
 \betahat \sim \gauss{\beta, \sigma^2 (\X^\trans \X)^{-1}}.
 $$
 
-Now, $\X$ is not random, but $\X^\trans \X = \sumn \xv_n \xv_n^\trans$,
-so it's reasonable to assume by analogy with the LLN that:
-
-::: {.callout-note title='Nicely behaved fixed regressors assumption'} 
-Assume that the deterministic sequence $\xv_n$ satisfies
-$$
-\lim_{N\rightarrow\infty} \frac{1}{N} \X^\trans \X =
-\lim_{N\rightarrow\infty} \meann \xv_n \xv_n^\trans \rightarrow \Sigmam_\X,
-$$
-where $\Sigmam_\X$ is positive definite.
-:::
-
-
-::: {.callout-warning title='Exercise'} 
-How would the OLS solution behave if the previous assumption were violated?
-Note that there are two parts --- positive definiteness of the limit, 
-and existence of the limit when scaling $\X^\trans \X$ by $1/N$.
-:::
-
-
-With "nicely behaved regressors" we thus get that
-
+We still need to understand how $(\X^\trans \X)^{-1}$ behaves. For this,
+we have assumption A3, which we apply to get
 $$
 \betahat \sim \gauss{\beta, \frac{1}{N} \sigma^2 \left(\frac{1}{N} \X^\trans \X \right)^{-1}}
 \approx \gauss{\beta, \frac{1}{N} \sigma^2 \Sigmam_\X^{-1}}.
@@ -137,6 +236,21 @@ $$
 
 It follows that the variance of $\betahat$ goes to zero as $N \rightarrow \infty$,
 and so it concentrates at its mean, $\beta$.
+
+
+::: {.callout-warning title='Exercise'} 
+How would the OLS solution behave if the A3 were violated?
+Note that there are two parts --- positive definiteness of the limit, 
+and existence of the limit when scaling $\X^\trans \X$ by $1/N$.
+
+Consider two examples:
+
+- Let $\zv_n \sim \gauss{\zerov, \id}$ denote IID standard Gaussian P-vectors,
+  and take $\xv_n = \zv_n / n^2$.  Show that A3 is violated.  What happens to
+  $\betahat$ as $N \rightarrow \infty$.
+- Let $\xv_n = \onev$ for all $n$.  Show that A3 is violated.  What is $\betahat$? 
+:::
+
 
 
 
@@ -219,9 +333,66 @@ $\expect{\betahat} = \beta$, and $\cov{\betahat} \rightarrow \zerov$ as $N \righ
 # Estimating the residual variance
 
 
-*Work in progress*
 
 ## Method 1: Apply LLN to the squared residuals
+
+How can we estimate $\sigma^2$?  First, note that, if we observed
+the residuals $\res_n$ (which we don't), we could estimate
+
+$$
+\meann \res_n^2 \rightarrow \sigma^2
+$$
+
+by the LLN.  Of course, we don't observe $\res_n$, since
+we don't know $\beta$, and $\res_n = \y_n - \xv_n^\trans\beta$.
+However, we can estimate $\beta$ with $\betahat$, giving
+
+$$
+\reshat_n := \y_n - \xv_n^\trans \betahat,
+$$
+
+and estimate
+
+$$
+\sigmahat^2 := \meann \reshat_n^2.
+$$
+
+Does this work?  Do we commit too large an error?  It turns out, no.  We can
+write
+
+$$
+\begin{aligned}
+\sigmahat^2 ={}& \meann \reshat_n^2 - \meann \res_n^2 + \meann \res_n^2
+\\={}& \meann \res_n^2 + \meann (\reshat_n^2 - \res_n^2).
+\end{aligned}
+$$
+
+Now, 
+
+$$
+\begin{aligned}
+\reshat_n^2 - \res_n^2
+={}& 
+(\y_n - \xv_n^\trans \betahat)^2 - (\y_n - \xv_n^\trans \beta)^2
+\\={}& 
+\y_n^2 - 2 \y_n \xv_n^\trans \betahat + (\xv_n^\trans \betahat)^2 -
+\y_n^2 + 2 \y_n \xv_n^\trans \beta + (\xv_n^\trans \beta)^2
+\\={}& 
+\y_n \xv_n^\trans (\beta - \betahat) + 
+(\xv_n^\trans \betahat)^2 - (\xv_n^\trans \beta)^2
+\\={}& 
+\y_n \xv_n^\trans (\beta - \betahat) + 
+(\xv_n^\trans \betahat)^2 - \xv_n^\trans \betahat \xv_n^\trans \beta + 
+  \xv_n^\trans \betahat \xv_n^\trans \beta - (\xv_n^\trans \beta)^2
+\\={}& 
+\y_n \xv_n^\trans (\beta - \betahat) + 
+\betahat^\trans \xv_n  \xv_n^\trans (\betahat - \beta) + 
+\beta^\trans \xv_n  \xv_n^\trans (\betahat - \beta).
+\end{aligned}
+$$
+
+
+*Work in progress*
 
 
 ## Method 2: Projection to get the unbiased estimate
