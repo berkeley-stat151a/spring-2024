@@ -1,0 +1,66 @@
+on:
+  workflow_dispatch:
+
+name: "Publish to github pages in another repo"
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      # for accessing this repo's assets in the container
+      - name: Check out this repo
+        uses: actions/checkout@v4
+        with:
+          path: private
+
+      # in https://github.com/berkeley-stat151a/spring-2024-private/settings/secrets/actions
+      # in https://github.com/ryanlovett/stat151a-spring-2024/settings/secrets/actions
+      - name: Check out public repo
+        uses: actions/checkout@v4
+        with:
+          repository: berkeley-stat151a/spring-2024
+          ref: main
+          token: ${{ secrets.MY_GITHUB_ACTIONS_TOKEN }}
+          path: public
+
+      # run the container, attaching this repo as a working directory
+      - name: Run the build process with Docker
+        uses: addnab/docker-run-action@v3
+        env:
+          MY_GITHUB_ACTIONS_TOKEN: ${{ secrets.MY_GITHUB_ACTIONS_TOKEN }}
+        with:
+          #image: rocker/binder:latest
+          image: ucbscf/berkeley-stat-course:latest
+          options: -v ${{ github.workspace }}/private:/home/rstudio/private -v ${{ github.workspace }}/public:/home/rstudio/public -e MY_GITHUB_ACTIONS_TOKEN=${{ secrets.MY_GITHUB_ACTIONS_TOKEN }}
+          shell: bash
+          run: |
+            # exit if any command returns non-zero exit
+            set -e
+            set -x
+
+            # execute from the website
+            cd /home/rstudio/private/
+
+            # _freeze should not exist
+            rm -rf ./_freeze
+            
+            # See where we are
+            pwd
+
+            # Who are we?
+            id
+
+            # What is here?
+            ls -l
+
+            # render site
+            quarto render
+
+            rsync -av _site/ /home/rstudio/public/
+
+            cd /home/rstudio/public/
+            git config user.name "GitHub Action"
+            git config user.email "scf@stat.berkeley.edu"
+            git add .
+            git commit -m "GitHub Actions commit."
+            git push
+            quarto publish gh-pages --no-prompt --id 4f93185f-50a9-491c-b86f-3f8e51eb3ae9
