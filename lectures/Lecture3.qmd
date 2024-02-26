@@ -1,5 +1,5 @@
 ---
-title: "Linear algebra for linear regression."
+title: "Multilinear regression as loss minimzation."
 format:
   html:
     code-fold: false

@@ -7,10 +7,11 @@ format:
   html:
     code-fold: false
     code-tools: true
-    include-before-body:
-     - file: ../macros.md
+  pdf:
+    output-file: 924286541aa8e187debef435222f4def10c1618e51fd53c19cdc370338fbe842.pdf
 ---
 
+{{< include ../macros.tex >}}
 
 
 # Transformation of variables
@@ -25,6 +26,16 @@ $n$--th row of $\Z$ be $\zv_n^\trans$.
 Suppose $\xv_n = \A \zv_n$ for an invertible $\A$ and for all $n = 1,\ldots,N$.  Find an expression for
 $\alphahat$ in terms of $\betahat$ that does not explicitly use $\Y$, $\X$, or $\Z$.
 
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+This means $\xv_n^\trans = \zv_n^\trans \A^\trans$ so $\X = \Z \A^\trans$.  Therefore
+the fits are the same when $\X\beta = \Z\alpha = \X \A^\trans \alpha$, which are the
+same when $\A^\trans \alpha = \beta$.  Therefore $\alphahat = (\A^\trans)^{-1}\betahat$.
+
+:::
+
 
 #### (b)
 
@@ -33,6 +44,12 @@ function $f(\cdot)$. In general, can you find an expression for
 $\alphahat$ in terms of $\betahat$ that does not explicitly use $\Y$, $\X$, or $\Z$?  Prove
 why or why not. (To prove that you cannot, finding a single counterexample is enough.)
 
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+You cannot.  It's easiest to show this with a counterexample, of which there are many.
+:::
 
 #### (c)
 
@@ -41,13 +58,32 @@ interested in $\bv$, but rather some other $\gv = \phi(\bv)$, where
 $\phi$ is an invertible function.  Prove that the least squares
 estimator of $\gv$ is given by $\gvhat = \phi(\bvhat)$.
 
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+The least squares estimate of $\gv$ is $\argmin{\gv} \meann (\y_n - \xv_n^\trans \phi^{-1}(\gv))$.
+The minimizer cannot be other than $\phi(\betahat)$, for if it were, then taking
+$\beta = \phi^{-1}(\gammahat)$ would provide a better fit than $\betahat$, which is
+a contradiction.
+
+:::
+
 #### (d)
 
 Prove that result (a) is special case of the result (c).
 (Hint: find the corresponding $\phi$.)
 
 
+::: {.content-hidden when-format="html"}
 
+**Solution**:
+
+Take $\phi(\beta) = (A^\trans)^{-1} \alpha$.  The point is that when the data transform
+is linear, then it is equivalent to a parameter transpose by the associative property
+of matrix multiplication.
+
+:::
 
 
 # Spaces of possible estimators.
@@ -63,10 +99,37 @@ Fix $\beta_0 = \meann \y_n$ and find a value of
 $\beta_1$ such that $\meann\res_n = 0$. How
 does your answer depend on whether or not $\meann z_n = 0$?
 
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+$\beta_1 = 0$ is always a solution.  If $\meann \z_n = 0$ then any $\beta_1$ is a solution.
+
+:::
+
+
+
+
 #### (b)
 
 Fix $\beta_1 = 10,000,000$ and find a value of $\beta_0$ such that
 $\meann\res_n = 0$.
+
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+$$
+\meann \y_n = \beta_0 + \beta_1 \meann \z_n + \meann \res_n
+$$
+
+so for any $\beta_1$, including the one given, we can take
+
+$$
+\beta_0 = \meann \y_n - \beta_1 \meann \z_n.
+$$
+
+:::
 
 
 #### (c)
@@ -75,6 +138,20 @@ In general, how many different choices of $\beta_0$ and $\beta_1$ can
 you find that satisfy $\meann\res_n = 0$?  Are all of them reasonable?
 Are any of them reasonable?
 
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+As seen above, setting $\meann \res_n = 0$ provides a single
+equation to identify two unknowns, and so there are an
+infinite number of solutions.  The family is one-dimensional
+unless $\meann \z_n = 0$, in which case it is two-dimensional.
+Many are unreasonable, some are reasonable, since the OLS
+solution is included.
+
+:::
+
+
 #### (d)
 
 Find an $N$--dimensional vector $\vv$ such that 
@@ -82,11 +159,30 @@ $$
 \meann \res_n = 0 \quad\Leftrightarrow\quad \vv^\trans\resv = \zerov.
 $$
 
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+$\vv = \onev$, or any proportional vector.  (
+  These are vectors; bold isn't rendering in Quarto latex for me right now)
+
+:::
+
 #### (e)
 
 Suppose I give you a general $N$--dimensional vector $\vv$ and a scalar
 $a$.  How  many different choices of $\beta_0$ and $\beta_1$ can you find
 such that $\vv^\trans \resv = a$?
+
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+Again, this gives one equation to identify two unknowns, so there
+are an infinite number.
+
+:::
+
 
 #### (f) (Optional --- this will not be graded)
 
@@ -94,11 +190,11 @@ Suppose I give you two different vectors, $\vv_1$ and $\vv_2$.  Under what circu
 can you find $\beta_0$ and $\beta_1$  such that
 
 $$
-\begin{align}
+\begin{aligned}
 \vv_1^\trans \resv = \zerov
 \quad\textrm{and}\quad
 \vv_2^\trans \resv = \zerov?
-\end{align}
+\end{aligned}
 $$
 
 When are there infinitely many solutions?  When is there only one solution?
@@ -109,6 +205,14 @@ When are there infinitely many solutions?  When is there only one solution?
 Now, consider the general linear model $\Y = \X \bv + \res$.
 Prove that there always exists $\bv$ and $\res$ so that the
 $\Y = \X \bv + \res$.
+
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+Take $\resv = \Y - \X\bv$ for any $\bv$.
+
+:::
 
 
 #### (h)  (Optional --- this will not be graded)
@@ -136,11 +240,38 @@ $$
 \betahat := \argmin{\beta} \norm{\Y - \X \beta}_2^2?
 $$
 
+
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+Our first-order condition gives than the sum of 
+squares is minimized when $\X^\trans \X \beta = \X^\trans \Y$.
+Any $\beta$ in the nullspace of $\X$ leaves this identifying
+condition invariant.  So there is an $P - Q$ dimensional family
+of solutions.
+
+:::
+
+
+
 #### (b)
 
 Relate the solutions $\betahat$ from part (a) to spaces spanned by 
 eigenvectors of $\X^\trans \X$. Among the solutions, identify the one with the 
 smallest norm, $\norm{\betahat}_2^2$.
+
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+The component of $\betahat$ is determined in the span of eigenvectors
+with nonzero eigenvalues, and free to vary in the span of
+zero eigenvectors (the nullspace).  The minimum norm solution
+sets the component in the nullspace to zero by the triangle inequality.
+
+:::
+
 
 #### (c)
 
@@ -151,3 +282,10 @@ $\Yhat = \X\betahat$ and $\Yhat' = \X' \gammahat$, and compare the
 sum of squared residuals for the two regressions.  
 
 
+::: {.content-hidden when-format="html"}
+
+**Solution**:
+
+The fits and sum of squared residuals are the same.
+
+:::

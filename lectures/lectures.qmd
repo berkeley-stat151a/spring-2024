@@ -20,7 +20,7 @@ sidebar: true
 ---
 
 - Lecture Jan 23rd:
-    - [Multilinear regression as minimization](Lecture3.qmd)
+    - [Multilinear regression as loss minimization](Lecture3.qmd)
 
 - Lab Jan 17th:
     - Linear algebra in R
@@ -37,13 +37,13 @@ sidebar: true
 - Lab Jan 30th:
     - Homework 1 review
 - Lecture Feb 1st:
-    - [Transformations of variables](Lecture6.qmd)
+    - [Transformations of regressors: Some payoffs from the linear algebra perspective](Lecture6.qmd)
 
 
 ---
 
 - Lecture Feb 6th:
-    - [Univariate statistics and limit theorems.](Lecture7.qmd)
+    - [Univariate statistics and limit theorems](Lecture7.qmd)
 - Lab Feb 7th:
     - Homework consultation
 - Lecture Feb 8th:
@@ -54,18 +54,28 @@ sidebar: true
 ---
 
 - Lecture Feb 13th:
-    - [Estimating prediction variance.](Lecture9.qmd)
+    - [The Gaussian assumption](Lecture9.qmd)
 - Lab Feb 14th:
     - Homework 2 review
 - Lecture Feb 15th:
-    - [Simulations and the law of large numbers.](Lecture10_code.ipynb)
+    - [Simulations and the law of large numbers](Lecture10_code.ipynb)
 
 
 ---
 
 - Lecture Feb 20th:
-    - [Consistency of prediction variance.](Lecture11.qmd)
+    - [Consistency of OLS and the residual variance under the Gaussian assumptions](Lecture11.qmd)
 - Lab Feb 21st:
     - Homework 3 consultation
 - Lecture Feb 22nd:
     - [Linear algebra review](LinearAlgebraReview.qmd) and Quiz 2 retake
+
+
+---
+
+- Lecture Feb 27th:
+    - [Residual distribution under normality](Lecture12.qmd)
+- Lab Feb 28th:
+    - Homework 3 solutions
+- Lecture Feb 29th:
+    - [Sampling variability of the coefficients](Lecture13.qmd)

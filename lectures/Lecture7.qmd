@@ -1,5 +1,5 @@
 ---
-title: "Asymptotics and probability with vectors and matrices.  The multivariate normal distribution."
+title: "Univariate statistics and limit theorems"
 format:
   html:
     code-fold: false

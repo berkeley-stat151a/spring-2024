@@ -1,5 +1,5 @@
 ---
-title: "Estimating prediction uncertainty: prediction error variance"
+title: "The Gaussian assumption"
 format:
   html:
     code-fold: false

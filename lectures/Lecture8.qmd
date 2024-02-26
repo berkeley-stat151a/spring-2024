@@ -241,8 +241,9 @@ $$
 Suppose we want to design a multivariate normal with
 a given covariance matrix $\Sigmam$.  If we require that
 $\Sigmam$ be positive semi-definite (see exercise),
-the we can take $\A = \Sigmam^{1/2}$, giving the 
-following definition:
+the we can take $\A = \Sigmam^{1/2}$, and use
+that to construct a multivariate normal with 
+covariance $\Sigmam$.
 
 ::: {.callout-tip title='Notation'} 
 I will write $\RV{\xv} \sim \gauss{\muv, \Sigmam}$ to mean that $\RV{\xv}$ is a
@@ -427,7 +428,7 @@ We know that $\frac{1}{\sqrt{N}} \RV{\xv}_n$ is exactly multivariate normal
 with mean $\zerov$ and covariance matrix $\id{}$ for all $N$.  So, *a fortiori*,
 
 $$
-\frac{1}{\sqrt{N}} \RV{\xv}_n \rightarrow \gauss{\zerov, \id{}}.
+\frac{1}{\sqrt{N}} \sumn \RV{\xv}_n \rightarrow \gauss{\zerov, \id{}}.
 $$
 
 #### Setting two
@@ -446,7 +447,7 @@ with mean $\zerov$ and covariance matrix $\onev \onev^\trans$ for all $N$.
 So, *a fortiori*,
 
 $$
-\frac{1}{\sqrt{N}} \RV{\yv}_n \rightarrow \gauss{\zerov, \onev \onev^\trans}.
+\frac{1}{\sqrt{N}} \sumn \RV{\yv}_n \rightarrow \gauss{\zerov, \onev \onev^\trans}.
 $$
 
 For both $\RV{\xv}$ and $\RV{\yv}$, each component converges to a standard
@@ -473,7 +474,7 @@ requires the average of each entry of the diagonal to to converge!)
 Then
 
 $$
-\frac{1}{\sqrt{N}} \left( \RV{\xv}_n - \expect{\RV{\xv}_n} \right)
+\frac{1}{\sqrt{N}} \left( \sumn \RV{\xv}_n - \expect{\RV{\xv}_n} \right)
 \rightarrow \RV{\zv} \quad\textrm{ where }
 \RV{\zv} \sim \gauss{\zerov, \overline{\Sigmam}}.
 $$
@@ -482,10 +483,19 @@ $$
 ## Extensions
  
 Finally, we note that the continuous mapping theorem applies
-to the CLT as well.  That is, if $f(\cdot)$ is continuous, then
+to the CLT as well.  That is, if $f(\cdot)$ is continuous, 
+and
 
 $$
-f\left( \frac{1}{\sqrt{N}} \left( \RV{\xv}_n - \expect{\RV{\xv}_n} \right) \right)
-\rightarrow f\left( \RV{\zv} \right) \quad\textrm{ where }
-\RV{\zv} \sim \gauss{\zerov, \overline{\Sigmam}}.
+\frac{1}{\sqrt{N}} \left( \sumn \RV{\xv}_n - \expect{\RV{\xv}_n} \right) 
+\rightarrow \RV{\zv}
+\quad\textrm{ where }
+\RV{\zv} \sim \gauss{\zerov, \overline{\Sigmam}},
+$$
+
+then
+
+$$
+f\left( \frac{1}{\sqrt{N}} \left( \sumn \RV{\xv}_n - \expect{\RV{\xv}_n} \right) \right)
+\rightarrow f\left( \RV{\zv} \right).
 $$

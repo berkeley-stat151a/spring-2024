@@ -1,0 +1,349 @@
+---
+title: "Residual distribution under normality"
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    include-before-body:
+     - file: ../macros.md
+---
+
+
+
+# Goals
+- Derive the exact sampling distribution of the residuals under Gaussianity
+  - Find an unbiased estimate of $\sigma^2$
+  - Prove consistency using the exact distribution
+  - Prove independence of $\sigmahat^2$ and $\betahat$
+
+
+# Setup
+
+We have been studying the behavior of the OLS prediction interval
+
+$$
+\y_\new \in \left( \xv_\new^\trans \betahat - \z_\alpha \sigmahat,
+                   \xv_\new^\trans \betahat + \z_\alpha \sigmahat \right)
+$$
+
+under the assumptions that
+
+- $\y_n = \betav^\trans \x_n + \res_n$ for each $n$ (including the new data) and some (unknown) $\betav$
+- $\res_n \sim \gauss{0, \sigma^2}$, IID, for some unknown $\sigma$
+- $\xv_n$ are non-random, $\X$ is full-rank, and 
+  $\meann \xv_n \xv_n^\trans \rightarrow \Xcov$ for positive definite $\Xcov$
+
+Using these assumptions, we've proved:
+
+
+| Method | Estimating $\beta$ | Estimating $\sigma^2$ |
+|:---------|:-----|:------|
+| Normality | $\betahat \sim \gauss{\beta, \sigma^2 (\X^\trans \X)^{-1}}$  |   **?** |  
+| LLN | $\betahat = (\X^\trans \X)^{-1} \X^\trans \Y \rightarrow \beta$  |   $\sigmahat^2 = \meann \reshat_n^2 = \meann \res_n^2 + \textrm{(stuff)} \cdot (\betahat - \beta) \rightarrow \sigma^2$  |  
+
+
+Let's fill in the **?**.  We will see that, under normality, there is a closed
+form for the distribution of $\sigmahat^2$ just as there is a closed-form
+distribution for $\betahat$.
+
+
+# Chi2 random varibles
+
+We'll need a special random variable called a chi-squared (I will write $\chisq{K}$)
+random variable.  One way to define it is as follows.
+
+
+
+::: {.callout-tip title='Notation'} 
+Let $\z_k \sim \gauss{0, 1}$ denote $k=1,\ldots,K$ IID standard
+normal random variables.  The random variable
+$$
+\s := \sum_{k=1}^K \z_k^2
+$$
+is called a **chi-squared random variable with $K$ degrees of freedom**,
+writing $\s \sim \chisq{K}$.
+:::
+
+
+Thus, just like the multivariate normal random variable, chi squared random variables
+are defined as transformations of standard normal random variables.
+
+
+::: {.callout-warning title='Exercise'} 
+Let $\s \sim \chisq{K}$.  Prove that
+
+- $\expect{\s} = K$
+- $\var{\s} = 2 K$ (hint: if $\z \sim \gauss{0,\sigma^2}$, then $\expect{z^4} = 3\sigma^4$)
+- If $\a_n \sim \gauss{0,\sigma^2}$ IID for $1,\ldots,N$, then $\frac{1}{\sigma^2} \sumn a_n^2 \sim \chisq{N}$
+- $\frac{1}{K} \s \rightarrow 1$ as $K \rightarrow \infty$
+- $\frac{1}{\sqrt{K}} (\s - K) \rightarrow \gauss{0, 2}$ as $K \rightarrow \infty$
+- Let $\av \sim \gauss{\zerov, \id}$ where $\a \in \rdom{K}$.  Then $\norm{\av}_2^2 \sim \chisq{K}$
+- Let $\av \sim \gauss{\zerov, \Sigmam}$ where $\a \in \rdom{K}$.  Then $\av^\trans \Sigmam^{-1} \av \sim \chisq{K}$
+:::
+
+
+
+
+
+# Residual variance as a chi squared variable
+
+We will begin by writing $\sigmahat^2$ in matrix
+form.  Writing the vector of fitted residuals as $\resvhat := \Y - \X \betahat$,
+we get
+
+$$
+\sigmahat^2 = \meann \reshat_n^2 = \frac{1}{N} \resvhat^\trans \resvhat.
+$$
+
+We can now expand 
+
+$$
+\begin{aligned}
+\resvhat ={}& \Y - \X (\X^\trans \X)^{-1} \X^\trans \Y
+\\={}&
+\left(\id - \X (\X^\trans \X)^{-1} \X^\trans \right) \Y,
+\end{aligned}
+$$
+
+where we can recognize the projection matrix
+
+$$
+\proj{\X^\perp} = \id - \X (\X^\trans \X)^{-1} \X^\trans
+$$
+
+that projects vectors to the orthogonal complement of
+the column space of $\X$.  Plugging in A1 for $\Y$,
+
+$$
+\resvhat = \proj{\X^\perp} (\X \beta + \resv)  = \proj{\X^\perp} \resv,
+$$
+
+since $\proj{\X^\perp} \X = \zerov$.  We thus have
+
+$$
+\resvhat^\trans \resvhat = \resv^\trans \proj{\X^\perp} \proj{\X^\perp}  \resv 
+= \resv^\trans \proj{\X^\perp}  \resv,
+$$
+
+since projecting onto a subspace twice is the same as projecting once.
+
+The problem with the preceding expression is that $\proj{\X^\perp}$ is
+complicated, and ties up the IID entries of $\resv$ in a messy way.
+We can disentangle them by writing the eigenvalue decomposition 
+of the square, symmetric matrix $\proj{\X^\perp}$:
+
+$$
+\proj{\X^\perp} = \U \Lambda \U^\trans,
+$$
+
+where $\U$ is orthonormal and $\Lambda$ has on the diagonal
+either $1$ (for columns of $\U$ perpendicular to 
+the columns of $\X$) or $0$ (for columns of $\U$ in the span of 
+the columns of $\X$).
+
+Plugging in gives
+
+$$
+\resvhat^\trans \resvhat 
+= \resv^\trans \U \Lambda \U^\trans \resv =
+(\U^\trans \resv) \Lambda \U^\trans \resv.
+$$
+
+What is the distribution of $\U^\trans \resv$?  Recall that $\U$
+is fixed --- it is simply a (very complicated) function of the
+regressors, $\X$.  So $\U^\trans \resv$ is a linear combination
+of normal random variables, and is itself normal.  Its mean
+is $\expect{\U^\trans \resv} = \U^\trans  \expect{\resv} = \zerov$, 
+and its covariance is
+
+$$
+\cov{\U^\trans \resv} = \expect{\U^\trans \resv \resv^\trans \U}
+= \U^\trans \expect{\resv \resv^\trans} \U
+= \U^\trans \sigma^2 \id \U
+= \sigma^2 \U^\trans \U
+= \sigma^2 \id,
+$$
+
+where the final line is by the orthonormality of $\U$ (which followed
+from the symmetry of $\proj{\X^\perp}$).  It follows that
+
+$$
+\U^\trans \resv \sim \gauss{\zerov, \sigma^2 \id}.
+$$
+
+So $\U^\trans \resv$ has *the same distribution* as $\resv$!  They are
+not the same random variable --- the two are correlated in a complicated
+way by the matrix $\U$ --- but they have the same distribution.
+
+Let's write $\resv' := \U^\trans$ for this random variable, so that
+
+$$
+\resvhat^\trans \resvhat 
+  = \resv'^\trans \Lambda \resv'
+  = \sumn {\res'_n}^2 \Lambda_{nn}
+  = \sum_{n=1}^{N-P} {\res'_n}^2,
+  = \sigma^2 \sum_{n=1}^{N-P} \left(\frac{\res'_n}{\sigma}\right)^2,
+$$
+
+where without loss of generality we take the non-zero eigenvalues
+to be listed first, and recalling that there are $N - P$ 
+such eigenvalues, since the dimension of the space perpindicular
+to the columns of $\X$ has dimension $N-P$.
+
+By recognizing the definition of a chi-squared random variable,
+we see that
+
+$$
+\sigmahat^2 = \frac{1}{N} \resvhat^\trans \resvhat \sim \frac{\sigma^2}{N} \s,
+\quad\textrm{where}\quad \s \sim \chisq{N-P}.
+$$
+
+This distribution is true in finite sample --- it is not asymptotic.
+But this beautiful result is only possible because of the normal
+assumption, which may not be very reasonable in practice.
+
+
+## Consequences of the chi-squared distribution
+
+From standard properties of the chi-squared distribution, some immediate
+results follow.
+
+### Variance
+
+As expected, the variance of our estimator around the truth goes to
+zero as $N \rightarrow \infty$, since
+
+$$
+\var{\sigmahat^2 - \sigma^2} = \sigma^4 \var{\frac{\s}{N} - 1}
+= \frac{\sigma^4}{N^2} \var{\s} = \frac{2(N - P)}{N^2}\sigma^4 \rightarrow 0.
+$$
+
+This is essentially the chi-squared version of the proof we already gave using the
+LLN.
+
+### Bias
+
+First, we can see that
+
+$$
+\expect{\sigmahat^2} = \sigma^2 \frac{N-P}{N}.
+$$
+
+That is, our estimator $\sigmahat^2$ is *downwardly biased*, since
+
+$$
+\expect{\sigmahat^2 - \sigma^2} = \sigma^2\left( \frac{N-P}{N} - 1 \right) = \sigma^2 \frac{-P}{N}.
+$$
+
+This bias vanishes as $N \rightarrow \infty$, but for any particular $N$, we will
+under-estimate $\sigma^2$ on average.  Indeed, this might be expected!  Recall
+that we chose
+
+$$
+\resvhat^\trans \resvhat = \argmin{\betav'} (\Y - \X\betav')^\trans(\Y - \X\betav') \le 
+  (\Y - \X\betav)^\trans(\Y - \X\betav) = \resv^\trans \resv.
+$$
+
+That is, because we are fitting the sum of squares, we always get a lower estimate of
+the sum of squared residuals than we would have if we had used the true value of $\beta$.
+Since using the true value gives us an unbiased estimator, we bias $\sigmahat^2$
+by *searching* over $\beta$.  And we bias it more, the more "degrees of freedom"
+we search over.  
+
+
+For this reason, many authors use the estimator
+
+$$
+\sigmahat^2_{0} = \frac{1}{N - P} \sumn \reshat_n^2
+\quad\textrm{instead of}\quad
+\sigmahat^2 = \frac{1}{N} \sumn \reshat_n^2,
+$$
+
+since
+$$
+\expect{\sigmahat^2_{0}} = \sigma^2
+\quad\textrm{but}\quad
+\expect{\sigmahat^2} = \frac{N-P}{N} \sigma^2 < \sigma^2.
+$$
+
+In other words, $\sigmahat^2_0$ is *unbiased*.  Normalizing by $N - P$
+instead of $N$ doesn't affect the fact that $\sigmahat^2_0 \rightarrow \sigma^2$,
+so in a sense one may as well use $\sigmahat^2_0$, though in practice
+the difference is small as long as $P \ll N$.
+
+Since both $\sigmahat^2_{0}$ and $\sigmahat^2$ go to the truth as $N \rightarrow \infty$,
+it doesn't matter much asymptotically which one you use.  Therefore it makes
+sense to use $\sigmahat^2_{0}$, since it will sometimes be better, and is no
+worse for large $N$.
+
+
+
+### Independence
+
+Recall that we've shown that
+
+$$
+\betavhat = \betav + \proj{\X} \resv
+\quad\textrm{and}\quad
+\resvhat = \proj{\X^\perp} \resv.
+$$
+
+As a consequence, we have shown that both are multivariate normal.
+Furthermore,
+
+$$
+\cov{\betavhat, \resvhat} 
+  = \cov{\proj{\X} \resv, \proj{\X^\perp} \resv}
+  = \expect{\proj{\X} \resv \resv^\trans \proj{\X^\perp} }
+  = \sigma^2 \proj{\X} \proj{\X^\perp}
+  = \zerov,
+$$
+
+since $\proj{\X} \proj{\X^\perp}  = \zerov$, as they project onto
+orthogonal spaces.  So it follows that not only are $\betavhat$
+and $\resvhat$ normal, they are **independent**, since for
+normal random variables, uncorrelatedness implies independence.
+
+Further, since $\sigmahat^2$ is simply a deterministic function
+of $\resvhat$, it follows that $\betavhat$ and $\sigmahat^2$
+are independent!  This will be useful shortly when we derive confidence
+intervals for $\betahat$ under the normal assumptions.
+
+
+## Bonus content: Alternative (simpler) derivation of the bias of the variance estimator
+
+If all we want is $\expect{\sigmahat^2}$, we can do a trick
+to avoid the chi squared distribution and eigendecomposition of the
+projection matrix.
+
+In particualr, $\reshat^\trans \reshat$ is a scalar, and
+the matrix trace of a scalar is also a scalar, so
+
+$$
+\resv^\trans \proj{\X^\perp}  \resv = \trace{\resv^\trans \proj{\X^\perp}  \resv} =
+\trace{\proj{\X^\perp}  \resv \resv^\trans },
+$$
+
+where we have used the general property of the trace that $\trace{AB} = \trace{BA}$.
+Combining the above results, we see that
+
+$$
+\begin{aligned}
+\expect{\resvhat^\trans \resvhat} ={}&
+\expect{\trace{\proj{\X^\perp}  \resv \resv^\trans }}
+\\={}&
+\trace{\proj{\X^\perp}  \expect{\resv \resv^\trans }}
+\\={}&
+\trace{\proj{\X^\perp}  \sigma^2 \id } & \textrm{(by A2)}
+\\={}&
+\sigma^2  \trace{\proj{\X^\perp} } & \textrm{(by A2)}.
+\end{aligned}
+$$
+
+Now, since $\proj{\X^\perp}$ is a projection matrix onto
+an $N - P$ dimensional space, $\trace{\proj{\X^\perp}} = N - P$,
+so we get
+
+$$
+\expect{\resvhat^\trans \resvhat} = (N - P) \sigma^2.
+$$

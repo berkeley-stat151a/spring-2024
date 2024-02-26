@@ -1,0 +1,9 @@
+---
+title: "Sampling variability of the coefficients"
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    include-before-body:
+     - file: ../macros.md
+---

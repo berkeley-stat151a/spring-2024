@@ -66,8 +66,10 @@ quizzes will take the place of a sitdown midterm exam (i.e., there will be
 no midterm).  No external materials, including cheatsheets, will be allowed during quizzes.
 
 #### Homework.  
-Homework assignments will be published on Fridays and due
-two weeks later at 9pm.  Homework will typically consist of a combination of
+Homework assignments will be due every two weeks on Fridays
+two weeks later at 9pm.  I will try to release new homework on the website as soon as possible
+after the old one is due, typically the following Monday evening.
+Homework will typically consist of a combination of
 mathematical problems and data analysis in R.  All homework will be due as a pdf
 via Gradescope unless otherwise noted.  Students can use whatever tool
 they like to produce the pdf (latex, Rmd, Jupyter, scanned handwritten notes

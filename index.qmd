@@ -5,6 +5,9 @@ listing:
   - id: buttons
     template: buttons.ejs
     contents: buttons.yml
+  - id: schedule
+    template: schedule.ejs
+    contents: schedule.yml
 ---
 
 ::: {#buttons}

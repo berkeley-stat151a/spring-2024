@@ -2,13 +2,8 @@
   - date: Jan 16
     items:
     - id: 1
-      name: Why study linear models?  Class goals and organization.
+      name: Class goals and organization.
       type: Lecture
-  - date: Jan 17
-    items:
-    - id: 1
-      name: R basics.  Loading data, making plots, style best practices
-      type: Lab
   - date: Jan 18
     items:
     - id: 2
@@ -19,153 +14,108 @@
   - date: Jan 23
     items:
     - id: 3
-      name: Linear algebra review.  Matrix inverses, square roots, projections
+      name: Multilinear regression as loss minimization
       type: Lecture
-  - date: Jan 24
-    items:
-    - id: 2
-      name: Linear algebra in R.
-      type: Lab
   - date: Jan 25
     items:
     - id: 4
-      name: Probability review.  Consistency, unbiasedness, CLT
+      name: Multilinear regression as projection
       type: Lecture
   week: 2
 - days:
   - date: Jan 30
     items:
     - id: 5
-      name: 'Multivariate regression as empirical risk minimization.  '
+      name: Different ways to draw lines through points
       type: Lecture
-  - date: Jan 31
-    items:
-    - id: 3
-      name: TBD
-      type: Lab
   - date: Feb 1
     items:
     - id: 6
-      name: Train / test split and out of sample error
+      name: 'Transformations of regressors: Some payoffs from the linear algebra perspective'
       type: Lecture
   week: 3
 - days:
   - date: Feb 6
     items:
     - id: 7
-      name: Multivariate regression as maximum likelihood estimation
+      name: Univariate statistics and limit theorems
       type: Lecture
-  - date: Feb 7
-    items:
-    - id: 4
-      name: TBD
-      type: Lab
   - date: Feb 8
     items:
     - id: 8
-      name: Analysis of variance
+      name: Vector and matrix-valued statistics and limit theorems
       type: Lecture
   week: 4
 - days:
   - date: Feb 13
     items:
     - id: 9
-      name: Frequentist inference.  Level, power, testing, and confidence intervals
+      name: The Gaussian assumption
       type: Lecture
-  - date: Feb 14
-    items:
-    - id: 5
-      name: TBD
-      type: Lab
   - date: Feb 15
     items:
     - id: 10
-      name: Grouping data in the bootstrap
+      name: Simulations and the law of large numbers
       type: Lecture
   week: 5
 - days:
   - date: Feb 20
     items:
     - id: 11
-      name: Asymptotics of empirical risk minimization.  Sandwich covariance
+      name: Consistency of OLS and the residual variance under the Gaussian assumptions
       type: Lecture
-  - date: Feb 21
-    items:
-    - id: 6
-      name: TBD
-      type: Lab
   - date: Feb 22
     items:
     - id: 12
-      name: Calibration and conformal inference for prediction
+      name: Linear algebra review and Quiz 2 retake
       type: Lecture
   week: 6
 - days:
   - date: Feb 27
     items:
     - id: 13
-      name: 'How regression fails: Omitted variables, endogeneity'
+      name: Unbiased estimates of the residual variance
       type: Lecture
-  - date: Feb 28
-    items:
-    - id: 7
-      name: TBD
-      type: Lab
   - date: Feb 29
     items:
     - id: 14
-      name: "How regression fails: Domain changes, Simpson\u2019s paradox"
+      name: Sampling variability of the coefficients
       type: Lecture
   week: 7
 - days:
   - date: Mar 5
     items:
     - id: 15
-      name: 'How regression fails: Outliers and leverage'
+      name: Implications of Gaussianity (and deviations from it)
       type: Lecture
-  - date: Mar 6
-    items:
-    - id: 8
-      name: TBD
-      type: Lab
   - date: Mar 7
     items:
     - id: 16
-      name: 'How regression fails: Model reification'
+      name: Heteroskedasticity and the sandwich covariance matrix
       type: Lecture
   week: 8
 - days:
   - date: Mar 12
     items:
     - id: 17
-      name: Binary regression for prediction
+      name: Interpreting the coefficients
       type: Lecture
-  - date: Mar 13
-    items:
-    - id: 9
-      name: TBD
-      type: Lab
   - date: Mar 14
     items:
     - id: 18
-      name: Binary regression for inference
+      name: 'Inference on the coefficients: Gaussian versus asymptotic results'
       type: Lecture
   week: 9
 - days:
   - date: Mar 19
     items:
     - id: 19
-      name: 'Bayesian inference: multivariate normal'
+      name: The role of the regressor covariance in uncertainty estimates
       type: Lecture
-  - date: Mar 20
-    items:
-    - id: 10
-      name: TBD
-      type: Lab
   - date: Mar 21
     items:
     - id: 20
-      name: 'Bayesian inference: regression and shrinkage'
+      name: Inference on groups of coefficients
       type: Lecture
   week: 10
 - days:
@@ -178,50 +128,35 @@
   - date: Apr 2
     items:
     - id: 21
-      name: 'Variable selection: collinearity and shrinkage'
+      name: Omitted variables
       type: Lecture
-  - date: Apr 3
-    items:
-    - id: 11
-      name: TBD
-      type: Lab
   - date: Apr 4
     items:
     - id: 22
-      name: 'Variable selection: LASSO and post-selection inference'
+      name: Endogeneity
       type: Lecture
   week: 12
 - days:
   - date: Apr 9
     items:
     - id: 23
-      name: Random effects and hierarchical modeling
+      name: Outliers and leverage
       type: Lecture
-  - date: Apr 10
-    items:
-    - id: 12
-      name: Project office hours
-      type: Lab
   - date: Apr 11
     items:
     - id: 24
-      name: Random effects and hierarchical modeling
+      name: Regression assuming independence alone
       type: Lecture
   week: 13
 - days:
   - date: Apr 16
     items:
     - id: 25
-      name: 'Basis expansions: Bias and variance'
+      name: 'Colinearity and shrinkage: ridge estimation'
       type: Lecture
-  - date: Apr 17
-    items:
-    - id: 13
-      name: TBD
-      type: Lab
   - date: Apr 18
     items:
     - id: 26
-      name: 'Basis expansions: Interpolation and double descent'
+      name: 'Colinearity and shrinkage: lasso estimation'
       type: Lecture
   week: 14

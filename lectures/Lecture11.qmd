@@ -1,5 +1,5 @@
 ---
-title: "Estimating prediction uncertainty: Estimating the residual variance"
+title: "Consistency of OLS and the residual variance under the Gaussian assumptions"
 format:
   html:
     code-fold: false
@@ -368,12 +368,12 @@ $$
 \\={}&
 \meann (\res_n + \xv_n^\trans (\beta - \betahat))^2
 \\={}&
-\meann \res_n^2 + 2 (\beta - \betahat)^\trans \meann \xv_n  + 
+\meann \res_n^2 + 2 (\beta - \betahat)^\trans \meann \xv_n \varepsilon_n + 
   (\beta - \betahat)^\trans \meann \xv_n \xv_n^\trans (\beta - \betahat).
 \end{aligned}
 $$
 
-By A3, both $\meann \xv_n$ and $\meann \xv_n \xv_n^\trans$ converge to
+By A3, both $\meann \xv_n \varepsilon_n$ and $\meann \xv_n \xv_n^\trans$ converge to
 something bounded, and we showed above that $\beta - \betahat \rightarrow 0$,
 and that $\meann \res_n^2 \rightarrow \sigma^2$ by the LLN.  It follows
 that
@@ -384,96 +384,3 @@ $$
 
 as hoped.
 
-
-## Method 2: Projection to get the unbiased estimate
-
-We can in fact get a more precise estimate by writing $\sigmahat^2$ in matrix
-form.  Writing the vector of fitted residuals as $\resvhat := \Y - \X \betahat$,
-we get
-
-$$
-\sigmahat^2 = \meann \reshat_n^2 = \frac{1}{N} \resvhat^\trans \resvhat.
-$$
-
-We can now expand 
-
-$$
-\begin{aligned}
-\resvhat ={}& \Y - \X (\X^\trans \X)^{-1} \X^\trans \Y
-\\={}&
-\left(\id - \X (\X^\trans \X)^{-1} \X^\trans \right) \Y,
-\end{aligned}
-$$
-
-where we can recognize the projection matrix
-
-$$
-\proj{\X^\perp} = \id - \X (\X^\trans \X)^{-1} \X^\trans
-$$
-
-that projects vectors to the orthogonal complement of
-the column space of $\X$.  Plugging in A1 for $\Y$,
-
-$$
-\resvhat = \proj{\X^\perp} (\X \beta + \resv)  = \proj{\X^\perp} \resv,
-$$
-
-since $\proj{\X^\perp} \X = \zerov$.  We thus have
-
-$$
-\resvhat^\trans \resvhat = \resv^\trans \proj{\X^\perp} \proj{\X^\perp}  \resv 
-= \resv^\trans \proj{\X^\perp}  \resv,
-$$
-
-since projecting onto a subspace twice is the same as projecting once.
-Now we can do a trick --- the preceding expression is a scalar, and
-the matrix trace of a scalar is also a scalar, so
-
-$$
-\resv^\trans \proj{\X^\perp}  \resv = \trace{\resv^\trans \proj{\X^\perp}  \resv} =
-\trace{\proj{\X^\perp}  \resv^\trans \resv},
-$$
-
-where we have used the general property of the trace that $\trace{AB} = \trace{BA}$.
-Combining the above results, we see that
-
-$$
-\begin{aligned}
-\expect{\resvhat^\trans \resvhat} ={}&
-\expect{\trace{\proj{\X^\perp}  \resv^\trans \resv}}
-\\={}&
-\trace{\proj{\X^\perp}  \expect{\resv^\trans \resv}}
-\\={}&
-\trace{\proj{\X^\perp}  \sigma^2 \id } & \textrm{(by A2)}
-\\={}&
-\sigma^2  \trace{\proj{\X^\perp} } & \textrm{(by A2)}.
-\end{aligned}
-$$
-
-Now, since $\proj{\X^\perp}$ is a projection matrix onto
-an $N - P$ dimensional space, $\trace{\proj{\X^\perp}} = N - P$,
-so we get
-
-$$
-\expect{\resvhat^\trans \resvhat} = (N - P) \sigma^2.
-$$
-
-For this reason, many authors use the estimator
-
-$$
-\sigmahat^2_{0} = \frac{1}{N - P} \sumn \reshat_n^2
-\quad\textrm{instead of}\quad
-\sigmahat^2 = \frac{1}{N} \sumn \reshat_n^2,
-$$
-
-since
-$$
-\expect{\sigmahat^2_{0}} = \sigma^2
-\quad\textrm{but}\quad
-\expect{\sigmahat^2} = \frac{N-P}{N} \sigma^2 < \sigma^2.
-$$
-
-In other words, $\sigmahat^2_0$ is *unbiased*.  Normalizing by $N - P$
-instead of $N$ doesn't affect the fact that $\sigmahat^2_0 \rightarrow \sigma^2$,
-so in a sense one may as well use $\sigmahat^2_0$, though in practice
-the difference is small as long as $P \ll N$.

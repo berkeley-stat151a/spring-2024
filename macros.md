@@ -1,4 +1,8 @@
 $$
+
+\newcommand{\mybold}[1]{\boldsymbol{#1}} 
+
+
 \newcommand{\trans}{\intercal}
 \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
 \newcommand{\abs}[1]{\left|#1\right|}
@@ -6,6 +10,7 @@ $$
 \newcommand{\bbz}{\mathbb{Z}}
 \newcommand{\bbc}{\mathbb{C}}
 \newcommand{\gauss}[1]{\mathcal{N}\left(#1\right)}
+\newcommand{\chisq}[1]{\mathcal{\chi}^2\left(#1\right)}
 
 \newcommand{\argmin}[1]{\underset{#1}{\mathrm{argmin}}\,}
 \newcommand{\projop}[1]{\underset{#1}{\mathrm{Proj}}\,}
@@ -24,7 +29,6 @@ $$
 \newcommand{\gradat}[3]{\nabla_{#1} \left. #2 \right|_{#3}}
 \newcommand{\fracat}[3]{\left. \frac{#1}{#2} \right|_{#3}}
 
-\newcommand{\mybold}[1]{\boldsymbol{#1}}
 
 \newcommand{\W}{\mybold{W}}
 \newcommand{\w}{w}
