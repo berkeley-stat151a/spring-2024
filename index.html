@@ -89,6 +89,34 @@ ul.task-list li input[type="checkbox"] {
       window['quarto-listing-loaded']();
     }
   })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-schedule .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-days','listing-week',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-days","listing-week"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-schedule'] = new List('listing-schedule', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
   </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -239,8 +267,325 @@ Important
 <p>Labs will be held on Wednesdays from 9:00 am – 11:00 am and 1:00pm – 3:00 pm in Evans 344.</p>
 <p><a href="https://classes.berkeley.edu/content/2024-spring-stat-151a-001-lec-001">(Link to official course calendar.)</a></p>
 <p>The following subject schedule is tentative and subject to change.</p>
-<div id="schedule">
+<div id="listing-schedule" class="quarto-listing quarto-listing-container-custom">
 
+   <h4 class="anchored">Week 1</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Jan 16:</th>
+           <td><strong class="label label-Lecture">Lecture 1</strong> <a href="" target="_blank">Class goals and organization.</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+           <tr>
+           <th scope="row" rowspan="1">Jan 18:</th>
+           <td><strong class="label label-Lecture">Lecture 2</strong> <a href="" target="_blank">Simple regression as EDA, prediction, and inference</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+   <h4 class="anchored">Week 2</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Jan 23:</th>
+           <td><strong class="label label-Lecture">Lecture 3</strong> <a href="" target="_blank">Multilinear regression as loss minimization</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+           <tr>
+           <th scope="row" rowspan="1">Jan 25:</th>
+           <td><strong class="label label-Lecture">Lecture 4</strong> <a href="" target="_blank">Multilinear regression as projection</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+   <h4 class="anchored">Week 3</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Jan 30:</th>
+           <td><strong class="label label-Lecture">Lecture 5</strong> <a href="" target="_blank">Different ways to draw lines through points</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+           <tr>
+           <th scope="row" rowspan="1">Feb 1:</th>
+           <td><strong class="label label-Lecture">Lecture 6</strong> <a href="" target="_blank">Transformations of regressors: Some payoffs from the linear algebra perspective</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+   <h4 class="anchored">Week 4</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Feb 6:</th>
+           <td><strong class="label label-Lecture">Lecture 7</strong> <a href="" target="_blank">Univariate statistics and limit theorems</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+           <tr>
+           <th scope="row" rowspan="1">Feb 8:</th>
+           <td><strong class="label label-Lecture">Lecture 8</strong> <a href="" target="_blank">Vector and matrix-valued statistics and limit theorems</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+   <h4 class="anchored">Week 5</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Feb 13:</th>
+           <td><strong class="label label-Lecture">Lecture 9</strong> <a href="" target="_blank">The Gaussian assumption</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+           <tr>
+           <th scope="row" rowspan="1">Feb 15:</th>
+           <td><strong class="label label-Lecture">Lecture 10</strong> <a href="" target="_blank">Simulations and the law of large numbers</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+   <h4 class="anchored">Week 6</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Feb 20:</th>
+           <td><strong class="label label-Lecture">Lecture 11</strong> <a href="" target="_blank">Consistency of OLS and the residual variance under the Gaussian assumptions</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+           <tr>
+           <th scope="row" rowspan="1">Feb 22:</th>
+           <td><strong class="label label-Lecture">Lecture 12</strong> <a href="" target="_blank">Linear algebra review and Quiz 2 retake</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+   <h4 class="anchored">Week 7</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Feb 27:</th>
+           <td><strong class="label label-Lecture">Lecture 13</strong> <a href="" target="_blank">Unbiased estimates of the residual variance</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+           <tr>
+           <th scope="row" rowspan="1">Feb 29:</th>
+           <td><strong class="label label-Lecture">Lecture 14</strong> <a href="" target="_blank">Sampling variability of the coefficients</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+   <h4 class="anchored">Week 8</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Mar 5:</th>
+           <td><strong class="label label-Lecture">Lecture 15</strong> <a href="" target="_blank">Implications of Gaussianity (and deviations from it)</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+           <tr>
+           <th scope="row" rowspan="1">Mar 7:</th>
+           <td><strong class="label label-Lecture">Lecture 16</strong> <a href="" target="_blank">Heteroskedasticity and the sandwich covariance matrix</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+   <h4 class="anchored">Week 9</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Mar 12:</th>
+           <td><strong class="label label-Lecture">Lecture 17</strong> <a href="" target="_blank">Interpreting the coefficients</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+           <tr>
+           <th scope="row" rowspan="1">Mar 14:</th>
+           <td><strong class="label label-Lecture">Lecture 18</strong> <a href="" target="_blank">Inference on the coefficients: Gaussian versus asymptotic results</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+   <h4 class="anchored">Week 10</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Mar 19:</th>
+           <td><strong class="label label-Lecture">Lecture 19</strong> <a href="" target="_blank">The role of the regressor covariance in uncertainty estimates</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+           <tr>
+           <th scope="row" rowspan="1">Mar 21:</th>
+           <td><strong class="label label-Lecture">Lecture 20</strong> <a href="" target="_blank">Inference on groups of coefficients</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+   <h4 class="anchored">Week 11</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Mar 25:</th>
+           <td><strong class="label label-Holiday">Holiday </strong> <a href="" target="_blank">Spring break</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+   <h4 class="anchored">Week 12</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Apr 2:</th>
+           <td><strong class="label label-Lecture">Lecture 21</strong> <a href="" target="_blank">Omitted variables</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+           <tr>
+           <th scope="row" rowspan="1">Apr 4:</th>
+           <td><strong class="label label-Lecture">Lecture 22</strong> <a href="" target="_blank">Endogeneity</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+   <h4 class="anchored">Week 13</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Apr 9:</th>
+           <td><strong class="label label-Lecture">Lecture 23</strong> <a href="" target="_blank">Outliers and leverage</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+           <tr>
+           <th scope="row" rowspan="1">Apr 11:</th>
+           <td><strong class="label label-Lecture">Lecture 24</strong> <a href="" target="_blank">Regression assuming independence alone</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+   <h4 class="anchored">Week 14</h4>
+   <table class="table" data-quarto-disable-processing="true">
+   <!-- 'table' class causes use of quarto styling for tables, seemingly from bootstrap.min.css -->
+   <!-- data-quarto-disable-processing="true" prevents Quarto processing of tables (https://quarto.org/docs/authoring/tables.html#disabling-quarto-table-processing) -->
+   <tbody>
+           <tr>
+           <th scope="row" rowspan="1">Apr 16:</th>
+           <td><strong class="label label-Lecture">Lecture 25</strong> <a href="" target="_blank">Colinearity and shrinkage: ridge estimation</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+           <tr>
+           <th scope="row" rowspan="1">Apr 18:</th>
+           <td><strong class="label label-Lecture">Lecture 26</strong> <a href="" target="_blank">Colinearity and shrinkage: lasso estimation</a></td>
+           <!--
+                <td></td>
+           -->
+               <td></td>
+           </tr>
+   </tbody>
+   </table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
 </div>
 
 

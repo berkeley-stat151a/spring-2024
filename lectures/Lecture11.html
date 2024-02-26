@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estimating prediction uncertainty: Estimating the residual variance</title>
+<title>Consistency of OLS and the residual variance under the Gaussian assumptions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Estimating prediction uncertainty: Estimating the residual variance</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Consistency of OLS and the residual variance under the Gaussian assumptions</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -191,7 +191,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#estimating-the-residual-variance" id="toc-estimating-the-residual-variance" class="nav-link" data-scroll-target="#estimating-the-residual-variance">Estimating the residual variance</a>
   <ul class="collapse">
   <li><a href="#method-1-apply-lln-to-the-squared-residuals" id="toc-method-1-apply-lln-to-the-squared-residuals" class="nav-link" data-scroll-target="#method-1-apply-lln-to-the-squared-residuals">Method 1: Apply LLN to the squared residuals</a></li>
-  <li><a href="#method-2-projection-to-get-the-unbiased-estimate" id="toc-method-2-projection-to-get-the-unbiased-estimate" class="nav-link" data-scroll-target="#method-2-projection-to-get-the-unbiased-estimate">Method 2: Projection to get the unbiased estimate</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -199,6 +198,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 $$
+
+\newcommand{\mybold}[1]{\boldsymbol{#1}} 
+
+
 \newcommand{\trans}{\intercal}
 \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
 \newcommand{\abs}[1]{\left|#1\right|}
@@ -206,6 +209,7 @@ $$
 \newcommand{\bbz}{\mathbb{Z}}
 \newcommand{\bbc}{\mathbb{C}}
 \newcommand{\gauss}[1]{\mathcal{N}\left(#1\right)}
+\newcommand{\chisq}[1]{\mathcal{\chi}^2\left(#1\right)}
 
 \newcommand{\argmin}[1]{\underset{#1}{\mathrm{argmin}}\,}
 \newcommand{\projop}[1]{\underset{#1}{\mathrm{Proj}}\,}
@@ -224,7 +228,6 @@ $$
 \newcommand{\gradat}[3]{\nabla_{#1} \left. #2 \right|_{#3}}
 \newcommand{\fracat}[3]{\left. \frac{#1}{#2} \right|_{#3}}
 
-\newcommand{\mybold}[1]{\boldsymbol{#1}}
 
 \newcommand{\W}{\mybold{W}}
 \newcommand{\w}{w}
@@ -331,7 +334,7 @@ $$
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Estimating prediction uncertainty: Estimating the residual variance</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Consistency of OLS and the residual variance under the Gaussian assumptions</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -621,77 +624,15 @@ Exercise
 \\={}&amp;
 \meann (\res_n + \xv_n^\trans (\beta - \betahat))^2
 \\={}&amp;
-\meann \res_n^2 + 2 (\beta - \betahat)^\trans \meann \xv_n  +
+\meann \res_n^2 + 2 (\beta - \betahat)^\trans \meann \xv_n \varepsilon_n +
   (\beta - \betahat)^\trans \meann \xv_n \xv_n^\trans (\beta - \betahat).
 \end{aligned}
 \]</span></p>
-<p>By A3, both <span class="math inline">\(\meann \xv_n\)</span> and <span class="math inline">\(\meann \xv_n \xv_n^\trans\)</span> converge to something bounded, and we showed above that <span class="math inline">\(\beta - \betahat \rightarrow 0\)</span>, and that <span class="math inline">\(\meann \res_n^2 \rightarrow \sigma^2\)</span> by the LLN. It follows that</p>
+<p>By A3, both <span class="math inline">\(\meann \xv_n \varepsilon_n\)</span> and <span class="math inline">\(\meann \xv_n \xv_n^\trans\)</span> converge to something bounded, and we showed above that <span class="math inline">\(\beta - \betahat \rightarrow 0\)</span>, and that <span class="math inline">\(\meann \res_n^2 \rightarrow \sigma^2\)</span> by the LLN. It follows that</p>
 <p><span class="math display">\[
 \sigmahat^2 \rightarrow \sigma^2,
 \]</span></p>
 <p>as hoped.</p>
-</section>
-<section id="method-2-projection-to-get-the-unbiased-estimate" class="level2">
-<h2 class="anchored" data-anchor-id="method-2-projection-to-get-the-unbiased-estimate">Method 2: Projection to get the unbiased estimate</h2>
-<p>We can in fact get a more precise estimate by writing <span class="math inline">\(\sigmahat^2\)</span> in matrix form. Writing the vector of fitted residuals as <span class="math inline">\(\resvhat := \Y - \X \betahat\)</span>, we get</p>
-<p><span class="math display">\[
-\sigmahat^2 = \meann \reshat_n^2 = \frac{1}{N} \resvhat^\trans \resvhat.
-\]</span></p>
-<p>We can now expand</p>
-<p><span class="math display">\[
-\begin{aligned}
-\resvhat ={}&amp; \Y - \X (\X^\trans \X)^{-1} \X^\trans \Y
-\\={}&amp;
-\left(\id - \X (\X^\trans \X)^{-1} \X^\trans \right) \Y,
-\end{aligned}
-\]</span></p>
-<p>where we can recognize the projection matrix</p>
-<p><span class="math display">\[
-\proj{\X^\perp} = \id - \X (\X^\trans \X)^{-1} \X^\trans
-\]</span></p>
-<p>that projects vectors to the orthogonal complement of the column space of <span class="math inline">\(\X\)</span>. Plugging in A1 for <span class="math inline">\(\Y\)</span>,</p>
-<p><span class="math display">\[
-\resvhat = \proj{\X^\perp} (\X \beta + \resv)  = \proj{\X^\perp} \resv,
-\]</span></p>
-<p>since <span class="math inline">\(\proj{\X^\perp} \X = \zerov\)</span>. We thus have</p>
-<p><span class="math display">\[
-\resvhat^\trans \resvhat = \resv^\trans \proj{\X^\perp} \proj{\X^\perp}  \resv
-= \resv^\trans \proj{\X^\perp}  \resv,
-\]</span></p>
-<p>since projecting onto a subspace twice is the same as projecting once. Now we can do a trick — the preceding expression is a scalar, and the matrix trace of a scalar is also a scalar, so</p>
-<p><span class="math display">\[
-\resv^\trans \proj{\X^\perp}  \resv = \trace{\resv^\trans \proj{\X^\perp}  \resv} =
-\trace{\proj{\X^\perp}  \resv^\trans \resv},
-\]</span></p>
-<p>where we have used the general property of the trace that <span class="math inline">\(\trace{AB} = \trace{BA}\)</span>. Combining the above results, we see that</p>
-<p><span class="math display">\[
-\begin{aligned}
-\expect{\resvhat^\trans \resvhat} ={}&amp;
-\expect{\trace{\proj{\X^\perp}  \resv^\trans \resv}}
-\\={}&amp;
-\trace{\proj{\X^\perp}  \expect{\resv^\trans \resv}}
-\\={}&amp;
-\trace{\proj{\X^\perp}  \sigma^2 \id } &amp; \textrm{(by A2)}
-\\={}&amp;
-\sigma^2  \trace{\proj{\X^\perp} } &amp; \textrm{(by A2)}.
-\end{aligned}
-\]</span></p>
-<p>Now, since <span class="math inline">\(\proj{\X^\perp}\)</span> is a projection matrix onto an <span class="math inline">\(N - P\)</span> dimensional space, <span class="math inline">\(\trace{\proj{\X^\perp}} = N - P\)</span>, so we get</p>
-<p><span class="math display">\[
-\expect{\resvhat^\trans \resvhat} = (N - P) \sigma^2.
-\]</span></p>
-<p>For this reason, many authors use the estimator</p>
-<p><span class="math display">\[
-\sigmahat^2_{0} = \frac{1}{N - P} \sumn \reshat_n^2
-\quad\textrm{instead of}\quad
-\sigmahat^2 = \frac{1}{N} \sumn \reshat_n^2,
-\]</span></p>
-<p>since <span class="math display">\[
-\expect{\sigmahat^2_{0}} = \sigma^2
-\quad\textrm{but}\quad
-\expect{\sigmahat^2} = \frac{N-P}{N} \sigma^2 &lt; \sigma^2.
-\]</span></p>
-<p>In other words, <span class="math inline">\(\sigmahat^2_0\)</span> is <em>unbiased</em>. Normalizing by <span class="math inline">\(N - P\)</span> instead of <span class="math inline">\(N\)</span> doesn’t affect the fact that <span class="math inline">\(\sigmahat^2_0 \rightarrow \sigma^2\)</span>, so in a sense one may as well use <span class="math inline">\(\sigmahat^2_0\)</span>, though in practice the difference is small as long as <span class="math inline">\(P \ll N\)</span>.</p>
 
 
 <!-- -->
@@ -985,7 +926,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Estimating prediction uncertainty: Estimating the residual variance"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Consistency of OLS and the residual variance under the Gaussian assumptions"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
@@ -1354,12 +1295,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp;</span>
 <span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>\meann (\res_n + \xv_n^\trans (\beta - \betahat))^2</span>
 <span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp;</span>
-<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>\meann \res_n^2 + 2 (\beta - \betahat)^\trans \meann \xv_n  + </span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>\meann \res_n^2 + 2 (\beta - \betahat)^\trans \meann \xv_n \varepsilon_n + </span>
 <span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>  (\beta - \betahat)^\trans \meann \xv_n \xv_n^\trans (\beta - \betahat).</span>
 <span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
 <span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>By A3, both $\meann \xv_n$ and $\meann \xv_n \xv_n^\trans$ converge to</span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>By A3, both $\meann \xv_n \varepsilon_n$ and $\meann \xv_n \xv_n^\trans$ converge to</span>
 <span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>something bounded, and we showed above that $\beta - \betahat \rightarrow 0$,</span>
 <span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>and that $\meann \res_n^2 \rightarrow \sigma^2$ by the LLN.  It follows</span>
 <span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>that</span>
@@ -1368,101 +1309,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>\sigmahat^2 \rightarrow \sigma^2,</span>
 <span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>as hoped.</span>
-<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a><span class="fu">## Method 2: Projection to get the unbiased estimate</span></span>
-<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>We can in fact get a more precise estimate by writing $\sigmahat^2$ in matrix</span>
-<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>form.  Writing the vector of fitted residuals as $\resvhat := \Y - \X \betahat$,</span>
-<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>we get</span>
-<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>\sigmahat^2 = \meann \reshat_n^2 = \frac{1}{N} \resvhat^\trans \resvhat.</span>
-<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>We can now expand </span>
-<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>\resvhat ={}&amp; \Y - \X (\X^\trans \X)^{-1} \X^\trans \Y</span>
-<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp;</span>
-<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>\left(\id - \X (\X^\trans \X)^{-1} \X^\trans \right) \Y,</span>
-<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a>where we can recognize the projection matrix</span>
-<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a>\proj{\X^\perp} = \id - \X (\X^\trans \X)^{-1} \X^\trans</span>
-<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a>that projects vectors to the orthogonal complement of</span>
-<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a>the column space of $\X$.  Plugging in A1 for $\Y$,</span>
-<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a>\resvhat = \proj{\X^\perp} (\X \beta + \resv)  = \proj{\X^\perp} \resv,</span>
-<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>since $\proj{\X^\perp} \X = \zerov$.  We thus have</span>
-<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a>\resvhat^\trans \resvhat = \resv^\trans \proj{\X^\perp} \proj{\X^\perp}  \resv </span>
-<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>= \resv^\trans \proj{\X^\perp}  \resv,</span>
-<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a>since projecting onto a subspace twice is the same as projecting once.</span>
-<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>Now we can do a trick --- the preceding expression is a scalar, and</span>
-<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a>the matrix trace of a scalar is also a scalar, so</span>
-<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>\resv^\trans \proj{\X^\perp}  \resv = \trace{\resv^\trans \proj{\X^\perp}  \resv} =</span>
-<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a>\trace{\proj{\X^\perp}  \resv^\trans \resv},</span>
-<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a>where we have used the general property of the trace that $\trace{AB} = \trace{BA}$.</span>
-<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a>Combining the above results, we see that</span>
-<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>\expect{\resvhat^\trans \resvhat} ={}&amp;</span>
-<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>\expect{\trace{\proj{\X^\perp}  \resv^\trans \resv}}</span>
-<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp;</span>
-<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a>\trace{\proj{\X^\perp}  \expect{\resv^\trans \resv}}</span>
-<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp;</span>
-<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>\trace{\proj{\X^\perp}  \sigma^2 \id } &amp; \textrm{(by A2)}</span>
-<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp;</span>
-<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>\sigma^2  \trace{\proj{\X^\perp} } &amp; \textrm{(by A2)}.</span>
-<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>Now, since $\proj{\X^\perp}$ is a projection matrix onto</span>
-<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>an $N - P$ dimensional space, $\trace{\proj{\X^\perp}} = N - P$,</span>
-<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>so we get</span>
-<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>\expect{\resvhat^\trans \resvhat} = (N - P) \sigma^2.</span>
-<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>For this reason, many authors use the estimator</span>
-<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a>\sigmahat^2_{0} = \frac{1}{N - P} \sumn \reshat_n^2</span>
-<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>\quad\textrm{instead of}\quad</span>
-<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a>\sigmahat^2 = \frac{1}{N} \sumn \reshat_n^2,</span>
-<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>since</span>
-<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>\expect{\sigmahat^2_{0}} = \sigma^2</span>
-<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a>\quad\textrm{but}\quad</span>
-<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a>\expect{\sigmahat^2} = \frac{N-P}{N} \sigma^2 &lt; \sigma^2.</span>
-<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a>In other words, $\sigmahat^2_0$ is *unbiased*.  Normalizing by $N - P$</span>
-<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>instead of $N$ doesn't affect the fact that $\sigmahat^2_0 \rightarrow \sigma^2$,</span>
-<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>so in a sense one may as well use $\sigmahat^2_0$, though in practice</span>
-<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a>the difference is small as long as $P \ll N$.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>as hoped.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
