@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Linear Algebra topics</title>
+<title>Sampling variability of the coefficients</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,8 +94,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -109,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Linear Algebra topics</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Sampling variability of the coefficients</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -173,16 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#summary-of-prerequisite-requirements" id="toc-summary-of-prerequisite-requirements" class="nav-link active" data-scroll-target="#summary-of-prerequisite-requirements">Summary of prerequisite requirements</a></li>
-  <li><a href="#introduction-to-applied-linear-algebra-by-boyd-and-vandenberghe" id="toc-introduction-to-applied-linear-algebra-by-boyd-and-vandenberghe" class="nav-link" data-scroll-target="#introduction-to-applied-linear-algebra-by-boyd-and-vandenberghe">Introduction to Applied Linear Algebra by Boyd and Vandenberghe</a></li>
-  <li><a href="#mit-open-courseware-with-gilbert-strang" id="toc-mit-open-courseware-with-gilbert-strang" class="nav-link" data-scroll-target="#mit-open-courseware-with-gilbert-strang">MIT Open Courseware with Gilbert Strang</a></li>
-  <li><a href="#yu-tsumuras-website" id="toc-yu-tsumuras-website" class="nav-link" data-scroll-target="#yu-tsumuras-website">Yu Tsumura’s website</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -323,7 +312,7 @@ $$
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Linear Algebra topics</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Sampling variability of the coefficients</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -338,116 +327,10 @@ $$
 
 </header>
 
-<p><span class="math inline">\(\LaTeX\)</span></p>
-<section id="summary-of-prerequisite-requirements" class="level1">
-<h1>Summary of prerequisite requirements</h1>
-<p>For 151A, we require familiarity with the following basic concepts from linear algebra. In rough order of importance,</p>
-<ul>
-<li><strong>Essential:</strong> Basic vector and matrix operations
-<ul>
-<li>Addition and subtraction</li>
-<li>Multiplication by scalars</li>
-<li>Matrix-matrix and matrix-vectror multiplication</li>
-<li>Vector dot products, norms, and orthogonality</li>
-<li>Matrix transposes and inverses, symmetric matrices</li>
-</ul></li>
-<li><strong>Essential:</strong> Linear systems
-<ul>
-<li>Representing a linear system as a matrix equation and vice-versa</li>
-<li>Solving exactly specified linear systems using matrix inverses</li>
-</ul></li>
-<li><strong>Very important:</strong> Vector spaces and bases
-<ul>
-<li>Rank and null spaces of matrices</li>
-<li>Solution space of linear systems that are not exactly identified</li>
-<li>Orthogonal vectors and orthonormal bases</li>
-</ul></li>
-<li><strong>Helpful:</strong> Eigendecomposition of symmetric, square matrices
-<ul>
-<li>Eigenvalues and eigenvectors</li>
-<li>The relationship between an inverse and the eigendecomposition</li>
-<li>Eigenvectors as an orthonormal basis</li>
-<li>The trace and determinant as a function of eigenvalues</li>
-<li>Positive definiteness</li>
-</ul></li>
-</ul>
-<p>There are some (wonderful, useful, fascinating) linear algebra topics that we <em>won’t</em> require in 151A, but which are commonly included in an introductory linear algebra course:</p>
-<ul>
-<li><strong>Not very important for 151A</strong> (but great to know anyway):
-<ul>
-<li>Manually solving systems of equations (e.g., row-echelon form, permutations)</li>
-<li>Advanced properties of determinants (e.g.&nbsp;Cramer’s rule)</li>
-<li>Singular value decompositions</li>
-<li>Linear operators on abstract spaces (e.g.&nbsp;spaces of polynomials)</li>
-<li>Eigendecompositions of non-symmetric matrices</li>
-<li>Factorizations (e.g.&nbsp;LU, QR)</li>
-<li>Gram-Schmidt orthogonalization (other than knowing that it can be done)</li>
-<li>Jordan canonical forms</li>
-<li>Matrix exponentiation and power series</li>
-</ul></li>
-</ul>
-</section>
-<section id="introduction-to-applied-linear-algebra-by-boyd-and-vandenberghe" class="level1">
-<h1>Introduction to Applied Linear Algebra by Boyd and Vandenberghe</h1>
-<p>A good book which is freely available online is <a href="https://web.stanford.edu/~boyd/vmls/">Introduction to Applied Linear Algebra by Boyd and Vandenberghe (B&amp;V)</a>. For 151A, the following sections and their exercises are useful:</p>
-<ul>
-<li>Vector operations
-<ul>
-<li>B&amp;V 1.1-1.4 (addition, scalar multiplication, dot product)</li>
-<li>B&amp;V 3.1, 3.2 (norms — we will mostly use the Euclidian (L2) norm)</li>
-</ul></li>
-<li>Matrix operations
-<ul>
-<li>B&amp;V 6.1-6.4 (addition, zero and identity, trace, transpose)</li>
-<li>B&amp;V 10.1 (multiplication)</li>
-<li>B&amp;V 11.1-11.2 (inverses)</li>
-</ul></li>
-<li>Linear systems
-<ul>
-<li>B&amp;V 8.1, 8.2.2, 8.3 (definition and examples)</li>
-<li>B&amp;V 11.3 (solution via matrix inversions)</li>
-</ul></li>
-<li>Vector spaces and bases
-<ul>
-<li>B&amp;V 5.1-5.3 (linear depenAbsolutely necessarydence, bases, orthonormality)</li>
-</ul></li>
-</ul>
-<p>Some more advanced topics not treaded in B&amp;V are eigenvalues and nullspaces.</p>
-</section>
-<section id="mit-open-courseware-with-gilbert-strang" class="level1">
-<h1>MIT Open Courseware with Gilbert Strang</h1>
-<p>There are good recorded lectures in the <a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/">MIT open courseware linear algebra series</a>. The corresponding textbook, Strang’s Introduction to Linear Algebra, is also good, but is unfortunately not available online through the library website, and there are only a few hard copies available.</p>
-<p>Assuming you can get your hands on a copy of the book, here is what I recommend reviewing. The sections refer to <a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/pages/readings/">readings</a>. The sections in the <a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/video_galleries/video-lectures/">videos</a> do not appear to line up perfectly with the readings, so where they’ve deviated, I’ve made my best guess as to the corresponding video.</p>
-<ul>
-<li>Essential: Sections 3, 6, 10, 14</li>
-<li>Very important: Sections 7, 15, 16, 10 (video 9), 11 (video 9)</li>
-<li>Very helpful: Sections 17, 21, 27 (video 25), 28 (video 25), 33 (video 30)</li>
-</ul>
-</section>
-<section id="yu-tsumuras-website" class="level1">
-<h1>Yu Tsumura’s website</h1>
-<p><a href="https://yutsumura.com/linear-algebra/">The website by Yu Tsumura</a> has a wealth of interesting problems with solutions. Based on the titles, the following sections could be useful for 151A:</p>
-<ul>
-<li>Introduction to Matrices</li>
-<li>Elementary Row Operations</li>
-<li>Solutions of Systems of Linear Equations</li>
-<li>Linear Combination and Linear Independence</li>
-<li>Nonsingular Matrices</li>
-<li>Inverse Matrices</li>
-<li>Subspaces in Rn</li>
-<li>Bases and Dimension of Subspaces in Rn</li>
-<li>Bases and Coordinate Vectors</li>
-<li>Linear Transformation from Rn to Rm</li>
-<li>Orthogonal Bases</li>
-<li>Introduction to Eigenvalues and Eigenvectors</li>
-<li>Eigenvectors and Eigenspaces</li>
-<li>Dot Products and Length of Vectors</li>
-</ul>
 
 
 <!-- -->
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -735,119 +618,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Linear Algebra topics"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Sampling variability of the coefficients"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    include-before-body:</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">     - file: ../macros.md</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>$\LaTeX$</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu"># Summary of prerequisite requirements</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>For 151A, we require familiarity with the following basic concepts</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>from linear algebra.  In rough order of importance,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Essential:** Basic vector and matrix operations</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Addition and subtraction</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Multiplication by scalars</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Matrix-matrix and matrix-vectror multiplication</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Vector dot products, norms, and orthogonality</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Matrix transposes and inverses, symmetric matrices</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Essential:** Linear systems</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Representing a linear system as a matrix equation and vice-versa</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Solving exactly specified linear systems using matrix inverses</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Very important:** Vector spaces and bases</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Rank and null spaces of matrices</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Solution space of linear systems that are not exactly identified</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Orthogonal vectors and orthonormal bases</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Helpful:** Eigendecomposition of symmetric, square matrices</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Eigenvalues and eigenvectors</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>The relationship between an inverse and the eigendecomposition</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Eigenvectors as an orthonormal basis</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>The trace and determinant as a function of eigenvalues</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Positive definiteness</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>There are some (wonderful, useful, fascinating) linear algebra topics that we *won't* require</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>in 151A, but which are commonly included in an introductory linear algebra course:</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Not very important for 151A** (but great to know anyway):</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Manually solving systems of equations (e.g., row-echelon form, permutations)</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Advanced properties of determinants (e.g. Cramer's rule) </span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Singular value decompositions</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Linear operators on abstract spaces (e.g. spaces of polynomials)</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Eigendecompositions of non-symmetric matrices</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Factorizations (e.g. LU, QR)</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Gram-Schmidt orthogonalization (other than knowing that it can be done)</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Jordan canonical forms</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Matrix exponentiation and power series</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction to Applied Linear Algebra by Boyd and Vandenberghe</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>A good book which is freely available online is [Introduction to</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>Applied Linear Algebra by Boyd and Vandenberghe (B&amp;V)](https://web.stanford.edu/~boyd/vmls/).</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>For 151A, the following sections and their exercises are useful:</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Vector operations</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>B&amp;V 1.1-1.4 (addition, scalar multiplication, dot product)</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>B&amp;V 3.1, 3.2 (norms --- we will mostly use the Euclidian (L2) norm)</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="ss">-  </span>Matrix operations</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>B&amp;V 6.1-6.4 (addition, zero and identity, trace, transpose)</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>B&amp;V 10.1 (multiplication)</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>B&amp;V 11.1-11.2 (inverses)</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Linear systems</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>B&amp;V 8.1, 8.2.2, 8.3 (definition and examples)</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>B&amp;V 11.3 (solution via matrix inversions)</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Vector spaces and bases</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>B&amp;V 5.1-5.3 (linear depenAbsolutely necessarydence, bases, orthonormality)</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>Some more advanced topics not treaded in B&amp;V are eigenvalues</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>and nullspaces.</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="fu"># MIT Open Courseware with Gilbert Strang</span></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>There are good recorded lectures in the <span class="co">[</span><span class="ot">MIT open courseware linear algebra series</span><span class="co">](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/)</span>.   The corresponding textbook, </span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>Strang's Introduction to  Linear Algebra, is also good, but is unfortunately not available online through </span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>the library website, and there are only a few hard copies available. </span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>Assuming you can get your hands on a copy of the book, here is what I recommend reviewing.</span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>The sections refer to <span class="co">[</span><span class="ot">readings</span><span class="co">](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/pages/readings/)</span>.</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>The sections in the  <span class="co">[</span><span class="ot">videos</span><span class="co">](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/video_galleries/video-lectures/)</span> </span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>do not appear to line up perfectly with the readings, so where they've deviated, I've made my best</span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>guess as to the corresponding video.</span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Essential: Sections 3, 6, 10, 14</span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Very important: Sections 7, 15, 16, 10 (video 9), 11 (video 9)</span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Very helpful: Sections 17, 21, 27 (video 25), 28 (video 25), 33 (video 30)</span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="fu"># Yu Tsumura's website</span></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">The website by Yu Tsumura</span><span class="co">](https://yutsumura.com/linear-algebra/)</span></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>has a wealth of interesting problems with solutions.  Based on the titles,</span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>the following sections could be useful for 151A:</span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Introduction to Matrices</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Elementary Row Operations</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Solutions of Systems of Linear Equations</span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Linear Combination and Linear Independence</span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Nonsingular Matrices</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inverse Matrices</span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Subspaces in Rn</span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bases and Dimension of Subspaces in Rn</span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bases and Coordinate Vectors</span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Linear Transformation from Rn to Rm</span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Orthogonal Bases</span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Introduction to Eigenvalues and Eigenvectors</span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Eigenvectors and Eigenspaces</span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Dot Products and Length of Vectors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
