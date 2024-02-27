@@ -21,7 +21,7 @@ Suppose you work at Spotify, and a colleague told you that high energy songs are
 -   Do you agree with their high-level conclusion? How would you convey these results?
 
 ```{r bad}
-data_location <- "/home/rgiordan/Documents/git_repos/stat151a_website/datasets"
+data_location <- "../datasets"
 df <- read.csv(file.path(data_location, "spotify_songs.csv"))
 # run analysis
 xx <- df[,c(4,12,13,14,15,16,17,18,19,20,21,22,23)]; xxx =df[,4]
