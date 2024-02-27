@@ -1,0 +1,110 @@
+---
+title: "STAT151A Homework 4: Due March 8th"
+author: Your name here
+number-sections: true 
+number-depth: 1 
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    include-before-body:
+     - file: ../macros.md
+---
+
+
+$\LaTeX$
+
+
+Chi squared random variables
+========================
+
+Let $\s \sim \chisq{K}$.  Prove that
+
+- $\expect{\s} = K$
+- $\var{\s} = 2 K$ (hint: if $\z \sim \gauss{0,\sigma^2}$, then $\expect{z^4} = 3\sigma^4$)
+- If $\a_n \sim \gauss{0,\sigma^2}$ IID for $1,\ldots,N$, then $\frac{1}{\sigma^2} \sumn a_n^2 \sim \chisq{N}$
+- $\frac{1}{K} \s \rightarrow 1$ as $K \rightarrow \infty$
+- $\frac{1}{\sqrt{K}} (\s - K) \rightarrow \gauss{0, 2}$ as $K \rightarrow \infty$
+- Let $\av \sim \gauss{\zerov, \id}$ where $\a \in \rdom{K}$.  Then $\norm{\av}_2^2 \sim \chisq{K}$
+- Let $\av \sim \gauss{\zerov, \Sigmam}$ where $\a \in \rdom{K}$.  Then $\av^\trans \Sigmam^{-1} \av \sim \chisq{K}$
+
+
+
+Predictive variance for different regressors
+==================================
+
+This question will take the training data to be random, and will consider
+variablity under sampling of the training data.
+
+Let $\xv_n  = (\x_{n1}, \x_{n2})^\trans$ be IID normal regressors, with
+
+- $\expect{\x_{n1}} = \expect{\x_{n2}} = 0$,
+- $\var{\x_{n1}} = \var{\x_{n2}} = 1$, and
+- $\cov{\x_{n1}, \x_{n2}} = 0.99$.
+
+(Note there is no intercept.)
+
+Assume that $\y_n = \beta^\trans \xv_n + \res_n$ for some $\beta$,
+and that the residuals $\res_n$ are IID with mean $0$, variance $\sigma^2 = 2$,
+and are independent of $\xv_n$.
+
+#### (a)
+
+Find the limiting distribution of $\sqrt{N}(\betahat - \beta)$.
+
+#### (b) 
+
+Define the expected prediction error
+$$
+\yhat_\new - \expect{\y_\new} :=  (\betahat - \beta)^\trans \x_\new,
+$$
+
+and compute the variance $\var{\yhat_\new - \expect{\y_\new}}$
+for the following new regression vectors:
+
+-  $\x_\new = (1, 1)^\trans$
+-  $\x_\new = (1, -1)^\trans$
+-  $\x_\new = (100, 100)^\trans$
+-  $\x_\new = (0, 0)^\trans$
+
+(Your answers will depend on $N$; just make this dependence explicit.)
+
+
+#### (c) 
+
+Why are some variances in (b) large and some small?
+Explain each in plain language and intuitive terms.
+
+
+
+
+
+
+
+
+
+The sandwich covariance matrix under homoeskedasticity
+==================================
+
+Assume homeskedastic errors;
+that is, that $\res_n$ is independent of $\xv_n$, with $\expect{\res_n | \xv_n} = 0$ and
+$\expect{\res_n | \xv_n} = \sigma^2$ for all $n$.  
+
+Under the homoskedastic error assumptions, show that the sandwich covariance matrix and the 
+standard covariance matrix converge to the same quantity.  That is, show that
+
+$$
+\hat\Sigma_{sand}  = 
+N \left(\X^\trans \X^\trans\right)^{-1}
+  \left(\sumn \x_n \x_n^\trans \reshat_n^2\right) 
+  \left(\X^\trans \X^\trans\right)^{-1} \rightarrow \mybold{S}
+  \quad\textrm{and}\quad
+\hat\Sigma_{h}  = 
+N \left(\X^\trans \X^\trans\right)^{-1} \sigmahat^2 \rightarrow \mybold{S}
+$$
+
+for the same $\mybold{S}$, where $\sigmahat^2 := \meann \reshat_n^2$.
+
+
+
+

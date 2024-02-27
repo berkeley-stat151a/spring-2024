@@ -7,3 +7,7 @@ format:
     include-before-body:
      - file: ../macros.md
 ---
+
+$\LaTeX$
+
+

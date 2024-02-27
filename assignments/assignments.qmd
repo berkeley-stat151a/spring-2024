@@ -17,3 +17,7 @@ sidebar: true
 - Due Feb 23rd:
     - [Homework 3 (math component)](hw3_math.qmd)
     - [Homework 3 (code component)](hw3_code.qmd)
+
+- Due Mar 8th:
+    - [Homework 4 (math component)](hw4_math.qmd)
+    - Code component forthcoming
