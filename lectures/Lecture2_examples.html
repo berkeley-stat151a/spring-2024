@@ -277,11 +277,10 @@ The following object is masked from ‘package:purrr’:
 <p>Almost 30,000 Songs from the Spotify API with black-box machine learning quantifications of musical features.</p>
 <p>https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs</p>
 <div id="409f403e-831a-4c4c-a311-3af5bb1db376" class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">".."</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>spotify_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/spotify_songs.csv"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(spotify_df)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sprintf</span>(<span class="st">"%d rows in the dataframe."</span>, <span class="fu">nrow</span>(spotify_df)))</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(spotify_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>spotify_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../datasets/spotify_songs.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(spotify_df)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sprintf</span>(<span class="st">"%d rows in the dataframe."</span>, <span class="fu">nrow</span>(spotify_df)))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(spotify_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A data.frame: 6 × 23</caption>
@@ -591,7 +590,7 @@ F-statistic: 138.2 on 1 and 32831 DF,  p-value: &lt; 2.2e-16
 </div>
 <p>Image from https://www.topendsports.com/testing/tests/underwater.htm</p>
 <div id="58d9083f-70f2-416e-af3a-a18870c7c830" class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bodyfat_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/bodyfat.csv"</span>)</span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bodyfat_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../datasets/bodyfat.csv"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bodyfat_df)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(bodyfat_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -832,7 +831,7 @@ F-statistic: 58.24 on 12 and 239 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Taken from https://data.mendeley.com/datasets/rd6jm9tyb6/2</p>
 <p>See paper and methods at https://www.sciencedirect.com/science/article/pii/S0263823118313831?via%3Dihub</p>
 <div id="c3290822-6d12-4d6d-80aa-d25be644621c" class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>al_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"datasets/aluminum_dataset.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>al_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"../datasets/aluminum_dataset.csv"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(loading_type <span class="sc">==</span> <span class="st">"T"</span>, temp <span class="sc">==</span> <span class="dv">20</span>, lot <span class="sc">==</span> <span class="st">"A"</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(al_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
