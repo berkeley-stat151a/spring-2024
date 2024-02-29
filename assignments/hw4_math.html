@@ -266,12 +266,12 @@ window.Quarto = {
 <p>Under the homoskedastic error assumptions, show that the sandwich covariance matrix and the standard covariance matrix converge to the same quantity. That is, show that</p>
 <p><span class="math display">\[
 \hat\Sigma_{sand}  =
-N \left(\boldsymbol{X}^\intercal\boldsymbol{X}^\intercal\right)^{-1}
+N \left(\boldsymbol{X}^\intercal\boldsymbol{X}\right)^{-1}
   \left(\sum_{n=1}^Nx_n x_n^\intercal\hat{\varepsilon}_n^2\right)
-  \left(\boldsymbol{X}^\intercal\boldsymbol{X}^\intercal\right)^{-1} \rightarrow \boldsymbol{S}
+  \left(\boldsymbol{X}^\intercal\boldsymbol{X}\right)^{-1} \rightarrow \boldsymbol{S}
   \quad\textrm{and}\quad
 \hat\Sigma_{h}  =
-N \left(\boldsymbol{X}^\intercal\boldsymbol{X}^\intercal\right)^{-1} \hat{\sigma}^2 \rightarrow \boldsymbol{S}
+N \left(\boldsymbol{X}^\intercal\boldsymbol{X}\right)^{-1} \hat{\sigma}^2 \rightarrow \boldsymbol{S}
 \]</span></p>
 <p>for the same <span class="math inline">\(\boldsymbol{S}\)</span>, where <span class="math inline">\(\hat{\sigma}^2 := \frac{1}{N} \sum_{n=1}^N\hat{\varepsilon}_n^2\)</span>.</p>
 
