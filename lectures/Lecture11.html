@@ -408,7 +408,7 @@ $$
 </ul>
 <p>We’ll additionally need the following assumption:</p>
 <ul>
-<li><em>A3</em>: <span class="math inline">\(\frac{1}{N} \X^\trans \X = \meann \xv_n \xv_n^\trans\)</span> converges to a non-singular matrix, <span class="math inline">\(\Xcov\)</span>. (Note that the <span class="math inline">\(\xv_n\)</span> are not random, so this is deterministic convergence.)</li>
+<li><em>A3</em>: <span class="math inline">\(\frac{1}{N} \X^\trans \X = \meann \xv_n \xv_n^\trans\)</span> converges to a non-singular matrix, <span class="math inline">\(\Xcov\)</span>. (Note that the <span class="math inline">\(\xv_n\)</span> are not random, so this is deterministic convergence.) Also, <span class="math inline">\(\X^\trans\X\)</span> is nonsingular for all <span class="math inline">\(N\)</span> (so that <span class="math inline">\(\betahat\)</span> is well-defined).</li>
 </ul>
 <p>For now, we’re only interested in how much error we’ll commit when we keep the training data fixed. That is, we’re interested in the distribution of</p>
 <p><span class="math display">\[
@@ -1156,8 +1156,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  We'll additionally need the following assumption:</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>*A3*: $\frac{1}{N} \X^\trans \X = \meann \xv_n \xv_n^\trans$ converges</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    to a non-singular matrix, $\Xcov$.  (Note that the $\xv_n$ are not random,</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    so this is deterministic convergence.)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    to a non-singular matrix, $\Xcov$.  (Note that the $\xv_n$ are not random, so this is deterministic convergence.)  Also, $\X^\trans\X$</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    is nonsingular for all $N$ (so that $\betahat$ is well-defined).</span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>For now, we're only interested in how much error we'll commit when</span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>we keep the training data fixed.  That is, we're interested in</span>
