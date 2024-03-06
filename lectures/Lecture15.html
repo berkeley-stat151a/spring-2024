@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>The sandwich covariance matrix</title>
+<title>Machine learning assumptions and the sandwich covariance matrix</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -143,7 +109,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">The sandwich covariance matrix</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Machine learning assumptions and the sandwich covariance matrix</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -207,7 +173,16 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
+  <li><a href="#a-hierarchy-of-assumptions" id="toc-a-hierarchy-of-assumptions" class="nav-link" data-scroll-target="#a-hierarchy-of-assumptions">A hierarchy of assumptions</a></li>
+  <li><a href="#heteroskedastic-assumption" id="toc-heteroskedastic-assumption" class="nav-link" data-scroll-target="#heteroskedastic-assumption">Heteroskedastic assumption</a></li>
+  <li><a href="#machine-learning-assumption" id="toc-machine-learning-assumption" class="nav-link" data-scroll-target="#machine-learning-assumption">Machine learning assumption</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -236,6 +211,7 @@ $$
 \newcommand{\cov}[1]{\mathrm{Cov}\left(#1\right)}
 \newcommand{\sumn}{\sum_{n=1}^N}
 \newcommand{\meann}{\frac{1}{N} \sumn}
+\newcommand{\cltn}{\frac{1}{\sqrt{N}} \sumn}
 
 \newcommand{\trace}[1]{\mathrm{trace}\left(#1\right)}
 \newcommand{\diag}[1]{\mathrm{Diag}\left(#1\right)}
@@ -254,6 +230,9 @@ $$
 \newcommand{\xbar}{\bar{x}}
 \newcommand{\xv}{\mybold{x}}
 \newcommand{\Xcov}{\Sigmam_{\X}}
+\newcommand{\Xcovhat}{\hat{\Sigmam}_{\X}}
+\newcommand{\Covsand}{\Sigmam_{\mathrm{sand}}}
+\newcommand{\Covsandhat}{\hat{\Sigmam}_{\mathrm{sand}}}
 
 \newcommand{\Z}{\mybold{Z}}
 \newcommand{\z}{z}
@@ -275,6 +254,7 @@ $$
 \newcommand{\betav}{\mybold{\beta}}
 \newcommand{\betavhat}{\hat{\bv}}
 \newcommand{\betahat}{\hat{\beta}}
+\newcommand{\betastar}{{\beta^{*}}}
 
 \newcommand{\bv}{\mybold{\beta}}
 \newcommand{\bvhat}{\hat{\bv}}
@@ -352,7 +332,7 @@ $$
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">The sandwich covariance matrix</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title">Machine learning assumptions and the sandwich covariance matrix</h1>
 </div>
 
 
@@ -370,10 +350,196 @@ $$
 
 
 <p><span class="math inline">\(\,\)</span></p>
+<section id="goals" class="level1">
+<h1>Goals</h1>
+<ul>
+<li>Study what changes for the prediction model under the heteroskedastic and machine learning assumptions
+<ul>
+<li>The sandwich covariance matrix</li>
+<li>The loss function perspective on prediction</li>
+</ul></li>
+</ul>
+</section>
+<section id="a-hierarchy-of-assumptions" class="level1">
+<h1>A hierarchy of assumptions</h1>
+<p>Here is the hierarchy of assumptions we introduced earlier.</p>
+<ul>
+<li><strong>Gaussian assumption</strong>: Assume that <span class="math inline">\(\y_n = \x_n^\trans \betav + \res_n\)</span> for some <span class="math inline">\(\beta\)</span>, where <span class="math inline">\(\res_n \sim \gauss{0, \sigma^2}\)</span>, and <span class="math inline">\(\res_n\)</span> is independent of <span class="math inline">\(\x_n\)</span>.</li>
+<li><strong>Homeskedastic assumption</strong>: Assume that <span class="math inline">\(\y_n = \x_n^\trans \betav + \res_n\)</span> for some <span class="math inline">\(\beta\)</span>, where <span class="math inline">\(\expect{\res_n} = 0\)</span>, <span class="math inline">\(\var{\res_n} = \sigma^2 &lt; \infty\)</span>, and <span class="math inline">\(\res_n\)</span> is independent of <span class="math inline">\(\x_n\)</span>.</li>
+<li><strong>Heteroskedastic assumption</strong>: Assume that <span class="math inline">\(\y_n = \x_n^\trans \betav + \res_n\)</span> for some <span class="math inline">\(\beta\)</span>, where <span class="math inline">\(\expect{\res_n | \xv_n} = 0\)</span> and <span class="math inline">\(\var{\res_n \vert \xv_n} = \sigma_n^2 &lt; \infty\)</span>.</li>
+<li><strong>Machine learning assumption</strong>: Assume that <span class="math inline">\(\y_n = f(\x_n) + \res_n\)</span> for some <span class="math inline">\(f\)</span>, where <span class="math inline">\(\expect{\res_n | \xv_n} = 0\)</span> and <span class="math inline">\(\var{\res_n \vert \xv_n} = \sigma_n^2 &lt; \infty\)</span>.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To save space, from now on I’ll write <span class="math inline">\(\Xcovhat := \meann \xv_n\xv_n^\trans, = \frac{1}{N} \X^\trans \X\)</span>. In this class, we’ll typically be operating under the assumption that <span class="math inline">\(\Xcovhat \rightarrow \Xcov\)</span> as <span class="math inline">\(N \rightarrow \infty\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="heteroskedastic-assumption" class="level1">
+<h1>Heteroskedastic assumption</h1>
+<p>Under the heteroskedastic assumption, we keep <span class="math inline">\(\y_n = \x_n^\trans \betav + \res_n\)</span>, with <span class="math inline">\(\expect{\res_n} = 0\)</span>, but the variance of <span class="math inline">\(\res_n\)</span> might depend on <span class="math inline">\(\xv_n\)</span>: <span class="math inline">\(\var{\res_n \vert \xv_n} = \sigma_n^2 &lt; \infty\)</span>. Importantly, the residuals are <em>no longer independent of <span class="math inline">\(\xv_n\)</span></em>. Furthermore, even if we knew <span class="math inline">\(\betav\)</span>, the distribution of <span class="math inline">\(\y_new - \betav^\trans \xv_\new\)</span> now depends on <span class="math inline">\(\xv_n\)</span>. Estimating this distribution is complicated. For example, even if you assume that <span class="math inline">\(\res_\new\)</span> is normally distributed, you would need to model and estimate the dependence <span class="math inline">\(\xv_\new \mapsto \var{\res_\new | \xv_\new}\)</span>. This is beyond the scope of this class.</p>
+<p>However, maybe surprisingly, we can still study the limiting distribution of <span class="math inline">\(\betahat - \betav\)</span>, which will be particularly useful for inference. Recall that the first step of deriving the limiting distribution of <span class="math inline">\(\betahat - \beta\)</span> using the CLT was to write</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sqrt{N} (\betahat - \beta) = \Xcovhat^{-1} \cltn \xv_n \res_n.
+\end{aligned}
+\]</span></p>
+<p>We then applied the CLT to <span class="math inline">\(\cltn \xv_n \res_n\)</span>, using the fact that <span class="math inline">\(\cov{\xv_n \res_n} = \sigma^2 \Xcov\)</span> under the homoskedastic assumptions. Under heteroskedastic assumptions, we now have</p>
+<p><span class="math display">\[
+\cov{\xv_n \res_n} = \expect{\xv_n \xv_n^\trans \res_n^2} =
+\expect{\xv_n \xv_n^\trans \var{\res_n | \xv_n}},
+\]</span></p>
+<p>which is complicated. However, it can be consistently estimated by the simple expression</p>
+<p><span class="math display">\[
+\meann \xv_n \xv_n^\trans \res_n^2 \rightarrow \cov{\xv_n \res_n},
+\]</span></p>
+<p>as long as we can apply the LLN to each entry of the corresponding matrix.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Exercise">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>State precisely an assumption on the moments of <span class="math inline">\(\xv_n\)</span> and <span class="math inline">\(\res_n\)</span> that allows the application of the LLN in the previous expression.</p>
+</div>
+</div>
+<p>By the continuous mapping theorem, we thus see that, under the heteroskedastic assumptions, <span class="math display">\[
+\begin{aligned}
+\sqrt{N} (\betahat - \beta) \rightarrow{}&amp; \gauss{\zerov, \Covsand}
+  \quad\textrm{where}\\
+\Covsand :={}&amp; \Xcov^{-1}  \cov{\xv_n \res_n} \Xcov^{-1}
+    \quad\textrm{and}\\
+\Covsandhat :={}&amp; \Xcovhat^{-1}  \left( \meann \xv_n \xv_n^\trans \res_n^2 \right) \Xcovhat^{-1}
+  \rightarrow \Covsand.
+\end{aligned}
+\]</span></p>
+<p>The matrix <span class="math inline">\(\Covsand\)</span> is often called the “sandwich covariance matrix” and <span class="math inline">\(\Covsandhat\)</span> the “sandwich covariance estimator,”” since the <span class="math inline">\(\Xcov\)</span> term is like the “bread” and the <span class="math inline">\(\cov{\xv_n \res_n}\)</span> is like the “meat”. It’s also known as the “Huber-White covariance estimator” (after some of its first promoters), or the “heteroskedasticity-robust” covariance estimator, since it will give correct asymptotic intervals for the OLS coefficients even in the presence of heteroskedasticity.</p>
+<p>Sandwich covariance estimators can be computed in <code>R</code> using the <a href="https://sandwich.r-forge.r-project.org/articles/sandwich.html"><code>sandwich</code></a> package.</p>
+<p>It is often — but not necessarily — the case that sandwich covariance estimates are larger than the “standard” homoskedastic estimates. You therefore pay a price for robustness. It is also the case that sandwich covariance matrices can be more unstable for small <span class="math inline">\(N\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Exercise">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When <span class="math inline">\(P = 1\)</span> (so <span class="math inline">\(\xv_n\)</span> is a scalar), prove that it is possible for <span class="math inline">\(\Covsandhat &lt; \sigmahat^2 \Xcovhat^{-1}\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="machine-learning-assumption" class="level1">
+<h1>Machine learning assumption</h1>
+<p>What can we say about the OLS coefficients when we do not assume that <span class="math inline">\(\y_n = \beta^\trans \xv_n + \res_n\)</span> for any <span class="math inline">\(\beta\)</span>? In that case we have no model to compare to. However, we can still try to find the <em>best linear estimator</em> in terms of squared loss.</p>
+<p>Suppose we simply want to have a good fit to training data. That is, given some <span class="math inline">\(\y_\new\)</span>, we want to find a best guess <span class="math inline">\(f(\xv_\new)\)</span> for the value of <span class="math inline">\(\y_\new\)</span>: specifically, we want to find the function that minimizes the “loss”</p>
+<p><span class="math display">\[
+\hat{f}(\cdot) := \argmin{f} \expect{\left( \y_\new - f(\xv_\new) \right)^2}.
+\]</span></p>
+<p>This is a functional optimization problem over an infinite dimensional space! You can solve this using some fancy math, but you can also prove directly that the best choice is</p>
+<p><span class="math display">\[
+\hat{f}(\xv_\new)  = \expect{\y_\new | \xv_\new}.
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Exercise">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prove that any other <span class="math inline">\(f(\cdot)\)</span> results in larger loss.</p>
+</div>
+</div>
+<p>Of course, we don’t know the functional form of <span class="math inline">\(\expect{\y_\new | \xv_\new}\)</span>. But if we make the model that <span class="math inline">\(\expect{\y_\new | \xv_\new} = \betav^\trans \xv_\new\)</span>, then the problem becomes <span class="math display">\[
+\begin{aligned}
+\betastar :={}&amp; \argmin{\beta} \expect{\left( \y_\new - \betav^\trans\xv_\new \right)^2} \\
+={}&amp; \argmin{\beta} \left(\expect{\y_\new^2} - 2 \betav^\trans \expect{\y_\new \xv_\new} +
+  \betav^\trans \expect{\xv_\new \xv_\new^\trans} \betav  \right).
+\end{aligned}
+\]</span></p>
+<p>Differentiating with respect to <span class="math inline">\(\beta\)</span> and solving gives</p>
+<p><span class="math display">\[
+\betastar = \expect{\xv_\new \xv_\new^\trans} ^{-1} \expect{\y_\new \xv_\new}.
+\]</span></p>
+<p>This might look familiar. In fact, recall our first “useless” application of the LLN to <span class="math inline">\(\betahat\)</span>:</p>
+<p><span class="math display">\[
+\betahat = (\X^\trans \X)^{-1} \X^\trans \Y \rightarrow \expect{\xv_\new \xv_\new^\trans} ^{-1} \expect{\y_\new \xv_\new} = \betastar.
+\]</span></p>
+<p>Finally, we have an interpretation — our <span class="math inline">\(\betahat\)</span> converges to the minimizer of the (intractable) expected loss. Why is this? We can’t compute the expectated loss, since we don’t know the joint distribution of <span class="math inline">\(\xv_\new\)</span> and <span class="math inline">\(\y_\new\)</span>. However, if we have a training set, we can <em>approximate</em> this expectation:</p>
+<p><span class="math display">\[
+\betahat :=
+\argmin{\beta} \meann \left( \y_n - \betav^\trans\xv_n \right)^2
+\approx
+\argmin{\beta} \expect{\left( \y_\new - \betav^\trans\xv_\new \right)^2}
+= \betastar.
+\]</span></p>
+<p>Here, we are not positing any true model — we are simply assuming that the draws <span class="math inline">\((\y_n, \xv_n)\)</span> are IID, and using an approximate loss. Still, we can analyze <span class="math inline">\(\betahat\)</span>’s asymptotic behavior, using the fact that it minimizes the empirical loss.</p>
+<p>Define the gradient of the loss function: <span class="math display">\[
+G(\beta) := \frac{\partial}{\partial \beta} \meann \left( \y_n - \betav^\trans\xv_n \right)^2
+= -\meann \left( \y_n - \betav^\trans\xv_n \right) \xv_n.
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Exercise">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prove that <span class="math inline">\(G(\betahat) = \zerov\)</span> and <span class="math inline">\(\expect{G(\betastar)} = 0\)</span>.</p>
+</div>
+</div>
+<p>We can Taylor expand <span class="math inline">\(G(\cdot)\)</span> around <span class="math inline">\(\betahat\)</span>, giving</p>
+<p><span class="math display">\[
+G(\betastar) = G(\betahat) + \frac{\partial G}{\partial \beta^\trans} (\betahat) (\betastar - \betahat) + \textrm{Small terms when }(\betastar - \betahat)\textrm{ is small}.
+\]</span></p>
+<p>Using the fact that <span class="math inline">\(G(\betahat) = \zerov\)</span>, we can solve</p>
+<p><span class="math display">\[
+\sqrt{N} (\betahat - \betastar) = - \left( \frac{\partial G}{\partial \beta^\trans}  (\betahat) \right)^{-1} \sqrt{N} G(\betastar).
+\]</span></p>
+<p>Plugging in our particular loss gradient,</p>
+<p><span class="math display">\[
+- \frac{\partial G}{\partial \beta^\trans} = \meann \xv_n \xv_n^\trans
+\quad\textrm{and}\quad
+\sqrt{N} G(\betastar) =
+\cltn (\y_n - \betastar^\trans \xv_n) \xv_n.
+\]</span></p>
+<p>Because <span class="math inline">\(\expect{(\y_n - \betastar \xv_n)^\trans \xv_n} = \zerov\)</span>, we can apply the CLT to get</p>
+<p><span class="math display">\[
+\sqrt{N} G(\betastar) \rightarrow \gauss{\zerov, \cov{(\y_n - \betastar^\trans \xv_n) \xv_n}}.
+\]</span></p>
+<p>Finally, using the fact that <span class="math inline">\(\betahat \rightarrow \betastar\)</span> , we find that we can consistently estimate the covariance as</p>
+<p><span class="math display">\[
+\begin{aligned}
+\meann (\y_n - \betahat^\trans \xv_n) \xv_n ={}&amp;
+\meann (\y_n - \betastar^\trans \xv_n + (\betastar - \betahat)^\trans \xv_n)  \xv_n \\={}&amp;
+\meann (\y_n - \betastar^\trans \xv_n) \xv_n + \left(  \meann \xv_n  \xv_n^\trans \right) (\betastar - \betahat)
+\\\rightarrow{}&amp;
+\cov{(\y_n - \betastar \xv_n)^\trans \xv_n}.
+\end{aligned}
+\]</span></p>
+<p>If we call <span class="math inline">\(\reshat_n := \y_n - \betahat^\trans \xv_n\)</span>, we see that the estimator of the limiting covariance of <span class="math inline">\(\sqrt{N}( \betahat- \betastar)\)</span> is precisely the sandwich covariance.</p>
 
 
-<!-- -->
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -455,57 +621,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
-    }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -813,20 +928,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "The sandwich covariance matrix"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    include-before-body:</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">     - file: ../macros.md</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>$\,$</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</script>
 </div> <!-- /content -->
 
 
