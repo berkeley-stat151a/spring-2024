@@ -228,7 +228,7 @@ window.Quarto = {
 </section>
 <section id="predictive-variance-for-different-regressors" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Predictive variance for different regressors</h1>
-<p>This question will take the training data to be random, and will consider variablity under sampling of the training data.</p>
+<p>This question will take the residuals of the training data to be random, and will consider variablity under sampling of the training data. The regressors for both the training data and test data will be taken as fixed.</p>
 <p>Let <span class="math inline">\(\boldsymbol{x}_n  = (x_{n1}, x_{n2})^\intercal\)</span> be IID normal regressors, with</p>
 <ul>
 <li><span class="math inline">\(\mathbb{E}\left[x_{n1}\right] = \mathbb{E}\left[x_{n2}\right] = 0\)</span>,</li>
@@ -246,14 +246,14 @@ window.Quarto = {
 <p>Define the expected prediction error <span class="math display">\[
 \hat{y}_\mathrm{new}- \mathbb{E}\left[y_\mathrm{new}\right] :=  (\hat{\beta}- \beta)^\intercal x_\mathrm{new},
 \]</span></p>
-<p>and compute the variance <span class="math inline">\(\mathrm{Var}\left(\hat{y}_\mathrm{new}- \mathbb{E}\left[y_\mathrm{new}\right]\right)\)</span> for the following new regression vectors:</p>
+<p>and approximate the limiting variance <span class="math inline">\(\mathrm{Var}\left(\hat{y}_\mathrm{new}- \mathbb{E}\left[y_\mathrm{new}\right]\right)\)</span> for the following new regression vectors:</p>
 <ul>
 <li><span class="math inline">\(x_\mathrm{new}= (1, 1)^\intercal\)</span></li>
 <li><span class="math inline">\(x_\mathrm{new}= (1, -1)^\intercal\)</span></li>
 <li><span class="math inline">\(x_\mathrm{new}= (100, 100)^\intercal\)</span></li>
 <li><span class="math inline">\(x_\mathrm{new}= (0, 0)^\intercal\)</span></li>
 </ul>
-<p>(Your answers will depend on <span class="math inline">\(N\)</span>; just make this dependence explicit.)</p>
+<p>You may assume that <span class="math inline">\(N\)</span> is large, so that you can apply the CLT to <span class="math inline">\(\sqrt{N}(\hat{\beta}- \beta)\)</span>. Even with the CLT approximation your answer will depend on <span class="math inline">\(N\)</span>; just make this dependence explicit.</p>
 </section>
 <section id="c" class="level4">
 <h4 class="anchored" data-anchor-id="c">(c)</h4>
@@ -262,8 +262,13 @@ window.Quarto = {
 </section>
 <section id="the-sandwich-covariance-matrix-under-homoeskedasticity" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> The sandwich covariance matrix under homoeskedasticity</h1>
-<p>Assume homeskedastic errors; that is, that <span class="math inline">\(\varepsilon_n\)</span> is independent of <span class="math inline">\(\boldsymbol{x}_n\)</span>, with <span class="math inline">\(\mathbb{E}\left[\varepsilon_n | \boldsymbol{x}_n\right] = 0\)</span> and <span class="math inline">\(\mathbb{E}\left[\varepsilon_n | \boldsymbol{x}_n\right] = \sigma^2\)</span> for all <span class="math inline">\(n\)</span>.</p>
-<p>Under the homoskedastic error assumptions, show that the sandwich covariance matrix and the standard covariance matrix converge to the same quantity. That is, show that</p>
+<p>For this problem, make the following assumptions.</p>
+<ul>
+<li>The regressors are non-random, with <span class="math inline">\(\frac{1}{N} \sum_{n=1}^N\boldsymbol{x}_n \boldsymbol{x}_n^\intercal\rightarrow \boldsymbol{\Sigma}_{\boldsymbol{X}}\)</span> for positive definite <span class="math inline">\(\boldsymbol{\Sigma}_{\boldsymbol{X}}\)</span></li>
+<li>The responses are <span class="math inline">\(y_n = \boldsymbol{\beta}^\intercal\boldsymbol{x}_n + \varepsilon_n\)</span> for some unknown <span class="math inline">\(\boldsymbol{\beta}\)</span></li>
+<li>The residuals are IID with <span class="math inline">\(\mathbb{E}\left[\varepsilon_n\right] = 0\)</span> and <span class="math inline">\(\mathrm{Var}\left(\varepsilon_n\right) = \sigma^2\)</span> (but not necessarily normal)</li>
+</ul>
+<p>Under these assumptions, show that the sandwich covariance matrix and the standard covariance matrix converge to the same quantity. That is, show that</p>
 <p><span class="math display">\[
 \hat\Sigma_{sand}  =
 N \left(\boldsymbol{X}^\intercal\boldsymbol{X}\right)^{-1}
