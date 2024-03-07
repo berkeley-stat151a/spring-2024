@@ -466,7 +466,12 @@ Exercise
 <p>Prove that any other <span class="math inline">\(f(\cdot)\)</span> results in larger loss.</p>
 </div>
 </div>
-<p>Of course, we don’t know the functional form of <span class="math inline">\(\expect{\y_\new | \xv_\new}\)</span>. But if we make the model that <span class="math inline">\(\expect{\y_\new | \xv_\new} = \betav^\trans \xv_\new\)</span>, then the problem becomes <span class="math display">\[
+<p>Of course, we don’t know the functional form of <span class="math inline">\(\expect{\y_\new | \xv_\new}\)</span>. But suppose we approximate it with</p>
+<p><span class="math display">\[
+\expect{\y_\new | \xv_\new} \approx \betav^\trans \xv_\new.
+\]</span></p>
+<p>Note that we are not assuming this is true, so this is different from our “correct specification” assumption before that <span class="math inline">\(\expect{\y_\new} = \betav^\trans \xv_\new\)</span>. Rather, we are finding the best approximation to the unknown <span class="math inline">\(\expect{\y_\new | \xv_\new}\)</span> amongst the class of functions of the form <span class="math inline">\(\betav^\trans \xv_\new\)</span>.</p>
+<p>Under this approximation, the problem becomes <span class="math display">\[
 \begin{aligned}
 \betastar :={}&amp; \argmin{\beta} \expect{\left( \y_\new - \betav^\trans\xv_\new \right)^2} \\
 ={}&amp; \argmin{\beta} \left(\expect{\y_\new^2} - 2 \betav^\trans \expect{\y_\new \xv_\new} +
@@ -492,7 +497,7 @@ Exercise
 <p>Here, we are not positing any true model — we are simply assuming that the draws <span class="math inline">\((\y_n, \xv_n)\)</span> are IID, and using an approximate loss. Still, we can analyze <span class="math inline">\(\betahat\)</span>’s asymptotic behavior, using the fact that it minimizes the empirical loss.</p>
 <p>Define the gradient of the loss function: <span class="math display">\[
 G(\beta) := \frac{\partial}{\partial \beta} \meann \left( \y_n - \betav^\trans\xv_n \right)^2
-= -\meann \left( \y_n - \betav^\trans\xv_n \right) \xv_n.
+= -2 \meann \left( \y_n - \betav^\trans\xv_n \right) \xv_n.
 \]</span></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Exercise">
 <div class="callout-header d-flex align-content-center">
@@ -507,10 +512,30 @@ Exercise
 <p>Prove that <span class="math inline">\(G(\betahat) = \zerov\)</span> and <span class="math inline">\(\expect{G(\betastar)} = 0\)</span>.</p>
 </div>
 </div>
-<p>We can Taylor expand <span class="math inline">\(G(\cdot)\)</span> around <span class="math inline">\(\betahat\)</span>, giving</p>
+<p>Noting that <span class="math inline">\(G(\beta)\)</span> is linear in <span class="math inline">\(\beta\)</span> (so the second derivative with respect to <span class="math inline">\(\beta\)</span> is zero), we can Taylor expand <span class="math inline">\(G(\cdot)\)</span> around <span class="math inline">\(\betahat\)</span>, giving</p>
 <p><span class="math display">\[
-G(\betastar) = G(\betahat) + \frac{\partial G}{\partial \beta^\trans} (\betahat) (\betastar - \betahat) + \textrm{Small terms when }(\betastar - \betahat)\textrm{ is small}.
+G(\betastar) = G(\betahat) + \frac{\partial G}{\partial \beta^\trans} (\betahat) (\betastar - \betahat).
 \]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Exercise">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Derive the previous equation without using a Taylor series using <span class="math display">\[
+\begin{aligned}
+\meann \left( \y_n - \betavhat^\trans\xv_n \right) \xv_n ={}&amp; \zerov \Rightarrow \\
+\meann \left( \y_n - \betavhat^\trans\xv_n \right) \xv_n  -
+  \meann \left( \y_n - \betastar^\trans\xv_n \right) \xv_n
+  ={}&amp; - \meann \left( \y_n - \betastar^\trans\xv_n \right) \xv_n,
+\end{aligned}
+\]</span> and collecting terms. The Taylor series version is more general, since the analysis here can also be applied to non-linear gradients as long as <span class="math inline">\(\betavhat - \betastar\)</span> is small and the second derivative bounded, so that the first-order series expansion becomes accurate to leading order as <span class="math inline">\(N\)</span> grows.</p>
+</div>
+</div>
 <p>Using the fact that <span class="math inline">\(G(\betahat) = \zerov\)</span>, we can solve</p>
 <p><span class="math display">\[
 \sqrt{N} (\betahat - \betastar) = - \left( \frac{\partial G}{\partial \beta^\trans}  (\betahat) \right)^{-1} \sqrt{N} G(\betastar).
@@ -537,6 +562,7 @@ G(\betastar) = G(\betahat) + \frac{\partial G}{\partial \beta^\trans} (\betahat)
 \end{aligned}
 \]</span></p>
 <p>If we call <span class="math inline">\(\reshat_n := \y_n - \betahat^\trans \xv_n\)</span>, we see that the estimator of the limiting covariance of <span class="math inline">\(\sqrt{N}( \betahat- \betastar)\)</span> is precisely the sandwich covariance.</p>
+<p>Note that we derived this result without any assumptions on the relationship between <span class="math inline">\(\y_n\)</span> and <span class="math inline">\(\xv_n\)</span>, other than moment conditions allowing us to apply the LLN and CLT.</p>
 
 
 </section>
