@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lectures and Labs</title>
+<title>Interpreting the coefficients</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -67,6 +101,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -80,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lectures.html">Lectures and labs</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Interpreting the coefficients</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -122,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/lectures.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lectures/lectures.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lectures and labs</span></a>
   </div>
 </li>
@@ -148,11 +211,153 @@ ul.task-list li input[type="checkbox"] {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+$$
+
+\newcommand{\mybold}[1]{\boldsymbol{#1}} 
+
+
+\newcommand{\trans}{\intercal}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\gauss}[1]{\mathcal{N}\left(#1\right)}
+\newcommand{\chisq}[1]{\mathcal{\chi}^2_{#1}}
+\newcommand{\studentt}[1]{\mathrm{StudentT}_{#1}}
+
+\newcommand{\argmin}[1]{\underset{#1}{\mathrm{argmin}}\,}
+\newcommand{\projop}[1]{\underset{#1}{\mathrm{Proj}}\,}
+\newcommand{\proj}[1]{\underset{#1}{\mybold{P}}}
+\newcommand{\expect}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\prob}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\dens}[1]{\mathit{p}\left(#1\right)}
+\newcommand{\var}[1]{\mathrm{Var}\left(#1\right)}
+\newcommand{\cov}[1]{\mathrm{Cov}\left(#1\right)}
+\newcommand{\sumn}{\sum_{n=1}^N}
+\newcommand{\meann}{\frac{1}{N} \sumn}
+\newcommand{\cltn}{\frac{1}{\sqrt{N}} \sumn}
+
+\newcommand{\trace}[1]{\mathrm{trace}\left(#1\right)}
+\newcommand{\diag}[1]{\mathrm{Diag}\left(#1\right)}
+\newcommand{\grad}[2]{\nabla_{#1} \left. #2 \right.}
+\newcommand{\gradat}[3]{\nabla_{#1} \left. #2 \right|_{#3}}
+\newcommand{\fracat}[3]{\left. \frac{#1}{#2} \right|_{#3}}
+
+
+\newcommand{\W}{\mybold{W}}
+\newcommand{\w}{w}
+\newcommand{\wbar}{\bar{w}}
+\newcommand{\wv}{\mybold{w}}
+
+\newcommand{\X}{\mybold{X}}
+\newcommand{\x}{x}
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\xv}{\mybold{x}}
+\newcommand{\Xcov}{\Sigmam_{\X}}
+\newcommand{\Xcovhat}{\hat{\Sigmam}_{\X}}
+\newcommand{\Covsand}{\Sigmam_{\mathrm{sand}}}
+\newcommand{\Covsandhat}{\hat{\Sigmam}_{\mathrm{sand}}}
+
+\newcommand{\Z}{\mybold{Z}}
+\newcommand{\z}{z}
+\newcommand{\zv}{\mybold{z}}
+\newcommand{\zbar}{\bar{z}}
+
+\newcommand{\Y}{\mybold{Y}}
+\newcommand{\Yhat}{\hat{\Y}}
+\newcommand{\y}{y}
+\newcommand{\yv}{\mybold{y}}
+\newcommand{\yhat}{\hat{\y}}
+\newcommand{\ybar}{\bar{y}}
+
+\newcommand{\res}{\varepsilon}
+\newcommand{\resv}{\mybold{\res}}
+\newcommand{\resvhat}{\hat{\mybold{\res}}}
+\newcommand{\reshat}{\hat{\res}}
+
+\newcommand{\betav}{\mybold{\beta}}
+\newcommand{\betavhat}{\hat{\bv}}
+\newcommand{\betahat}{\hat{\beta}}
+\newcommand{\betastar}{{\beta^{*}}}
+
+\newcommand{\bv}{\mybold{\beta}}
+\newcommand{\bvhat}{\hat{\bv}}
+\newcommand{\bhat}{\hat{\beta}}
+
+\newcommand{\alphav}{\mybold{\alpha}}
+\newcommand{\alphavhat}{\hat{\av}}
+\newcommand{\alphahat}{\hat{\alpha}}
+
+\newcommand{\gv}{\mybold{\gamma}}
+\newcommand{\gvhat}{\hat{\gv}}
+\newcommand{\ghat}{\hat{\gamma}}
+
+\newcommand{\hv}{\mybold{\h}}
+\newcommand{\hvhat}{\hat{\hv}}
+\newcommand{\hhat}{\hat{\h}}
+
+\newcommand{\gammav}{\mybold{\gamma}}
+\newcommand{\gammavhat}{\hat{\gammav}}
+\newcommand{\gammahat}{\hat{\gamma}}
+
+\newcommand{\new}{\mathrm{new}}
+\newcommand{\zerov}{\mybold{0}}
+\newcommand{\onev}{\mybold{1}}
+\newcommand{\id}{\mybold{I}}
+
+\newcommand{\sigmahat}{\hat{\sigma}}
+
+
+\newcommand{\etav}{\mybold{\eta}}
+\newcommand{\muv}{\mybold{\mu}}
+\newcommand{\Sigmam}{\mybold{\Sigma}}
+
+\newcommand{\rdom}[1]{\mathbb{R}^{#1}}
+
+\newcommand{\RV}[1]{\tilde{#1}}
+
+
+
+\def\A{\mybold{A}}
+
+\def\A{\mybold{A}}
+\def\av{\mybold{a}}
+\def\a{a}
+
+\def\B{\mybold{B}}
+
+
+\def\S{\mybold{S}}
+\def\sv{\mybold{s}}
+\def\s{s}
+
+\def\R{\mybold{R}}
+\def\rv{\mybold{r}}
+\def\r{r}
+
+\def\V{\mybold{V}}
+\def\vv{\mybold{v}}
+\def\v{v}
+
+\def\U{\mybold{U}}
+\def\uv{\mybold{u}}
+\def\u{u}
+
+\def\tv{\mybold{t}}
+\def\t{t}
+
+\def\Sc{\mathcal{S}}
+\def\ev{\mybold{e}}
+
+\def\Lammat{\mybold{\Lambda}}
+
+
+$$
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lectures and Labs</h1>
-<p class="subtitle lead">Stat 151A: Linear Models</p>
+<div class="quarto-title-block"><div><h1 class="title">Interpreting the coefficients</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -169,144 +374,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<ul>
-<li>Lecture Jan 16th:
-<ul>
-<li><a href="../lectures/Lecture1.html">Class organization</a></li>
-</ul></li>
-<li>Lab Jan 17th:
-<ul>
-<li><a href="lab1_student_version.Rmd">Style problem</a></li>
-</ul></li>
-<li>Lecture Jan 18th:
-<ul>
-<li><a href="../lectures/Lecture2_examples.html">Different kinds of questions</a></li>
-<li><a href="../lectures/Lecture2_linearity_note.html">Note on linear and affine functions</a></li>
-</ul></li>
-</ul>
-<hr>
-<ul>
-<li>Lecture Jan 23rd:
-<ul>
-<li><a href="../lectures/Lecture3.html">Multilinear regression as loss minimization</a></li>
-</ul></li>
-<li>Lab Jan 17th:
-<ul>
-<li>Linear algebra in R</li>
-</ul></li>
-<li>Lecture Jan 25th:
-<ul>
-<li><a href="../lectures/Lecture4.html">Multilinear regression as projection</a></li>
-</ul></li>
-</ul>
-<hr>
-<ul>
-<li>Lecture Jan 29th:
-<ul>
-<li>Quiz 1</li>
-<li><a href="../lectures/Lecture5.html">Alternative ways to draw lines through points</a></li>
-</ul></li>
-<li>Lab Jan 30th:
-<ul>
-<li>Homework 1 review</li>
-</ul></li>
-<li>Lecture Feb 1st:
-<ul>
-<li><a href="../lectures/Lecture6.html">Transformations of regressors: Some payoffs from the linear algebra perspective</a></li>
-</ul></li>
-</ul>
-<hr>
-<ul>
-<li>Lecture Feb 6th:
-<ul>
-<li><a href="../lectures/Lecture7.html">Univariate statistics and limit theorems</a></li>
-</ul></li>
-<li>Lab Feb 7th:
-<ul>
-<li>Homework consultation</li>
-</ul></li>
-<li>Lecture Feb 8th:
-<ul>
-<li><a href="../lectures/Lecture8.html">Vector and matrix-valued statistics and limit theorems</a></li>
-</ul></li>
-</ul>
-<hr>
-<ul>
-<li>Lecture Feb 13th:
-<ul>
-<li><a href="../lectures/Lecture9.html">The Gaussian assumption</a></li>
-</ul></li>
-<li>Lab Feb 14th:
-<ul>
-<li>Homework 2 review</li>
-</ul></li>
-<li>Lecture Feb 15th:
-<ul>
-<li><a href="../lectures/Lecture10_code.html">Simulations and the law of large numbers</a></li>
-</ul></li>
-</ul>
-<hr>
-<ul>
-<li>Lecture Feb 20th:
-<ul>
-<li><a href="../lectures/Lecture11.html">Consistency of OLS and the residual variance under the Gaussian assumptions</a></li>
-</ul></li>
-<li>Lab Feb 21st:
-<ul>
-<li>Homework 3 consultation</li>
-</ul></li>
-<li>Lecture Feb 22nd:
-<ul>
-<li><a href="../lectures/LinearAlgebraReview.html">Linear algebra review</a> and Quiz 2 retake</li>
-</ul></li>
-</ul>
-<hr>
-<ul>
-<li>Lecture Feb 27th:
-<ul>
-<li><a href="../lectures/Lecture12.html">Residual distribution under normality</a></li>
-</ul></li>
-<li>Lab Feb 28th:
-<ul>
-<li>Homework 3 solutions</li>
-</ul></li>
-<li>Lecture Feb 29th:
-<ul>
-<li><a href="../lectures/Lecture13.html">Sampling variability of the coefficients</a></li>
-<li><a href="../lectures/Lecture13_code.html">Sampling variability of the coefficients (code)</a></li>
-</ul></li>
-</ul>
-<hr>
-<ul>
-<li>Lecture Mar 5th:
-<ul>
-<li><a href="../lectures/Lecture14.html">Implications of Gaussianity (and deviations from it)</a></li>
-</ul></li>
-<li>Lab Mar 6th:
-<ul>
-<li>Homework 4 consultation</li>
-</ul></li>
-<li>Lecture Mar 7th:
-<ul>
-<li><a href="../lectures/Lecture15.html">Heteroskedasticity and the sandwich covariance matrix</a></li>
-</ul></li>
-</ul>
-<hr>
-<ul>
-<li>Lecture Mar 12th:
-<ul>
-<li><a href="../lectures/Lecture16.html">Sampling variability of the coefficients</a></li>
-</ul></li>
-<li>Lab Mar 13th:
-<ul>
-<li>Homework 4 solutions</li>
-</ul></li>
-<li>Lecture Mar 14th:
-<ul>
-<li><a href="../lectures/Lecture17.html">Interpreting the regression coefficients</a></li>
-</ul></li>
-</ul>
+<p><span class="math inline">\(\,\)</span></p>
 
+
+<!-- -->
 
 
 </main> <!-- /main -->
@@ -389,6 +460,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -696,7 +818,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Interpreting the coefficients"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    include-before-body:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">     - file: ../macros.md</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>$\,$</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
