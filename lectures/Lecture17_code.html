@@ -377,27 +377,39 @@ $$
 </header>
 
 
-<div id="eaf999ae-90e4-4db6-b37e-c15c63f481ec" class="cell" data-tags="[]" data-execution_count="25">
+<div id="eaf999ae-90e4-4db6-b37e-c15c63f481ec" class="cell" data-tags="[]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_update</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">24</span>))</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width=</span><span class="dv">12</span>, <span class="at">repr.plot.height=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
 </div>
 <div id="a5a13c3a-7f8f-4558-82df-856184c28091" class="cell" data-tags="[]" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>install <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># https://avehtari.github.io/ROS-Examples/examples.html</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (install) {</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"rprojroot"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"avehtari/ROS-Examples"</span>, <span class="at">subdir=</span><span class="st">"rpackage"</span>)    </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rosdata)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(kidiq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>install <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># https://avehtari.github.io/ROS-Examples/examples.html</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (install) {</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"rprojroot"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"avehtari/ROS-Examples"</span>, <span class="at">subdir=</span><span class="st">"rpackage"</span>)    </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rosdata)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(kidiq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="384a28c3-7b36-4f1f-af62-dcba8d08e4c4" class="cell" data-tags="[]" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(kidiq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(kidiq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A data.frame: 6 × 5</caption>
@@ -473,14 +485,25 @@ $$
 </div>
 </div>
 <p>Let’s regress the kid’s IQ score on a constant and on whether or not the mom went to high school. This should be interepreted as a comparison between groups, not the effect of “going to high school.”</p>
-<div id="7f54be25-13c3-4f94-bccc-375f7cff41be" class="cell" data-tags="[]" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(kid_score <span class="sc">~</span> mom_hs, kidiq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7f54be25-13c3-4f94-bccc-375f7cff41be" class="cell" data-tags="[]" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(kid_score <span class="sc">~</span> mom_hs, kidiq)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = kid_score ~ mom_hs, data = kidiq)
+
+Coefficients:
+(Intercept)       mom_hs  
+      77.55        11.77  
+</code></pre>
 </div>
-<div id="a44932b8-f7f1-4265-ad00-0587b1bfd95c" class="cell" data-tags="[]" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>kidiq <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">pred=</span>fit1<span class="sc">$</span>fitted.values) <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>mom_hs, <span class="at">y=</span>kid_score)) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>mom_hs, <span class="at">y=</span>pred), <span class="at">color=</span><span class="st">"red"</span>, <span class="at">size=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="a44932b8-f7f1-4265-ad00-0587b1bfd95c" class="cell" data-tags="[]" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>kidiq <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">pred=</span>fit1<span class="sc">$</span>fitted.values) <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>mom_hs, <span class="at">y=</span>kid_score)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>mom_hs, <span class="at">y=</span>pred), <span class="at">color=</span><span class="st">"red"</span>, <span class="at">size=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -489,15 +512,15 @@ $$
 </div>
 </div>
 </div>
-<div id="c8d1ec01-a421-484c-9017-0c43e08d3a49" class="cell" data-tags="[]" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are many ways to get estimates out of lm.</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(fit1))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">----------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(fit1)<span class="sc">$</span>coefficients)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">----------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coefficients</span>(fit1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c8d1ec01-a421-484c-9017-0c43e08d3a49" class="cell" data-tags="[]" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are many ways to get estimates out of lm.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(fit1))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">----------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(fit1)<span class="sc">$</span>coefficients)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">----------------</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">coefficients</span>(fit1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -580,10 +603,23 @@ N_0 &amp; 0 \\
 \end{pmatrix}.
 \]</span></p>
 <p>So the least square estimates are just comparing means within groups in this case.</p>
-<div id="bd617223-8e61-4352-9d1d-3d8d8c4c902a" class="cell" data-tags="[]" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mean0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(kidiq <span class="sc">%&gt;%</span> <span class="fu">filter</span>(mom_hs <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(kid_score))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mean1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(kidiq <span class="sc">%&gt;%</span> <span class="fu">filter</span>(mom_hs <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(kid_score))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="fu">c</span>(mean0, mean1 <span class="sc">-</span> mean0), <span class="fu">coefficients</span>(fit1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Exercise">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prove that, if <span class="math inline">\(\xv_n\)</span> takes one of <span class="math inline">\(P\)</span> distinct values, then <span class="math inline">\(\betahat\)</span> is always a linear combination of the sample means of the response within observations taking the distinct values, and find the linear combination.</p>
+</div>
+</div>
+<div id="bd617223-8e61-4352-9d1d-3d8d8c4c902a" class="cell" data-tags="[]" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mean0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(kidiq <span class="sc">%&gt;%</span> <span class="fu">filter</span>(mom_hs <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(kid_score))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mean1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(kidiq <span class="sc">%&gt;%</span> <span class="fu">filter</span>(mom_hs <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(kid_score))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="fu">c</span>(mean0, mean1 <span class="sc">-</span> mean0), <span class="fu">coefficients</span>(fit1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A matrix: 2 × 2 of type dbl</caption>
@@ -604,15 +640,15 @@ N_0 &amp; 0 \\
 </div>
 <p>Let’s go through and confirm that <code>lm</code> is calculating exactly the same quantites we’ve been looking at in class.</p>
 <p>Check that the coefficient estimates are given by <span class="math inline">\(\betavhat = (\X^\trans \X)^{-1} \X^\trans \Y\)</span>.</p>
-<div id="88e1181b-9523-49cc-96bd-96b7f68158fc" class="cell" data-tags="[]" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>xmat <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(fit1)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>yvec <span class="ot">&lt;-</span> kidiq<span class="sc">$</span>kid_score</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>xtx <span class="ot">&lt;-</span> <span class="fu">t</span>(xmat) <span class="sc">%*%</span> xmat</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>betahat <span class="ot">&lt;-</span> <span class="fu">solve</span>(xtx, <span class="fu">t</span>(xmat) <span class="sc">%*%</span> yvec)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The betahat is the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(betahat, <span class="fu">coefficients</span>(fit1)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="88e1181b-9523-49cc-96bd-96b7f68158fc" class="cell" data-tags="[]" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>xmat <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(fit1)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>yvec <span class="ot">&lt;-</span> kidiq<span class="sc">$</span>kid_score</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>xtx <span class="ot">&lt;-</span> <span class="fu">t</span>(xmat) <span class="sc">%*%</span> xmat</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>betahat <span class="ot">&lt;-</span> <span class="fu">solve</span>(xtx, <span class="fu">t</span>(xmat) <span class="sc">%*%</span> yvec)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The betahat is the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(betahat, <span class="fu">coefficients</span>(fit1)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 The betahat is the same in lm:
@@ -622,10 +658,10 @@ mom_hs      11.77126 11.77126</code></pre>
 </div>
 </div>
 <p>Check that the residuals are given by <span class="math inline">\(\Y - \X \betavhat\)</span>.</p>
-<div id="f1ef573e-765a-4de2-851c-afb83c96c2ea" class="cell" data-tags="[]" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>reshat <span class="ot">&lt;-</span> yvec <span class="sc">-</span> xmat <span class="sc">%*%</span> betahat</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The estimated residuals are the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">max</span>(<span class="fu">abs</span>(reshat <span class="sc">-</span> fit1<span class="sc">$</span>residuals)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f1ef573e-765a-4de2-851c-afb83c96c2ea" class="cell" data-tags="[]" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>reshat <span class="ot">&lt;-</span> yvec <span class="sc">-</span> xmat <span class="sc">%*%</span> betahat</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The estimated residuals are the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">max</span>(<span class="fu">abs</span>(reshat <span class="sc">-</span> fit1<span class="sc">$</span>residuals)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 The estimated residuals are the same in lm:
@@ -633,11 +669,11 @@ The estimated residuals are the same in lm:
 </div>
 </div>
 <p>The residual estimated variances is given by <span class="math inline">\(\sigmahat^2 = \frac{1}{N - P} \sumn \reshat_n\)</span>.</p>
-<div id="c54c80d7-1f54-494c-9ee6-1500c3a515a0" class="cell" data-tags="[]" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sigmahat2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(reshat<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="fu">nrow</span>(xmat) <span class="sc">-</span> <span class="fu">ncol</span>(xmat))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The residual variance estimates are the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sigmahat2)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sigma</span>(fit1)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c54c80d7-1f54-494c-9ee6-1500c3a515a0" class="cell" data-tags="[]" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sigmahat2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(reshat<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="fu">nrow</span>(xmat) <span class="sc">-</span> <span class="fu">ncol</span>(xmat))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The residual variance estimates are the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sigmahat2)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sigma</span>(fit1)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 The residual variance estimates are the same in lm:
@@ -646,12 +682,12 @@ The residual variance estimates are the same in lm:
 </div>
 </div>
 <p>The estimated covariance <span class="math inline">\(\cov{\betahat - \beta}\)</span> is given by <span class="math inline">\(\sigmahat^2 (\X^\trans\X)^{-1}\)</span>, the homoskedastic covariance estimate.</p>
-<div id="26651623-1197-44b9-8d6b-8689d107ac16" class="cell" data-tags="[]" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>betahat_cov <span class="ot">&lt;-</span> sigmahat2 <span class="sc">*</span> <span class="fu">solve</span>(xtx)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The betahat covariance are the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_cov)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">vcov</span>(fit1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="26651623-1197-44b9-8d6b-8689d107ac16" class="cell" data-tags="[]" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>betahat_cov <span class="ot">&lt;-</span> sigmahat2 <span class="sc">*</span> <span class="fu">solve</span>(xtx)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The betahat covariance are the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_cov)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">vcov</span>(fit1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 The betahat covariance are the same in lm:
@@ -663,13 +699,13 @@ mom_hs        -4.237883  5.393669
 mom_hs        -4.237883  5.393669</code></pre>
 </div>
 </div>
-<p>The sandwich covariance matrix can also be used, though it’s not the default for <code>lm</code>.</p>
-<div id="dcfbe789-a681-4dd3-9cb8-96907680031b" class="cell" data-tags="[]" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The sandwich covariances match:</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>score_cov <span class="ot">&lt;-</span> <span class="fu">t</span>(xmat) <span class="sc">%*%</span> (<span class="fu">diag</span>(<span class="fu">as.numeric</span>(reshat)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%*%</span> xmat)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>betahat_sandwich_cov <span class="ot">&lt;-</span> <span class="fu">solve</span>(xtx, score_cov) <span class="sc">%*%</span> <span class="fu">solve</span>(xtx)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_sandwich_cov)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sandwich<span class="sc">::</span><span class="fu">vcovCL</span>(fit1, <span class="at">type=</span><span class="st">"HC0"</span>, <span class="at">cadjust=</span><span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The sandwich covariance matrix can also be used, though it’s not the default for <code>lm</code>. Note that the sandwich package has lots of variants, read the documentation for more information.</p>
+<div id="dcfbe789-a681-4dd3-9cb8-96907680031b" class="cell" data-tags="[]" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The sandwich covariances match:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>score_cov <span class="ot">&lt;-</span> <span class="fu">t</span>(xmat) <span class="sc">%*%</span> (<span class="fu">diag</span>(<span class="fu">as.numeric</span>(reshat)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%*%</span> xmat)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>betahat_sandwich_cov <span class="ot">&lt;-</span> <span class="fu">solve</span>(xtx, score_cov) <span class="sc">%*%</span> <span class="fu">solve</span>(xtx)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(betahat_sandwich_cov)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sandwich<span class="sc">::</span><span class="fu">vcovCL</span>(fit1, <span class="at">type=</span><span class="st">"HC0"</span>, <span class="at">cadjust=</span><span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 The sandwich covariances match:
@@ -682,10 +718,10 @@ mom_hs        -5.420399  6.481451</code></pre>
 </div>
 </div>
 <p>The reported “standard errors” are the square root of the diagonal of the covariance matrix.</p>
-<div id="9e5a37e9-49d3-428a-8504-bba6848a6848" class="cell" data-tags="[]" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The betahat standard errors are the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>betahat_sd <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(betahat_cov))</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(betahat_sd, <span class="fu">summary</span>(fit1)<span class="sc">$</span>coefficients[,<span class="st">"Std. Error"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9e5a37e9-49d3-428a-8504-bba6848a6848" class="cell" data-tags="[]" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The betahat standard errors are the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>betahat_sd <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(betahat_cov))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(betahat_sd, <span class="fu">summary</span>(fit1)<span class="sc">$</span>coefficients[,<span class="st">"Std. Error"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 The betahat standard errors are the same in lm:
@@ -703,46 +739,27 @@ t_k := \frac{\betahat_k - \beta_k}{\sigmahat} \sim \studentt{N-P}.
 \prob{\beta \in (\betahat \pm z_\alpha \sigmahat v_k} = 1 - \alpha
 \]</span></p>
 <p>Here <span class="math inline">\(\sigmahat v_k\)</span> would just be the “standard error” from above, that is, the square root of the <span class="math inline">\(k\)</span>–th entry of the diagonal of the estimated covariance matrix.</p>
-<div id="00476d3d-5af6-4941-a9b4-18f0ab9331cc" class="cell" data-tags="[]" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>zalpha <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">qt</span>(alpha <span class="sc">/</span> <span class="dv">2</span>, <span class="at">df=</span><span class="fu">nrow</span>(xmat) <span class="sc">-</span> <span class="fu">ncol</span>(xmat))</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> betahat[<span class="dv">2</span>] <span class="sc">+</span>  betahat_sd[<span class="dv">2</span>] <span class="sc">*</span> <span class="fu">c</span>(<span class="sc">-</span>zalpha, zalpha)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The confidence values are the same as lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ci)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">confint</span>(fit1, <span class="st">"mom_hs"</span>, <span class="at">level=</span><span class="dv">1</span> <span class="sc">-</span> alpha))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-The confidence values are the same as lm:
-[1]  7.206598 16.335924
-          2.5 %   97.5 %
-mom_hs 7.206598 16.33592</code></pre>
-</div>
+<div id="00476d3d-5af6-4941-a9b4-18f0ab9331cc" class="cell" data-tags="[]">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>zalpha <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">qt</span>(alpha <span class="sc">/</span> <span class="dv">2</span>, <span class="at">df=</span><span class="fu">nrow</span>(xmat) <span class="sc">-</span> <span class="fu">ncol</span>(xmat))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> betahat[<span class="dv">2</span>] <span class="sc">+</span>  betahat_sd[<span class="dv">2</span>] <span class="sc">*</span> <span class="fu">c</span>(<span class="sc">-</span>zalpha, zalpha)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The confidence values are the same as lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ci)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">confint</span>(fit1, <span class="st">"mom_hs"</span>, <span class="at">level=</span><span class="dv">1</span> <span class="sc">-</span> alpha))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The t-values and p-values are about hypothesis tests for the hypothesis that <span class="math inline">\(\betav = 0\)</span> using the student-t distribution.</p>
 <p>First, the t-values is the statistic <span class="math inline">\(t_k\)</span> defined above for <span class="math inline">\(\beta_k = 0\)</span>. This is how far away from zero the t-statistic would have to be had <span class="math inline">\(\beta_k\)</span> been equal to <span class="math inline">\(0\)</span>.</p>
 <p>The p-value is then the <span class="math inline">\(\alpha\)</span> for which you would have included <span class="math inline">\(0\)</span> in your confidence interval. Equivalently, it is the probability of observing <span class="math inline">\(t_k\)</span> as large or larger than what you actually observed, had <span class="math inline">\(\beta_k\)</span> actually been equal to zero.</p>
-<div id="642ad254-7108-4509-be25-5935b4a054ef" class="cell" data-tags="[]" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The t values are the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>t_value <span class="ot">&lt;-</span> betahat <span class="sc">/</span> betahat_sd</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(t_value, <span class="fu">summary</span>(fit1)<span class="sc">$</span>coefficients[, <span class="st">"t value"</span>]))</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The p values are the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">nrow</span>(xmat) <span class="sc">-</span> <span class="fu">ncol</span>(xmat)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pt</span>(<span class="sc">-</span> <span class="fu">abs</span>(t_value), <span class="at">df=</span>df) <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(p_value, <span class="fu">summary</span>(fit1)<span class="sc">$</span>coefficients[, <span class="st">"Pr(&gt;|t|)"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-The t values are the same in lm:
-                 [,1]      [,2]
-(Intercept) 37.670231 37.670231
-mom_hs       5.068516  5.068516
-
-The p values are the same in lm:
-                     [,1]          [,2]
-(Intercept) 1.392224e-138 1.392224e-138
-mom_hs       5.956524e-07  5.956524e-07</code></pre>
-</div>
+<div id="642ad254-7108-4509-be25-5935b4a054ef" class="cell" data-tags="[]">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The t values are the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>t_value <span class="ot">&lt;-</span> betahat <span class="sc">/</span> betahat_sd</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(t_value, <span class="fu">summary</span>(fit1)<span class="sc">$</span>coefficients[, <span class="st">"t value"</span>]))</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The p values are the same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">nrow</span>(xmat) <span class="sc">-</span> <span class="fu">ncol</span>(xmat)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pt</span>(<span class="sc">-</span> <span class="fu">abs</span>(t_value), <span class="at">df=</span>df) <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(p_value, <span class="fu">summary</span>(fit1)<span class="sc">$</span>coefficients[, <span class="st">"Pr(&gt;|t|)"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
