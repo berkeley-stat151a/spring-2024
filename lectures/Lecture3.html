@@ -289,13 +289,12 @@ $$
 \newcommand{\reshat}{\hat{\res}}
 
 \newcommand{\betav}{\mybold{\beta}}
-\newcommand{\betavhat}{\hat{\bv}}
+\newcommand{\betavhat}{\hat{\betav}}
 \newcommand{\betahat}{\hat{\beta}}
 \newcommand{\betastar}{{\beta^{*}}}
 
-\newcommand{\bv}{\mybold{\beta}}
+\newcommand{\bv}{\mybold{b}}
 \newcommand{\bvhat}{\hat{\bv}}
-\newcommand{\bhat}{\hat{\beta}}
 
 \newcommand{\alphav}{\mybold{\alpha}}
 \newcommand{\alphavhat}{\hat{\av}}
@@ -431,9 +430,9 @@ Notation
 </ul>
 <p>We might also have estimates of these quantities:</p>
 <ul>
-<li><span class="math inline">\(\bhat_p\)</span>: Estimate of <span class="math inline">\(\beta_p\)</span></li>
+<li><span class="math inline">\(\betahat_p\)</span>: Estimate of <span class="math inline">\(\beta_p\)</span></li>
 <li><span class="math inline">\(\reshat\)</span>: Estimate of <span class="math inline">\(\res_n\)</span></li>
-<li><span class="math inline">\(\yhat_n\)</span>: A ‘prediction’ or ‘fitted value’ <span class="math inline">\(\yhat_n = \bhat_1 + \bhat_2 \x_n\)</span></li>
+<li><span class="math inline">\(\yhat_n\)</span>: A ‘prediction’ or ‘fitted value’ <span class="math inline">\(\yhat_n = \betahat_1 + \betahat_2 \x_n\)</span></li>
 </ul>
 <p>When we form the estimator by minimizing the estimated residuals, we might call the estimate</p>
 <ul>
@@ -451,8 +450,8 @@ Notation
 <p>The “least squares fit” is called this because we choose <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> to make <span class="math inline">\(\sumn \res_n^2\)</span> as small as possible:</p>
 <p><span class="math display">\[
 \begin{align*}
-\textrm{Choose }\bhat_2,\bhat_1\textrm{ so that }
-\sumn \res_n^2 = \sumn \left(  \y_n - (\bhat_2 \x_n + \bhat_1) \right)^2
+\textrm{Choose }\betahat_2,\betahat_1\textrm{ so that }
+\sumn \res_n^2 = \sumn \left(  \y_n - (\betahat_2 \x_n + \betahat_1) \right)^2
 \textrm{ is as small as possible.}
 \end{align*}
 \]</span></p>
@@ -463,8 +462,8 @@ Notation
 <p>The quantity we’re trying to minimize is smooth and convex, so if there is a minimum it would satisfy</p>
 <p><span class="math display">\[
 \begin{align*}
-\fracat{\partial \sumn \res_n^2}{\partial \beta_1}{\bhat_1, \bhat_2} ={}&amp; 0 \quad\textrm{and} \\
-\fracat{\partial \sumn \res_n^2}{\partial \beta_2}{\bhat_1, \bhat_2} ={}&amp; 0.
+\fracat{\partial \sumn \res_n^2}{\partial \beta_1}{\betahat_1, \betahat_2} ={}&amp; 0 \quad\textrm{and} \\
+\fracat{\partial \sumn \res_n^2}{\partial \beta_2}{\betahat_1, \betahat_2} ={}&amp; 0.
 \end{align*}
 \]</span></p>
 <div class="callout callout-style-default callout-warning callout-titled" title="Question">
@@ -483,8 +482,8 @@ Question
 <p>These translate to (after dividing by <span class="math inline">\(-2 N\)</span>)</p>
 <p><span class="math display">\[
 \begin{align*}
-\meann \y_n - \bhat_2 \meann \x_n - \bhat_1 ={}&amp; 0 \quad\textrm{and}\\
-\meann \y_n \x_n - \bhat_2 \meann \x_n^2 - \bhat_1 \meann \x_n  ={}&amp; 0.
+\meann \y_n - \betahat_2 \meann \x_n - \betahat_1 ={}&amp; 0 \quad\textrm{and}\\
+\meann \y_n \x_n - \betahat_2 \meann \x_n^2 - \betahat_1 \meann \x_n  ={}&amp; 0.
 \end{align*}
 \]</span></p>
 <p>Let’s introduce the notation</p>
@@ -498,17 +497,17 @@ Question
 <p>Our estimator them must satisfy</p>
 <p><span class="math display">\[
 \begin{align*}
-\overline{x} \bhat_2  + \bhat_1 ={}&amp; \overline{y} \quad\textrm{and}\\
-\overline{xx} \bhat_2  + \overline{x} \bhat_1  ={}&amp; \overline{yx}.
+\overline{x} \betahat_2  + \betahat_1 ={}&amp; \overline{y} \quad\textrm{and}\\
+\overline{xx} \betahat_2  + \overline{x} \betahat_1  ={}&amp; \overline{yx}.
 \end{align*}
 \]</span></p>
 <p>We have a linear system with two unknowns and two equations. An elegant way to solve them is to subtract <span class="math inline">\(\overline{x}\)</span> times the first equation from the second, giving:</p>
 <p><span class="math display">\[
 \begin{align*}
-\overline{x} \bhat_1 - \overline{x} \bhat_1 +
-    \overline{xx} \bhat_2 - \overline{x}^2 \bhat_2 ={}&amp;
+\overline{x} \betahat_1 - \overline{x} \betahat_1 +
+    \overline{xx} \betahat_2 - \overline{x}^2 \betahat_2 ={}&amp;
     \overline{xy} - \overline{x} \overline{y} \Leftrightarrow\\
-\bhat_2 ={}&amp;
+\betahat_2 ={}&amp;
     \frac{\overline{xy} - \overline{x} \overline{y}}
          {\overline{xx}  - \overline{x}^2},
 \end{align*}
@@ -529,7 +528,7 @@ Question
 </div>
 <p>We can then plug this into the first equation giving</p>
 <p><span class="math display">\[
-\bhat_1 = \overline{y} - \bhat_2 \overline{x}.
+\betahat_1 = \overline{y} - \betahat_2 \overline{x}.
 \]</span></p>
 </section>
 <section id="matrix-multiplication-version" class="level1">
@@ -541,15 +540,15 @@ Question
 \overline{x} &amp; \overline{xx}
 \end{pmatrix}
 \begin{pmatrix}
-\bhat_1 \\
-\bhat_2
+\betahat_1 \\
+\betahat_2
 \end{pmatrix} =
 \begin{pmatrix}
 \overline{y} \\
 \overline{xy}
 \end{pmatrix}
 \tag{2}\]</span></span></p>
-<p>Recall that there is a special matrix that allows us to get an expression for <span class="math inline">\(\bhat_1\)</span> and <span class="math inline">\(\bhat_2\)</span>:</p>
+<p>Recall that there is a special matrix that allows us to get an expression for <span class="math inline">\(\betahat_1\)</span> and <span class="math inline">\(\betahat_2\)</span>:</p>
 <p><span class="math display">\[
 \begin{align*}
 \begin{pmatrix}
@@ -600,12 +599,12 @@ Exercise
 0 &amp; 1
 \end{pmatrix}
 \begin{pmatrix}
-\bhat_1 \\
-\bhat_2
+\betahat_1 \\
+\betahat_2
 \end{pmatrix} =
 \begin{pmatrix}
-\bhat_1 \\
-\bhat_2
+\betahat_1 \\
+\betahat_2
 \end{pmatrix} =
 \frac{1}{\overline{xx} - \overline{x}^2}
 \begin{pmatrix}
@@ -620,14 +619,14 @@ Exercise
 <p>From this we can read off the familiar answer</p>
 <p><span class="math display">\[
 \begin{align*}
-\bhat_2 ={}&amp; \frac{\overline{xy} - \overline{x}\,\overline{y}}{\overline{xx} - \overline{x}^2}\\
-\bhat_1 ={}&amp; \frac{\overline{xx}\,\overline{y} - \overline{xy}\,\overline{x}}{\overline{xx} - \overline{x}^2}\\
+\betahat_2 ={}&amp; \frac{\overline{xy} - \overline{x}\,\overline{y}}{\overline{xx} - \overline{x}^2}\\
+\betahat_1 ={}&amp; \frac{\overline{xx}\,\overline{y} - \overline{xy}\,\overline{x}}{\overline{xx} - \overline{x}^2}\\
   ={}&amp; \frac{\overline{xx}\,\overline{y} -
       \overline{x}^2 \overline{y} + \overline{x}^2 \overline{y} - \overline{xy}\,\overline{x}}
     {\overline{xx} - \overline{x}^2}\\
   ={}&amp; \overline{y} - \frac{\overline{x}^2 \overline{y} - \overline{xy}\,\overline{x}}
     {\overline{xx} - \overline{x}^2} \\
-  ={}&amp; \overline{y} - \bhat_1 \overline{x}.
+  ={}&amp; \overline{y} - \betahat_1 \overline{x}.
 \end{align*}
 \]</span></p>
 </section>
@@ -919,7 +918,7 @@ Exercise
 ={}&amp; -2 \X^\trans \Y + 2  \X^\trans \X \bv.
 \end{align*}
 \]</span></p>
-<p>Assuming our estimator <span class="math inline">\(\bhat\)</span> sets these partial derivatives are equal to zero, we then get</p>
+<p>Assuming our estimator <span class="math inline">\(\betahat\)</span> sets these partial derivatives are equal to zero, we then get</p>
 <p><span id="eq-ols-esteq"><span class="math display">\[
 \begin{align*}
 \X^\trans \X \bvhat ={}&amp; \X^\trans \Y.
@@ -1594,10 +1593,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>We might also have estimates of these quantities:</span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>$\bhat_p$: Estimate of $\beta_p$</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>$\betahat_p$: Estimate of $\beta_p$</span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>$\reshat$: Estimate of $\res_n$</span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>$\yhat_n$: A 'prediction' or 'fitted value'</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>     $\yhat_n = \bhat_1 + \bhat_2 \x_n$</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>     $\yhat_n = \betahat_1 + \betahat_2 \x_n$</span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>When we form the estimator by minimizing the estimated residuals, we might call the estimate</span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
@@ -1621,8 +1620,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>\textrm{Choose }\bhat_2,\bhat_1\textrm{ so that }</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>\sumn \res_n^2 = \sumn \left(  \y_n - (\bhat_2 \x_n + \bhat_1) \right)^2</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>\textrm{Choose }\betahat_2,\betahat_1\textrm{ so that }</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>\sumn \res_n^2 = \sumn \left(  \y_n - (\betahat_2 \x_n + \betahat_1) \right)^2</span>
 <span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>\textrm{ is as small as possible.}</span>
 <span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>$$</span>
@@ -1639,8 +1638,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>\fracat{\partial \sumn \res_n^2}{\partial \beta_1}{\bhat_1, \bhat_2} ={}&amp; 0 \quad\textrm{and} <span class="sc">\\</span></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>\fracat{\partial \sumn \res_n^2}{\partial \beta_2}{\bhat_1, \bhat_2} ={}&amp; 0.</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>\fracat{\partial \sumn \res_n^2}{\partial \beta_1}{\betahat_1, \betahat_2} ={}&amp; 0 \quad\textrm{and} <span class="sc">\\</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>\fracat{\partial \sumn \res_n^2}{\partial \beta_2}{\betahat_1, \betahat_2} ={}&amp; 0.</span>
 <span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
@@ -1653,8 +1652,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>\meann \y_n - \bhat_2 \meann \x_n - \bhat_1 ={}&amp; 0 \quad\textrm{and}<span class="sc">\\</span></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>\meann \y_n \x_n - \bhat_2 \meann \x_n^2 - \bhat_1 \meann \x_n  ={}&amp; 0.</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>\meann \y_n - \betahat_2 \meann \x_n - \betahat_1 ={}&amp; 0 \quad\textrm{and}<span class="sc">\\</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>\meann \y_n \x_n - \betahat_2 \meann \x_n^2 - \betahat_1 \meann \x_n  ={}&amp; 0.</span>
 <span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
@@ -1672,8 +1671,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a> \overline{x} \bhat_2  + \bhat_1 ={}&amp; \overline{y} \quad\textrm{and}<span class="sc">\\</span></span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a> \overline{xx} \bhat_2  + \overline{x} \bhat_1  ={}&amp; \overline{yx}.</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a> \overline{x} \betahat_2  + \betahat_1 ={}&amp; \overline{y} \quad\textrm{and}<span class="sc">\\</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a> \overline{xx} \betahat_2  + \overline{x} \betahat_1  ={}&amp; \overline{yx}.</span>
 <span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
@@ -1681,10 +1680,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>\overline{x} \bhat_1 - \overline{x} \bhat_1 + </span>
-<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>    \overline{xx} \bhat_2 - \overline{x}^2 \bhat_2 ={}&amp;</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>\overline{x} \betahat_1 - \overline{x} \betahat_1 + </span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>    \overline{xx} \betahat_2 - \overline{x}^2 \betahat_2 ={}&amp;</span>
 <span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>    \overline{xy} - \overline{x} \overline{y} \Leftrightarrow<span class="sc">\\</span></span>
-<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>\bhat_2 ={}&amp;</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>\betahat_2 ={}&amp;</span>
 <span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>    \frac{\overline{xy} - \overline{x} \overline{y}}</span>
 <span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>         {\overline{xx}  - \overline{x}^2},</span>
 <span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
@@ -1699,7 +1698,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>We can then plug this into the first equation giving</span>
 <span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>\bhat_1 = \overline{y} - \bhat_2 \overline{x}.</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>\betahat_1 = \overline{y} - \betahat_2 \overline{x}.</span>
 <span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a></span>
@@ -1717,8 +1716,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>\overline{x} &amp; \overline{xx} </span>
 <span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
 <span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>\bhat_1 <span class="sc">\\</span></span>
-<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>\bhat_2</span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>\betahat_1 <span class="sc">\\</span></span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>\betahat_2</span>
 <span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>\end{pmatrix} =</span>
 <span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
 <span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>\overline{y} <span class="sc">\\</span></span>
@@ -1727,7 +1726,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>$${#eq-simple-est-as-matrix}</span>
 <span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>Recall that there is a special matrix that allows us to get an</span>
-<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>expression for $\bhat_1$ and $\bhat_2$:</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>expression for $\betahat_1$ and $\betahat_2$:</span>
 <span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>$$</span>
@@ -1777,12 +1776,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>0 &amp; 1</span>
 <span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
 <span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>\bhat_1 <span class="sc">\\</span></span>
-<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>\bhat_2</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>\betahat_1 <span class="sc">\\</span></span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>\betahat_2</span>
 <span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>\end{pmatrix} =</span>
 <span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>\bhat_1 <span class="sc">\\</span></span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>\bhat_2</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>\betahat_1 <span class="sc">\\</span></span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>\betahat_2</span>
 <span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>\end{pmatrix} =</span>
 <span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>\frac{1}{\overline{xx} - \overline{x}^2}</span>
 <span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
@@ -1799,14 +1798,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>\bhat_2 ={}&amp; \frac{\overline{xy} - \overline{x}\,\overline{y}}{\overline{xx} - \overline{x}^2}<span class="sc">\\</span></span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>\bhat_1 ={}&amp; \frac{\overline{xx}\,\overline{y} - \overline{xy}\,\overline{x}}{\overline{xx} - \overline{x}^2}<span class="sc">\\</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>\betahat_2 ={}&amp; \frac{\overline{xy} - \overline{x}\,\overline{y}}{\overline{xx} - \overline{x}^2}<span class="sc">\\</span></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>\betahat_1 ={}&amp; \frac{\overline{xx}\,\overline{y} - \overline{xy}\,\overline{x}}{\overline{xx} - \overline{x}^2}<span class="sc">\\</span></span>
 <span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>  ={}&amp; \frac{\overline{xx}\,\overline{y} - </span>
 <span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>      \overline{x}^2 \overline{y} + \overline{x}^2 \overline{y} - \overline{xy}\,\overline{x}}</span>
 <span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>    {\overline{xx} - \overline{x}^2}<span class="sc">\\</span></span>
 <span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>  ={}&amp; \overline{y} - \frac{\overline{x}^2 \overline{y} - \overline{xy}\,\overline{x}}</span>
 <span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>    {\overline{xx} - \overline{x}^2} <span class="sc">\\</span></span>
-<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>  ={}&amp; \overline{y} - \bhat_1 \overline{x}.</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>  ={}&amp; \overline{y} - \betahat_1 \overline{x}.</span>
 <span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
@@ -2135,7 +2134,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a>Assuming our estimator $\bhat$ sets these partial derivatives are equal to zero, we then</span>
+<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a>Assuming our estimator $\betahat$ sets these partial derivatives are equal to zero, we then</span>
 <span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a>get</span>
 <span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a>$$</span>
