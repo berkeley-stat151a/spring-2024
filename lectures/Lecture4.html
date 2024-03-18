@@ -295,13 +295,12 @@ $$
 \newcommand{\reshat}{\hat{\res}}
 
 \newcommand{\betav}{\mybold{\beta}}
-\newcommand{\betavhat}{\hat{\bv}}
+\newcommand{\betavhat}{\hat{\betav}}
 \newcommand{\betahat}{\hat{\beta}}
 \newcommand{\betastar}{{\beta^{*}}}
 
-\newcommand{\bv}{\mybold{\beta}}
+\newcommand{\bv}{\mybold{b}}
 \newcommand{\bvhat}{\hat{\bv}}
-\newcommand{\bhat}{\hat{\beta}}
 
 \newcommand{\alphav}{\mybold{\alpha}}
 \newcommand{\alphavhat}{\hat{\av}}
@@ -413,11 +412,11 @@ $$
 <h1>Recap</h1>
 <p>Last lecture we derived the formula</p>
 <p><span class="math display">\[
-\X^\trans \X \bhat = \X^\trans \Y
+\X^\trans \X \betahat = \X^\trans \Y
 \]</span></p>
 <p>which, if <span class="math inline">\(\X^\trans \X\)</span> is inverible, gives</p>
 <p><span class="math display">\[
-\bhat = (\X^\trans \X)^{-1} \X^\trans \Y.
+\betahat = (\X^\trans \X)^{-1} \X^\trans \Y.
 \]</span></p>
 <p>We derived this formula by minimizing the squared error using multivariate calculus. Today we’ll do the same thing using the perspective of orthogonal projection operators without using vector gradients at all.</p>
 <p>Doing so will both shed light on the optimization perspective, as well as review a lot of linear algebra concepts that will be useful in the remainder of the class.</p>
@@ -1321,13 +1320,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>Last lecture we derived the formula</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>\X^\trans \X \bhat = \X^\trans \Y</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>\X^\trans \X \betahat = \X^\trans \Y</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>which, if $\X^\trans \X$ is inverible, gives</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>\bhat = (\X^\trans \X)^{-1} \X^\trans \Y.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>\betahat = (\X^\trans \X)^{-1} \X^\trans \Y.</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>We derived this formula by minimizing the squared error</span>
