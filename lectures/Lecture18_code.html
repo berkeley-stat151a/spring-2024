@@ -383,7 +383,7 @@ $$
 
 
 <p><span class="math inline">\(\,\)</span></p>
-<div id="eaf999ae-90e4-4db6-b37e-c15c63f481ec" class="cell" data-tags="[]" data-execution_count="2">
+<div id="eaf999ae-90e4-4db6-b37e-c15c63f481ec" class="cell" data-tags="[]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -402,7 +402,7 @@ $$
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 </div>
-<div id="a5a13c3a-7f8f-4558-82df-856184c28091" class="cell" data-tags="[]" data-execution_count="3">
+<div id="a5a13c3a-7f8f-4558-82df-856184c28091" class="cell" data-tags="[]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>install <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># https://avehtari.github.io/ROS-Examples/examples.html</span></span>
@@ -414,7 +414,7 @@ $$
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rosdata)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(kidiq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="384a28c3-7b36-4f1f-af62-dcba8d08e4c4" class="cell" data-tags="[]" data-execution_count="4">
+<div id="384a28c3-7b36-4f1f-af62-dcba8d08e4c4" class="cell" data-tags="[]" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(kidiq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
@@ -490,17 +490,17 @@ $$
 </table>
 </div>
 </div>
-<div id="74692bf4-0397-4867-a769-d2ad1d6a6522" class="cell" data-tags="[]" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fit_hs <span class="ot">&lt;-</span> <span class="fu">lm</span>(kid_score <span class="sc">~</span> mom_hs, kidiq)</span>
+<div id="74692bf4-0397-4867-a769-d2ad1d6a6522" class="cell" data-tags="[]" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fit_hs <span class="ot">&lt;-</span> <span class="fu">lm</span>(kid_score <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> mom_hs, kidiq)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit_hs)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(kidiq) <span class="sc">+</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>kid_score)) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(mom_hs <span class="sc">~</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(mom_hs <span class="sc">~</span> ., <span class="at">scales=</span><span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = kid_score ~ mom_hs, data = kidiq)
+lm(formula = kid_score ~ 1 + mom_hs, data = kidiq)
 
 Coefficients:
 (Intercept)       mom_hs  
@@ -518,7 +518,8 @@ Coefficients:
 </div>
 </div>
 </div>
-<div id="a612131b-1d46-436e-9d7f-6e1e32fdd241" class="cell" data-tags="[]" data-execution_count="17">
+<p>Kid score = <span class="math inline">\(\beta_0\)</span> + <span class="math inline">\(\beta_1\)</span> mom_iq</p>
+<div id="a612131b-1d46-436e-9d7f-6e1e32fdd241" class="cell" data-tags="[]" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fit_iq <span class="ot">&lt;-</span> <span class="fu">lm</span>(kid_score <span class="sc">~</span> mom_iq, kidiq)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit_iq)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -542,7 +543,7 @@ Coefficients:
 </div>
 </div>
 </div>
-<div id="7f54be25-13c3-4f94-bccc-375f7cff41be" class="cell" data-tags="[]" data-execution_count="20">
+<div id="7f54be25-13c3-4f94-bccc-375f7cff41be" class="cell" data-tags="[]" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fit_hs_iq <span class="ot">&lt;-</span> <span class="fu">lm</span>(kid_score <span class="sc">~</span> mom_hs <span class="sc">+</span> mom_iq, kidiq)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(kidiq) <span class="sc">+</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>mom_iq, <span class="at">y=</span>kid_score, <span class="at">color=</span><span class="fu">factor</span>(mom_hs), <span class="at">group=</span>mom_hs)) <span class="sc">+</span></span>
@@ -567,14 +568,14 @@ Coefficients:
 </div>
 </div>
 </div>
-<div id="8901ee4f-d02f-4358-b034-2e1357996cd1" class="cell" data-tags="[]" data-execution_count="21">
+<div id="8901ee4f-d02f-4358-b034-2e1357996cd1" class="cell" data-tags="[]" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit_hs)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit_iq)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit_hs_iq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = kid_score ~ mom_hs, data = kidiq)
+lm(formula = kid_score ~ 1 + mom_hs, data = kidiq)
 
 Coefficients:
 (Intercept)       mom_hs  
@@ -601,7 +602,7 @@ Coefficients:
 <section id="simulations" class="level1">
 <h1>Simulations</h1>
 <p>Let’s look at the behavior of the standard errors of <span class="math inline">\(\betahat_1\)</span> when regressing <span class="math inline">\(\y_n \sim \beta_0 + \beta_1 \x_n\)</span>, where <span class="math inline">\(\var{\res_n} = \sigma^2\)</span> and <span class="math inline">\(\var{\x_n} = \sigma_x^2\)</span>.</p>
-<div id="4b87030d-4576-40d5-8bdb-5c576be87622" class="cell" data-tags="[]" data-execution_count="72">
+<div id="4b87030d-4576-40d5-8bdb-5c576be87622" class="cell" data-tags="[]" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sigma_x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">1.0</span>, <span class="dv">10</span>, <span class="at">by=</span><span class="dv">2</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sigma_eps <span class="ot">&lt;-</span> <span class="fl">4.0</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -618,14 +619,14 @@ Coefficients:
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    eps <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_obs, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span>sigma_eps)</span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> beta_0 <span class="sc">+</span> beta_1 <span class="sc">*</span> x <span class="sc">+</span> eps</span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y=</span>y, <span class="at">x=</span>x, <span class="at">eps=</span>eps, <span class="at">sigma_x=</span>sigma_x)</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, df)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> x, df)</span>
 <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    coeffs <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit)<span class="sc">$</span>coefficients[<span class="st">"x"</span>, , drop<span class="ot">=</span><span class="cn">FALSE</span>] <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">sigma_x=</span>sigma_x)</span>
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    fits <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(fits, coeffs)</span>
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">y_pred=</span>fit<span class="sc">$</span>fitted.values)</span>
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    df_comb <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df_comb, df)</span>
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7a4f5804-19a3-40e9-a1b2-be94f28ec708" class="cell" data-tags="[]" data-execution_count="46">
+<div id="7a4f5804-19a3-40e9-a1b2-be94f28ec708" class="cell" data-tags="[]" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_comb) <span class="sc">+</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y)) <span class="sc">+</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y_pred)) <span class="sc">+</span></span>
@@ -638,11 +639,11 @@ Coefficients:
 </div>
 </div>
 </div>
-<div id="f0c61a63-9f06-4f0f-9b1b-78a345161a8b" class="cell" data-tags="[]" data-execution_count="73">
+<div id="f0c61a63-9f06-4f0f-9b1b-78a345161a8b" class="cell" data-tags="[]" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>A data.frame: 5 × 5</caption>
+<caption>A data.frame: 2 × 5</caption>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -664,43 +665,19 @@ Coefficients:
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" scope="row">x...1</td>
-<td>2.049156</td>
-<td>0.13073475</td>
-<td>15.67415</td>
-<td>1.146616e-49</td>
+<td>1.983005</td>
+<td>0.131168439</td>
+<td>15.118</td>
+<td>1.193266e-46</td>
 <td>1</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th" scope="row">x...2</td>
-<td>1.974082</td>
-<td>0.04451925</td>
-<td>44.34222</td>
-<td>3.741874e-238</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">x...3</td>
-<td>2.029240</td>
-<td>0.02430017</td>
-<td>83.50721</td>
+<td>1.998115</td>
+<td>0.004886705</td>
+<td>408.888</td>
 <td>0.000000e+00</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">x...4</td>
-<td>2.007367</td>
-<td>0.01933173</td>
-<td>103.83798</td>
-<td>0.000000e+00</td>
-<td>7</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">x...5</td>
-<td>1.981853</td>
-<td>0.01360045</td>
-<td>145.71971</td>
-<td>0.000000e+00</td>
-<td>9</td>
+<td>26</td>
 </tr>
 </tbody>
 </table>
