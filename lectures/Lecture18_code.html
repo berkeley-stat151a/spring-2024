@@ -602,7 +602,7 @@ Coefficients:
 <section id="simulations" class="level1">
 <h1>Simulations</h1>
 <p>Let’s look at the behavior of the standard errors of <span class="math inline">\(\betahat_1\)</span> when regressing <span class="math inline">\(\y_n \sim \beta_0 + \beta_1 \x_n\)</span>, where <span class="math inline">\(\var{\res_n} = \sigma^2\)</span> and <span class="math inline">\(\var{\x_n} = \sigma_x^2\)</span>.</p>
-<div id="4b87030d-4576-40d5-8bdb-5c576be87622" class="cell" data-tags="[]" data-execution_count="16">
+<div id="4b87030d-4576-40d5-8bdb-5c576be87622" class="cell" data-tags="[]" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sigma_x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">1.0</span>, <span class="dv">10</span>, <span class="at">by=</span><span class="dv">2</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sigma_eps <span class="ot">&lt;-</span> <span class="fl">4.0</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -626,7 +626,7 @@ Coefficients:
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    df_comb <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df_comb, df)</span>
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7a4f5804-19a3-40e9-a1b2-be94f28ec708" class="cell" data-tags="[]" data-execution_count="17">
+<div id="7a4f5804-19a3-40e9-a1b2-be94f28ec708" class="cell" data-tags="[]" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_comb) <span class="sc">+</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y)) <span class="sc">+</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y_pred)) <span class="sc">+</span></span>
