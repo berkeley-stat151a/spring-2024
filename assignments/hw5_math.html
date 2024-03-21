@@ -229,7 +229,7 @@ window.Quarto = {
 <li>M3: The residuals <span class="math inline">\(\varepsilon_n\)</span> are independent with <span class="math inline">\(\mathbb{E}\left[\varepsilon_n | \boldsymbol{x}_n\right] = 0\)</span> and <span class="math inline">\(\mathbb{E}\left[\varepsilon_n^2 | \boldsymbol{x}_n\right] = \sigma^2\)</span></li>
 <li>M4: The residuals <span class="math inline">\(\varepsilon_n\)</span> are independent with <span class="math inline">\(\mathbb{E}\left[\varepsilon_n | \boldsymbol{x}_n\right] = 0\)</span> and <span class="math inline">\(\mathbb{E}\left[\varepsilon_n^2 | \boldsymbol{x}_n\right] = \sigma_n^2\)</span></li>
 <li>M5: The pairs <span class="math inline">\((\boldsymbol{x}_n, y_n)\)</span> are IID</li>
-<li>M6: For all finite vectors <span class="math inline">\(\boldsymbol{v}\)</span>, <span class="math inline">\(\frac{1}{N} \sum_{n=1}^N(y_n - \boldsymbol{v}^\intercal\boldsymbol{x}_n)^2 \boldsymbol{x}_n \boldsymbol{x}_n^\intercal\rightarrow \frac{1}{N} \sum_{n=1}^N\mathbb{E}\left[(y_n - \boldsymbol{v}^\intercal\boldsymbol{x}_n)^2 \boldsymbol{x}_n \boldsymbol{x}_n^\intercal\right] &lt; \infty\)</span>, where each entry of the expectation matrix is finite.</li>
+<li>M6: For all finite vectors <span class="math inline">\(\boldsymbol{v}\)</span>, <span class="math inline">\(\frac{1}{N} \sum_{n=1}^N(y_n - \boldsymbol{v}^\intercal\boldsymbol{x}_n)^2 \boldsymbol{x}_n \boldsymbol{x}_n^\intercal\rightarrow \boldsymbol{V}(\boldsymbol{v}) &lt; \infty\)</span>, where each entry of the expectation matrix is finite. (The limit depends on <span class="math inline">\(\boldsymbol{v}\)</span>, but importantly <span class="math inline">\(\boldsymbol{V}(\boldsymbol{v})\)</span> is finite for all finite <span class="math inline">\(\boldsymbol{v}\)</span>).</li>
 </ul>
 <p>For M2, M3, and M4 with <span class="math inline">\(\boldsymbol{x}_n\)</span> is deterministic, take the conditioning to mean “for that value of <span class="math inline">\(\boldsymbol{x}_n\)</span>.”</p>
 <p>For this homework, you may use the LLN, the CLT, the continuous mapping theorem, and properties of the multivariate normal distribution.</p>
@@ -252,7 +252,7 @@ window.Quarto = {
 <ol type="1">
 <li>What goes wrong if R1 is violated?</li>
 <li>What goes wrong if <span class="math inline">\(\boldsymbol{\Sigma}_{\boldsymbol{X}}\)</span> is not positive definite in R2?</li>
-<li>What goes wrong if <span class="math inline">\(\mathrm{Cov}\left(\boldsymbol{x}_n\right)\)</span> is not positive definite in R3?</li>
+<li>What goes wrong if <span class="math inline">\(\mathbb{E}\left[\boldsymbol{x}_n \boldsymbol{x}_n^\intercal\right]\)</span> is not positive definite in R3?</li>
 <li>In terms of the limiting distributions, what is the practical difference between assumptions R2 and R3?</li>
 <li>Assume R1, R2, M1, and M3, except take <span class="math inline">\(\mathbb{E}\left[\varepsilon_n | \boldsymbol{x}_n\right] = \delta \ne 0\)</span>. What happens to <span class="math inline">\(\sqrt{N}(\hat{\beta}- \beta)\)</span> as <span class="math inline">\(N \rightarrow \infty\)</span>?</li>
 <li>Assume R1, R3, M5, and M6. In general, is it true that <span class="math inline">\(\mathbb{E}\left[y_n - \beta^* \boldsymbol{x}_n\right] = 0\)</span>?</li>
