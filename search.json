@@ -344,32 +344,11 @@
     "text": "Alternative projects\nThoughtful deviations from this template are welcome. Some possible examples are:\n\nStudying an advanced regression topic (e.g. double descent, regression trees, Bayesian methods) using real or simulated data\nReproducing an existing study, then changing some of the methods to investigate the stability of the results\nStudy the numerical stability of R’s lm with a detailed analysis of its core linear algebra routines\n\nAlternative proposals should still meaningfully engage with the content of the course. For example, a project that simply fits deep neural networks to some data is inappropriate, but a project that meaningfully compares a deep neural network to regression techniques on the same dataset could be appropriate.\nIf you want to deviate from the template, please describe your proposal in detail on the project form."
   },
   {
-    "objectID": "assignments/final_project.html#datasets",
-    "href": "assignments/final_project.html#datasets",
+    "objectID": "assignments/final_project.html#more-detailed-guidelines",
+    "href": "assignments/final_project.html#more-detailed-guidelines",
     "title": "STAT151A Final Project",
-    "section": "Datasets",
-    "text": "Datasets\nDatasets should be openly available. Furthermore, they should come with detailed and clear descriptions of how the data were collected. Ideally, the information about data collection is in the form of a published paper or study.\n\nGood example: The bodyfat dataset\nBad example: The marketing dataset in An Introduction to Statistical Learning (no real information about how it was collected)\nBad example: Proprietary data from your aunt’s internet startup (not open access)\n\nI hope that good datasets may become part of future versions of this course.\nHere are some potential places to look for datasets:\n\nKaggle\nUCI ML repository\nOpenintro\nFox regression book\nIEEE Dataport (unfortunately, many cost money)\nROS textbook\n\nPlease feel free to share other suggestions with me and with the rest of the class!"
-  },
-  {
-    "objectID": "assignments/final_project.html#questions",
-    "href": "assignments/final_project.html#questions",
-    "title": "STAT151A Final Project",
-    "section": "Questions",
-    "text": "Questions\nQuestions should be about the real world, not framed directly in terms of statistical analyses.\n\nGood example: Can we increase household income by giving cash to poor families?\nGood example: Can we produce a useful predictor of bodyfat from simpler measurements?\nBad example: Is there an association between \\(x_n\\) and \\(y_n\\) in this dataset?\nBad example: Is coefficient \\(\\beta_1\\) in such-and-such a regression statistically significant?\n\nPlease be clear about whether your problem is an inference or a prediction problem (or both, or neither)."
-  },
-  {
-    "objectID": "assignments/final_project.html#attempted-answers",
-    "href": "assignments/final_project.html#attempted-answers",
-    "title": "STAT151A Final Project",
-    "section": "Attempted answers",
-    "text": "Attempted answers\nIn order to attempt to answer your question with linear regression, you have to connect your real-world question with a regression analysis. Please be very clear about\n\nWhat assumptions you need to connect your regression to your question\nWhether those assumptions are reasonable\n\nClear thinking will be more important here than definitive answers to your question."
-  },
-  {
-    "objectID": "assignments/final_project.html#critical-analysis",
-    "href": "assignments/final_project.html#critical-analysis",
-    "title": "STAT151A Final Project",
-    "section": "Critical analysis",
-    "text": "Critical analysis\nFinally, please connect the results of your analysis to your question. Here are some of the kinds of questions you might ask:\n\nWhat is the answer to your question?\nWere you not able to answer your question due to some limitation you found in the data?\nHow might you collect different data to successfully answer your question?\nWhat different statitsical analyses might answer the question better?\nWhat evidence is there that your assumptions are satisfied?\nWhat evidence could you imagine collecting to establish that your assumptions were satisfied?\n\nAgain, clear thinking will be more important here than definitive answers to your question."
+    "section": "More detailed guidelines",
+    "text": "More detailed guidelines\nHere are some more guidelines for the project proposals, as well as what we will look for in a good project.\n\nDatasets\nDatasets should be openly available. Furthermore, they should come with detailed and clear descriptions of how the data were collected. Ideally, the information about data collection is in the form of a published paper or study.\n\nGood example: The bodyfat dataset\nBad example: The marketing dataset in An Introduction to Statistical Learning (no real information about how it was collected)\nBad example: Proprietary data from your aunt’s internet startup (not open access)\n\nI hope that good datasets may become part of future versions of this course.\nHere are some potential places to look for datasets:\n\nKaggle\nUCI ML repository\nOpenintro\nFox regression book\nIEEE Dataport (unfortunately, many cost money)\nROS textbook\n\nPlease feel free to share other suggestions with me and with the rest of the class!\n\n\nQuestions\nQuestions should be about the real world, not framed directly in terms of statistical analyses.\n\nGood example: Can we increase household income by giving cash to poor families?\nGood example: Can we produce a useful predictor of bodyfat from simpler measurements?\nBad example: Is there an association between \\(x_n\\) and \\(y_n\\) in this dataset?\nBad example: Is coefficient \\(\\beta_1\\) in such-and-such a regression statistically significant?\n\nPlease be clear about whether your problem is an inference or a prediction problem (or both, or neither).\n\n\nAttempted answers\nIn order to attempt to answer your question with linear regression, you have to connect your real-world question with a regression analysis. Please be very clear about\n\nWhat assumptions you need to connect your regression to your question\nWhether those assumptions are reasonable\n\nClear thinking will be more important here than definitive answers to your question.\n\n\nCritical analysis\nFinally, please connect the results of your analysis to your question. Here are some of the kinds of questions you might ask:\n\nWhat is the answer to your question?\nWere you not able to answer your question due to some limitation you found in the data?\nHow might you collect different data to successfully answer your question?\nWhat different statitsical analyses might answer the question better?\nWhat evidence is there that your assumptions are satisfied?\nWhat evidence could you imagine collecting to establish that your assumptions were satisfied?\n\nAgain, clear thinking will be more important here than definitive answers to your question."
   },
   {
     "objectID": "assignments/assignments.html",
