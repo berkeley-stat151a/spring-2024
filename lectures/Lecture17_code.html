@@ -780,6 +780,103 @@ The p values are the same in lm:
 mom_hs       5.956524e-07  5.956524e-07</code></pre>
 </div>
 </div>
+<p>We can check that the F-statistic matches as well.</p>
+<div id="3d08878d-8c6f-4411-9d70-e82e5fa4f588" class="cell" data-tags="[]" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+Call:
+lm(formula = kid_score ~ mom_hs, data = kidiq)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-57.55 -13.32   2.68  14.68  58.45 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   77.548      2.059  37.670  &lt; 2e-16 ***
+mom_hs        11.771      2.322   5.069 5.96e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 19.85 on 432 degrees of freedom
+Multiple R-squared:  0.05613,   Adjusted R-squared:  0.05394 
+F-statistic: 25.69 on 1 and 432 DF,  p-value: 5.957e-07</code></pre>
+</div>
+</div>
+<div id="8117abc0-e0d5-4413-bb46-636b4f403d8f" class="cell" data-tags="[]" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>f_stats <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit1)<span class="sc">$</span>fstatistic</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(fit1))</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(f_stats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = kid_score ~ mom_hs, data = kidiq)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-57.55 -13.32   2.68  14.68  58.45 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   77.548      2.059  37.670  &lt; 2e-16 ***
+mom_hs        11.771      2.322   5.069 5.96e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 19.85 on 432 degrees of freedom
+Multiple R-squared:  0.05613,   Adjusted R-squared:  0.05394 
+F-statistic: 25.69 on 1 and 432 DF,  p-value: 5.957e-07
+
+    value     numdf     dendf 
+ 25.68986   1.00000 432.00000 </code></pre>
+</div>
+</div>
+<div id="8ad03b68-1e91-4281-84cf-89fe63ae7439" class="cell" data-tags="[]" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>non_intercept_rows <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">coefficients</span>(fit1)) <span class="sc">!=</span> <span class="st">"(Intercept)"</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>betahat_ni_cov <span class="ot">&lt;-</span> betahat_cov[non_intercept_rows, non_intercept_rows, drop<span class="ot">=</span><span class="cn">FALSE</span>]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>betahat_ni <span class="ot">&lt;-</span> <span class="fu">coefficients</span>(fit1)[non_intercept_rows, drop<span class="ot">=</span><span class="cn">FALSE</span>]</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>f_stat_df <span class="ot">&lt;-</span> <span class="fu">sum</span>(non_intercept_rows)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>f_stat_df2 <span class="ot">&lt;-</span> <span class="fu">length</span>(fit1<span class="sc">$</span>fitted.values) <span class="sc">-</span> <span class="fu">length</span>(<span class="fu">coefficients</span>(fit1))</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>f_stat <span class="ot">&lt;-</span> <span class="fu">t</span>(betahat_ni) <span class="sc">%*%</span> <span class="fu">solve</span>(betahat_ni_cov, betahat_ni) <span class="sc">/</span> f_stat_df</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The f statistic is same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(f_stat, f_stats[<span class="st">"value"</span>]))</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The df statistic is same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(f_stat_df, f_stats[<span class="st">"numdf"</span>]))</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(f_stat_df2, f_stats[<span class="st">"dendf"</span>]))</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">The f test p value is same in lm:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(f_stat, f_stat_df, f_stat_df2)</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"(Note that the summary() p-value is apparently computed in the print statement and not accessible directly)"</span>)</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="co">#print(cbind(qf(f_stat, f_stat_df, f_stats["numdf"]))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+The f statistic is same in lm:
+          [,1]     [,2]
+value 25.68986 25.68986
+
+The df statistic is same in lm:
+      f_stat_df  
+numdf         1 1
+      f_stat_df2    
+dendf        432 432
+
+The f test p value is same in lm:
+(Note that the summary() p-value is apparently computed in the print statement and not accessible directly)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>A matrix: 1 × 1 of type dbl</caption>
+<tbody>
+<tr class="odd">
+<td>5.956524e-07</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
 
