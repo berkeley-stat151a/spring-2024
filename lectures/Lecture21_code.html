@@ -576,7 +576,7 @@ The following object is masked from ‘package:dplyr’:
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">rand_err=</span>sigma_true<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mse_check=</span>(mse <span class="sc">-</span> (var <span class="sc">+</span> bias2)) <span class="sc">/</span> mse) <span class="co"># Sanity check -- should be zero</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7f08be8a-c7c7-4228-9167-69fef0caefd6" class="cell" data-tags="[]" data-execution_count="9">
+<div id="7f08be8a-c7c7-4228-9167-69fef0caefd6" class="cell" data-tags="[]" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mse_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
@@ -602,121 +602,121 @@ The following object is masked from ‘package:dplyr’:
 <tbody>
 <tr class="odd">
 <td>1</td>
-<td>0.472417316</td>
-<td>0.0003772866</td>
-<td>0.4720400294</td>
+<td>0.146653742</td>
+<td>0.0002213418</td>
+<td>0.1464323998</td>
 <td>0.16</td>
-<td>0.000000e+00</td>
+<td>1.892592e-16</td>
 </tr>
 <tr class="even">
 <td>2</td>
-<td>0.243940846</td>
-<td>0.0006108240</td>
-<td>0.2433300218</td>
+<td>0.074854309</td>
+<td>0.0004608875</td>
+<td>0.0743934212</td>
 <td>0.16</td>
 <td>0.000000e+00</td>
 </tr>
 <tr class="odd">
 <td>3</td>
-<td>0.168305308</td>
-<td>0.0010722262</td>
-<td>0.1672330819</td>
+<td>0.071644343</td>
+<td>0.0010123707</td>
+<td>0.0706319724</td>
 <td>0.16</td>
 <td>0.000000e+00</td>
 </tr>
 <tr class="even">
 <td>4</td>
-<td>0.097803699</td>
-<td>0.0014110892</td>
-<td>0.0963926103</td>
+<td>0.048406428</td>
+<td>0.0013482468</td>
+<td>0.0470581812</td>
 <td>0.16</td>
-<td>-1.418943e-16</td>
+<td>-1.433465e-16</td>
 </tr>
 <tr class="odd">
 <td>5</td>
-<td>0.092190556</td>
-<td>0.0018857369</td>
-<td>0.0903048194</td>
+<td>0.035316829</td>
+<td>0.0015635482</td>
+<td>0.0337532805</td>
 <td>0.16</td>
 <td>0.000000e+00</td>
 </tr>
 <tr class="even">
 <td>6</td>
-<td>0.050867473</td>
-<td>0.0022831599</td>
-<td>0.0485843132</td>
+<td>0.034267828</td>
+<td>0.0018181071</td>
+<td>0.0324497210</td>
 <td>0.16</td>
 <td>0.000000e+00</td>
 </tr>
 <tr class="odd">
 <td>11</td>
-<td>0.028200588</td>
-<td>0.0037878183</td>
-<td>0.0244127702</td>
+<td>0.009842504</td>
+<td>0.0034952982</td>
+<td>0.0063472062</td>
 <td>0.16</td>
 <td>0.000000e+00</td>
 </tr>
 <tr class="even">
 <td>16</td>
-<td>0.017579357</td>
-<td>0.0053625205</td>
-<td>0.0122168363</td>
+<td>0.009437281</td>
+<td>0.0049403331</td>
+<td>0.0044969483</td>
 <td>0.16</td>
-<td>0.000000e+00</td>
+<td>-1.838160e-16</td>
 </tr>
 <tr class="odd">
 <td>21</td>
-<td>0.007032880</td>
-<td>0.0067541393</td>
-<td>0.0002787409</td>
+<td>0.006564745</td>
+<td>0.0062305329</td>
+<td>0.0003342116</td>
 <td>0.16</td>
 <td>0.000000e+00</td>
 </tr>
 <tr class="even">
 <td>26</td>
-<td>0.008839166</td>
-<td>0.0084659051</td>
-<td>0.0003732612</td>
+<td>0.008036517</td>
+<td>0.0076410972</td>
+<td>0.0003954201</td>
 <td>0.16</td>
-<td>0.000000e+00</td>
+<td>2.158551e-16</td>
 </tr>
 <tr class="odd">
 <td>31</td>
-<td>0.010136500</td>
-<td>0.0097191539</td>
-<td>0.0004173462</td>
+<td>0.009327299</td>
+<td>0.0088335633</td>
+<td>0.0004937357</td>
 <td>0.16</td>
 <td>0.000000e+00</td>
 </tr>
 <tr class="even">
 <td>36</td>
-<td>0.011982288</td>
-<td>0.0114015197</td>
-<td>0.0005807680</td>
+<td>0.011116211</td>
+<td>0.0106098643</td>
+<td>0.0005063465</td>
 <td>0.16</td>
-<td>0.000000e+00</td>
+<td>1.560535e-16</td>
 </tr>
 <tr class="odd">
 <td>41</td>
-<td>0.013307015</td>
-<td>0.0126870090</td>
-<td>0.0006200062</td>
+<td>0.012837502</td>
+<td>0.0122583948</td>
+<td>0.0005791073</td>
 <td>0.16</td>
 <td>0.000000e+00</td>
 </tr>
 <tr class="even">
 <td>46</td>
-<td>0.014795139</td>
-<td>0.0140844248</td>
-<td>0.0007107138</td>
+<td>0.014278496</td>
+<td>0.0136628511</td>
+<td>0.0006156454</td>
 <td>0.16</td>
-<td>1.172496e-16</td>
+<td>0.000000e+00</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="ca1857d5-d5b7-49e0-8cbe-b294a2267426" class="cell" data-tags="[]" data-execution_count="10">
+<div id="ca1857d5-d5b7-49e0-8cbe-b294a2267426" class="cell" data-tags="[]" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mse_graph <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mse_df, <span class="fu">aes</span>(<span class="at">x=</span>p)) <span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>mse, <span class="at">color=</span><span class="st">"MSE"</span>)) <span class="sc">+</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>var, <span class="at">color=</span><span class="st">"var"</span>)) <span class="sc">+</span></span>
@@ -734,7 +734,7 @@ The following object is masked from ‘package:dplyr’:
 </div>
 </div>
 </div>
-<div id="7415d6e6-d395-4ca4-957e-2a3ce1d72559" class="cell" data-tags="[]" data-execution_count="13">
+<div id="7415d6e6-d395-4ca4-957e-2a3ce1d72559" class="cell" data-tags="[]" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform cross-validation</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>n_folds <span class="ot">&lt;-</span> <span class="dv">10</span></span>
@@ -764,7 +764,7 @@ The following object is masked from ‘package:dplyr’:
 <pre><code>  |======================================================================| 100%</code></pre>
 </div>
 </div>
-<div id="2ba46716-3ea7-4b20-af43-55b23df8ed8a" class="cell" data-tags="[]" data-execution_count="57">
+<div id="2ba46716-3ea7-4b20-af43-55b23df8ed8a" class="cell" data-tags="[]" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>err_cv_agg_df <span class="ot">&lt;-</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    err_cv_df <span class="sc">%&gt;%</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(data_ind, p) <span class="sc">%&gt;%</span></span>
@@ -788,34 +788,40 @@ The following object is masked from ‘package:dplyr’:
 <span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>()</span>
 <span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p_cv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 16</code></pre>
+<pre><code>[1] 11</code></pre>
 </div>
 </div>
-<div id="789ac671-0db9-447f-b402-973d6badcf66" class="cell" data-tags="[]" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(err_cv_agg_df, <span class="fu">aes</span>(<span class="at">x=</span>p)) <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>mse, <span class="at">group=</span>data_ind, <span class="at">color=</span><span class="st">"CV MSE"</span>)) <span class="sc">+</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>p, <span class="at">y=</span>mse <span class="sc">+</span> sigma_true<span class="sc">^</span><span class="dv">2</span>, <span class="at">color=</span><span class="st">"True MSE"</span>), <span class="at">data=</span>mse_df, <span class="at">lwd=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(p, mse), <span class="at">data=</span><span class="fu">filter</span>(err_cv_agg_df, is_mse_min <span class="sc">==</span> <span class="cn">TRUE</span>)) <span class="sc">+</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept=</span>p_true)) <span class="sc">+</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_log10</span>()</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>,</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(err_cv_agg_df, <span class="fu">aes</span>(<span class="at">x=</span>p)) <span class="sc">+</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>p, <span class="at">y=</span>mse, <span class="at">color=</span><span class="st">"Average CV MSE"</span>), <span class="at">data=</span>err_cv_agg_agg_df) <span class="sc">+</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x=</span>p, <span class="at">ymin=</span>mse <span class="sc">-</span> mse_sd, <span class="at">ymax=</span>mse <span class="sc">+</span> mse_sd), <span class="at">data=</span>err_cv_agg_agg_df, <span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>p, <span class="at">y=</span>mse <span class="sc">+</span> sigma_true<span class="sc">^</span><span class="dv">2</span>, <span class="at">color=</span><span class="st">"True MSE"</span>), <span class="at">data=</span>mse_df, <span class="at">lwd=</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>p_cv, <span class="at">y=</span>min_mse <span class="sc">+</span> min_mse_sd)) <span class="sc">+</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>min_p, <span class="at">y=</span>min_mse)) <span class="sc">+</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept=</span>p_true)) <span class="sc">+</span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_log10</span>()</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>, <span class="at">ncol=</span><span class="dv">1</span>)</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fa29706f-b1e9-48cf-995d-43b3464ee3f4" class="cell" data-tags="[]" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(err_cv_agg_df, <span class="fu">aes</span>(<span class="at">x=</span>p)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>mse, <span class="at">group=</span>data_ind, <span class="at">color=</span><span class="st">"CV MSE"</span>)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>p, <span class="at">y=</span>mse <span class="sc">+</span> sigma_true<span class="sc">^</span><span class="dv">2</span>, <span class="at">color=</span><span class="st">"True MSE"</span>), <span class="at">data=</span>mse_df, <span class="at">lwd=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(p, mse), <span class="at">data=</span><span class="fu">filter</span>(err_cv_agg_df, is_mse_min <span class="sc">==</span> <span class="cn">TRUE</span>)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept=</span>p_true)) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="Lecture21_code_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="789ac671-0db9-447f-b402-973d6badcf66" class="cell" data-tags="[]" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(err_cv_agg_df, <span class="fu">aes</span>(<span class="at">x=</span>p)) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>p, <span class="at">y=</span>mse, <span class="at">color=</span><span class="st">"Average CV MSE"</span>), <span class="at">data=</span>err_cv_agg_agg_df) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x=</span>p, <span class="at">ymin=</span>mse <span class="sc">-</span> mse_sd, <span class="at">ymax=</span>mse <span class="sc">+</span> mse_sd), <span class="at">data=</span>err_cv_agg_agg_df, <span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>p, <span class="at">y=</span>mse <span class="sc">+</span> sigma_true<span class="sc">^</span><span class="dv">2</span>, <span class="at">color=</span><span class="st">"True MSE"</span>), <span class="at">data=</span>mse_df, <span class="at">lwd=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>p_cv, <span class="at">y=</span>min_mse <span class="sc">+</span> min_mse_sd)) <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>min_p, <span class="at">y=</span>min_mse)) <span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept=</span>p_true)) <span class="sc">+</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_log10</span>()</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lecture21_code_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
