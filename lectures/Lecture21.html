@@ -215,6 +215,7 @@ window.Quarto = {
   <li><a href="#an-ordering-of-regressors" id="toc-an-ordering-of-regressors" class="nav-link" data-scroll-target="#an-ordering-of-regressors">An ordering of regressors</a></li>
   <li><a href="#the-bias-variance-tradeoff" id="toc-the-bias-variance-tradeoff" class="nav-link" data-scroll-target="#the-bias-variance-tradeoff">The bias-variance tradeoff</a></li>
   <li><a href="#cross-validation-and-model-selection-criteria" id="toc-cross-validation-and-model-selection-criteria" class="nav-link" data-scroll-target="#cross-validation-and-model-selection-criteria">Cross-validation and model selection criteria</a></li>
+  <li><a href="#exact-leave-one-out-for-linear-regression" id="toc-exact-leave-one-out-for-linear-regression" class="nav-link" data-scroll-target="#exact-leave-one-out-for-linear-regression">Exact leave-one-out for linear regression</a></li>
   </ul>
 </nav>
     </div>
@@ -606,6 +607,40 @@ f^*(\cdot) := \argmin{f} \expect{(\y_\new - f(\x_\new))^2},
 \hat{MSE}_{LOO} := \meann \textrm{MSE}_{-n},
 \]</span></p>
 <p>the “leave-one-out” cross-validation estimator.</p>
+</section>
+<section id="exact-leave-one-out-for-linear-regression" class="level1">
+<h1>Exact leave-one-out for linear regression</h1>
+<p>First, I will prove the Sherman–Morrison formula. (You don’t need to memorize this but you might find it interesting.) Let <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> be <span class="math inline">\(N \times K\)</span> matrices, and <span class="math inline">\(\id_N\)</span> and <span class="math inline">\(\id_K\)</span> the <span class="math inline">\(N\times N\)</span> and <span class="math inline">\(K \times K\)</span> identity matrices, respectively. Using the fact that</p>
+<p><span class="math display">\[
+\begin{aligned}
+(\id_N + U V^\trans)^{-1} (\id_N + U V^\trans) = \id_N
+\quad\Rightarrow\quad&amp;
+(\id_N + U V^\trans)^{-1} = \id_N - (\id_N + U V^\trans)^{-1} U V^\trans &amp; \textrm{(i)}\\
+(\id_N + U V^\trans) U = U (\id_K +  V^\trans U)  
+\quad\Rightarrow\quad&amp;
+U (\id_N + V^\trans U )^{-1} = (\id_K + U^\trans V)^{-1} U  &amp; \textrm{(ii)}
+\end{aligned}
+\]</span></p>
+<p>we have that</p>
+<p><span class="math display">\[
+\begin{aligned}
+(\id_N + U V^\trans)^{-1} ={}&amp; \id_N - (\id_N + U V^\trans)^{-1} U V^\trans  &amp; \textrm{by (i)} \\
+={}&amp; \id_N - U  (\id_K + V^\trans U )^{-1} V^\trans  &amp; \textrm{by (ii)}.
+\end{aligned}
+\]</span></p>
+<p>We can use this to prove the Sherman–Morrison formula as a special case when <span class="math inline">\(K=1\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+(A + \uv \vv^\trans)^{-1} ={}&amp;
+(A (\id_N  + A^{-1} \uv \vv^\trans))^{-1}
+\\={}&amp;
+(\id_N + (A^{-1} \uv) \vv^\trans )^{-1} A^{-1}
+\\={}&amp;
+(\id_N - A^{-1} \uv (1 + \vv^\trans A^{-1} \uv)^{-1} \vv^\trans ) A^{-1}
+\\={}&amp;
+A^{-1} - \frac{A^{-1} \uv \vv A^{-1}}{1 + \vv^\trans A^{-1} \uv}
+\end{aligned}
+\]</span></p>
 
 
 <!-- -->
@@ -1376,7 +1411,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>the "leave-one-out" cross-validation estimator.</span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exact leave-one-out for linear regression</span></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>First, I will prove the Sherman–Morrison formula.  (You don't</span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>need to memorize this but you might find it interesting.)  Let $U$ and $V$ be $N \times K$ matrices,</span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>and $\id_N$ and $\id_K$ the $N\times N$ and $K \times K$ identity matrices, respectively.</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>Using the fact that</span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>(\id_N + U V^\trans)^{-1} (\id_N + U V^\trans) = \id_N</span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>\quad\Rightarrow\quad&amp;</span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>(\id_N + U V^\trans)^{-1} = \id_N - (\id_N + U V^\trans)^{-1} U V^\trans &amp; \textrm{(i)}<span class="sc">\\</span></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>(\id_N + U V^\trans) U = U (\id_K +  V^\trans U)  </span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>\quad\Rightarrow\quad&amp;</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>U (\id_N + V^\trans U )^{-1} = (\id_K + U^\trans V)^{-1} U  &amp; \textrm{(ii)} </span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>we have that</span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>(\id_N + U V^\trans)^{-1} ={}&amp; \id_N - (\id_N + U V^\trans)^{-1} U V^\trans  &amp; \textrm{by (i)} <span class="sc">\\</span></span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a> ={}&amp; \id_N - U  (\id_K + V^\trans U )^{-1} V^\trans  &amp; \textrm{by (ii)}.</span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>We can use this to prove the Sherman–Morrison formula as a special case when $K=1$.</span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>(A + \uv \vv^\trans)^{-1} ={}&amp;</span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>(A (\id_N  + A^{-1} \uv \vv^\trans))^{-1} </span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp; </span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>(\id_N + (A^{-1} \uv) \vv^\trans )^{-1} A^{-1}</span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp; </span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>(\id_N - A^{-1} \uv (1 + \vv^\trans A^{-1} \uv)^{-1} \vv^\trans ) A^{-1}</span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp; </span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>A^{-1} - \frac{A^{-1} \uv \vv A^{-1}}{1 + \vv^\trans A^{-1} \uv}</span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
