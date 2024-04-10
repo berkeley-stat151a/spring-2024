@@ -299,18 +299,24 @@ MSE_{LOO} := \frac{1}{N} \sum_{n=1}^N(y_n - \boldsymbol{x}_n^\intercal\hat{\bold
 </section>
 <section id="b-1" class="level4">
 <h4 class="anchored" data-anchor-id="b-1">b</h4>
-<p>Using the Sherman-Woodbury formula, find an explicit expression for <span class="math display">\[
-(\boldsymbol{X}^\intercal\boldsymbol{X}- \boldsymbol{x}_n \boldsymbol{x}_n^\intercal)^{-1}.
+<p>Using the Sherman-Woodbury formula, derive the following expression: <span class="math display">\[
+(\boldsymbol{X}^\intercal\boldsymbol{X}- \boldsymbol{x}_n \boldsymbol{x}_n^\intercal)^{-1} =
+(\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} + \frac{(\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} \boldsymbol{x}_n \boldsymbol{x}_n^\intercal(\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} }{1 - h_n}
 \]</span></p>
-<p>in terms of <span class="math inline">\(\boldsymbol{x}_n\)</span>, <span class="math inline">\(y_n\)</span>, <span class="math inline">\(h_n\)</span>, and <span class="math inline">\((\boldsymbol{X}^\intercal\boldsymbol{X})^{-1}\)</span>.</p>
 </section>
 <section id="c-1" class="level4">
 <h4 class="anchored" data-anchor-id="c-1">c</h4>
-<p>Combine (a) and (b) to derive an explicit expression for <span class="math inline">\(\hat{\boldsymbol{\beta}}_{-n}\)</span> in terms of <span class="math inline">\(\boldsymbol{x}_n\)</span>, <span class="math inline">\(y_n\)</span>, <span class="math inline">\(h_n\)</span>, and <span class="math inline">\((\boldsymbol{X}^\intercal\boldsymbol{X})^{-1}\)</span>.</p>
+<p>Combine (a) and (b) to derive the following explicit expression for <span class="math inline">\(\hat{\boldsymbol{\beta}}_{-n}\)</span>:</p>
+<p><span class="math display">\[
+\hat{\boldsymbol{\beta}}_{-n} = \hat{\boldsymbol{\beta}}+ (\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} \boldsymbol{x}_n \frac{h_n}{1 - h_n} \hat{\varepsilon}_n
+\]</span></p>
 </section>
 <section id="d-1" class="level4">
 <h4 class="anchored" data-anchor-id="d-1">d</h4>
-<p>Using (c), derive an explicit expression for <span class="math inline">\(\boldsymbol{x}_n^\intercal\hat{\boldsymbol{\beta}}_{-n}\)</span> that depends only on <span class="math inline">\(h_n\)</span> and <span class="math inline">\(\hat{y}_n = \hat{\boldsymbol{\beta}}^\intercal\boldsymbol{x}_n\)</span>, where <span class="math inline">\(\hat{y}_n\)</span> is computed using the full dataset without leaving out row <span class="math inline">\(n\)</span>.</p>
+<p>Using (c), derive the following explicit expression the leave-one-out error on the <span class="math inline">\(n\)</span>–th observation:</p>
+<p><span class="math display">\[
+y_n - \boldsymbol{x}_n^\intercal\hat{\boldsymbol{\beta}}_{-n} = \frac{\hat{\varepsilon}_n}{1 - h_n}.
+\]</span></p>
 </section>
 <section id="e" class="level4">
 <h4 class="anchored" data-anchor-id="e">e</h4>
