@@ -223,7 +223,9 @@ ESS :={}&amp; \hat{\boldsymbol{Y}}^\intercal\hat{\boldsymbol{Y}}&amp; \textrm{(E
 R^2 :={}&amp; \frac{ESS}{TSS}.
 \end{aligned}
 \]</span></p>
-<ul>
+<section id="a" class="level4">
+<h4 class="anchored" data-anchor-id="a">a</h4>
+<ol type="1">
 <li>Prove that <span class="math inline">\(RSS + ESS = TSS\)</span>.</li>
 <li>Express <span class="math inline">\(R^2\)</span> in terms of <span class="math inline">\(TSS\)</span> and <span class="math inline">\(RSS\)</span>.</li>
 <li>What is <span class="math inline">\(R^2\)</span> when we include no regressors? (<span class="math inline">\(P = 0\)</span>)</li>
@@ -233,33 +235,35 @@ R^2 :={}&amp; \frac{ESS}{TSS}.
 <li>Can <span class="math inline">\(R^2\)</span> ever increase when we add a regressor? If so, how?</li>
 <li>Does a high <span class="math inline">\(R^2\)</span> mean the regression is correctly specified? Why or why not?</li>
 <li>Does a low <span class="math inline">\(R^2\)</span> mean the regression is incorrectly specified? Why or why not?</li>
-</ul>
+</ol>
+</section>
+<section id="b" class="level4">
+<h4 class="anchored" data-anchor-id="b">b</h4>
 <p>The next questions will be about the F-test statistic for the null <span class="math inline">\(H_0: \boldsymbol{\beta}= \boldsymbol{0}\)</span>,</p>
 <p><span class="math display">\[
 \phi = \hat{\beta}^\intercal(\boldsymbol{X}^\intercal\boldsymbol{X}) \hat{\beta}/ (P \hat{\sigma}^2)
 \]</span></p>
-<ul>
+<ol type="1">
 <li>Write the F-test statistic <span class="math inline">\(\phi\)</span> in terms of <span class="math inline">\(TSS\)</span> and <span class="math inline">\(RSS\)</span>, and <span class="math inline">\(P\)</span>.</li>
 <li>Can <span class="math inline">\(\phi\)</span> ever decrease when we add a regressor? If so, how?</li>
 <li>Can <span class="math inline">\(\phi\)</span> ever stay the same when we add a regressor? If so, how?</li>
 <li>Can <span class="math inline">\(\phi\)</span> ever increase when we add a regressor? If so, how?</li>
-</ul>
+</ol>
+</section>
 </section>
 <section id="omitted-variable-bias" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Omitted variable bias</h1>
-<p>For this problem, let <span class="math inline">\((\boldsymbol{x}_n, \boldsymbol{z}_n, y_n)\)</span> be IID random variables, where <span class="math inline">\(\boldsymbol{x}_n \in \mathbb{R}^{P_X}\)</span> and <span class="math inline">\(\boldsymbol{z}_n \in \mathbb{R}^{P_Z}\)</span>. Suppose that <span class="math inline">\(\boldsymbol{x}_n\)</span> and <span class="math inline">\(\boldsymbol{z}_n\)</span> are uncorrelated, so that <span class="math inline">\(\mathbb{E}\left[\boldsymbol{x}_n \boldsymbol{z}_n^\intercal\right] = \boldsymbol{0}\)</span>.</p>
+<p>For this problem, let <span class="math inline">\((\boldsymbol{x}_n, \boldsymbol{z}_n, y_n)\)</span> be IID random variables, where <span class="math inline">\(\boldsymbol{x}_n \in \mathbb{R}^{P_X}\)</span> and <span class="math inline">\(\boldsymbol{z}_n \in \mathbb{R}^{P_Z}\)</span>. Suppose that <span class="math inline">\(\boldsymbol{x}_n\)</span> and <span class="math inline">\(\boldsymbol{z}_n\)</span> satisfy <span class="math inline">\(\mathbb{E}\left[\boldsymbol{x}_n \boldsymbol{z}_n^\intercal\right] = \boldsymbol{0}\)</span>.</p>
 <p>Let <span class="math inline">\(y_n = \boldsymbol{x}_n^\intercal\beta + \boldsymbol{z}_n^\intercal\gamma + \varepsilon_n\)</span>, where <span class="math inline">\(\varepsilon_n\)</span> is mean zero, unit variance, and indepdendent of <span class="math inline">\(\boldsymbol{x}_n\)</span> and <span class="math inline">\(\boldsymbol{z}_n\)</span>.</p>
-<section id="a" class="level4">
-<h4 class="anchored" data-anchor-id="a">a</h4>
+<section id="a-1" class="level4">
+<h4 class="anchored" data-anchor-id="a-1">a</h4>
 <p>Take <span class="math inline">\(P_X = P_Z = 1\)</span> (i.e.&nbsp;scalar regressors). Show that there exists <span class="math inline">\(x_n\)</span> and <span class="math inline">\(z_n\)</span> such that <span class="math inline">\(\mathbb{E}\left[x_n z_n\right] = 0\)</span> but <span class="math inline">\(\mathbb{E}\left[z_n \vert x_n\right] \ne 0\)</span> for some <span class="math inline">\(x_n\)</span>. (A single counterexample will be enough.)</p>
 </section>
-<section id="b" class="level4">
-<h4 class="anchored" data-anchor-id="b">b</h4>
-<p>Now return to the general case. Let <span class="math inline">\(\hat{\beta}= (\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} \boldsymbol{X}^\intercal\boldsymbol{Y}\)</span> denote the OLS estimator from the regression on <span class="math inline">\(\boldsymbol{X}\)</span> alone. Derive an expression for <span class="math inline">\(\mathbb{E}\left[\hat{\beta}\right]\)</span>, where the expectation is taken over <span class="math inline">\(\boldsymbol{X}\)</span>, <span class="math inline">\(\boldsymbol{Y}\)</span>, and <span class="math inline">\(\boldsymbol{Z}\)</span>.</p>
-<p>Hint: by the Tower property, <span class="math display">\[
-\mathbb{E}\left[(\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} \boldsymbol{X}^\intercal\boldsymbol{Z}\right] =
-  \mathbb{E}\left[(\boldsymbol{X}^\intercal\boldsymbol{X})^{-1}\boldsymbol{X}^\intercal\mathbb{E}\left[\boldsymbol{Z}\vert \boldsymbol{X}\right]\right].
-\]</span></p>
+<section id="b-1" class="level4">
+<h4 class="anchored" data-anchor-id="b-1">b</h4>
+<p>Now return to the general case. Let <span class="math inline">\(\hat{\beta}= (\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} \boldsymbol{X}^\intercal\boldsymbol{Y}\)</span> denote the OLS estimator from the regression on <span class="math inline">\(\boldsymbol{X}\)</span> alone.</p>
+<p>For simplicity, assume that <span class="math inline">\(\frac{1}{N} \sum_{n=1}^N\boldsymbol{X}^\intercal\boldsymbol{Z}= \boldsymbol{0}\)</span>. (Note that, by the LLN, <span class="math inline">\(\frac{1}{N} \sum_{n=1}^N\boldsymbol{X}^\intercal\boldsymbol{Z}\rightarrow \boldsymbol{0}\)</span> as <span class="math inline">\(N \rightarrow \infty\)</span>, so this is a reasonable approximate assumption.)</p>
+<p>Derive an expression for <span class="math inline">\(\mathbb{E}\left[\hat{\beta}\right]\)</span>, where the expectation is taken over <span class="math inline">\(\boldsymbol{X}\)</span>, <span class="math inline">\(\boldsymbol{Y}\)</span>, and <span class="math inline">\(\boldsymbol{Z}\)</span>.</p>
 </section>
 <section id="c" class="level4">
 <h4 class="anchored" data-anchor-id="c">c</h4>
@@ -279,9 +283,8 @@ R^2 :={}&amp; \frac{ESS}{TSS}.
 <p>This homework problem derives a closed-form estimate of the leave-one-out cross-validation error for regression. We will use the Sherman-Woodbury formula. Let <span class="math inline">\(A\)</span> denote an invertible matrix, and <span class="math inline">\(\boldsymbol{u}\)</span> and <span class="math inline">\(\boldsymbol{v}\)</span> vectors the same length as <span class="math inline">\(A\)</span>. Then</p>
 <p><span class="math display">\[
 (A + \boldsymbol{u}\boldsymbol{v}^\intercal)^{-1} ={}
-A^{-1} - \frac{A^{-1} \boldsymbol{u}\boldsymbol{v}A^{-1}}{1 + \boldsymbol{v}^\intercal A^{-1} \boldsymbol{u}}.
+A^{-1} - \frac{A^{-1} \boldsymbol{u}\boldsymbol{v}^\intercal A^{-1}}{1 + \boldsymbol{v}^\intercal A^{-1} \boldsymbol{u}}.
 \]</span></p>
-<p>(For reference, I provide a proof in the notes for lecture 21.)</p>
 <p>We will also use the following definition of a “leverage score,” <span class="math inline">\(h_n := \boldsymbol{x}_n^\intercal(\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} \boldsymbol{x}_n\)</span>. We will discuss leverage scores more in the last lecture, but for now it’s enough that you know what it is. Note that <span class="math inline">\(h_n = (\boldsymbol{X}(\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} \boldsymbol{X}^\intercal)_{nn}\)</span> is the <span class="math inline">\(n\)</span>–th diagonal entry of the projection matrix <span class="math inline">\(\underset{\boldsymbol{X}}{\boldsymbol{P}}\)</span>.</p>
 <p>Let <span class="math inline">\(\hat{\boldsymbol{\beta}}_{-n}\)</span> denote the estimate of <span class="math inline">\(\hat{\beta}\)</span> with the datapoint <span class="math inline">\(n\)</span> left out. For leave-one-out CV, we want to estimate</p>
 <p><span class="math display">\[
@@ -289,16 +292,16 @@ MSE_{LOO} := \frac{1}{N} \sum_{n=1}^N(y_n - \boldsymbol{x}_n^\intercal\hat{\bold
 \]</span></p>
 <p>Note that doing so naively requries computing <span class="math inline">\(N\)</span> different regressions. We will derive a much more efficient formula.</p>
 <p>Let <span class="math inline">\(\boldsymbol{X}_{-n}\)</span> denote the <span class="math inline">\(\boldsymbol{X}\)</span> matrix with row <span class="math inline">\(n\)</span> left out, and <span class="math inline">\(\boldsymbol{Y}_{-n}\)</span> denote the <span class="math inline">\(\boldsymbol{Y}\)</span> matrix with row <span class="math inline">\(n\)</span> left out.</p>
-<section id="a-1" class="level4">
-<h4 class="anchored" data-anchor-id="a-1">a</h4>
+<section id="a-2" class="level4">
+<h4 class="anchored" data-anchor-id="a-2">a</h4>
 <p>Prove that</p>
 <p><span class="math display">\[
 \hat{\boldsymbol{\beta}}_{-n} = (\boldsymbol{X}_{-n}^\intercal\boldsymbol{X}_{-n})^{-1} \boldsymbol{X}_{-n}^\intercal\boldsymbol{Y}_{-n}
 = (\boldsymbol{X}^\intercal\boldsymbol{X}- \boldsymbol{x}_n \boldsymbol{x}_n^\intercal)^{-1} (\boldsymbol{X}^\intercal\boldsymbol{Y}- \boldsymbol{x}_n y_n)
 \]</span></p>
 </section>
-<section id="b-1" class="level4">
-<h4 class="anchored" data-anchor-id="b-1">b</h4>
+<section id="b-2" class="level4">
+<h4 class="anchored" data-anchor-id="b-2">b</h4>
 <p>Using the Sherman-Woodbury formula, derive the following expression: <span class="math display">\[
 (\boldsymbol{X}^\intercal\boldsymbol{X}- \boldsymbol{x}_n \boldsymbol{x}_n^\intercal)^{-1} =
 (\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} + \frac{(\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} \boldsymbol{x}_n \boldsymbol{x}_n^\intercal(\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} }{1 - h_n}
@@ -308,7 +311,7 @@ MSE_{LOO} := \frac{1}{N} \sum_{n=1}^N(y_n - \boldsymbol{x}_n^\intercal\hat{\bold
 <h4 class="anchored" data-anchor-id="c-1">c</h4>
 <p>Combine (a) and (b) to derive the following explicit expression for <span class="math inline">\(\hat{\boldsymbol{\beta}}_{-n}\)</span>:</p>
 <p><span class="math display">\[
-\hat{\boldsymbol{\beta}}_{-n} = \hat{\boldsymbol{\beta}}- (\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} \boldsymbol{x}_n \frac{h_n}{1 - h_n} \hat{\varepsilon}_n
+\hat{\boldsymbol{\beta}}_{-n} = \hat{\boldsymbol{\beta}}- (\boldsymbol{X}^\intercal\boldsymbol{X})^{-1} \boldsymbol{x}_n \frac{1}{1 - h_n} \hat{\varepsilon}_n
 \]</span></p>
 </section>
 <section id="d-1" class="level4">
@@ -328,7 +331,7 @@ MSE_{LOO} := \frac{1}{N} \sum_{n=1}^N\frac{\hat{\varepsilon}_n^2}{(1 - h_n)^2},
 </section>
 <section id="f" class="level4">
 <h4 class="anchored" data-anchor-id="f">f</h4>
-<p>Prove that <span class="math inline">\(\sum_{n=1}^Nh_n = N - P\)</span>, and <span class="math inline">\(0 \le h_n \le 1\)</span>. Hint: if <span class="math inline">\(\boldsymbol{v}\)</span> is a vector with a <span class="math inline">\(1\)</span> in entry <span class="math inline">\(n\)</span> and <span class="math inline">\(0\)</span> otherwise, then <span class="math inline">\(h_n = \boldsymbol{v}^\intercal\underset{\boldsymbol{X}}{\boldsymbol{P}} \boldsymbol{v}\)</span>, and projection cannot increase a vector’s norm. Recall also that <span class="math inline">\(\mathrm{trace}\left(\underset{\boldsymbol{X}}{\boldsymbol{P}}\right) = N - P\)</span>.</p>
+<p>Prove that <span class="math inline">\(\sum_{n=1}^Nh_n = P\)</span>, and <span class="math inline">\(0 \le h_n \le 1\)</span>. Hint: if <span class="math inline">\(\boldsymbol{v}\)</span> is a vector with a <span class="math inline">\(1\)</span> in entry <span class="math inline">\(n\)</span> and <span class="math inline">\(0\)</span> otherwise, then <span class="math inline">\(h_n = \boldsymbol{v}^\intercal\underset{\boldsymbol{X}}{\boldsymbol{P}} \boldsymbol{v}\)</span>, and projection cannot increase a vector’s norm. Recall also that <span class="math inline">\(\mathrm{trace}\left(\underset{\boldsymbol{X}}{\boldsymbol{P}}\right) = P\)</span>.</p>
 </section>
 <section id="g" class="level4">
 <h4 class="anchored" data-anchor-id="g">g</h4>
