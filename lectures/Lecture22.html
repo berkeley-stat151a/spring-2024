@@ -522,9 +522,9 @@ Instead, we might invoke the FWL theorem, center the response and regressors at 
 <p><span class="math display">\[
 \begin{aligned}
 \expect{\y_\new - \xv_\new^\trans \betahat(\lambda)}  ={}&amp;
-\xv_\new^\trans \left(\expect{\betahat(\lambda)} - \beta\right)
+\xv_\new^\trans \left(\beta - \expect{\betahat(\lambda)}\right)
 \\={}&amp;
-\xv_\new^\trans \left(\left(\X^\trans \X + \lambda \id \right)^{-1} (\X^\trans \X) - \id \right) \beta
+\xv_\new^\trans \left(\id - \left(\X^\trans \X + \lambda \id \right)^{-1} (\X^\trans \X)\right) \beta
 \end{aligned}
 \]</span></p>
 <p>That is, as <span class="math inline">\(\lambda\)</span> grows, <span class="math inline">\(\betahat(\lambda)\)</span> becomes biased. However, by the same reasoning as in the standard case, under homoskedasticity,</p>
@@ -580,7 +580,12 @@ Instead, we might invoke the FWL theorem, center the response and regressors at 
 \left(\X^\trans \X + \lambda \id  \right)^{-1}
     \X^\trans \Y = \betahat(\lambda).
 \]</span></p>
-<p>This gives the ridge procedure some interpretability. First of all, the use of the ridge penalty corresponds to a prior belief that <span class="math inline">\(\beta\)</span> is not too large. Second, the ridge penalty you use reflects the relative scale of the noise variance and prior variance.</p>
+<p>This gives the ridge procedure some interpretability. First of all, the use of the ridge penalty corresponds to a prior belief that <span class="math inline">\(\beta\)</span> is not too large.</p>
+<p>Second, the ridge penalty you use reflects the relative scale of the noise variance and prior variance in a way that makes sense:</p>
+<ul>
+<li>If <span class="math inline">\(\sigma \gg \sigma_\beta\)</span>, then the data is noisy (relative to our prior beliefs). We should not take fitting the data too seriously, and so should estimate a smaller <span class="math inline">\(\beta\)</span> than <span class="math inline">\(\betahat\)</span>. And indeed, in this case <span class="math inline">\(\lambda\)</span> is large, a large <span class="math inline">\(\lambda\)</span> shrinks the estimated coefficients.</li>
+<li>If <span class="math inline">\(\sigma_\beta \gg \sigma\)</span>, then we find it plausible that <span class="math inline">\(\beta\)</span> is very large (relative to the variability in our data). We should not take our prior beliefs too seriously, and estimate a coefficient that matches <span class="math inline">\(\betahat\)</span>. And indeed, in this case, <span class="math inline">\(\lambda\)</span> is small, and we do not shrink the coefficients much.</li>
+</ul>
 
 
 <!-- -->
@@ -1251,9 +1256,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
 <span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>\expect{\y_\new - \xv_\new^\trans \betahat(\lambda)}  ={}&amp;</span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>\xv_\new^\trans \left(\expect{\betahat(\lambda)} - \beta\right) </span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>\xv_\new^\trans \left(\beta - \expect{\betahat(\lambda)}\right) </span>
 <span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp;</span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>\xv_\new^\trans \left(\left(\X^\trans \X + \lambda \id \right)^{-1} (\X^\trans \X) - \id \right) \beta</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>\xv_\new^\trans \left(\id - \left(\X^\trans \X + \lambda \id \right)^{-1} (\X^\trans \X)\right) \beta</span>
 <span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
 <span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
@@ -1337,8 +1342,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>This gives the ridge procedure some interpretability.  First of all, the</span>
 <span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>use of the ridge penalty corresponds to a prior belief that $\beta$ is not</span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>too large.  Second, the ridge penalty you use reflects the relative scale</span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>of the noise variance and prior variance.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>too large.  </span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>Second, the ridge penalty you use reflects the relative scale</span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>of the noise variance and prior variance in a way that makes sense:</span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If $\sigma \gg \sigma_\beta$, then the data is </span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a>noisy (relative to our prior beliefs).  We should not take fitting the data too seriously, and</span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>so should estimate a smaller $\beta$ than $\betahat$.  And indeed, in this case</span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>$\lambda$ is large, a large $\lambda$ shrinks the estimated coefficients.</span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If $\sigma_\beta \gg \sigma$, then we find it plausible that $\beta$ is very large</span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>(relative to the variability in our data).  We should not take our prior beliefs</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>too seriously, and estimate a coefficient that matches $\betahat$.  And</span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>indeed, in this case, $\lambda$ is small, and we do not shrink the coefficients much.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
