@@ -360,14 +360,19 @@ $$
 </ul>
 <p>Recall that the OLS estimator of <span class="math inline">\(\y_n \sim \beta^\trans \xv_n\)</span> is <span class="math inline">\(\betavhat = (\X^\trans \X)^{-1} \X^\trans \Y\)</span>.</p>
 <div style="page-break-after: always;"></div>
-<section id="a" class="level4">
-<h4 class="anchored" data-anchor-id="a">(a)</h4>
-<p>For this quiz, we will take <span class="math inline">\(\a_n \sim \gauss{0, 1}\)</span> IID. Take <span class="math inline">\(b_n = \a_n^2\)</span>. Note that the pairs <span class="math inline">\((a_n, b_n)\)</span> are IID, but <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span> are not independent.</p>
-<p>Let <span class="math inline">\(\xv_n = (a_n, b_n)^\trans\)</span>. Let <span class="math inline">\(\betav = (\beta_a, \beta_b)^\trans\)</span>. Let <span class="math inline">\(\y_n = \betav^\trans \xv_n + \res_n\)</span>, where <span class="math inline">\(\res_n\)</span> are IID with <span class="math inline">\(\expect{\res_n} = 0\)</span> and <span class="math inline">\(\var{\res_n} &lt; \infty\)</span>.</p>
+<p>For this quiz, we will take</p>
+<p><span class="math display">\[
+\a_n \sim \gauss{0, 1} \textrm{ IID} \quad\textrm{and}\quad
+b_n = \a_n^2.
+\]</span></p>
+<p>Note that the pairs <span class="math inline">\((a_n, b_n)\)</span> are IID, but <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span> are not independent.</p>
+<p>Let <span class="math inline">\(\xv_n = (a_n, b_n)^\trans\)</span>. Let <span class="math inline">\(\betav = (\beta_a, \beta_b)^\trans\)</span>. Let <span class="math inline">\(\y_n = \betav^\trans \xv_n + \res_n\)</span>, where <span class="math inline">\(\res_n\)</span> are IID with <span class="math inline">\(\expect{\res_n} = 0\)</span> and <span class="math inline">\(\var{\res_n} &lt; \infty\)</span>. The residuals <span class="math inline">\(\res_n\)</span> and <span class="math inline">\(\a_n\)</span> are all independent of one another.</p>
 <p>Note that <span class="math inline">\(a_n\)</span>, <span class="math inline">\(b_n\)</span>, <span class="math inline">\(\beta_a\)</span>, and <span class="math inline">\(\beta_b\)</span> are all scalars, and both <span class="math inline">\(\xv_n\)</span> and <span class="math inline">\(\betav\)</span> are <span class="math inline">\(2\)</span>–vectors.</p>
 <p>Let <span class="math inline">\(\betavhat\)</span> denote the OLS estimator of <span class="math inline">\(\y_n \sim \betav^\trans \xv_n\)</span>, that is, of <span class="math inline">\(y_n\)</span> regressed on both <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span>. <strong>Note that the regression for <span class="math inline">\(\betavhat\)</span> does not include a constant.</strong></p>
-<p>Let <span class="math inline">\(\alphahat\)</span> denote the OLS estimator of <span class="math inline">\(\y_n \sim \alpha a_n\)</span>, that is, of <span class="math inline">\(y_n\)</span> regressed on <span class="math inline">\(a_n\)</span> alone. <strong>Note that the regression for <span class="math inline">\(\gammahat\)</span> does not include a constant, and does not include <span class="math inline">\(b_n\)</span>.</strong></p>
+<p>Let <span class="math inline">\(\alphahat\)</span> denote the OLS estimator of <span class="math inline">\(\y_n \sim \alpha a_n\)</span>, that is, of <span class="math inline">\(y_n\)</span> regressed on <span class="math inline">\(a_n\)</span> alone. <strong>Note that the regression for <span class="math inline">\(\alphahat\)</span> does not include a constant, and does not include <span class="math inline">\(b_n\)</span>.</strong></p>
 <hr>
+<section id="a" class="level4">
+<h4 class="anchored" data-anchor-id="a">(a)</h4>
 <p>Prove that, as <span class="math inline">\(N \rightarrow \infty\)</span>,</p>
 <ul>
 <li><span class="math inline">\(\alphahat \rightarrow \beta_a\)</span> and</li>
@@ -388,9 +393,9 @@ $$
 <h4 class="anchored" data-anchor-id="c">(c)</h4>
 <p>For part (c), let <span class="math inline">\(\yhat_\new' = \betav^\trans \xv_\new\)</span>. <strong>Note that <span class="math inline">\(\yhat_\new'\)</span> is formed with <span class="math inline">\(\betav\)</span>, not <span class="math inline">\(\betavhat\)</span>.</strong> Prove that</p>
 <p><span class="math display">\[
-\expect{\y_\new' - \yhat_\new} = 0,
+\expect{\y_\new - \yhat'_\new} = 0,
 \]</span></p>
-<p>where the expectation is taken over <span class="math inline">\(a_\new\)</span>, <span class="math inline">\(b_\new\)</span>, and <span class="math inline">\(\res_\new\)</span>. That is, when you include <span class="math inline">\(b_n\)</span> from the regression, the predictions evalutead at the limit <span class="math inline">\(\betav\)</span> are unbiased.</p>
+<p>where the expectation is taken over <span class="math inline">\(a_\new\)</span>, <span class="math inline">\(b_\new\)</span>, and <span class="math inline">\(\res_\new\)</span>. That is, when you include <span class="math inline">\(b_n\)</span> from the regression, the predictions evaluated at the limit <span class="math inline">\(\betav\)</span> are unbiased.</p>
 
 
 </section>
