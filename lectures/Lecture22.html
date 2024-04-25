@@ -535,7 +535,10 @@ Instead, we might invoke the FWL theorem, center the response and regressors at 
 \]</span></p>
 <p>That is, as <span class="math inline">\(\lambda\)</span> grows, <span class="math inline">\(\betahat(\lambda)\)</span> becomes biased. However, by the same reasoning as in the standard case, under homoskedasticity,</p>
 <p><span class="math display">\[
-\cov{\betahat(\lambda)}  = \sigma^2 \left(\X^\trans \X + \lambda \id \right)^{-1},
+\cov{\betahat(\lambda)}  = \sigma^2
+\left(\X^\trans \X + \lambda \id \right)^{-1}
+  (\X^\trans \X)
+\left(\X^\trans \X + \lambda \id \right)^{-1} ,
 \]</span></p>
 <p>which is smaller that <span class="math inline">\(\cov{\betahat}\)</span> in the sense that <span class="math inline">\(\cov{\betahat} - \cov{\betahat(\lambda)}\)</span> is a positive definite matrix for <span class="math inline">\(\lambda &gt; 0\)</span> and full-rank <span class="math inline">\(\X\)</span>. In this sense, the family <span class="math inline">\(\betahat(\lambda)\)</span> is a one-dimensional family that trades off bias and variance. We can thus use the variable selection procedures of the previous lecture to choose <span class="math inline">\(\lambda\)</span> that minimizes estimated MSE.</p>
 </section>
@@ -1272,95 +1275,98 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>by the same reasoning as in the standard case, under homoskedasticity,</span>
 <span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>\cov{\betahat(\lambda)}  = \sigma^2 \left(\X^\trans \X + \lambda \id \right)^{-1},</span>
-<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>which is smaller that $\cov{\betahat}$ in the sense that</span>
-<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>$\cov{\betahat} - \cov{\betahat(\lambda)}$ is a positive definite matrix</span>
-<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>for $\lambda &gt; 0$ and full-rank $\X$.  In this sense,</span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>the family $\betahat(\lambda)$ is a one-dimensional family</span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>that trades off bias and variance.  We can thus use the variable</span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>selection procedures of the previous lecture to choose $\lambda$ that</span>
-<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>minimizes estimated MSE.</span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>\cov{\betahat(\lambda)}  = \sigma^2 </span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>\left(\X^\trans \X + \lambda \id \right)^{-1}</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>  (\X^\trans \X)</span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>\left(\X^\trans \X + \lambda \id \right)^{-1} ,</span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>which is smaller that $\cov{\betahat}$ in the sense that</span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>$\cov{\betahat} - \cov{\betahat(\lambda)}$ is a positive definite matrix</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>for $\lambda &gt; 0$ and full-rank $\X$.  In this sense,</span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>the family $\betahat(\lambda)$ is a one-dimensional family</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>that trades off bias and variance.  We can thus use the variable</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>selection procedures of the previous lecture to choose $\lambda$ that</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>minimizes estimated MSE.</span>
 <span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="fu"># A Bayesian posterior</span></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>Another way to interpret the ridge penalty is as a Bayesian posterior mean.  If</span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>\betav \sim \gauss{\zerov, \sigma_\beta^2 \id}</span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>\quad\textrm{and}\quad</span>
-<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>\Y \vert \betav, \X \sim \gauss{\X \betav, \sigma^2 \id},</span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>then</span>
-<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>\betav \vert \Y, \X \sim \gauss{</span>
-<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>  \left(\X^\trans \X + \frac{\sigma^{2}}{\sigma_\beta^{2}} \id  \right)^{-1} </span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>    \X^\trans \Y,</span>
-<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>  \sigma^{2}\left( \X^\trans \X + \frac{\sigma^{2}}{\sigma_\beta^{2}} \id  \right)^{-1} }.</span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>One way to derive this is to recognize that, if $\betav \sim \gauss{\mu, \Sigma}$,</span>
-<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>then</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a><span class="fu"># A Bayesian posterior</span></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>Another way to interpret the ridge penalty is as a Bayesian posterior mean.  If</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>\betav \sim \gauss{\zerov, \sigma_\beta^2 \id}</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>\quad\textrm{and}\quad</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>\Y \vert \betav, \X \sim \gauss{\X \betav, \sigma^2 \id},</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>then</span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>\betav \vert \Y, \X \sim \gauss{</span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>  \left(\X^\trans \X + \frac{\sigma^{2}}{\sigma_\beta^{2}} \id  \right)^{-1} </span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>    \X^\trans \Y,</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>  \sigma^{2}\left( \X^\trans \X + \frac{\sigma^{2}}{\sigma_\beta^{2}} \id  \right)^{-1} }.</span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>\log \prob{\betav | \mu, \Sigma} =</span>
-<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>  -\frac{1}{2} \beta^\trans \Sigma^{-1} \beta + \beta^\trans \Sigma^{-1} \mu +</span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>  \textrm{Terms that do not depend on }\beta.</span>
-<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>We can write out the distribution of $\prob{\beta | \Y} = \prob{\beta, \Y} / \prob{\Y}$,</span>
-<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>gather terms that depend on $\beta$, and read off the mean and covariance:</span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>One way to derive this is to recognize that, if $\betav \sim \gauss{\mu, \Sigma}$,</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>then</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>\log \prob{\betav | \mu, \Sigma} =</span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>  -\frac{1}{2} \beta^\trans \Sigma^{-1} \beta + \beta^\trans \Sigma^{-1} \mu +</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>  \textrm{Terms that do not depend on }\beta.</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>\log \prob{\beta, \Y} ={}&amp;</span>
-<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>  -\frac{1}{2} \sigma^{-2} (\Y - \X\beta)^\trans (\Y - \X\beta) </span>
-<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>  -\frac{1}{2} \sigma_\beta^{-2} \beta^\trans \beta +</span>
-<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>  \textrm{Terms that do not depend on }\beta</span>
-<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp;</span>
-<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>  -\frac{1}{2} \sigma^{-2} \beta^\trans \X^\trans \X\beta +</span>
-<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>  \sigma^{-2} \beta^\trans \X^\trans \Y </span>
-<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>  -\frac{1}{2} \sigma_\beta^{-2} \beta^\trans \beta +</span>
-<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>  \textrm{Terms that do not depend on }\beta</span>
-<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp;</span>
-<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>  -\frac{1}{2}  </span>
-<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>    \beta^\trans\left(\sigma^{-2} \X^\trans \X + \sigma_\beta^{-2} \id \right) \beta +</span>
-<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>  \sigma^{-2} \beta^\trans \X^\trans \Y +</span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>  \textrm{Terms that do not depend on }\beta.</span>
-<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>From this, we can read off $\Sigma$ and $\mu$, and get the above expression.</span>
-<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>If we take $\lambda = \sigma^2 / \sigma_\beta^2$, then we can see that</span>
-<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>\expect{\beta | \Y} = </span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>\left(\X^\trans \X + \lambda \id  \right)^{-1} </span>
-<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>    \X^\trans \Y = \betahat(\lambda).</span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>This gives the ridge procedure some interpretability.  First of all, the</span>
-<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>use of the ridge penalty corresponds to a prior belief that $\beta$ is not</span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>too large.  </span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>Second, the ridge penalty you use reflects the relative scale</span>
-<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>of the noise variance and prior variance in a way that makes sense:</span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>We can write out the distribution of $\prob{\beta | \Y} = \prob{\beta, \Y} / \prob{\Y}$,</span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>gather terms that depend on $\beta$, and read off the mean and covariance:</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>\log \prob{\beta, \Y} ={}&amp;</span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>  -\frac{1}{2} \sigma^{-2} (\Y - \X\beta)^\trans (\Y - \X\beta) </span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>  -\frac{1}{2} \sigma_\beta^{-2} \beta^\trans \beta +</span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>  \textrm{Terms that do not depend on }\beta</span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp;</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>  -\frac{1}{2} \sigma^{-2} \beta^\trans \X^\trans \X\beta +</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>  \sigma^{-2} \beta^\trans \X^\trans \Y </span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>  -\frac{1}{2} \sigma_\beta^{-2} \beta^\trans \beta +</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>  \textrm{Terms that do not depend on }\beta</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>={}&amp;</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>  -\frac{1}{2}  </span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>    \beta^\trans\left(\sigma^{-2} \X^\trans \X + \sigma_\beta^{-2} \id \right) \beta +</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>  \sigma^{-2} \beta^\trans \X^\trans \Y +</span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>  \textrm{Terms that do not depend on }\beta.</span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>From this, we can read off $\Sigma$ and $\mu$, and get the above expression.</span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>If we take $\lambda = \sigma^2 / \sigma_\beta^2$, then we can see that</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>\expect{\beta | \Y} = </span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>\left(\X^\trans \X + \lambda \id  \right)^{-1} </span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>    \X^\trans \Y = \betahat(\lambda).</span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>This gives the ridge procedure some interpretability.  First of all, the</span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>use of the ridge penalty corresponds to a prior belief that $\beta$ is not</span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>too large.  </span>
 <span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If $\sigma \gg \sigma_\beta$, then the data is </span>
-<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a>noisy (relative to our prior beliefs).  We should not take fitting the data too seriously, and</span>
-<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>so should estimate a smaller $\beta$ than $\betahat$.  And indeed, in this case</span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>$\lambda$ is large, a large $\lambda$ shrinks the estimated coefficients.</span>
-<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If $\sigma_\beta \gg \sigma$, then we find it plausible that $\beta$ is very large</span>
-<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>(relative to the variability in our data).  We should not take our prior beliefs</span>
-<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>too seriously, and estimate a coefficient that matches $\betahat$.  And</span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>indeed, in this case, $\lambda$ is small, and we do not shrink the coefficients much.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>Second, the ridge penalty you use reflects the relative scale</span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a>of the noise variance and prior variance in a way that makes sense:</span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If $\sigma \gg \sigma_\beta$, then the data is </span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>noisy (relative to our prior beliefs).  We should not take fitting the data too seriously, and</span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>so should estimate a smaller $\beta$ than $\betahat$.  And indeed, in this case</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>$\lambda$ is large, a large $\lambda$ shrinks the estimated coefficients.</span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If $\sigma_\beta \gg \sigma$, then we find it plausible that $\beta$ is very large</span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>(relative to the variability in our data).  We should not take our prior beliefs</span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>too seriously, and estimate a coefficient that matches $\betahat$.  And</span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>indeed, in this case, $\lambda$ is small, and we do not shrink the coefficients much.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

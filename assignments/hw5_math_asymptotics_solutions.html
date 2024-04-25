@@ -368,11 +368,50 @@ window.Quarto = {
 \rightarrow {}&amp; \boldsymbol{\Sigma}_{\boldsymbol{X}}^{-1} \mathbb{E}\left[\boldsymbol{x}_n y_n\right] =: \boldsymbol{\beta}^*
 \end{aligned}
 \]</span></p>
-<p>Then rest is like (7).</p>
+<p>We can then write</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sqrt{N}(\hat{\boldsymbol{\beta}}- \boldsymbol{\beta}^*) ={}&amp;
+   \sqrt{N} \left(\left(\frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{X}\right)^{-1} \frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{Y}-
+      \boldsymbol{\Sigma}_{\boldsymbol{X}}^{-1} \mathbb{E}\left[\boldsymbol{x}_n y_n\right] \right)
+\\={}&amp;
+   \left(\frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{X}\right)^{-1}
+   \sqrt{N} \left(  \frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{Y}-
+      \left(\frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{X}\right) \boldsymbol{\Sigma}_{\boldsymbol{X}}^{-1} \mathbb{E}\left[\boldsymbol{x}_n y_n\right] \right)
+\\={}&amp;
+   \left(\frac{1}{N} \boldsymbol{X}^\intercal\boldsymbol{X}\right)^{-1}
+   \frac{1}{\sqrt{N}} \sum_{n=1}^N\left(  \boldsymbol{x}_n y_n -
+      \boldsymbol{x}_n \boldsymbol{x}_n^\intercal\boldsymbol{\Sigma}_{\boldsymbol{X}}^{-1} \mathbb{E}\left[\boldsymbol{x}_n y_n\right] \right)
+\\={}&amp;
+   \left(\boldsymbol{\Sigma}_{\boldsymbol{X}}+ o_p(1) \right)^{-1}
+   \frac{1}{\sqrt{N}} \sum_{n=1}^N\left(  \boldsymbol{x}_n y_n -
+      \boldsymbol{x}_n \boldsymbol{x}_n^\intercal\boldsymbol{\Sigma}_{\boldsymbol{X}}^{-1} \mathbb{E}\left[\boldsymbol{x}_n y_n\right] \right)
+      &amp; \textrm{(R3) and the LLN}
+\end{aligned}
+\]</span></p>
+<p>Note that</p>
+<p><span class="math display">\[
+\mathbb{E}\left[\boldsymbol{x}_n y_n -  \boldsymbol{x}_n \boldsymbol{x}_n^\intercal\boldsymbol{\Sigma}_{\boldsymbol{X}}^{-1} \mathbb{E}\left[\boldsymbol{x}_n y_n\right]\right] =
+\mathbb{E}\left[\boldsymbol{x}_n y_n\right] -  \mathbb{E}\left[\boldsymbol{x}_n \boldsymbol{x}_n^\intercal\right] \boldsymbol{\Sigma}_{\boldsymbol{X}}^{-1} \mathbb{E}\left[\boldsymbol{x}_n y_n\right] =
+\mathbb{E}\left[\boldsymbol{x}_n y_n\right] -  \boldsymbol{\Sigma}_{\boldsymbol{X}}\boldsymbol{\Sigma}_{\boldsymbol{X}}^{-1} \mathbb{E}\left[\boldsymbol{x}_n y_n\right] =
+0,
+\]</span></p>
+<p>so <span class="math display">\[
+\begin{aligned}
+\frac{1}{\sqrt{N}} \sum_{n=1}^N\left(  \boldsymbol{x}_n y_n -
+   \boldsymbol{x}_n \boldsymbol{x}_n^\intercal\boldsymbol{\Sigma}_{\boldsymbol{X}}^{-1} \mathbb{E}\left[\boldsymbol{x}_n y_n\right] \right)
+={}&amp;
+\frac{1}{\sqrt{N}} \sum_{n=1}^N\boldsymbol{x}_n  \left(  y_n -
+   \boldsymbol{x}_n^\intercal\boldsymbol{\beta}^* \right)
+   \rightarrow
+\\={}&amp;
+\mathcal{N}\left(\boldsymbol{0}, \mathbb{E}\left[ \boldsymbol{x}_n \boldsymbol{x}_n^\intercal\left(  y_n - \boldsymbol{x}_n^\intercal\boldsymbol{\beta}^* \right)^2\right]\right).
+\end{aligned}
+\]</span> Then rest is like (7).</p>
 <ol start="9" type="1">
 <li>In any of the above settings, what is the limiting distribution of <span class="math inline">\((\hat{\beta}- \beta)\)</span>? (The answer is the same no matter which setting you choose.)</li>
 </ol>
-<p>Mulitvariate normal. (The covariances are different under heteroskedasticity than under homoskedasticity.)</p>
+<p>They all converge to a constant.</p>
 
 
 </section>
