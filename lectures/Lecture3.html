@@ -201,6 +201,12 @@ window.Quarto = {
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quizzes/quizzes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quizzes</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -682,7 +688,7 @@ Notation
 \quad
 \textrm{and}
 \quad
-\bv :=
+\betav :=
 \begin{pmatrix}
   \beta_{1} \\ \beta_2 \\ \vdots \\ \beta_{P}
 \end{pmatrix}
@@ -713,7 +719,7 @@ Notation
 <p>By matrix multiplication rules,</p>
 <p><span class="math display">\[
 \begin{align*}
-\xv_n^\trans \bv =
+\xv_n^\trans \betav =
 \begin{pmatrix}
   \x_{n1} &amp; \x_{n2} &amp; \ldots &amp; \x_{nP}
 \end{pmatrix}
@@ -734,22 +740,22 @@ Notation
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>I have written <span class="math inline">\(\xv_n^\trans \bv\)</span> for the “dot product” or “inner product” between <span class="math inline">\(\xv_n\)</span> and <span class="math inline">\(\bv\)</span>. Writing it in this way clarifies the relationship with matrix notation below.</p>
-<p>There are many other ways to denote inner products in the literature, including <span class="math inline">\(\xv_n \cdot \bv\)</span> and <span class="math inline">\(&lt;\xv_n, \bv&gt;\)</span>.</p>
+<p>I have written <span class="math inline">\(\xv_n^\trans \betav\)</span> for the “dot product” or “inner product” between <span class="math inline">\(\xv_n\)</span> and <span class="math inline">\(\betav\)</span>. Writing it in this way clarifies the relationship with matrix notation below.</p>
+<p>There are many other ways to denote inner products in the literature, including <span class="math inline">\(\xv_n \cdot \betav\)</span> and <span class="math inline">\(&lt;\xv_n, \betav&gt;\)</span>.</p>
 </div>
 </div>
 <p>Then we can compactly write</p>
 <p><span class="math display">\[
 \begin{align*}
-\y_n ={}&amp; \xv_n ^\trans \bv + \res_{n}, \quad\textrm{For }n=1,\ldots,N.
+\y_n ={}&amp; \xv_n ^\trans \betav + \res_{n}, \quad\textrm{For }n=1,\ldots,N.
 \end{align*}
 \]</span></p>
 <p>We can compactify it even further if we stack the <span class="math inline">\(n\)</span> observations: % <span class="math display">\[
 \begin{align*}
-\y_1 ={}&amp; \xv_1 ^\trans \bv + \res_{1} \\
-\y_2 ={}&amp; \xv_2 ^\trans \bv + \res_{2} \\
+\y_1 ={}&amp; \xv_1 ^\trans \betav + \res_{1} \\
+\y_2 ={}&amp; \xv_2 ^\trans \betav + \res_{2} \\
 \vdots\\
-\y_N ={}&amp; \xv_N ^\trans \bv + \res_{N} \\
+\y_N ={}&amp; \xv_N ^\trans \betav + \res_{N} \\
 \end{align*}
 \]</span></p>
 <p>As before we can stack the responses and residuals:</p>
@@ -802,15 +808,15 @@ Notation
 <p>Note that by matrix multiplication rules,</p>
 <p><span class="math display">\[
 \begin{align*}
-\X  \bv =
+\X  =
 \begin{pmatrix}
   \xv_{1}^\trans \\ \xv_{2}^\trans \\ \vdots \\ \xv_n^\trans \\ \vdots \\ \xv_{N}^\trans
 \end{pmatrix}
 \quad\quad\quad
-\bv
+\X \betav
 =
 \begin{pmatrix}
-  \xv_{1}^\trans\bv \\ \xv_{2}^\trans\bv \\ \vdots \\ \xv_n^\trans\bv \\ \vdots \\ \xv_{N}^\trans\bv
+  \xv_{1}^\trans\betav \\ \xv_{2}^\trans\betav \\ \vdots \\ \xv_n^\trans\betav \\ \vdots \\ \xv_{N}^\trans\betav
 \end{pmatrix}
 \end{align*}
 \]</span></p>
@@ -819,7 +825,7 @@ Notation
 \begin{align*}
 \y_n ={}&amp; \beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP} + \res_{n}, \quad\textrm{For }n=1,\ldots,N
 \\\\&amp;\textrm{is the same as}\quad\\\\
-\Y ={}&amp; \X \bv + \resv.
+\Y ={}&amp; \X \betav + \resv.
 \end{align*}
 \tag{4}\]</span></span></p>
 <p>In the case of simple least squares, we can write</p>
@@ -842,10 +848,10 @@ Notation
 <p><span class="math display">\[
 \begin{align*}
 \sumn \res_n^2 =
-    \resv^\trans \resv = (\Y - \X \bv)^\trans (\Y - \X \bv).
+    \resv^\trans \resv = (\Y - \X \betav)^\trans (\Y - \X \betav).
 \end{align*}
 \]</span></p>
-<p>This is a function of the vector <span class="math inline">\(\bv\)</span>. We wish to find the minimum of this quantity as a function of <span class="math inline">\(\bv\)</span>. My might hope that the minimum occurs at a point where the gradient of this expression is zero. Rather than compute the <em>univariate</em> derivative with respect to each component, we can compute the <em>multivariate gradient</em> with respect to the vector.</p>
+<p>This is a function of the vector <span class="math inline">\(\betav\)</span>. We wish to find the minimum of this quantity as a function of <span class="math inline">\(\betav\)</span>. My might hope that the minimum occurs at a point where the gradient of this expression is zero. Rather than compute the <em>univariate</em> derivative with respect to each component, we can compute the <em>multivariate gradient</em> with respect to the vector.</p>
 <p>Let’s recall some facts from vector calculus.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Notation">
 <div class="callout-header d-flex align-content-center">
@@ -918,22 +924,22 @@ Exercise
 <p>By the chain rule, we then get</p>
 <p><span class="math display">\[
 \begin{align*}
-\frac{\partial}{\partial \bv} \resv^\trans \resv ={}&amp;
-2 \frac{\partial \resv^\trans}{\partial \bv}  \resv  \\
-={}&amp; 2 \frac{\partial (\Y - \X \bv)^\trans}{\partial \bv}  (\Y - \X \bv)  \\
-={}&amp; -2 \X ^\trans (\Y - \X \bv) \\
-={}&amp; -2 \X^\trans \Y + 2  \X^\trans \X \bv.
+\frac{\partial}{\partial \betav} \resv^\trans \resv ={}&amp;
+2 \frac{\partial \resv^\trans}{\partial \betav}  \resv  \\
+={}&amp; 2 \frac{\partial (\Y - \X \betav)^\trans}{\partial \betav}  (\Y - \X \betav)  \\
+={}&amp; -2 \X ^\trans (\Y - \X \betav) \\
+={}&amp; -2 \X^\trans \Y + 2  \X^\trans \X \betav.
 \end{align*}
 \]</span></p>
 <p>Assuming our estimator <span class="math inline">\(\betahat\)</span> sets these partial derivatives are equal to zero, we then get</p>
 <p><span id="eq-ols-esteq"><span class="math display">\[
 \begin{align*}
-\X^\trans \X \bvhat ={}&amp; \X^\trans \Y.
+\X^\trans \X \betavhat ={}&amp; \X^\trans \Y.
 \end{align*}
 \tag{6}\]</span></span></p>
-<p>This is a set of <span class="math inline">\(P\)</span> equations in <span class="math inline">\(P\)</span> unknowns. If it is not degenerate, one can solve for <span class="math inline">\(\bvhat\)</span>. That is, if the matrix <span class="math inline">\(\X^\trans \X\)</span> is invertible, then we can multiply both sides of <a href="#eq-ols-esteq" class="quarto-xref">Equation&nbsp;6</a> by <span class="math inline">\((\X^\trans \X)^{-1}\)</span> to get</p>
+<p>This is a set of <span class="math inline">\(P\)</span> equations in <span class="math inline">\(P\)</span> unknowns. If it is not degenerate, one can solve for <span class="math inline">\(\betavhat\)</span>. That is, if the matrix <span class="math inline">\(\X^\trans \X\)</span> is invertible, then we can multiply both sides of <a href="#eq-ols-esteq" class="quarto-xref">Equation&nbsp;6</a> by <span class="math inline">\((\X^\trans \X)^{-1}\)</span> to get</p>
 <p><span class="math display">\[
-\bvhat = (\X^\trans \X)^{-1} \X^\trans \Y
+\betavhat = (\X^\trans \X)^{-1} \X^\trans \Y
 \]</span></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Notation">
 <div class="callout-header d-flex align-content-center">
@@ -1877,7 +1883,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>\quad</span>
 <span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>\textrm{and}</span>
 <span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>\quad</span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>\bv := </span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>\betav := </span>
 <span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
 <span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>  \beta_{1} <span class="sc">\\</span> \beta_2 <span class="sc">\\</span> \vdots <span class="sc">\\</span> \beta_{P}</span>
 <span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
@@ -1904,7 +1910,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>\xv_n^\trans \bv = </span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>\xv_n^\trans \betav = </span>
 <span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
 <span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>  \x_{n1} &amp; \x_{n2} &amp; \ldots &amp; \x_{nP}</span>
 <span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
@@ -1918,19 +1924,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title='Notation'}  </span>
-<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>I have written $\xv_n^\trans \bv$ for the "dot product" or "inner product"</span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>between $\xv_n$ and $\bv$.  Writing it in this way clarifies the relationship</span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>I have written $\xv_n^\trans \betav$ for the "dot product" or "inner product"</span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>between $\xv_n$ and $\betav$.  Writing it in this way clarifies the relationship</span>
 <span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>with matrix notation below.</span>
 <span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>There are many other ways to denote inner products in the literature,</span>
-<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>including $\xv_n \cdot \bv$ and $&lt;\xv_n, \bv&gt;$.</span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>including $\xv_n \cdot \betav$ and $&lt;\xv_n, \betav&gt;$.</span>
 <span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>Then we can compactly write</span>
 <span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>\y_n ={}&amp; \xv_n ^\trans \bv + \res_{n}, \quad\textrm{For }n=1,\ldots,N.</span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>\y_n ={}&amp; \xv_n ^\trans \betav + \res_{n}, \quad\textrm{For }n=1,\ldots,N.</span>
 <span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a></span>
@@ -1938,10 +1944,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>%</span>
 <span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>\y_1 ={}&amp; \xv_1 ^\trans \bv + \res_{1} <span class="sc">\\</span></span>
-<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>\y_2 ={}&amp; \xv_2 ^\trans \bv + \res_{2} <span class="sc">\\</span></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>\y_1 ={}&amp; \xv_1 ^\trans \betav + \res_{1} <span class="sc">\\</span></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>\y_2 ={}&amp; \xv_2 ^\trans \betav + \res_{2} <span class="sc">\\</span></span>
 <span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>\vdots<span class="sc">\\</span></span>
-<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>\y_N ={}&amp; \xv_N ^\trans \bv + \res_{N} <span class="sc">\\</span></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>\y_N ={}&amp; \xv_N ^\trans \betav + \res_{N} <span class="sc">\\</span></span>
 <span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a></span>
@@ -1995,15 +2001,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>\X  \bv = </span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>\X  = </span>
 <span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
 <span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a>  \xv_{1}^\trans <span class="sc">\\</span> \xv_{2}^\trans <span class="sc">\\</span> \vdots <span class="sc">\\</span> \xv_n^\trans <span class="sc">\\</span> \vdots <span class="sc">\\</span> \xv_{N}^\trans</span>
 <span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
 <span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>\quad\quad\quad</span>
-<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>\bv</span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>\X \betav</span>
 <span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a>=</span>
 <span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix}</span>
-<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a>  \xv_{1}^\trans\bv <span class="sc">\\</span> \xv_{2}^\trans\bv <span class="sc">\\</span> \vdots <span class="sc">\\</span> \xv_n^\trans\bv <span class="sc">\\</span> \vdots <span class="sc">\\</span> \xv_{N}^\trans\bv</span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a>  \xv_{1}^\trans\betav <span class="sc">\\</span> \xv_{2}^\trans\betav <span class="sc">\\</span> \vdots <span class="sc">\\</span> \xv_n^\trans\betav <span class="sc">\\</span> \vdots <span class="sc">\\</span> \xv_{N}^\trans\betav</span>
 <span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>\end{pmatrix}</span>
 <span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>$$</span>
@@ -2014,7 +2020,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
 <span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>\y_n ={}&amp; \beta_1 \x_{n1} + \beta_2 \x_{n2} + \ldots + \x_{nP} + \res_{n}, \quad\textrm{For }n=1,\ldots,N</span>
 <span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a><span class="sc">\\\\</span>&amp;\textrm{is the same as}\quad<span class="sc">\\\\</span></span>
-<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>\Y ={}&amp; \X \bv + \resv.</span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>\Y ={}&amp; \X \betav + \resv.</span>
 <span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>$${#eq-y-matrix}</span>
 <span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a></span>
@@ -2044,12 +2050,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
 <span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a>\sumn \res_n^2 = </span>
-<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>    \resv^\trans \resv = (\Y - \X \bv)^\trans (\Y - \X \bv).</span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>    \resv^\trans \resv = (\Y - \X \betav)^\trans (\Y - \X \betav).</span>
 <span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a>This is a function of the vector $\bv$.  We wish to find the minimum</span>
-<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>of this quantity as a function of $\bv$.  My might hope that</span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a>This is a function of the vector $\betav$.  We wish to find the minimum</span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>of this quantity as a function of $\betav$.  My might hope that</span>
 <span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>the minimum occurs at a point where the gradient of this expression</span>
 <span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>is zero.</span>
 <span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a>Rather than compute the</span>
@@ -2133,11 +2139,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a>\frac{\partial}{\partial \bv} \resv^\trans \resv ={}&amp;</span>
-<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a>2 \frac{\partial \resv^\trans}{\partial \bv}  \resv  <span class="sc">\\</span></span>
-<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a>={}&amp; 2 \frac{\partial (\Y - \X \bv)^\trans}{\partial \bv}  (\Y - \X \bv)  <span class="sc">\\</span></span>
-<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>={}&amp; -2 \X ^\trans (\Y - \X \bv) <span class="sc">\\</span></span>
-<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a>={}&amp; -2 \X^\trans \Y + 2  \X^\trans \X \bv.</span>
+<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a>\frac{\partial}{\partial \betav} \resv^\trans \resv ={}&amp;</span>
+<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a>2 \frac{\partial \resv^\trans}{\partial \betav}  \resv  <span class="sc">\\</span></span>
+<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a>={}&amp; 2 \frac{\partial (\Y - \X \betav)^\trans}{\partial \betav}  (\Y - \X \betav)  <span class="sc">\\</span></span>
+<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>={}&amp; -2 \X ^\trans (\Y - \X \betav) <span class="sc">\\</span></span>
+<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a>={}&amp; -2 \X^\trans \Y + 2  \X^\trans \X \betav.</span>
 <span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a></span>
@@ -2146,17 +2152,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a>\X^\trans \X \bvhat ={}&amp; \X^\trans \Y.</span>
+<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a>\X^\trans \X \betavhat ={}&amp; \X^\trans \Y.</span>
 <span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
 <span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a>$${#eq-ols-esteq}</span>
 <span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a>This is a set of $P$ equations in $P$ unknowns.  If it is not degenerate,</span>
-<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a>one can solve for $\bvhat$.  That is, if the matrix $\X^\trans \X$ is invertible, then we</span>
+<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a>one can solve for $\betavhat$.  That is, if the matrix $\X^\trans \X$ is invertible, then we</span>
 <span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a>can multiply both sides of @eq-ols-esteq by $(\X^\trans \X)^{-1}$</span>
 <span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a>to get</span>
 <span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a>\bvhat = (\X^\trans \X)^{-1} \X^\trans \Y</span>
+<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a>\betavhat = (\X^\trans \X)^{-1} \X^\trans \Y</span>
 <span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a></span>
