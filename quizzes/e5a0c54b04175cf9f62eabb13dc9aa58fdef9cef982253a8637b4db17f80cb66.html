@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT151A Final Exam (May 8th)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">STAT151A Final Exam (May 8th)</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../stat_bear.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main">
+    <a href="https://github.com/berkeley-stat151a/spring-2024" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course_policies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Policies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lectures and labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datasets/data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quizzes/quizzes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quizzes</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#question-1-hspace4embigcirc-leftarrow-x-here-to-grade-this-question." id="toc-question-1-hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="nav-link active" data-scroll-target="#question-1-hspace4embigcirc-leftarrow-x-here-to-grade-this-question."><span class="header-section-number">1</span> Question 1 <span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</a></li>
+  <li><a href="#question-2-hspace4embigcirc-leftarrow-x-here-to-grade-this-question." id="toc-question-2-hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="nav-link" data-scroll-target="#question-2-hspace4embigcirc-leftarrow-x-here-to-grade-this-question."><span class="header-section-number">2</span> Question 2 <span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</a></li>
+  <li><a href="#question-3hspace4embigcirc-leftarrow-x-here-to-grade-this-question." id="toc-question-3hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="nav-link" data-scroll-target="#question-3hspace4embigcirc-leftarrow-x-here-to-grade-this-question."><span class="header-section-number">3</span> Question 3<span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</a></li>
+  <li><a href="#question-4hspace4embigcirc-leftarrow-x-here-to-grade-this-question." id="toc-question-4hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="nav-link" data-scroll-target="#question-4hspace4embigcirc-leftarrow-x-here-to-grade-this-question."><span class="header-section-number">4</span> Question 4<span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</a>
+  <ul class="collapse">
+  <li><a href="#b-3" id="toc-b-3" class="nav-link" data-scroll-target="#b-3">(4b)</a></li>
+  <li><a href="#c-3" id="toc-c-3" class="nav-link" data-scroll-target="#c-3">(4c)</a></li>
+  </ul></li>
+  <li><a href="#question-5hspace4embigcirc-leftarrow-x-here-to-grade-this-question." id="toc-question-5hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="nav-link" data-scroll-target="#question-5hspace4embigcirc-leftarrow-x-here-to-grade-this-question."><span class="header-section-number">5</span> Question 5<span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</a></li>
+  <li><a href="#question-6hspace4embigcirc-leftarrow-x-here-to-grade-this-question." id="toc-question-6hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="nav-link" data-scroll-target="#question-6hspace4embigcirc-leftarrow-x-here-to-grade-this-question."><span class="header-section-number">6</span> Question 6<span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</a></li>
+  <li><a href="#question-7hspace4embigcirc-leftarrow-x-here-to-grade-this-question." id="toc-question-7hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="nav-link" data-scroll-target="#question-7hspace4embigcirc-leftarrow-x-here-to-grade-this-question."><span class="header-section-number">7</span> Question 7<span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="e5a0c54b04175cf9f62eabb13dc9aa58fdef9cef982253a8637b4db17f80cb66.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+$$
+
+\newcommand{\mybold}[1]{\boldsymbol{#1}} 
+
+
+\newcommand{\trans}{\intercal}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\gauss}[1]{\mathcal{N}\left(#1\right)}
+\newcommand{\chisq}[1]{\mathcal{\chi}^2_{#1}}
+\newcommand{\studentt}[1]{\mathrm{StudentT}_{#1}}
+\newcommand{\fdist}[2]{\mathrm{FDist}_{#1,#2}}
+
+\newcommand{\argmin}[1]{\underset{#1}{\mathrm{argmin}}\,}
+\newcommand{\projop}[1]{\underset{#1}{\mathrm{Proj}}\,}
+\newcommand{\proj}[1]{\underset{#1}{\mybold{P}}}
+\newcommand{\expect}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\prob}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\dens}[1]{\mathit{p}\left(#1\right)}
+\newcommand{\var}[1]{\mathrm{Var}\left(#1\right)}
+\newcommand{\cov}[1]{\mathrm{Cov}\left(#1\right)}
+\newcommand{\sumn}{\sum_{n=1}^N}
+\newcommand{\meann}{\frac{1}{N} \sumn}
+\newcommand{\cltn}{\frac{1}{\sqrt{N}} \sumn}
+
+\newcommand{\trace}[1]{\mathrm{trace}\left(#1\right)}
+\newcommand{\diag}[1]{\mathrm{Diag}\left(#1\right)}
+\newcommand{\grad}[2]{\nabla_{#1} \left. #2 \right.}
+\newcommand{\gradat}[3]{\nabla_{#1} \left. #2 \right|_{#3}}
+\newcommand{\fracat}[3]{\left. \frac{#1}{#2} \right|_{#3}}
+
+
+\newcommand{\W}{\mybold{W}}
+\newcommand{\w}{w}
+\newcommand{\wbar}{\bar{w}}
+\newcommand{\wv}{\mybold{w}}
+
+\newcommand{\X}{\mybold{X}}
+\newcommand{\x}{x}
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\xv}{\mybold{x}}
+\newcommand{\Xcov}{\Sigmam_{\X}}
+\newcommand{\Xcovhat}{\hat{\Sigmam}_{\X}}
+\newcommand{\Covsand}{\Sigmam_{\mathrm{sand}}}
+\newcommand{\Covsandhat}{\hat{\Sigmam}_{\mathrm{sand}}}
+
+\newcommand{\Z}{\mybold{Z}}
+\newcommand{\z}{z}
+\newcommand{\zv}{\mybold{z}}
+\newcommand{\zbar}{\bar{z}}
+
+\newcommand{\Y}{\mybold{Y}}
+\newcommand{\Yhat}{\hat{\Y}}
+\newcommand{\y}{y}
+\newcommand{\yv}{\mybold{y}}
+\newcommand{\yhat}{\hat{\y}}
+\newcommand{\ybar}{\bar{y}}
+
+\newcommand{\res}{\varepsilon}
+\newcommand{\resv}{\mybold{\res}}
+\newcommand{\resvhat}{\hat{\mybold{\res}}}
+\newcommand{\reshat}{\hat{\res}}
+
+\newcommand{\betav}{\mybold{\beta}}
+\newcommand{\betavhat}{\hat{\betav}}
+\newcommand{\betahat}{\hat{\beta}}
+\newcommand{\betastar}{{\beta^{*}}}
+
+\newcommand{\bv}{\mybold{\b}}
+\newcommand{\bvhat}{\hat{\bv}}
+
+\newcommand{\alphav}{\mybold{\alpha}}
+\newcommand{\alphavhat}{\hat{\av}}
+\newcommand{\alphahat}{\hat{\alpha}}
+
+\newcommand{\omegav}{\mybold{\omega}}
+
+\newcommand{\gv}{\mybold{\gamma}}
+\newcommand{\gvhat}{\hat{\gv}}
+\newcommand{\ghat}{\hat{\gamma}}
+
+\newcommand{\hv}{\mybold{\h}}
+\newcommand{\hvhat}{\hat{\hv}}
+\newcommand{\hhat}{\hat{\h}}
+
+\newcommand{\gammav}{\mybold{\gamma}}
+\newcommand{\gammavhat}{\hat{\gammav}}
+\newcommand{\gammahat}{\hat{\gamma}}
+
+\newcommand{\new}{\mathrm{new}}
+\newcommand{\zerov}{\mybold{0}}
+\newcommand{\onev}{\mybold{1}}
+\newcommand{\id}{\mybold{I}}
+
+\newcommand{\sigmahat}{\hat{\sigma}}
+
+
+\newcommand{\etav}{\mybold{\eta}}
+\newcommand{\muv}{\mybold{\mu}}
+\newcommand{\Sigmam}{\mybold{\Sigma}}
+
+\newcommand{\rdom}[1]{\mathbb{R}^{#1}}
+
+\newcommand{\RV}[1]{\tilde{#1}}
+
+
+
+\def\A{\mybold{A}}
+
+\def\A{\mybold{A}}
+\def\av{\mybold{a}}
+\def\a{a}
+
+\def\B{\mybold{B}}
+
+
+\def\S{\mybold{S}}
+\def\sv{\mybold{s}}
+\def\s{s}
+
+\def\R{\mybold{R}}
+\def\rv{\mybold{r}}
+\def\r{r}
+
+\def\V{\mybold{V}}
+\def\vv{\mybold{v}}
+\def\v{v}
+
+\def\U{\mybold{U}}
+\def\uv{\mybold{u}}
+\def\u{u}
+
+\def\W{\mybold{W}}
+\def\wv{\mybold{w}}
+\def\w{w}
+
+\def\tv{\mybold{t}}
+\def\t{t}
+
+\def\Sc{\mathcal{S}}
+\def\ev{\mybold{e}}
+
+\def\Lammat{\mybold{\Lambda}}
+
+
+$$
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">STAT151A Final Exam (May 8th)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Please write your full name and email address:</p>
+<p><span class="math display">\[\\[0.1in]\]</span></p>
+<ul>
+<li>You have 3 hours for this exam.</li>
+<li>You will be allowed one double-sided cheat sheet.<br>
+</li>
+<li>Please turn in your cheat sheet with the exam.</li>
+</ul>
+<p>In the exam, you will find seven questions. From these, please choose <strong>exactly four</strong> to answer. You will be graded only on the four questions you choose to answer.</p>
+<p>Please mark the questions you would like graded with an <span class="math inline">\(\times\)</span> in the box provided. For example, to select problems 2, 4, 5, and 7, your exam should look like this:</p>
+<p><strong>Question 1 <span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</strong></p>
+<p><strong>Question 2 <span class="math inline">\(\hspace{4em}\otimes \leftarrow\)</span> ‘X’ here to grade this question.</strong></p>
+<p><strong>Question 3 <span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</strong></p>
+<p><strong>Question 4 <span class="math inline">\(\hspace{4em}\otimes \leftarrow\)</span> ‘X’ here to grade this question.</strong></p>
+<p><strong>Question 5 <span class="math inline">\(\hspace{4em}\otimes \leftarrow\)</span> ‘X’ here to grade this question.</strong></p>
+<p><strong>Question 6 <span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</strong></p>
+<p><strong>Question 7 <span class="math inline">\(\hspace{4em}\otimes \leftarrow\)</span> ‘X’ here to grade this question.</strong></p>
+<p>If you select more than four questions, we reserve the right to choose which ones we grade.</p>
+<p><strong>Note that the questions typically have multiple parts.</strong> Read the question completely and carefully before answering. Make sure to answer every question asked to receive full credit.</p>
+<div style="page-break-after: always;"></div>
+<section id="question-1-hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Question 1 <span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</h1>
+<p>For this question, we’ll consider the linear model <span class="math inline">\(y_n = \beta_0 + \beta_1 \w_n + \beta_2 \z_n + \res_n\)</span>.</p>
+<div style="page-break-after: always;"></div>
+<section id="a" class="level4">
+<h4 class="anchored" data-anchor-id="a">(1a)</h4>
+<p>Write the set of equations</p>
+<p><span class="math display">\[
+y_n = \beta_0 + \beta_1 \w_n + \beta_2 \z_n + \res_n
+\quad\textrm{for }n \in \{1, \ldots, N\}
+\]</span></p>
+<p>in matrix form. That is, let <span class="math inline">\(\X\)</span> denote an <span class="math inline">\(N \times 3\)</span> matrix, <span class="math inline">\(\Y\)</span> and <span class="math inline">\(\resv\)</span> length–<span class="math inline">\(N\)</span> column vectors, and <span class="math inline">\(\betav= (\beta_0, \beta_1, \beta_2)^\trans\)</span> a length–<span class="math inline">\(3\)</span> column vector. Then express the matrices <span class="math inline">\(\Y\)</span>, <span class="math inline">\(\X\)</span>, and <span class="math inline">\(\resv\)</span> in terms of the scalars <span class="math inline">\(\y_n\)</span>, <span class="math inline">\(\w_n\)</span>, <span class="math inline">\(\z_n\)</span>, and <span class="math inline">\(\res_n\)</span> so that <span class="math inline">\(\Y= \X\betav+ \resv\)</span> is equivalent to the set of regression equations.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="b" class="level4">
+<h4 class="anchored" data-anchor-id="b">(1b)</h4>
+<p>Define the following quantities: <span class="math display">\[
+\begin{aligned}
+    \overline{y} :=&amp; \meann \y_n &amp;
+    \overline{z} :=&amp; \meann \z_n &amp;
+    \overline{w} :=&amp; \meann \w_n &amp;\\
+    \overline{zz} :=&amp; \meann \z_n^2 &amp;
+    \overline{ww} :=&amp; \meann \w_n^2 &amp;
+    \overline{zw} :=&amp; \meann \z_n \w_n &amp;
+    \overline{zy} :=&amp; \meann \z_n \y_n \\
+\end{aligned}
+\]</span></p>
+<p>Write an explict expressions for <span class="math inline">\(\frac{1}{N} \X^\trans\X\)</span> and <span class="math inline">\(\frac{1}{N} \X^\trans\Y\)</span> in terms of these quantities.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="c" class="level4">
+<h4 class="anchored" data-anchor-id="c">(1c)</h4>
+<p>For this part of the question only, assume that</p>
+<p><span class="math display">\[\overline{zw} = \overline{z} = \overline{w} = 0\]</span>.</p>
+<p>In terms of the quantites defined in part (b), write a closed–form expression for <span class="math inline">\(\betavhat\)</span>, the OLS estimator of the vector <span class="math inline">\(\betav\)</span>.</p>
+<p><strong>Hint:</strong> The inverse of a <span class="math inline">\(3\times 3\)</span> diagonal matrix is given by</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+v_1 &amp; 0 &amp; 0 \\
+0 &amp; v_2 &amp; 0 \\
+0 &amp; 0 &amp; v_3 \\
+\end{pmatrix}^{-1} =
+\begin{pmatrix}
+v_1^{-1} &amp; 0 &amp; 0 \\
+0 &amp; v_2^{-1} &amp; 0 \\
+0 &amp; 0 &amp; v_3^{-1} \\
+\end{pmatrix}
+\]</span></p>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="question-2-hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Question 2 <span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</h1>
+<p>For this question, consider the linear models</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_n ={} \betav^\trans \xv_n + \res_n
+&amp;\quad\textrm{and}\quad
+y_n ={} \gammav^\trans \zv_n + \eta_n
+\end{aligned}
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+\begin{aligned}
+\xv_n ={} (1, \x_n)^\trans
+&amp;\quad\textrm{and}\quad
+\zv_n ={} (1, \z_n)^\trans \textrm{ where }
+\z_n :={} 10 \x_n
+\end{aligned}
+\]</span></p>
+<p>Assume that <span class="math inline">\(\x_n\)</span> is not a constant (i.e., for at least one pair <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span>, <span class="math inline">\(\x_n \ne \x_m\)</span>.).</p>
+<p>Let <span class="math inline">\(\X\)</span> denote the <span class="math inline">\(N \times 2\)</span> matrix whose <span class="math inline">\(n\)</span>–th row is <span class="math inline">\(\xv_n^\trans\)</span>, and <span class="math inline">\(\Z\)</span> denote the <span class="math inline">\(N \times 2\)</span> matrix whose <span class="math inline">\(n\)</span>–th row is <span class="math inline">\(\zv_n^\trans\)</span>.</p>
+<div style="page-break-after: always;"></div>
+<section id="a-1" class="level4">
+<h4 class="anchored" data-anchor-id="a-1">(2a)</h4>
+<p>Using the definitions above, find a <span class="math inline">\(2 \times 2\)</span> matrix <span class="math inline">\(\A\)</span> such that <span class="math inline">\(\zv_n = \A \xv_n\)</span>. Then, show that <span class="math inline">\(\Z = \X \A^\trans\)</span> for the same matrix <span class="math inline">\(\A\)</span>.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="b-1" class="level4">
+<h4 class="anchored" data-anchor-id="b-1">(2b)</h4>
+<p>Suppose you know that the OLS estimate of <span class="math inline">\(\betav\)</span> is given by <span class="math inline">\(\betavhat = (4, 30)\)</span>. What is the value of <span class="math inline">\(\gammavhat\)</span>, the OLS estimate of <span class="math inline">\(\gammav\)</span>? Please use the definitions above and your answer for part (a), and justify your answer.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="c-1" class="level4">
+<h4 class="anchored" data-anchor-id="c-1">(2c)</h4>
+<p>Now consider the two models’ prediction on a new datapoint with <span class="math inline">\(\xv_\new = (1, 50)^\trans\)</span> — and so, necessarily, <span class="math inline">\(\zv_\new = (1, 500)^\trans\)</span>, with respective prediction errors</p>
+<p><span class="math display">\[
+\res_\new^\beta := \y_\new - \betavhat^\trans \xv_\new
+\quad\textrm{and}\quad
+\res_\new^\gamma := \y_\new - \gammavhat^\trans \zv_\new.
+\]</span></p>
+<p>Please select which of (a), (b), (c), or (d) is correct for this particular value of <span class="math inline">\(\xv_\new\)</span> and <span class="math inline">\(\zv_\new\)</span>:</p>
+<ol type="a">
+<li>It is always the case that <span class="math inline">\(\abs{\res_\new^\beta} = \abs{\res_\new^\gamma}\)</span></li>
+<li>It is always the case that <span class="math inline">\(\abs{\res_\new^\beta} &lt; \abs{\res_\new^\gamma}\)</span></li>
+<li>It is always the case that <span class="math inline">\(\abs{\res_\new^\beta} &gt; \abs{\res_\new^\gamma}\)</span></li>
+<li>In general, we cannot determine the relationship between <span class="math inline">\(\abs{\res_\new^\beta}\)</span> and <span class="math inline">\(\abs{\res_\new^\gamma}\)</span> using the information provided.</li>
+</ol>
+<p>Briefly justify your answer.</p>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="question-3hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Question 3<span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</h1>
+<p>For this question, assume that you have access to a function</p>
+<p><span class="math display">\[
+\Phi(z) = \prob{\RV{\z} \le z},
+\]</span></p>
+<p>as well as its inverse,</p>
+<p><span class="math display">\[
+\Phi^{-1}(p) = z \textrm{ such that }\prob{\RV{\z} \le z} = p,
+\textrm{ for }p \in [0,1],
+\]</span></p>
+<p>where <span class="math inline">\(\RV{\z} \sim \gauss{0,1}\)</span> denote a scalar-valued standard normal random variable.</p>
+<div style="page-break-after: always;"></div>
+<section id="a-2" class="level4">
+<h4 class="anchored" data-anchor-id="a-2">(3a)</h4>
+<p>Suppose that <span class="math inline">\(\RV{\y} \sim \gauss{\mu, \sigma^2}\)</span>, where <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are known. Using only the functions <span class="math inline">\(\Phi(\cdot)\)</span>, <span class="math inline">\(\Phi^{-1}(\cdot)\)</span>, and the known quantities <span class="math inline">\(\mu\)</span>, and <span class="math inline">\(\sigma\)</span>, find find a quantity <span class="math inline">\(\a\)</span> such that</p>
+<p><span class="math display">\[
+\prob{\RV{\y} \le \a} = 0.90.
+\]</span></p>
+<p>Note that <span class="math inline">\(\Phi(\cdot)\)</span> is only for a standard normal random variable. Please <strong>do not assume</strong> that you have direct access to the distribution and quantile functions of generic normal random variables.</p>
+<p>Please justify your answer carefully.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="b-2" class="level4">
+<h4 class="anchored" data-anchor-id="b-2">(3b)</h4>
+<p>Now, consider the OLS estimator under normal assumptions, so that</p>
+<p><span class="math display">\[
+\betavhat \sim \gauss{\betav, \sigma^2 (\X^\trans\X)^{-1}}.
+\]</span></p>
+<p>Note that <span class="math inline">\(\betavhat\)</span> and <span class="math inline">\(\betav\)</span> are <span class="math inline">\(P\)</span>–dimensional vectors, <span class="math inline">\(\sigma\)</span> is a scalar, and <span class="math inline">\((\X^\trans\X)^{-1}\)</span> is a <span class="math inline">\(P\times P\)</span> matrix.</p>
+<p>Assume that <span class="math inline">\(\betav\)</span>, <span class="math inline">\(\sigma\)</span>, and <span class="math inline">\(\X\)</span> are all known. In terms of these quantities, find the distribution of <span class="math inline">\(\betavhat_1\)</span>, the first component of <span class="math inline">\(\betavhat\)</span>.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="c-2" class="level4">
+<h4 class="anchored" data-anchor-id="c-2">(3c)</h4>
+<p>Combining your answers from parts (a) and (b), find a scalar <span class="math inline">\(b\)</span> such that</p>
+<p><span class="math display">\[
+\prob{\betavhat_1 \le b} = 0.90.
+\]</span></p>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="question-4hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Question 4<span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</h1>
+<p>For this question:</p>
+<ul>
+<li>Let <span class="math inline">\(\xv_n  = (1, \z_{n})^\trans\)</span>, where <span class="math inline">\(\z_n \sim \gauss{0,1}\)</span>.</li>
+<li>Assume that <span class="math inline">\(\y_n = \betav^\trans \xv_n + \res_n\)</span> for some <span class="math inline">\(\betav\)</span> and each <span class="math inline">\(n\)</span>.</li>
+<li>Assume the residuals <span class="math inline">\(\res_n\)</span> are IID with <span class="math inline">\(\expect{\res_n} = 0\)</span> and <span class="math inline">\(\expect{\res_n^2} = 1\)</span>, but <strong>not necessarily normal.</strong></li>
+<li>Assume that the residuals <span class="math inline">\(\res_n\)</span> are all independent of all the <span class="math inline">\(\z_n\)</span>.</li>
+</ul>
+<div style="page-break-after: always;"></div>
+<section id="a-3" class="level4">
+<h4 class="anchored" data-anchor-id="a-3">(4a)</h4>
+<p>Let <span class="math inline">\(\X\)</span> denote the <span class="math inline">\(N\times P\)</span> matrix consisting of the observation <span class="math inline">\(\xv_n^\trans\)</span> in the <span class="math inline">\(n\)</span>–th row, and let <span class="math inline">\(\Y\)</span> denote the <span class="math inline">\(N\)</span>–vector with <span class="math inline">\(\y_n\)</span> in the <span class="math inline">\(n\)</span>–th entry.</p>
+<p>Write the matrices <span class="math inline">\(\frac{1}{N} \X^\trans \X\)</span> and <span class="math inline">\(\frac{1}{N} \X^\trans \Y\)</span> in terms of <span class="math inline">\(\beta\)</span>, <span class="math inline">\(\res_n\)</span>, <span class="math inline">\(\z_n\)</span>, <span class="math inline">\(N\)</span>, and constants. Note that <span class="math inline">\(\X^\trans \X\)</span> is a <span class="math inline">\(2 \times 2\)</span> matrix and <span class="math inline">\(\X^\trans \Y\)</span> is a <span class="math inline">\(2\)</span>–vector.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="b-3" class="level3">
+<h3 class="anchored" data-anchor-id="b-3">(4b)</h3>
+<p>Evaluate the following limits:</p>
+<p><span class="math display">\[
+\frac{1}{N} \X^\trans \X \rightarrow ?
+\quad\quad\textrm{and}\quad\quad
+\frac{1}{N} \X^\trans \Y  \rightarrow ? \\
+\]</span></p>
+<p>Note that your answers may depend on <span class="math inline">\(\beta\)</span>, but should not depend on <span class="math inline">\(\xv_n\)</span> or <span class="math inline">\(\y_n\)</span>, since they are limiting quantites that do not depend on the particular dataset.</p>
+<p>Justify your conclusion carefully (state which theorems you use).</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="c-3" class="level3">
+<h3 class="anchored" data-anchor-id="c-3">(4c)</h3>
+<p>Using your answers from part (a) and (b), find the limit of</p>
+<p><span class="math display">\[
+\betavhat = \left(\X^\trans \X \right)^{-1}  \X^\trans \Y \rightarrow ?
+\]</span></p>
+<p>Justify your conclusion carefully (state which theorems you use).</p>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="question-5hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Question 5<span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</h1>
+<p>Let <span class="math inline">\(\RV{\xv}_n\)</span> denote an IID sequence of random <span class="math inline">\(2\)</span>–dimensional vectors in <span class="math inline">\(\rdom{P}\)</span> (<strong>not necessarily normal</strong>), with</p>
+<p><span class="math display">\[
+\RV{\xv_n} =
+\begin{pmatrix}
+\RV{\x}_{n1} \\ \RV{\x}_{n2}
+\end{pmatrix}
+\quad\quad\textrm{and}\quad\quad
+\expect{\RV{\xv}_n} = \zerov
+\quad\quad\textrm{and}\quad\quad
+\cov{\RV{\xv}_n} =:
+\Sigmam =
+\begin{pmatrix}
+2 &amp; 1 \\
+1 &amp; 4
+\end{pmatrix}.
+\]</span></p>
+<div style="page-break-after: always;"></div>
+<section id="a-4" class="level4">
+<h4 class="anchored" data-anchor-id="a-4">(5a)</h4>
+<p>Find the limiting distribution of the vector</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{1}{\sqrt{N}} \sumn \RV{\xv_n} \rightarrow ?
+\end{aligned}
+\]</span></p>
+<p>Justify your conclusion carefully.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="b-4" class="level4">
+<h4 class="anchored" data-anchor-id="b-4">(5b)</h4>
+<p>Using the univariate central limit theorem, find the limiting distributions of the difference between the components of <span class="math inline">\(\RV{\xv_n}\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{1}{\sqrt{N}} \sumn \left(\RV{\x}_{n1} - \RV{\x}_{n2}\right) \rightarrow ?
+\end{aligned}
+\]</span></p>
+<p>Justify your conclusion carefully.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="c-4" class="level4">
+<h4 class="anchored" data-anchor-id="c-4">(5c)</h4>
+<p>Find a vector <span class="math inline">\(\vv\)</span> such that <span class="math inline">\(\vv^\trans \RV{\xv_n} = \RV{\xv_n}_1 - \RV{\xv_n}_2\)</span>. Using this vector, show that the solution to (b) also follows from the solution to (a) and the continuous mapping theorem.</p>
+<p>Justify your conclusion carefully.</p>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="question-6hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Question 6<span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</h1>
+<p>Given a regression on <span class="math inline">\(\X\)</span> with <span class="math inline">\(P\)</span> regressors, and the corresponding <span class="math inline">\(\Y\)</span>, <span class="math inline">\(\Yhat\)</span>, and <span class="math inline">\(\reshat\)</span>, define the following quantities: <span class="math display">\[
+\begin{aligned}
+RSS :={}&amp; \resvhat^\trans \resvhat &amp; \textrm{(Residual sum of squares)}\\
+TSS :={}&amp; \Y^\trans \Y &amp; \textrm{(Total sum of squares)}\\
+ESS :={}&amp; \Yhat^\trans \Yhat &amp; \textrm{(Explained sum of squares)}\\
+R^2 :={}&amp; \frac{ESS}{TSS}.
+\end{aligned}
+\]</span></p>
+<div style="page-break-after: always;"></div>
+<section id="a-5" class="level4">
+<h4 class="anchored" data-anchor-id="a-5">6a</h4>
+<ol type="1">
+<li>Prove that <span class="math inline">\(RSS + ESS = TSS\)</span>.</li>
+<li>Express <span class="math inline">\(R^2\)</span> in terms of <span class="math inline">\(TSS\)</span> and <span class="math inline">\(RSS\)</span>.</li>
+</ol>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="b-5" class="level4">
+<h4 class="anchored" data-anchor-id="b-5">6b</h4>
+<ol type="1">
+<li>What is <span class="math inline">\(R^2\)</span> when we include no regressors? (<span class="math inline">\(P = 0\)</span>)</li>
+<li>What is <span class="math inline">\(R^2\)</span> when we include <span class="math inline">\(N\)</span> linearly independent regressors? (<span class="math inline">\(P=N\)</span>)</li>
+<li>Can <span class="math inline">\(R^2\)</span> ever decrease when we add a regressor? If so, how?</li>
+<li>Can <span class="math inline">\(R^2\)</span> ever stay the same when we add a regressor? If so, how?</li>
+<li>Can <span class="math inline">\(R^2\)</span> ever increase when we add a regressor? If so, how?</li>
+</ol>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="c-5" class="level4">
+<h4 class="anchored" data-anchor-id="c-5">6c</h4>
+<p>These questions will be about the F-test statistic for the null <span class="math inline">\(H_0: \betav = \zerov\)</span>,</p>
+<p><span class="math display">\[
+\phi = \betahat^\trans (\X^\trans \X) \betahat / (P \sigmahat^2)
+\]</span></p>
+<ol type="1">
+<li>Write the F-test statistic <span class="math inline">\(\phi\)</span> in terms of <span class="math inline">\(TSS\)</span> and <span class="math inline">\(RSS\)</span>, and <span class="math inline">\(P\)</span>.</li>
+<li>Can <span class="math inline">\(\phi\)</span> ever decrease when we add a regressor? If so, how?</li>
+<li>Can <span class="math inline">\(\phi\)</span> ever stay the same when we add a regressor? If so, how?</li>
+<li>Can <span class="math inline">\(\phi\)</span> ever increase when we add a regressor? If so, how?</li>
+</ol>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="question-7hspace4embigcirc-leftarrow-x-here-to-grade-this-question." class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Question 7<span class="math inline">\(\hspace{4em}\bigcirc \leftarrow\)</span> ‘X’ here to grade this question.</h1>
+<p>For this question, we will take</p>
+<p><span class="math display">\[
+\a_n \sim \gauss{0, 1} \quad\textrm{ and }\quad
+b_n = \a_n^3.
+\]</span></p>
+<p>We assume the pairs <span class="math inline">\((a_n, b_n)\)</span> are IID, but <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span> are not independent. Assume that, for some <span class="math inline">\(\beta_a\)</span> and <span class="math inline">\(\beta_b\)</span>,</p>
+<p><span class="math display">\[
+\y_n = \beta_a \a_n + \beta_b b_n + \res_n,
+\]</span></p>
+<p>where <span class="math inline">\(\res_n\)</span> are IID with <span class="math inline">\(\expect{\res_n} = 0\)</span> and <span class="math inline">\(\var{\res_n} &lt; \infty\)</span>. The residuals <span class="math inline">\(\res_n\)</span> and <span class="math inline">\(\a_n\)</span> are all independent of one another. <strong>Note that the residuals are not necessarily normal.</strong></p>
+<div style="page-break-after: always;"></div>
+<section id="a-6" class="level4">
+<h4 class="anchored" data-anchor-id="a-6">(7a)</h4>
+<p>Let <span class="math inline">\(\alphahat\)</span> denote the OLS estimator of <span class="math inline">\(\y_n \sim \alpha a_n\)</span>, that is, of <span class="math inline">\(y_n\)</span> regressed on <span class="math inline">\(a_n\)</span> alone. Note that the regression for <span class="math inline">\(\alphahat\)</span> does not include a constant, and does not include <span class="math inline">\(b_n\)</span>.</p>
+<p>Recall that</p>
+<p><span class="math display">\[
+\alphahat = \frac{\sumn \y_n \a_n}{\sumn \a_n^2},
+\]</span></p>
+<p>and find the limit</p>
+<p><span class="math display">\[
+\alphahat \rightarrow ?
+\]</span></p>
+<p>as <span class="math inline">\(N\rightarrow \infty\)</span>.</p>
+<p>The answer may depend on the unknown <span class="math inline">\(\beta_a\)</span> and <span class="math inline">\(\beta_b\)</span>.</p>
+<p><strong>Hint:</strong> Standard properties of the normal gives that <span class="math inline">\(\expect{\a_n^3} = 0\)</span> and <span class="math inline">\(\expect{\a_n^4} = 3\)</span>.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="b-6" class="level4">
+<h4 class="anchored" data-anchor-id="b-6">(7b)</h4>
+<p>Letting <span class="math inline">\(\yhat_\new = \alphahat \a_\new\)</span>, find</p>
+<p><span class="math display">\[
+\expect{\y_\new - \yhat_\new \vert \a_\new, \Y, \A},
+\]</span></p>
+<p>where <span class="math inline">\(\A = (\a_1, \ldots, \a_N)^\trans\)</span> is the vector of <span class="math inline">\(\A\)</span> observations. Note that the expectation is conditional on the training data and on the new regressor, so the only randomness is in <span class="math inline">\(\res_\new\)</span>.</p>
+<p>The answer may depend on the unknown <span class="math inline">\(\beta_a\)</span> and <span class="math inline">\(\beta_b\)</span>.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="c-6" class="level4">
+<h4 class="anchored" data-anchor-id="c-6">(7c)</h4>
+<p>Assume that <span class="math inline">\(\beta_b \ne 0\)</span>, that <span class="math inline">\(N\)</span> is very large.</p>
+<ul>
+<li>What does your result from (a) imply about using <span class="math inline">\(\alphahat\)</span> for inference on <span class="math inline">\(\beta_a\)</span>?</li>
+<li>What does your result from (b) imply about using <span class="math inline">\(\alphahat\)</span> for prediction of <span class="math inline">\(\y_\new\)</span>?</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
