@@ -67,6 +67,15 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-MMK2VCM6EW"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MMK2VCM6EW', { 'anonymize_ip': true});
+</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -233,7 +242,7 @@ window.Quarto = {
 <li>M1: There exists a <span class="math inline">\(\boldsymbol{\beta}\)</span> such that <span class="math inline">\(y_n = \boldsymbol{\beta}^\intercal\boldsymbol{x}_n + \varepsilon_n\)</span> for all <span class="math inline">\(n\)</span></li>
 <li>M2: The residuals <span class="math inline">\(\varepsilon_n\)</span> are IID with <span class="math inline">\(\varepsilon_n \vert \boldsymbol{x}_n \sim \mathcal{N}\left(0, \sigma^2\right)\)</span> for some <span class="math inline">\(\sigma^2\)</span></li>
 <li>M3: The residuals <span class="math inline">\(\varepsilon_n\)</span> are independent with <span class="math inline">\(\mathbb{E}\left[\varepsilon_n | \boldsymbol{x}_n\right] = 0\)</span> and <span class="math inline">\(\mathbb{E}\left[\varepsilon_n^2 | \boldsymbol{x}_n\right] = \sigma^2\)</span></li>
-<li>M4: The residuals <span class="math inline">\(\varepsilon_n\)</span> are independent with <span class="math inline">\(\mathbb{E}\left[\varepsilon_n | \boldsymbol{x}_n\right] = 0\)</span> and <span class="math inline">\(\mathbb{E}\left[\varepsilon_n^2 | \boldsymbol{x}_n\right] = \sigma_n^2\)</span></li>
+<li>M4: The residuals <span class="math inline">\(\varepsilon_n\)</span> are independent with <span class="math inline">\(\mathbb{E}\left[\varepsilon_n | \boldsymbol{x}_n\right] = 0\)</span> and <span class="math inline">\(\mathbb{E}\left[\varepsilon_n^2 | \boldsymbol{x}_n\right] = \sigma^2(x_n)\)</span>, where <span class="math inline">\(\sigma^2(\boldsymbol{x}_n)\)</span> may depend on <span class="math inline">\(\boldsymbol{x}_n\)</span>.</li>
 <li>M5: The pairs <span class="math inline">\((\boldsymbol{x}_n, y_n)\)</span> are IID</li>
 <li>M6: For all finite vectors <span class="math inline">\(\boldsymbol{v}\)</span>, <span class="math inline">\(\frac{1}{N} \sum_{n=1}^N\mathbb{E}\left[y_n - \boldsymbol{v}^\intercal\boldsymbol{x}_n)^2 \boldsymbol{x}_n \boldsymbol{x}_n^\intercal\right] \rightarrow \boldsymbol{V}(\boldsymbol{v}) &lt; \infty\)</span>, where each entry of the limiting matrix is finite. (The limit depends on <span class="math inline">\(\boldsymbol{v}\)</span>, but importantly <span class="math inline">\(\boldsymbol{V}(\boldsymbol{v})\)</span> is finite for all finite <span class="math inline">\(\boldsymbol{v}\)</span>).</li>
 </ul>
